@@ -5,6 +5,6 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <h1> SISINFO</h1>
+    <h1>SisInfo</h1>
   </React.StrictMode>,
 )
