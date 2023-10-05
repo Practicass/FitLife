@@ -7,6 +7,14 @@ const userSchema = Schema({
         type: String,
         required: true
     },
+    surname: {
+        type: String,
+        required: true
+    },
+    nick: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -19,6 +27,10 @@ const userSchema = Schema({
         type: String,
         default: "default.png"
     },
+    weight: Number,
+    height: Number,
+    age: Number,
+    sex: String, 
     created_at: {
         type: Date,
         default: Date.now

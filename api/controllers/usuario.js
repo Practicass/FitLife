@@ -28,7 +28,7 @@ const register = (req, res) => {
 
     User.find({ or: [
         {email: params.email.toLowerCase()},
-        {name: params.name.toLowerCase()}
+        {nick: params.name.toLowerCase()}
     ]}).exec(async(error, users) => {
 
         if(error) return res.status(500).json({status: "error", message: "Error en la consulta de usuarios"})
@@ -41,7 +41,7 @@ const register = (req, res) => {
         }else{
 
             let pwd = await bcrypt.hash(params.password, 10)
-            params.password = pwt
+            params.password = pwd
 
             let newUser = new User(params)
 
@@ -70,6 +70,50 @@ const register = (req, res) => {
     return res.status(200).send({
         message: "Registrando",
         params
+    })
+}
+
+const login = (req, res) => {
+    
+    let params = req.body
+
+    if(!params.email || !params.password){
+
+        return res.status(400).json({
+            status: "error",
+            message: "Faltas datos por enviar"
+        })
+    }
+
+    User.findOne({email: params.email.toLowerCase()})
+    .exec((error,users) => {
+
+        if(error || !user) return res.status(500).json({status: "error", message: "Error en la consulta de usuarios"})
+
+        let pwd = bcrypt.compareSync(params.password, user.password)
+
+        if(!pwd){
+            return res.status(400).send({
+                status: "error",
+                message: "La contraseña o el email no corresponden"
+            })
+        }
+
+        const token = false
+
+
+        return res.status(200).send({
+            status: "success",
+            message: "Login correcto",
+            user: {
+                id: user._id,
+                name: user.name,
+                nick: user.nick
+            },
+            token
+        })
+
+
     })
 }
 
