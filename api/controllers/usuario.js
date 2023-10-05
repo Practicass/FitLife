@@ -1,7 +1,7 @@
 
-const usuario = require("../models/usuario")
 const User = require("../models/usuario")
-const bcrypt = require("bcrypt-nodejs")
+const bcrypt = require("bcrypt")
+const jwt = require("../services/jwt")
 
 
 
@@ -16,7 +16,7 @@ const register = (req, res) => {
 
     let params = req.body
 
-    if(!params.name || !params.email || !params.password){
+    if(!params.name || !params.surname || !params.email || !params.password || !params.nick){
 
         return res.status(400).json({
             status: "error",
@@ -24,53 +24,54 @@ const register = (req, res) => {
         })
     }
 
+
+    User.find({ $or: [
+        {email: params.email.toLowerCase()},
+        {nick: params.nick.toLowerCase()}]})
+        .then( (users) => {
+            
+
+            if(users && users.length >= 1){
+                return res.status(200).send({
+                    status: "success",
+                    message: "El usuario ya existe"
+                })
+            }else{
+                    
+                    bcrypt.hash(params.password, 10,async (error, pwd) => {
+                        c
+                        if(error ) return res.status(500).json({status: "error", message: "Error en la encriptación de la contraseña"})
+                        params.password = pwd
+                    
+                        let newUser = new User(params)
+                        
+                        let userStored = await newUser.save()
+                            if(!userStored) return res.status(500).send({status: "error", message: "Error al guardar el usuario"})
+        
+                            if(userStored){
+        
+                                return res.status(200).json({
+                                    status: "success",
+                                    message: "Usuario registrado correctamente",
+                                    newUser
+                                })
+                            }
+                        
+                    }) 
+
+            }
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                status: "error",
+                message: "Error en la consulta de usuarios",
+                error
+            })
+        })  
+
+    
     
 
-    User.find({ or: [
-        {email: params.email.toLowerCase()},
-        {nick: params.name.toLowerCase()}
-    ]}).exec(async(error, users) => {
-
-        if(error) return res.status(500).json({status: "error", message: "Error en la consulta de usuarios"})
-
-        if(users && users.length >= 1){
-            return res.status(200).send({
-                status: "success",
-                message: "El usuario ya existe"
-            })
-        }else{
-
-            let pwd = await bcrypt.hash(params.password, 10)
-            params.password = pwd
-
-            let newUser = new User(params)
-
-            newUser.save((error, userStored) => {
-                if(error || !userStored) return res.status(500).send({status: "error", message: "Error al guardar el usuario"})
-
-                if(userStored){
-
-                    return res.status(200).json({
-                        status: "success",
-                        message: "Usuario registrado correctamente",
-                        newUser
-                    })
-                }
-            })
-
-
-            return res.status(200).json({
-                status: "success",
-                message: "El usuario se ha registrado correctamente",
-                newUser
-            })
-        }
-    })
-
-    return res.status(200).send({
-        message: "Registrando",
-        params
-    })
 }
 
 const login = (req, res) => {
@@ -86,20 +87,19 @@ const login = (req, res) => {
     }
 
     User.findOne({email: params.email.toLowerCase()})
-    .exec((error,users) => {
-
+    .then(async(user,error) => {
         if(error || !user) return res.status(500).json({status: "error", message: "Error en la consulta de usuarios"})
-
-        let pwd = bcrypt.compareSync(params.password, user.password)
-
+        
+        let pwd = await bcrypt.compareSync(params.password, user.password)
+       
         if(!pwd){
             return res.status(400).send({
                 status: "error",
-                message: "La contraseña o el email no corresponden"
+                message: "La contraseña no es correcta"
             })
         }
 
-        const token = false
+        const token = jwt.createToken(user)
 
 
         return res.status(200).send({
@@ -119,5 +119,6 @@ const login = (req, res) => {
 
 module.exports = {
     prueba,
-    register
+    register,
+    login
 }
