@@ -7,7 +7,8 @@ const jwt = require("../services/jwt")
 
 const prueba = (req, res) => {
     return res.status(200).send({
-        message: "Mensaje enviado desde user"
+        message: "Mensaje enviado desde user",
+        usuario: req.user
     })
 }
 
@@ -117,8 +118,31 @@ const login = (req, res) => {
     })
 }
 
+
+const profile = (req, res) => {
+
+    const id = req.params.id
+
+    User.findById(id).select({password:0}).then((userProfile) => {
+    
+        if(!userProfile){
+            return res.status(404).send({
+                status:"error",
+                message: "El usuario no existe o hay un error"
+            })
+        }
+        return res.status(200).send({
+            status: "success",
+            user: userProfile
+        })
+
+
+    })
+}
+
 module.exports = {
     prueba,
     register,
-    login
+    login,
+    profile
 }
