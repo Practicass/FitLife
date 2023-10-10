@@ -1,5 +1,5 @@
 
-const User = require("../models/usuario")
+const User = require("../models/usersSchema")
 const bcrypt = require("bcrypt")
 const jwt = require("../services/jwt")
 
@@ -75,6 +75,8 @@ const register = (req, res) => {
 
 }
 
+
+
 const login = (req, res) => {
     
     let params = req.body
@@ -119,30 +121,47 @@ const login = (req, res) => {
 }
 
 
+//función que devuelva la informacion de un usuario
 const profile = (req, res) => {
 
-    const id = req.params.id
-
-    User.findById(id).select({password:0}).then((userProfile) => {
-    
-        if(!userProfile){
-            return res.status(404).send({
-                status:"error",
-                message: "El usuario no existe o hay un error"
-            })
-        }
-        return res.status(200).send({
-            status: "success",
-            user: userProfile
-        })
-
-
-    })
 }
+
+//funcion que devuelve la imágen de un usuario
+const avatar = ( req, res) => {
+    
+}
+
+//funcion que elimina un usuario
+const deleteUser = (req, res) => {
+
+}
+
+// funcion que modifica un usuario
+const modUser = ( req, res) => {
+    
+}
+// funcion que modifica la foto del usuario
+const uploadImg = ( req, res) => {
+    
+}
+
+
+const countFriends = (req, res) => {
+
+}
+
+
+
+
 
 module.exports = {
     prueba,
     register,
     login,
-    profile
+    profile,
+    avatar,
+    deleteUser,
+    modUser,
+    uploadImg,
+    countFriends
 }

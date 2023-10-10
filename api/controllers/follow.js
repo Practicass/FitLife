@@ -1,6 +1,6 @@
 
-const Follow = require("../models/follow")
-const User = require("../models/usuario")
+const Follow = require("../models/friendSchema")
+const User = require("../models/usersSchema")
 
 
 

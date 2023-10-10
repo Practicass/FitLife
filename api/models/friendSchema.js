@@ -2,22 +2,25 @@
 const {Schema, model} = require("mongoose")
 
 
-const followSchema = Schema({
+const friendSchema = Schema({
 
+    // Usuario
     user: {
         type: Schema.ObjectId,
         ref: "User"
     },
+    // Usuario amigo
     followed: {
         type: Schema.ObjectId,
         ref: "User"
     },
+    // Cuando empezaron a seguirse
     created_at: {
         type: Date,
         default: Date.now
-    },
+    }
 
     
 })
 
-module.exports = model("Follow", followSchema, "follows")
+module.exports = model("Follow", friendSchema, "follows")

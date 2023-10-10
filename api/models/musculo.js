@@ -3,7 +3,7 @@ const {Schema, model} = require("mongoose")
 
 
 const muscleSchema = Schema({
-
+    // Nombre del músculo
     name: {
         type: String,
         required: true
@@ -11,4 +11,4 @@ const muscleSchema = Schema({
     
 })
 
-module.exports = model("Muscle", muscleSchemaSchema, "muscles")
+module.exports = model("Muscle", muscleSchema, "muscles")
