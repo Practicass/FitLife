@@ -18,18 +18,10 @@ app.use(express.urlencoded({extended: true}))
 
 
 const UserRoutes = require("./routes/usuario")
+const FollowRoutes = require("./routes/follow")
 
 app.use("/api/user", UserRoutes)
-
-app.get("/ruta-prueba", (req, res) => {
-    return res.status(200).json(
-        {
-            "id": 1,
-            "nombre": "Pablo",
-            "correo": "pabloangusto@gmail.com"
-        }
-    )
-})
+app.use("/api/follow", FollowRoutes)
 
 app.listen(puerto, () => {
     console.log("Servidor de node corriendo en el puerto: ", puerto)

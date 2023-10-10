@@ -40,7 +40,7 @@ const register = (req, res) => {
             }else{
                     
                     bcrypt.hash(params.password, 10,async (error, pwd) => {
-                        c
+                        
                         if(error ) return res.status(500).json({status: "error", message: "Error en la encriptación de la contraseña"})
                         params.password = pwd
                     

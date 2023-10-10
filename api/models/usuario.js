@@ -27,13 +27,15 @@ const userSchema = Schema({
         type: String,
         default: "default.png"
     },
-    weight: Number,
-    height: Number,
-    age: Number,
+    birth: Date,
     sex: String, 
     created_at: {
         type: Date,
         default: Date.now
+    },
+    rol: {
+        type: String,
+        default: "usuario"
     }
     
 })
