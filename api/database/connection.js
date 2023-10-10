@@ -4,7 +4,8 @@ const mongoose = require("mongoose")
 const connection = async() => {
 
     try{
-        await mongoose.connect("mongodb://localhost:27017/fitLife")
+        await mongoose.connect("mongodb+srv://sisInfo:eUNxrfZiiPuFZXJS@fitlife.nnl10ji.mongodb.net/sisInfo")
+
 
         console.log("Conectado correctamente a bd: fitLife")
 
