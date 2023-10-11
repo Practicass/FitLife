@@ -1,12 +1,10 @@
-
-
 const express = require("express")
 const router = express.Router()
-const TrainingController = require("../controllers/entrenamiento")
+const RutineController = require("../controllers/rutina")
 const auth  = require("../middlewares/auth")
 
 
-router.get("/prueba",  TrainingController.prueba)
+router.get("/prueba",  RutineController.prueba)
 
 
 

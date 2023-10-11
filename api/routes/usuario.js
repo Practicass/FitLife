@@ -7,9 +7,10 @@ const auth  = require("../middlewares/auth")
 
 
 router.get("/prueba", auth.auth, UserController.prueba)
-router.get("/register", UserController.register)
-router.get("/login", UserController.login)
+router.post("/register", UserController.register)
+router.post("/login", UserController.login)
 router.get("/profile/:id", auth.auth, UserController.profile)
+router.get("/list/:page?", auth.auth, UserController.list)
 
 
 module.exports = router

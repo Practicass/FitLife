@@ -10,7 +10,7 @@ const friendSchema = Schema({
         ref: "User"
     },
     // Usuario amigo
-    followed: {
+    friend: {
         type: Schema.ObjectId,
         ref: "User"
     },
@@ -23,4 +23,4 @@ const friendSchema = Schema({
     
 })
 
-module.exports = model("Follow", friendSchema, "follows")
+module.exports = model("Friend", friendSchema, "friends")
