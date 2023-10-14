@@ -50,16 +50,9 @@ const add = async(req, res) => {
 const eliminate = async(req, res) => {
     
 
-    let name = req.body.name
+    let id = req.params.id
 
-    if(!name){
-        return res.status(500).send({
-            status:"error",
-            message: "Faltan datos por enviar"
-        })
-    }
-
-    await Muscle.find({name}).remove().then(muscleDeleted => {
+    await Muscle.find(id).remove().then(muscleDeleted => {
         if(!muscleDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -73,10 +66,6 @@ const eliminate = async(req, res) => {
         })
     })
     
-    
-
-
-
     
 
 }

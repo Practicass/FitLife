@@ -6,6 +6,8 @@ const auth  = require("../middlewares/auth")
 
 
 router.get("/prueba",  ExerciseController.prueba)
+router.post("/add",  ExerciseController.add)
+router.delete("/eliminate/:id",  ExerciseController.eliminate)
 
 
 

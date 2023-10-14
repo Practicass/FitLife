@@ -2,6 +2,7 @@
 
 
 const Exercise = require("../models/exerciseSchema")
+const Muscle = require("../models/muscleSchema")
 
 
 const prueba = (req, res) => {
@@ -11,15 +12,48 @@ const prueba = (req, res) => {
     })
 }
 
-const add = (req, res) => {
+const add = async (req, res) => {
     
 
-    if(!req.body.nombre){
+    if(!req.body.name || !req.body.muscle){
         return res.status(500).send({
             status:"error",
             message: "Faltan datos por enviar"
         })
     }
+
+    let muscle = await Muscle.findById(req.body.muscle)
+    console.log(muscle)
+    if(muscle.length == 0){
+        return res.status(500).send({
+            status:"error",
+            message: "Los datos enviados son erróneos"
+        })
+    }
+
+    let exercise = await Exercise.find({name: req.body.name , muscle: req.body.muscle})
+
+    if(exercise.length != 0){
+        return res.status(500).send({
+            status:"error",
+            message: "Ya existe el ejercicio"
+        })
+    }
+
+    let newExercise = new Exercise({name: req.body.name, description: req.body.description, muscle: req.body.muscle})
+    
+    let exerciseStored = await newExercise.save()
+
+    if(!exerciseStored){
+        return res.status(500).send({
+            status:"error",
+            message: "No se ha podido guardar el ejercicio"
+        })
+    }
+    return res.status(200).send({
+        status:"success",
+        message: "Se ha guardado el ejercicio correctamente"
+    })
 
 
 
@@ -28,7 +62,29 @@ const add = (req, res) => {
 }
 
 
+const eliminate = (req,res) => {
+
+    let id = req.params.id
+
+    Exercise.find(id).remove().then(exerciseDeleted => {
+        if(!exerciseDeleted) {
+            return res.status(500).json({
+                status: "error",
+                message: "No se ha podido eliminar el ejercicio",
+            })
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha eliminado correctamente el ejercicio",
+            exerciseDeleted
+        })
+    })
+}
+
+
 
 module.exports = {
-    prueba
+    prueba,
+    add,
+    eliminate
 }
