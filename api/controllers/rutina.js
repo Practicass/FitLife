@@ -22,7 +22,7 @@ const add = async(req, res) => {
     }
     
     let exercisesFound = await Exercise.find({_id: {$in: exercises}})
-    console.log(exercisesFound)
+    
     if(exercisesFound.length != exercises.length){
         return res.status(500).send({
             status:"error",
@@ -41,7 +41,8 @@ const add = async(req, res) => {
     }
     return res.status(200).send({
         status:"success",
-        message: "Se ha guardado la rutina correctamente"
+        message: "Se ha guardado la rutina correctamente",
+        rutineSaved
     })
 
 

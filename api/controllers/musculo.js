@@ -70,10 +70,29 @@ const eliminate = async(req, res) => {
 
 }
 
+const muscles = (req,res) => {
+    
+    Muscle.find().then(muscles => {
+        return res.status(500).json({
+            status: "error",
+            message: "Se han mostrado correctamente los musculos",
+            muscles
+        })
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se han podido mostrar los musculos",
+            error
+        })
+    })
+
+}
+
 
 
 module.exports = {
     prueba,
     add,
-    eliminate
+    eliminate,
+    muscles
 }

@@ -81,10 +81,31 @@ const eliminate = (req,res) => {
     })
 }
 
+const exercises = (req, res) => {
+    let muscle = req.params.muscle
+    
+    Exercise.find({muscle}).then(exercises => {
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado correctamente los ejercicios",
+            exercises
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar los ejercicios",
+            error
+        })
+    })
+    
+}
+
 
 
 module.exports = {
     prueba,
     add,
-    eliminate
+    eliminate,
+    exercises
 }
