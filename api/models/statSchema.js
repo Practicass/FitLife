@@ -2,7 +2,7 @@
 const {Schema, model} = require("mongoose")
 
 
-const statsSchema = Schema({
+const statSchema = Schema({
     // Nombre estadistica
     name: {
         type: String,
@@ -23,4 +23,4 @@ const statsSchema = Schema({
     
 })
 
-module.exports = model("Stat", statsSchema, "stats")
+module.exports = model("Stat", statSchema, "stats")

@@ -30,7 +30,7 @@ const add = async(req, res) => {
         })
     }
 
-    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets})
+    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public})
 
     let trainingSaved = await newTraining.save()
     if(!trainingSaved){
@@ -52,8 +52,42 @@ const add = async(req, res) => {
 }
 
 
+const trainings = (req,res) => {
+
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+  
+    let itemsPerPage = 5;
+  
+    Training.find().sort('_id').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
+
+        if(error ||!trainings){
+          return res.status(500).send({
+            status: "error",
+            message: "No hay entrenamientos disponibles",
+            error
+          })
+        }
+  
+        return res.status(200).send({
+          status: "success",
+          trainings,
+          page,
+          itemsPerPage
+          
+        })
+    })
+  
+    
+
+}
+
 
 module.exports = {
     prueba,
-    add
+    add,
+    trainings
 }

@@ -8,6 +8,7 @@ const auth  = require("../middlewares/auth")
 
 router.get("/prueba",  TrainingController.prueba)
 router.post("/add", auth.auth, TrainingController.add)
+router.get("/trainings/:page?", TrainingController.trainings)
 
 
 

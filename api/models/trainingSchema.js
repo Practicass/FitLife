@@ -24,6 +24,11 @@ const trainingSchema = Schema({
         weight: Number,
         reps: Number
     }],
+    //si va a poder ser vista por sus amigos
+    public:{
+        type: Boolean,
+        required: true
+    } ,
     // fecha creacion
     created_at: {
         type: Date,
