@@ -23,6 +23,7 @@ const TrainingRoutes = require("./routes/entrenamiento")
 const RutineRoutes = require("./routes/rutina")
 const ExerciseRoutes = require("./routes/ejercicio")
 const MuscleRoutes = require("./routes/musculo")
+const StatRoutes = require("./routes/estadistica")
 
 
 app.use("/api/user", UserRoutes)
@@ -31,6 +32,7 @@ app.use("/api/training", TrainingRoutes)
 app.use("/api/rutine", RutineRoutes)
 app.use("/api/exercise", ExerciseRoutes)
 app.use("/api/muscle", MuscleRoutes)
+app.use("/api/stat", StatRoutes)
 
 app.get("/ruta-prueba", (req, res) => {
     return res.status(200).json(

@@ -14,7 +14,10 @@ const statSchema = Schema({
         ref: "User"
     },
     // Valor
-    value: Number,
+    value: {
+        type: Number,
+        required: true
+    },
     // Fecha en la que se recopilo
     date: {
         type: Date,
