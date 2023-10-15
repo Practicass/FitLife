@@ -56,16 +56,16 @@ const eliminate = (req,res) => {
 
     let id = req.params.id
 
-    Rutine.find(id).remove().then(rutineDeleted => {
+    Rutine.findOneAndRemove(id).then(rutineDeleted => {
         if(!rutineDeleted) {
             return res.status(500).json({
                 status: "error",
-                message: "No se ha podido eliminar el ejercicio",
+                message: "No se ha podido eliminar la rutina",
             })
         }
         return res.status(200).json({
             status: "success",
-            message: "Se ha eliminado correctamente el ejercicio",
+            message: "Se ha eliminado correctamente la rutina",
             rutineDeleted
         })
     })
@@ -92,9 +92,42 @@ const rutines = (req,res) => {
 }
 
 
+const update = (req, res) => {
+
+    let rutineId = req.params.id
+
+    Rutine.findByIdAndUpdate(rutineId,{name: req.body.name, exercises: req.body.exercises}, {new: true}).then((rutine) => {
+
+        if(!rutine){
+            return res.status(500).json({
+                status: "error",
+                message: "No se ha podido actualizar la rutina"
+            })
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha actualizado la rutina correctamente",
+            rutine
+        })
+
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido actualizar la rutina",
+            error
+        })
+    })
+    
+
+
+
+}
+
+
 module.exports = {
     prueba,
     add,
     eliminate,
+    update,
     rutines
 }

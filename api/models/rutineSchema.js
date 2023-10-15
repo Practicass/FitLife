@@ -22,4 +22,4 @@ const rutineSchema = Schema({
     
 })
 
-module.exports = model("Rutine", rutineSchema, "exercises")
+module.exports = model("Rutine", rutineSchema, "rutines")
