@@ -1,6 +1,7 @@
 
 const Training = require("../models/trainingSchema")
 const Exercise = require("../models/exerciseSchema")
+const friendService = require("../services/friendService")
 
 
 const prueba = (req, res) => {
@@ -48,11 +49,14 @@ const add = async(req, res) => {
 
 }
 
-const eliminate = (req,res) => {
+const eliminate = async(req,res) => {
 
     let id = req.params.id
 
-    Training.findByIdAndRemove(id).then(trainingDeleted => {
+    let me = req.user.id
+
+
+    Training.findOneAndDelete({_id: id, user: me}).then(trainingDeleted => {
         if(!trainingDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -68,7 +72,7 @@ const eliminate = (req,res) => {
 }
 
 
-const trainings = (req,res) => {
+const trainings = async(req,res) => {
 
     let page = 1;
     if(req.params.page){
@@ -77,8 +81,11 @@ const trainings = (req,res) => {
     page = parseInt(page);
   
     let itemsPerPage = 5;
-  
-    Training.find().sort('_id').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
+    
+    let friendsIds = await friendService.friendUserids(req.user.id)
+
+    Training.find({user: {$in: friendsIds.friends}}).sort('created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage)
+    .then((trainings,error) => {
 
         if(error ||!trainings){
           return res.status(500).send({
@@ -101,10 +108,47 @@ const trainings = (req,res) => {
 
 }
 
+const trainingsUser = (req, res) => {
+
+    idUser = req.user.id
+
+    if(req.params.id){
+        idUser = req.params.id
+    }
+
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+  
+    let itemsPerPage = 5;
+  
+    Training.find({user:idUser}).sort('created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
+
+        if(error ||!trainings){
+          return res.status(500).send({
+            status: "error",
+            message: "No hay entrenamientos disponibles",
+            error
+          })
+        }
+  
+        return res.status(200).send({
+          status: "success",
+          trainings,
+          page,
+          itemsPerPage
+          
+        })
+    })
+}
+
 
 module.exports = {
     prueba,
     add,
     eliminate,
-    trainings
+    trainings,
+    trainingsUser
 }

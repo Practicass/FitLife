@@ -95,11 +95,11 @@ const login = (req, res) => {
         })
     }
 
-    User.findOne({email: params.email.toLowerCase()})
+    User.findOne({email: params.email})
     .then(async(user,error) => {
         if(error || !user) return res.status(500).json({status: "error", message: "Error en la consulta de usuarios"})
         
-        let pwd = await bcrypt.compareSync(params.password, user.password)
+        let pwd = bcrypt.compareSync(params.password, user.password)
        
         if(!pwd){
             return res.status(400).send({
