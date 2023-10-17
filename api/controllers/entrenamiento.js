@@ -44,11 +44,27 @@ const add = async(req, res) => {
         message: "Se ha guardado el entrenamiento correctamente",
         trainingSaved
     })
+ 
 
+}
 
+const eliminate = (req,res) => {
 
-    
+    let id = req.params.id
 
+    Training.findByIdAndRemove(id).then(trainingDeleted => {
+        if(!trainingDeleted) {
+            return res.status(500).json({
+                status: "error",
+                message: "No se ha podido eliminar el entrenamiento",
+            })
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha eliminado correctamente el entrenamiento",
+            trainingDeleted
+        })
+    }) 
 }
 
 
@@ -89,5 +105,6 @@ const trainings = (req,res) => {
 module.exports = {
     prueba,
     add,
+    eliminate,
     trainings
 }

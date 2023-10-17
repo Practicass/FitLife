@@ -75,7 +75,7 @@ const rutines = (req,res) => {
 
     let me = req.user.id
 
-    Rutine.find({user: me}).then(rutines => {
+    Rutine.find({$or: [{user: me},{rol: administrador }]}).then(rutines => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado las rutinas correctamente",
