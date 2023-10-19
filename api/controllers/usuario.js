@@ -147,40 +147,7 @@ const profile = (req, res) => {
 }
 
 
-//Muestra los amigos de un usuario
-const list = (req, res) => {
 
-    let page = 1;
-    if(req.params.page){
-      page = req.params.page;
-    }
-    page = parseInt(page);
-  
-    let itemsPerPage = 5;
-  
-    User.find().sort('_id').select("-password -email -role -__v").paginate(page, itemsPerPage).then(async (users,error) => {
-
-        if(error ||!users){
-          return res.status(500).send({
-            status: "error",
-            message: "No hay usuarios disponibles",
-            error
-          })
-        }
-  
-        let friendIds = await friendService.friendUserids(req.user.id)
-  
-        return res.status(200).send({
-          status: "success",
-          users,
-          page,
-          itemsPerPage,
-          friends: friendIds
-        })
-    })
-  
-    
-  }
 
 
 
@@ -372,7 +339,6 @@ module.exports = {
     register,
     login,
     profile,
-    list,
     update,
     avatar,
     upload,

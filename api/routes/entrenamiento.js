@@ -6,7 +6,7 @@ const TrainingController = require("../controllers/entrenamiento")
 const auth  = require("../middlewares/auth")
 
 
-router.get("/prueba",  TrainingController.prueba)
+
 router.post("/add", auth.auth, TrainingController.add)
 router.delete("/eliminate/:id", auth.auth, TrainingController.eliminate)
 router.get("/trainings/:page?", auth.auth,TrainingController.trainings)

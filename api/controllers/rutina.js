@@ -51,7 +51,7 @@ const eliminate = (req,res) => {
 
     let id = req.params.id
 
-    Rutine.findOneAndRemove(id).then(rutineDeleted => {
+    Rutine.findOneAndRemove({_id:id, user: req.user.me}).then(rutineDeleted => {
         if(!rutineDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -93,7 +93,7 @@ const update = (req, res) => {
 
     let rutineId = req.params.id
 
-    Rutine.findByIdAndUpdate(rutineId,{name: req.body.name, exercises: req.body.exercises}, {new: true}).then((rutine) => {
+    Rutine.findByIdAndUpdate(rutineId,{user: req.user.id, name: req.body.name, exercises: req.body.exercises}, {new: true}).then((rutine) => {
 
         if(!rutine){
             return res.status(500).json({

@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const uploads = multer({storage});
 
 
-router.get("/prueba", auth.auth, UserController.prueba)
+
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
 router.get("/profile/:id", auth.auth, UserController.profile)

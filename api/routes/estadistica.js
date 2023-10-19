@@ -5,10 +5,9 @@ const StatController = require("../controllers/estadistica")
 const auth  = require("../middlewares/auth")
 
 
-router.get("/prueba",  StatController.prueba)
-router.post("/add",  StatController.add)
-router.delete("/eliminate/:id",  StatController.eliminate)
-router.get("/stats/:category", StatController.stats)
+router.post("/add", auth.auth, StatController.add)
+router.delete("/eliminate/:id", auth.auth,  StatController.eliminate)
+router.get("/stats/:category", auth.auth, StatController.stats)
 
 
 

@@ -18,7 +18,7 @@ const add = async (req, res) => {
 
 
 
-    let newStat = new Stat({name: req.body.name, value: req.body.value})
+    let newStat = new Stat({user: req.user.id, name: req.body.name, value: req.body.value})
     
     let statStored = await newStat.save()
 
@@ -41,7 +41,7 @@ const eliminate = (req,res) => {
 
     let id = req.params.id
 
-    Stat.find(id).remove().then(statDeleted => {
+    Stat.findOneAndRemove({_id: id, user: req.user.id}).then(statDeleted => {
         if(!statDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -61,7 +61,7 @@ const stats = (req, res) => {
 
     let category = req.params.category
     
-    Stat.find({name: category}).then(stats => {
+    Stat.find({user: req.user.id, name: category}).then(stats => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado correctamente los datos del usuario",
