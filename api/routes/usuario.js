@@ -23,7 +23,7 @@ const uploads = multer({storage});
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
 router.get("/profile/:id", auth.auth, UserController.profile)
-router.put("/update/:id", auth.auth, UserController.update)
+router.put("/update", auth.auth, UserController.update)
 router.post("/upload", [auth.auth, uploads.single("file")], UserController.upload)
 router.get("/avatar/:file", auth.auth, UserController.avatar)
 router.get("/counters/:id?", auth.auth, UserController.counters)

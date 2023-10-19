@@ -19,7 +19,7 @@ const add = async (req, res) => {
     }
 
     let muscle = await Muscle.findById(req.body.muscle)
-    console.log(muscle)
+
     if(muscle.length == 0){
         return res.status(500).send({
             status:"error",
@@ -62,7 +62,7 @@ const eliminate = (req,res) => {
 
     let id = req.params.id
 
-    Exercise.find(id).remove().then(exerciseDeleted => {
+    Exercise.findByIdAndRemove(id).then(exerciseDeleted => {
         if(!exerciseDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -73,6 +73,11 @@ const eliminate = (req,res) => {
             status: "success",
             message: "Se ha eliminado correctamente el ejercicio",
             exerciseDeleted
+        })
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "Se ha producido un error al intentar eliminar el ejercicio",
         })
     })
 }

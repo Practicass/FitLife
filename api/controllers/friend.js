@@ -69,19 +69,12 @@ const add = async(req, res) => {
 //Dos usuarios dejan de ser amigos
 const eliminate = async(req, res) => {
     
-    let idFriend = req.params.id
+    let id = req.params.id
 
     let me = req.user.id
 
-    if(!idFriend){
-        return res.status(500).send({
-            status: "error",
-            message: "Faltan datos por enviar"
-            
-        })
-    }
 
-    Friend.deleteOne({user: me, friend: idFriend})
+    Friend.deleteOne({$or:[{user: me, friend: id}, {user: id, friend: me}]})
     .then((friendRemoved, error) => {
 
         if(friendRemoved.deletedCount == 0 || error ){
@@ -126,7 +119,6 @@ const friends = (req,res) => {
         return res.status(200).send({
             status: "success",
             message: "Listado de amigos",
-            friends,
             total: friends.length,
             pages: Math.ceil(friends.length/itemsPerPage),
             friendsIds

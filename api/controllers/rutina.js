@@ -8,7 +8,12 @@ const Exercise = require ("../models/exerciseSchema")
 const add = async(req, res) => {
     
     let exercises = req.body.exercises
-    
+    if(!req.body.name){
+        return res.status(500).send({
+            status:"error",
+            message: "Faltan datos"
+        })
+    }
     if(exercises.length == 0 ){
         return res.status(500).send({
             status:"error",
@@ -51,7 +56,7 @@ const eliminate = (req,res) => {
 
     let id = req.params.id
 
-    Rutine.findOneAndRemove({_id:id, user: req.user.me}).then(rutineDeleted => {
+    Rutine.findOneAndRemove({_id:id, user: req.user.id}).then(rutineDeleted => {
         if(!rutineDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -72,7 +77,7 @@ const rutines = (req,res) => {
 
     let me = req.user.id
 
-    Rutine.find({$or: [{user: me},{rol: administrador }]}).then(rutines => {
+    Rutine.find({$or: [{user: me},{rol: "administrador" }]}).then(rutines => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado las rutinas correctamente",

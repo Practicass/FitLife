@@ -16,9 +16,11 @@ const add = async(req, res) => {
             message: "No se puede guardar una rutina con 0 ejercicios"
         })
     }
-    let exercisesIds = sets.map(set => set.exercise)
-    let exercisesFound = await Exercise.find({_id: {$in: exercisesIds}})
     
+    let exercisesIds = sets.map(set => set.exercise)
+    console.log(exercisesIds)
+    let exercisesFound = await Exercise.find({_id: {$in: exercisesIds}})
+    console.log(exercisesFound)
     if(exercisesFound.length != sets.length){
         return res.status(500).send({
             status:"error",

@@ -42,12 +42,12 @@ const add = async(req, res) => {
 }
 
 //Elimina un usuario de la base de datos
-const eliminate = async(req, res) => {
+const eliminate = (req, res) => {
     
 
     let id = req.params.id
 
-    await Muscle.find(id).remove().then(muscleDeleted => {
+     Muscle.findByIdAndRemove(id).then(muscleDeleted => {
         if(!muscleDeleted) {
             return res.status(500).json({
                 status: "error",
@@ -58,6 +58,11 @@ const eliminate = async(req, res) => {
             status: "success",
             message: "Se ha eliminado correctamente el musculo",
             muscleDeleted
+        })
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "Se ha producido un error al intentar eliminar el musculo",
         })
     })
     
@@ -70,8 +75,8 @@ const eliminate = async(req, res) => {
 const muscles = (req,res) => {
     
     Muscle.find().then(muscles => {
-        return res.status(500).json({
-            status: "error",
+        return res.status(200).json({
+            status: "success",
             message: "Se han mostrado correctamente los musculos",
             muscles
         })

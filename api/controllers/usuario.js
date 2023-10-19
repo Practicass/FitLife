@@ -128,22 +128,35 @@ const profile = (req, res) => {
 
     id = req.params.id
 
-    User.findById(id)
-    .select({password:0, role:0})
-    .then(async(user,error) => {
-        if(error || !user) return res.status(500).json({status: "error", message: "El usuario no existe o hay un error"})
-        
-        let friendInfo = await friendService.friendThisUser(req.user.id , id)
-
+    if(id == req.user.id){
         return res.status(200).send({
             status: "success",
-            user,
-            friends: friendInfo.res
+            user: req.user
             
         })
+    }else{
+
+        User.findById(id)
+        .select({password:0, role:0})
+        .then(async(user) => {
+            if(!user) return res.status(500).json({status: "error", message: "El usuario no existe"})
+
+            let friendInfo = await friendService.friendThisUser(req.user.id , id)
+
+            return res.status(200).send({
+                status: "success",
+                user: friendInfo
+                
+            })
 
 
-    })
+        }).catch(error => {
+            return res.status(500).json({status: "error", message: "Se ha producido un error en la consulta de usuarios"})
+        })
+
+    }
+
+    
 }
 
 
@@ -153,25 +166,37 @@ const profile = (req, res) => {
 
 //Modifica un usuario
 const update = (req, res) => {
-    // Recoger info del usuario a actualizar
-    let userIdentity = req.user;
-    let userToUpdate = req.body;
 
-    // Eliminar campos sobrantes
+    let userIdentity = req.user;
+    let userToUpdate = req.user;
+    if(req.body.name){
+        userToUpdate.name = req.body.name
+    }
+    if(req.body.surname){
+        userToUpdate.surname = req.body.surname
+    }
+    if(req.body.email){
+        userToUpdate.email = req.body.email
+    }
+    if(req.body.password){
+        userToUpdate.password = req.body.password
+    }
+    if(req.body.nick){
+        userToUpdate.nick = req.body.nick
+    }
+    if(req.body.sex){
+        userToUpdate.sex = req.body.sex
+    }
+
+   
     delete userToUpdate.iat;
     delete userToUpdate.exp;
     delete userToUpdate.role;
     delete userToUpdate.image;
 
     // Comprobar si el usuario ya existe
-    User.find({
-        $or: [
-            { email: userToUpdate.email.toLowerCase() },
-            { nick: userToUpdate.nick.toLowerCase() }
-        ]
-    }).exec(async (error, users) => {
+    User.find({$or: [{email: userToUpdate.email},{ nick: userToUpdate.nick}]}).then(async (users) => {
 
-        if (error) return res.status(500).json({ status: "error", message: "Error en la consulta de usuarios" });
 
         let userIsset = false;
         users.forEach(user => {
@@ -197,7 +222,7 @@ const update = (req, res) => {
 
         // Buscar y actualizar 
         try {
-            let userUpdated = await User.findByIdAndUpdate({ _id: userIdentity.id }, userToUpdate, { new: true });
+            let userUpdated = await User.findByIdAndUpdate(userIdentity.id, userToUpdate, { new: true });
 
             if (!userUpdated) {
                 return res.status(400).json({ status: "error", message: "Error al actualizar" });
@@ -217,6 +242,8 @@ const update = (req, res) => {
             });
         }
 
+    }).catch(error => {
+        return res.status(500).json({ status: "error", message: "Error en la consulta de usuarios" })
     });
 }
 
