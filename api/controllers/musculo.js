@@ -2,13 +2,7 @@
 const Muscle = require("../models/muscleSchema")
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        status:"success",
-        message: "Enviado desde Muscle"
-    })
-}
-
+//Añade un nuevo músculo a la base de datos
 const add = async(req, res) => {
     
 
@@ -47,6 +41,7 @@ const add = async(req, res) => {
 
 }
 
+//Elimina un usuario de la base de datos
 const eliminate = async(req, res) => {
     
 
@@ -70,6 +65,8 @@ const eliminate = async(req, res) => {
 
 }
 
+
+//Muestra los musculos de la base de datos
 const muscles = (req,res) => {
     
     Muscle.find().then(muscles => {
@@ -91,7 +88,7 @@ const muscles = (req,res) => {
 
 
 module.exports = {
-    prueba,
+   
     add,
     eliminate,
     muscles

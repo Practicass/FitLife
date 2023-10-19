@@ -11,14 +11,9 @@ const friendService = require("../services/friendService")
 
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        message: "Mensaje enviado desde user",
-        usuario: req.user
-    })
-}
 
 
+//Añade un nuevo usuario a la base de datos
 const register = (req, res) => {
 
     let params = req.body
@@ -82,7 +77,8 @@ const register = (req, res) => {
 }
 
 
-
+//Comprueba que los datos introducidos por el usuario existen y que son correctos
+//Si no existen muestra un error, si existe inicia sesión
 const login = (req, res) => {
     
     let params = req.body
@@ -127,7 +123,7 @@ const login = (req, res) => {
 }
 
 
-//función que devuelva la informacion de un usuario
+//Devuelve la informacion de un usuario
 const profile = (req, res) => {
 
     id = req.params.id
@@ -150,6 +146,8 @@ const profile = (req, res) => {
     })
 }
 
+
+//Muestra los amigos de un usuario
 const list = (req, res) => {
 
     let page = 1;
@@ -186,7 +184,7 @@ const list = (req, res) => {
 
 
 
-// funcion que modifica un usuario
+//Modifica un usuario
 const update = (req, res) => {
     // Recoger info del usuario a actualizar
     let userIdentity = req.user;
@@ -255,6 +253,7 @@ const update = (req, res) => {
     });
 }
 
+//Modifica la imagen del usuario
 const upload = (req, res) => {
 
     // Recoger el fichero de imagen y comprobar que existe
@@ -305,7 +304,7 @@ const upload = (req, res) => {
 
 }
 
-//funcion que devuelve la imágen de un usuario
+//Devuelve la imágen de un usuario
 const avatar = (req, res) => {
     // Sacar el parametro de la url
     const file = req.params.file;
@@ -329,7 +328,7 @@ const avatar = (req, res) => {
 
 }
 
-// añadido
+// Devuelve el número de amigos de un usuario y el número de entrenamientos realizados por un usuario
 const counters = async (req, res) => {
 
     let userId = req.user.id;
@@ -369,7 +368,7 @@ const counters = async (req, res) => {
 
 
 module.exports = {
-    prueba,
+    
     register,
     login,
     profile,

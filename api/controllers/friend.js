@@ -7,14 +7,9 @@ const friendService = require("../services/friendService")
 
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        message: "Mensaje enviado desde friend",
-        usuario: req.user
-    })
-}
 
 
+//Se añaden dos usuarios como amigos 
 const add = async(req, res) => {
     
     let params = req.body
@@ -39,9 +34,9 @@ const add = async(req, res) => {
     }
 
     //esto no se si es necesario
-    let hola = await Friend.find({user: me.id, friend: params.friend})
-    let hola2 = await Friend.find({user: params.friend, friend: me.id})
-    if( hola.length != 0 || hola2.length != 0){
+    let aux = await Friend.find({user: me.id, friend: params.friend})
+    let aux2 = await Friend.find({user: params.friend, friend: me.id})
+    if( aux.length != 0 || aux2.length != 0){
         return res.status(500).send({
             status: "error",
             message: "Ya sois amigos"
@@ -71,6 +66,7 @@ const add = async(req, res) => {
 }
 
 
+//Dos usuarios dejan de ser amigos
 const eliminate = async(req, res) => {
     
     let idFriend = req.params.id
@@ -104,7 +100,7 @@ const eliminate = async(req, res) => {
 }
 
 
-
+//Se muestra el listado de amigos de un usuario
 const friends = (req,res) => {
 
     let userId = req.user.id
@@ -151,7 +147,7 @@ const friends = (req,res) => {
 
 
 module.exports = {
-    prueba,
+    
     add,
     eliminate,
     friends

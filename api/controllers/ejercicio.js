@@ -5,13 +5,9 @@ const Exercise = require("../models/exerciseSchema")
 const Muscle = require("../models/muscleSchema")
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        status:"success",
-        message: "Enviado desde Exercise"
-    })
-}
 
+
+//Añade a la base datos un nuevo ejercicio
 const add = async (req, res) => {
     
 
@@ -61,7 +57,7 @@ const add = async (req, res) => {
 
 }
 
-
+//Elimina un ejercicio de la base de datos
 const eliminate = (req,res) => {
 
     let id = req.params.id
@@ -81,6 +77,8 @@ const eliminate = (req,res) => {
     })
 }
 
+
+//Muestra todos los ejercicios de un músculo de la base de datos 
 const exercises = (req, res) => {
     let muscle = req.params.muscle
     
@@ -104,7 +102,6 @@ const exercises = (req, res) => {
 
 
 module.exports = {
-    prueba,
     add,
     eliminate,
     exercises

@@ -4,13 +4,8 @@ const Exercise = require("../models/exerciseSchema")
 const friendService = require("../services/friendService")
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        status:"success",
-        message: "Enviado desde Training"
-    })
-}
 
+//Añade un nuevo entrenamiento a la base de datos
 const add = async(req, res) => {
     
     let sets = req.body.sets
@@ -49,6 +44,7 @@ const add = async(req, res) => {
 
 }
 
+//Elimina un entrenamiento de la base de datos
 const eliminate = async(req,res) => {
 
     let id = req.params.id
@@ -71,7 +67,7 @@ const eliminate = async(req,res) => {
     }) 
 }
 
-
+//Muestra los entrenamientos de los amigos de un usuario
 const trainings = async(req,res) => {
 
     let page = 1;
@@ -108,6 +104,7 @@ const trainings = async(req,res) => {
 
 }
 
+//Muestra todos los entrenamientos de un usuario 
 const trainingsUser = (req, res) => {
 
     idUser = req.user.id
@@ -146,7 +143,7 @@ const trainingsUser = (req, res) => {
 
 
 module.exports = {
-    prueba,
+
     add,
     eliminate,
     trainings,

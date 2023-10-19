@@ -4,13 +4,8 @@
 const Stat = require("../models/statSchema")
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        status:"success",
-        message: "Enviado desde Exercise"
-    })
-}
 
+//Añade un nuevo dato del usuario a la base de datos
 const add = async (req, res) => {
     
 
@@ -41,7 +36,7 @@ const add = async (req, res) => {
 
 }
 
-
+//Elimina un dato del usuario de la base de datos
 const eliminate = (req,res) => {
 
     let id = req.params.id
@@ -61,6 +56,7 @@ const eliminate = (req,res) => {
     })
 }
 
+//Muestra los datos de un usuario
 const stats = (req, res) => {
 
     let category = req.params.category
@@ -68,14 +64,14 @@ const stats = (req, res) => {
     Stat.find({name: category}).then(stats => {
         return res.status(200).json({
             status: "success",
-            message: "Se han mostrado correctamente los ejercicios",
+            message: "Se han mostrado correctamente los datos del usuario",
             stats
         })
     })
     .catch(error => {
         return res.status(500).json({
             status: "error",
-            message: "No se ha podido mostrar los ejercicios",
+            message: "No se ha podido mostrar los datos del usuario",
             error
         })
     })
@@ -85,7 +81,6 @@ const stats = (req, res) => {
 
 
 module.exports = {
-    prueba,
     add,
     eliminate,
     stats

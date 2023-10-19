@@ -3,13 +3,8 @@ const Rutine = require("../models/rutineSchema")
 const Exercise = require ("../models/exerciseSchema")
 
 
-const prueba = (req, res) => {
-    return res.status(200).send({
-        status:"success",
-        message: "Enviado desde Rutine"
-    })
-}
 
+//Añade una nueva rutina a la base de datos
 const add = async(req, res) => {
     
     let exercises = req.body.exercises
@@ -51,7 +46,7 @@ const add = async(req, res) => {
 
 }
 
-
+//Elimina una rutina de la base de datos
 const eliminate = (req,res) => {
 
     let id = req.params.id
@@ -71,6 +66,8 @@ const eliminate = (req,res) => {
     })
 }
 
+
+//Muesta todas las rutinas de un usuario y las del administrador
 const rutines = (req,res) => {
 
     let me = req.user.id
@@ -91,7 +88,7 @@ const rutines = (req,res) => {
     })
 }
 
-
+//Actualiza una rutina de la base de datos
 const update = (req, res) => {
 
     let rutineId = req.params.id
@@ -125,7 +122,7 @@ const update = (req, res) => {
 
 
 module.exports = {
-    prueba,
+   
     add,
     eliminate,
     update,
