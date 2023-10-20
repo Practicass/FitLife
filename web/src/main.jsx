@@ -1,10 +1,14 @@
-import React from 'react'
+import App from "./App"
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import "./css/styles.css"
+import "./css/main.css";
+
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <h1>SisInfo</h1>
-  </React.StrictMode>,
+  
+  <App />
+
+    
 )

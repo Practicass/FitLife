@@ -1,0 +1,39 @@
+:root{
+    --color-background:#242424;
+    --color-primary: #404040;
+    --color-second: #9e9e9e;
+    --color-text: #fff;
+    --color-black: #000;
+    --color-third: #fba92c;
+    --color-stats: #05ff00;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0; 
+    text-decoration: none;
+    list-style: none;
+}
+.img-logo{
+
+    width: 100px;
+    height: auto;
+    border: 4px solid white;
+    justify-content: center;
+    
+}
+.logo{
+    display: grid;
+    justify-content: center;
+    border: 4px solid orange;
+}
+.page{
+    display: grid;
+    justify-content: center;
+}
+
+
+
+
