@@ -1,14 +1,18 @@
 import React from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
-import PagLogin from '../Components/PagLogin'
+import PageLogin from '../Components/PageLogin'
+import { AuthProvider } from '../context/AuthProvider'
+import PageHome from '../Components/PageHome'
 
 
 
 const RouterPrincipal = () => {
     return (
       <BrowserRouter >
+        <AuthProvider>
           <Routes>
-              <Route path='/login' element={<PagLogin/>}/>
+              <Route path='/login' element={<PageLogin/>}/>
+              <Route path='/home' element={<PageHome/>}/>
 
           
                 {/* <Footer/> */}
@@ -22,6 +26,7 @@ const RouterPrincipal = () => {
                     </>
                 }/>
             </Routes>
+        </AuthProvider>
   
       </BrowserRouter>
     )
