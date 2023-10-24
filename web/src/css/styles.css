@@ -28,7 +28,7 @@
 
 }
 
-.img-logo{
+.pageLogin .img-logo{
 
     width: 250px;
     height: auto;
@@ -36,7 +36,40 @@
     justify-content: center;
     
 }
-.logo{
+.header {
+    
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;  
+    grid-template-areas: "bars-menu logo photo-user";
+}
+.header .img-logo{
+
+    width: 200px;
+    height: auto;
+   
+    justify-content: center;
+    
+}
+.header .logo{
+    grid-area: logo;
+    display:flex;
+    justify-content: center;
+    
+}
+.icon-bars-menu{
+    grid-area: bars-menu;
+   
+}
+.icon-user-default{
+    grid-area: photo-user;
+    
+    display: flex;
+    justify-content: end;
+}
+
+.pageLogin .logo{
     display: grid;
     justify-content: center;
     

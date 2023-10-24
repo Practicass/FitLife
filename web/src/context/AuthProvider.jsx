@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 import { Global } from '../helpers/Global'
 
 const AuthContext = createContext()
@@ -8,17 +8,19 @@ export const AuthProvider = ({children}) => {
     
     const [auth, setAuth] = useState({});
 
-
     useEffect(() => {
         authUser()
-    },[]);
+    },[])
 
 
     const authUser = async() => {
+
+        //console.log("HOLAA")
         
 
         const token = localStorage.getItem("token")
         const user = localStorage.getItem("user")
+        
 
         if(!token || !user){
             return false;
@@ -38,7 +40,8 @@ export const AuthProvider = ({children}) => {
 
         const data = await request.json()
 
-        console.log(data.user)
+        //console.log(data)
+
         setAuth(data.user)
         
 
@@ -47,7 +50,7 @@ export const AuthProvider = ({children}) => {
   return (
     <AuthContext.Provider value={{
         auth,
-        setAuth
+        authUser
     }} >{children}</AuthContext.Provider>
   );
 };

@@ -1,9 +1,15 @@
 import React from 'react'
+import Header from './Header'
+import {useAuth} from "../hooks/useAuth"
 
 const PageHome = () => {
+  const {auth} = useAuth()
+
+  //console.log(auth)
   return (
-    <div>
-      <p>home</p>
+    <div className='pageHome'>
+      <Header/>
+      <>{auth.name},{auth.image}</>
     </div>
   )
 }

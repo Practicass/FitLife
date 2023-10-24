@@ -3,7 +3,8 @@ import Logo from './Logo'
 import useForm from '../hooks/useForm'
 import { Global } from '../helpers/Global'
 import { useState } from 'react'
-import useAuth from '../hooks/useAuth'
+import { useNavigate } from "react-router-dom"
+import {useAuth} from '../hooks/useAuth'
 
 
 
@@ -11,8 +12,9 @@ const PageLogin = () => {
 
   const {form,changed} = useForm({})
   const [saved, setSaved] = useState("not_sended")
+  let navigate = useNavigate()
 
-  const {setAuth} = useAuth()
+  const {authUser} = useAuth()
 
   const loginUser = async(e) => {
     e.preventDefault();
@@ -29,18 +31,16 @@ const PageLogin = () => {
 
     const data = await request.json()
 
-    console.log(data)
+    //console.log(data)
 
     if(data.status == "success"){
       setSaved("login")
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
+      authUser()
       
-      setAuth(data.user);
-
-      
-      console.log("GUAI")
+      navigate("/home")
 
     }else{
       console.log("ERROR")
