@@ -3,6 +3,7 @@ import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
 import PageHome from '../Components/PageHome'
+import PageHistory from '../Components/PageHistory'
 
 
 
@@ -13,7 +14,7 @@ const RouterPrincipal = () => {
           <Routes>
               <Route path='/login' element={<PageLogin/>}/>
               <Route path='/home' element={<PageHome/>}/>
-
+              <Route path='/history' element={<PageHistory/>}/>
           
                 {/* <Footer/> */}
                 <Route path="*"  element ={

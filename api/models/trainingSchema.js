@@ -29,6 +29,10 @@ const trainingSchema = Schema({
         type: Boolean,
         required: true
     } ,
+    duration:{
+        type: Number,
+        required: true
+    } ,
     // fecha creacion
     created_at: {
         type: Date,

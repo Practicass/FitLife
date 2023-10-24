@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Logo from './Logo'
-import {FaBars} from "react-icons/fa"
+
 import { useState } from 'react'
 import {Global} from "../helpers/Global"
 import {useAuth} from "../hooks/useAuth"
@@ -14,9 +14,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <div className='icon-bars-menu'>
-        <FaBars  size="50px" color='#fba92c'/>
-      </div>
+      
         
         <Logo/>
         {auth.imagen = "default.png" ? 

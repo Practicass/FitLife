@@ -28,7 +28,7 @@ const add = async(req, res) => {
         })
     }
 
-    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public})
+    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public, duration: req.body.duration})
 
     let trainingSaved = await newTraining.save()
     if(!trainingSaved){
