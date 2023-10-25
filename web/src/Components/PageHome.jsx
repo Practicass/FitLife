@@ -19,9 +19,9 @@ const PageHome = () => {
       <div className='content'>
         <Header/>
         <div className='principal'>
-          <div className='rectangle'></div>
-          <div className='rectangle'></div>
-          <div className='rectangle'></div>
+          <div className={"rectangle-"+ sidebar}></div>
+          <div className={"rectangle-"+ sidebar}></div>
+          <div className={"rectangle-"+ sidebar}></div>
         </div>
       </div>
     </div>

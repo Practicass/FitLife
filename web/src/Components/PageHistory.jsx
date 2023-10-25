@@ -80,7 +80,7 @@ const PageHistory = () => {
                             {training.sets.map(set => {
                                 console.log(set.exercise)
                                 return(
-                                    <div>
+                                    <div key={set._id}>
                                         <label>{set.exercise.name}</label>
                                     </div>
                                 
