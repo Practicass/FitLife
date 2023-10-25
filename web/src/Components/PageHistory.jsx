@@ -8,7 +8,6 @@ import ReactTimeAgo from "react-time-ago"
 const PageHistory = () => {
     const [sidebar, setSidebar] = useState(false)
     const [history, setHistory] = useState([])
-    const [duration, setDuration] = useState("")
     
 
     const getHistory = async() => {

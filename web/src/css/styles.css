@@ -103,7 +103,7 @@
 }
 
 .content{
-    grid-area: "content";
+    grid-area: content;
     
 }
 
@@ -192,13 +192,13 @@
 }
 
 .info-rectangle{
-    grid-area: "info";
+    grid-area: info;
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 3px solid red;
+    
 }
 .rectangle h3,label,h4{
     color:white;
@@ -208,11 +208,89 @@
 .exercises-rectangle{
     grid-area: "exercises";
     margin:20px;
-    border: 3px solid blue;
 }
 
 .date-rectangle{
     color:white;
 }
+
+.principal-rutines h2{
+    color: white;
+    font-size:40px;
+}
+
+.principal-rutines{
+    margin-right: 4.16%;
+    height: 92.2%;
+    display: grid;
+    grid-template-areas: "myrutines"
+                        "poprutines";
+    
+}
+
+.myRutines{
+    grid-area: myrutines;
+}
+.myRutines h2{
+    margin-top:20px
+}
+.popRutines{
+    grid-area: poprutines;
+}
+
+.rutines{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    height: 86%;
+}
+
+
+.square{
+    background-color: var(--color-primary);
+    width: 20%;
+    height: 70%;
+    margin-right: 6%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: "ti cross"
+                         "exer edit";
+    grid-template-columns: 90% auto;
+    grid-template-rows: 25% auto;
+}
+
+.title-rutine{
+    grid-area:ti;
+    color: white;
+    font-size: 24px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cross{
+    grid-area: cross;
+    
+
+    display:flex;
+    align-items: center;
+
+}
+.exercises-rutine{
+    grid-area: exer;
+
+    display: grid;
+    grid-template-areas: "expar separator eximpar";
+    grid-template-columns: auto 1% auto;
+    
+}
+.edit{
+    grid-area: edit;
+
+    display: flex;
+    align-items: end;
+}
+
 
 
