@@ -5,7 +5,7 @@ import { AuthProvider } from '../context/AuthProvider'
 import PageHome from '../Components/PageHome'
 import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
-import PageRutines from '../Components/PageRutines'
+import PageRoutines from '../Components/PageRoutines'
 
 
 
@@ -18,7 +18,7 @@ const RouterPrincipal = () => {
               <Route path='/home' element={<PageHome/>}/>
               <Route path='/history' element={<PageHistory/>}/>
               <Route path='/register' element={<PageRegister/>}/>
-              <Route path='/rutines' element={<PageRutines/>}/>
+              <Route path='/routines' element={<PageRoutines/>}/>
           
                 {/* <Footer/> */}
                 <Route path="*"  element ={

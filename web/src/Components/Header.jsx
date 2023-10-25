@@ -18,12 +18,14 @@ const Header = () => {
         
         <Logo/>
         {auth.imagen = "default.png" ? 
-        <div className='icon-user-default'>
+        <div className='icon-user'>
           <NavLink to="/me"> <FaUserCircle color='#fba92c' size="50px"/> </NavLink>
         </div>
 
         
-        : <img src={auth.imagen}/>}
+        :  <div>
+            <NavLink to="/me"></NavLink><img src={auth.imagen}/>
+          </div>}
        
     </div>
   )

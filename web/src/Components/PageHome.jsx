@@ -17,7 +17,7 @@ const PageHome = () => {
     <div className={"page-"+sidebar}>
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='content'>
-        {/* <Header/> */}
+        <Header/>
         <div className='principal'>
           <div className={"rectangle-"+ sidebar}></div>
           <div className={"rectangle-"+ sidebar}></div>

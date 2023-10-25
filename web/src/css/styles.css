@@ -37,9 +37,8 @@
     
 }
 .header {
-    
+    margin-top: 20px;
     display: grid;  
-
     grid-template-areas: "logo photo-user";
     grid-template-columns: auto 4.16%;
     align-items: center;
@@ -48,14 +47,21 @@
 
     width: 200px;
     height: auto;
-   
     justify-content: center;
     
+}
+.header .icon-user{
+  align-self: center;
+  
+
+
+  
 }
 .header .logo{
     grid-area: logo;
     display:flex;
     justify-content: center;
+
     
 }
 .icon-bars-menu{
@@ -214,35 +220,36 @@
     color:white;
 }
 
-.principal-rutines h2{
+.principal-routines h2{
     color: white;
     font-size:40px;
 }
 
-.principal-rutines{
+.principal-routines{
     margin-right: 4.16%;
     height: 92.2%;
     display: grid;
-    grid-template-areas: "myrutines"
-                        "poprutines";
+    grid-template-areas: "myRoutines"
+                        "popRoutines";
     
 }
 
-.myRutines{
-    grid-area: myrutines;
+.myRoutines{
+    grid-area: myRoutines;
 }
-.myRutines h2{
+.myRoutines h2{
     margin-top:20px
 }
-.popRutines{
-    grid-area: poprutines;
+.popRoutines{
+    grid-area: popRoutines;
 }
 
-.rutines{
+.routines{
     display: flex;
     justify-content:flex-start;
     align-items: center;
     height: 86%;
+    
 }
 
 
@@ -259,7 +266,7 @@
     grid-template-rows: 25% auto;
 }
 
-.title-rutine{
+.title-routine{
     grid-area:ti;
     color: white;
     font-size: 24px;
@@ -277,7 +284,7 @@
     align-items: center;
 
 }
-.exercises-rutine{
+.exercises-routine{
     grid-area: exer;
 
     display: grid;
@@ -291,6 +298,13 @@
     display: flex;
     align-items: end;
 }
+
+
+
+.ejerciciosLabel{
+    color: white;
+}
+
 
 
 
