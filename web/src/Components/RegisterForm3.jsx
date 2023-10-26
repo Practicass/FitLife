@@ -2,14 +2,14 @@ import React from "react"
 
 const RegisterForm3 = () => {
     return (
-    <div className='registerForm3'>
+    <div className='registerForm'>
         <form name='form-register1'> 
-            <p> Nombre de usuario </p>
+            <p>Nombre de usuario</p>
             <input type='text' name='nickname'/>
-            <p> Contraseña </p>
+            <p>Contraseña</p>
             <input type='password' name='password' />
-            <p> Repita la constraseña </p>
-            <input type='text' name='passwordRepeat' />
+            <p>Repita la constraseña</p>
+            <input type='password' name='passwordRepeat' />
         </form>
     </div>
 )

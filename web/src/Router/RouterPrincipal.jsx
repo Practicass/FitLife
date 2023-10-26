@@ -6,6 +6,8 @@ import PageHome from '../Components/PageHome'
 import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
+import PageAddRoutine from '../Components/PageAddRoutine'
+import PageRoutine from '../Components/PageRoutine'
 
 
 
@@ -19,7 +21,8 @@ const RouterPrincipal = () => {
               <Route path='/history' element={<PageHistory/>}/>
               <Route path='/register' element={<PageRegister/>}/>
               <Route path='/routines' element={<PageRoutines/>}/>
-          
+              <Route path='/addRoutine' element={<PageAddRoutine/>}/>
+              <Route path='/routine' element={<PageRoutine/>}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
