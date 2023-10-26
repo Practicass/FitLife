@@ -6,12 +6,15 @@ import {ImCross} from "react-icons/im"
 import {FaRegEdit} from "react-icons/fa"
 import { useEffect } from 'react'
 import { Global } from '../helpers/Global'
+import { AiFillPlusCircle } from "react-icons/ai"
+import { NavLink } from 'react-router-dom'
 
 
 const PageRoutines = () => {
     const[sidebar,setSidebar] = useState(false)
     const [routines, setRoutines] = useState([])
-    const [parExer, setParExer] = useState([])
+    const [eliminate, setEliminate] = useState(false)
+    const [id, setId] = useState("")
     
     const getRoutines = async() => {
 
@@ -34,17 +37,34 @@ const PageRoutines = () => {
         
     }
 
+    const eliminateRoutine = async(e) => {
+        e.preventDefault()
+        console.log(id)
+        setEliminate(false)
+
+        const request = await fetch(Global.url+"rutine/eliminate/"+ id, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": localStorage.getItem("token")
+              
+            }
+      })
+
+      const data = await request.json()
+
+      console.log(data.status)
+
+        if(data.status == "success"){
+            getRoutines()
+        }
+
+    }
+
 
     useEffect(() => {
         getRoutines()
-    }, [])
-
-    useEffect(() => {
-        console.log(routines)
-
-      }, [routines]);
-
-    
+    }, [])  
       
     
 
@@ -54,75 +74,115 @@ const PageRoutines = () => {
         <div className='content'>
             <Header/>
             <div className='principal-routines'>
-                <div className='myRoutines-'>
+                {eliminate ? 
+                    <div className='askEliminate'>
+                        <h3>¿ESTAS SEGURO?</h3>
+                        <button onClick={eliminateRoutine}>SI</button>
+                        <button onClick={e => setEliminate(false)}>NO</button>
+                    </div>
+                    :
+                    <></>
+                }
+                
+                <div className={'myRoutines-'+eliminate}>
                     <h2>MIS RUTINAS</h2>
-                    {routines.map( routine => {
+                    <div className='routines' >
+                        {routines.map( routine => {
+                            
+                            if(routine.user.rol == "usuario"){
 
-
-                        return(
-                            <div className='routines' key={routine._id}>
-                                <div className='square'>
-                                    <h3 className='title-routine'>{routine.name}</h3>
-                                    <div className='cross'><ImCross size="25px" color='#fba92c'/></div>
-                                    <div className='exercises-routine'>
-                                        <div className='exercises-par'>
-                                            {/* {routine.exercises.map( exercise => {
-
-                                                return(
-                                                    
-                                                    <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
-                                                    
-
-                                                )
-                                            })} */}
-                                            {/* {console.log(routine.exercises)}
-                                           { 
-
-                                            console.log(routine.exercises.filter( (index) => index % 2 ))} */}
-                                            { routine.exercises.filter( (index) => index % 2 ).map(exercise => {
-                                               
-                                                    <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                return(
+                                    
+                                        <div className='square' key={routine._id}>
+                                            <h3 className='title-routine'>{routine.name}</h3>
+                                            <div className='cross' ><ImCross size="25px" color='#fba92c' onClick={e => {setId(routine._id) ; setEliminate(true) }}/></div>
+                                            <div className='exercises-routine'>
+                                                <div className='exercises-par'>
                                                 
-                                            })} 
-                                        
+                                                    { routine.exercises.map((exercise,index) => {
+                                                        if(index % 2 == 0 ){
+                                                            return(
                                                     
-    
-                                            {/* {routine.exercises.filter( (exercise,) => {
-                                                    if(index % 2 == 0 && index < 10){
-                                                        console.log(`Index ${index}`)
-                                                        console.log(exercise)
-                                                        return(
-                                                            <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
-                                                        )
-                                                    }
-                                                
-                                                
+                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                            )
+                                                        }
+                                                        
+                                                    })} 
 
-                                            })} */}
-                                        </div>
-                                        <div className='separator'></div>
+                                                </div>
+                                                <div className='separator'></div>
 
-                                        <div className='exercises-impar'>
-                                            <label>hola</label>
-                                            <label>hola</label>
-                                        </div>
-                                    </div>
-                                    <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
-                                </div> 
-                            </div>
-                        )
-                    })}
+                                                <div className='exercises-impar'>
+                                                { routine.exercises.map((exercise,index) => {
+                                                        if(index % 2 != 0 ){
+                                                            return(
+                                                    
+                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                            )
+                                                        }
+                                                        
+                                                    })} 
+                                                </div>
+                                            </div>
+                                            <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                        </div> 
+                                    
+                                )
+                            }
+                        })}
+                        <NavLink className='squareAdd' to="/addRoutine">
+                                <div className='addRoutine'>
+                                    <AiFillPlusCircle color='#9e9e9e' size="50px"/>
+                                </div>
+                        </NavLink>
+                    </div>
                     
                 </div>
-                <div className='popRoutines'>
+                <div className={'popRoutines-'+eliminate}>
                     <h2>RUTINAS POPULARES</h2>
-                    <div className='routines'>
-                        <div className='square'>
-
-                        </div>
-                        <div className='square'>
+                    <div className='routines' >
+                        {routines.map( routine => {
                             
-                        </div>
+                            if(routine.user.rol == "administrador"){
+
+                                return(
+                                    
+                                        <div className='square' key={routine._id}>
+                                            <h3 className='title-routine'>{routine.name}</h3>
+                                        
+                                            <div className='exercises-routine'>
+                                                <div className='exercises-par'>
+                                                
+                                                    { routine.exercises.map((exercise,index) => {
+                                                        if(index % 2 == 0 ){
+                                                            return(
+                                                    
+                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                            )
+                                                        }
+                                                        
+                                                    })} 
+
+                                                </div>
+                                                <div className='separator'></div>
+
+                                                <div className='exercises-impar'>
+                                                { routine.exercises.map((exercise,index) => {
+                                                        if(index % 2 != 0 ){
+                                                            return(
+                                                    
+                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                            )
+                                                        }
+                                                        
+                                                    })} 
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    
+                                )
+                            }
+                        })}
                     </div>
                 </div>
             </div>
