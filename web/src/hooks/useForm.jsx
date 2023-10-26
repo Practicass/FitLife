@@ -13,7 +13,7 @@ const useForm = (initialObj = {}) => {
             [name]:value
         })
 
-        //console.log(form)
+        console.log(form)
     }
 
 
