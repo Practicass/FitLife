@@ -77,7 +77,7 @@ const rutines = (req,res) => {
 
     let me = req.user.id
 
-    Rutine.find({$or: [{user: me},{rol: "administrador" }]}).populate("exercises").then(rutines => {
+    Rutine.find({$or: [{user: me},{rol: "administrador" }]}).populate("exercises user").then(rutines => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado las rutinas correctamente",
