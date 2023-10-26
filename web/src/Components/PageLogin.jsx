@@ -3,7 +3,7 @@ import Logo from './Logo'
 import useForm from '../hooks/useForm'
 import { Global } from '../helpers/Global'
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import {useAuth} from '../hooks/useAuth'
 
 
@@ -51,11 +51,14 @@ const PageLogin = () => {
   return (
     <div className="pageLogin" >
       <Logo />
-      <form className='form-register' onSubmit={loginUser}>
-        <p>Correo Electronico</p>
+      <form className='form-login' onSubmit={loginUser}>
+        <label>Correo Electronico</label>
         <input type='text' name='email' onChange={changed}></input>
-        <p>Contraseña</p>
-        <input type='text' name='password' onChange={changed}></input>
+        <label>Contraseña</label>
+        <input type='password' name='password' onChange={changed}></input>
+        <div>
+          <label>¿No tienes una cuenta?</label><NavLink className="goRegister" to="/register"><label>Registrate</label></NavLink>
+        </div>
         <input type='submit' value="Inicia Sesion"/>
       </form>
       

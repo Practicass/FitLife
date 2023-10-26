@@ -3,12 +3,15 @@ import RegisterForm1 from './RegisterForm1'
 import RegisterForm2 from './RegisterForm2'
 import RegisterForm3 from './RegisterForm3'
 import useForm from '../hooks/useForm'
+import { Global } from '../helpers/Global'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
 const PageRegister = () => {
 
     const [num, setNum] = useState(1)
     const {form, changed} = useForm({})
+    const navigate = useNavigate()
 
     useEffect(() => {
         console.log(num)
@@ -30,22 +33,19 @@ const PageRegister = () => {
 
         const data = await request.json()
 
-        //console.log(data)
+        console.log(data)
 
         if(data.status == "success"){
-        setSaved("login")
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
 
-        authUser()
-        
-        navigate("/home")
-
+            navigate("/login")
         }else{
         console.log("ERROR")
-        setSaved("error")
+        
         }
+
     }
+
+    
 
     return (
         <div className='pageRegister'>
@@ -64,20 +64,20 @@ const PageRegister = () => {
             </div>
             {  num == 1 ? 
                 <div className='register1'>
-                    <RegisterForm1 changed={changed}/>
-                    <button>Atras</button>
+                    <RegisterForm1  form={form} changed={changed}/>
+                    <NavLink to="/login"><button>Atras</button></NavLink>
                     <button onClick={e => setNum(2)}>Siguiente</button>
                 </div>
                 
             : num==2 ? 
                 <div className='register2' >
-                    <RegisterForm2 changed={changed}/>
+                    <RegisterForm2 form={form}  changed={changed}/>
                     <button onClick={e => setNum(1)}>Atras</button>
                     <button onClick={e => setNum(3)}>Siguiente</button>
                 </div>
             :
                 <div className='register3'>
-                    <RegisterForm3 changed={changed}/>
+                    <RegisterForm3 form={form} changed={changed}/>
                     <button onClick={e => setNum(2)}>Atras</button>
                     <button type='submit' onClick={registerUser}>Registrarse</button>
                 </div>
