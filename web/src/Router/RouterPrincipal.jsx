@@ -25,6 +25,7 @@ const RouterPrincipal = () => {
               <Route path='/addRoutine' element={<PageAddRoutine/>}/>
               <Route path='/routine' element={<PageRoutine/>}/>
               <Route path='/profile' element={<PageProfile/>}/>
+              <Route path='/stats' element={<PageStats/>}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
