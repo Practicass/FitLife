@@ -50,6 +50,7 @@
     height: auto;
     justify-content: center;
     
+    
 }
 .header .icon-user{
  grid-area: photo-user;
@@ -62,6 +63,7 @@
     grid-area: logo;
     display:flex;
     justify-content: center;
+    
 
     
 }

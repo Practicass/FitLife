@@ -19,6 +19,7 @@ const PageRegister = () => {
 
 
     const registerUser = async(e) => {
+        // Para que no se recargue la pagina
         e.preventDefault();
 
         let userToRegister = form;
