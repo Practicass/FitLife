@@ -8,7 +8,8 @@ import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
 import PageAddRoutine from '../Components/PageAddRoutine'
 import PageRoutine from '../Components/PageRoutine'
-
+import PageProfile from '../Components/PageProfile'
+import PageStats from '../Components/PageStats'
 
 
 const RouterPrincipal = () => {
@@ -23,6 +24,8 @@ const RouterPrincipal = () => {
               <Route path='/routines' element={<PageRoutines/>}/>
               <Route path='/addRoutine' element={<PageAddRoutine/>}/>
               <Route path='/routine' element={<PageRoutine/>}/>
+              <Route path='/profile' element={<PageProfile/>}/>
+              <Route path='/stats' element={<PageStats/>}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
