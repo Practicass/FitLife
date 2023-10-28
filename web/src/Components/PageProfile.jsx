@@ -6,7 +6,7 @@ import { IoMdSettings } from "react-icons/io";
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import IconDropdown from "./IconDropdown";
-import { MyButton } from "./Mydrop";
+import { MyButton } from "./MyButton";
 
 
 
@@ -37,7 +37,7 @@ import { MyButton } from "./Mydrop";
           </div>}
       </div>
       <div>
-      <MyButton>Hola</MyButton>
+      <MyButton color="orange">Hola</MyButton>
       </div>
           
      
