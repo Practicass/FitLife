@@ -6,6 +6,7 @@ import { IoMdSettings } from "react-icons/io";
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import IconDropdown from "./IconDropdown";
+import { MyButton } from "./Mydrop";
 
 
 
@@ -36,7 +37,7 @@ import IconDropdown from "./IconDropdown";
           </div>}
       </div>
       <div>
-
+      <MyButton>Hola</MyButton>
       </div>
           
      

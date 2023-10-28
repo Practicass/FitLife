@@ -1,8 +1,8 @@
 import App from "./App"
 import ReactDOM from 'react-dom/client'
 import "./index.css"
-// import "./css/main.css";
-// import "./css/styles.css"
+import "./css/main.css";
+import "./css/styles.css"
 import React from 'react'
 
 
