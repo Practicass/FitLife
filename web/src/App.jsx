@@ -1,16 +1,23 @@
-import React from 'react'
-import RouterPrincipal from './Router/RouterPrincipal'
+// import React from 'react'
+// import RouterPrincipal from './Router/RouterPrincipal'
 
 
-function App() {
+// function App() {
   
 
+//   return (
+//     <div className="general">
+//       <RouterPrincipal/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+export default function App() {
   return (
-    <div className="general">
-      <RouterPrincipal/>
-    </div>
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
   )
 }
-
-export default App
-

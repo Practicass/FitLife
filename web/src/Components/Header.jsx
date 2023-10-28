@@ -6,6 +6,8 @@ import {Global} from "../helpers/Global"
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import {NavLink} from "react-router-dom"
+import IconDropdown from './IconDropdown'
+
 
 const Header = () => {
 
@@ -17,15 +19,7 @@ const Header = () => {
       
         
         <Logo/>
-        {auth.imagen = "default.png" ? 
-        <div className='icon-user'>
-           <FaUserCircle color='#fba92c' size="50px"/> 
-        </div>
-
-        
-        :  <div>
-            <NavLink to="/me"></NavLink><img src={auth.imagen}/>
-          </div>}
+        <IconDropdown/>
        
     </div>
   )

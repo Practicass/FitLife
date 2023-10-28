@@ -1,7 +1,10 @@
 import App from "./App"
 import ReactDOM from 'react-dom/client'
-import "./css/styles.css"
-import "./css/main.css";
+import "./index.css"
+// import "./css/main.css";
+// import "./css/styles.css"
+import React from 'react'
+
 
 import TimeAgo from "javascript-time-ago"
 import es from "javascript-time-ago/locale/es.json"
@@ -13,9 +16,12 @@ TimeAgo.addLocale(es)
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <NextUIProvider>
-  <App />
-  </NextUIProvider>
+  <React.StrictMode>
+
+    <NextUIProvider>
+      <App />
+    </NextUIProvider>
+  </React.StrictMode>
   
 
     
