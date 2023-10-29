@@ -1,65 +1,74 @@
 /* @import "styles.css"; */
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
-.headerPerfil{
-    justify-self: center;
-    border: 4px solid white;
-}
-
-.headerPerfil .img-logo{
-    width: 200px;
-    height: auto;
-
-    /* justify-content: center; */
-
-}
 
 .header-profile{
-    /* margin-right: 500px; */
-
+    justify-self: center;
+    border: 4px solid white;
     display:grid;
     grid-template-areas: "logo settings-logo";
     grid-template-columns: auto 4.16%;
-    
+    align-self: self-start;
 }
+
+
 .header-profile .settings-logo{
     grid-area: settings-logo;
     align-self: self-start;
     justify-self: right;
-
     margin-right: 10%;
     margin-top: 10%;
-    
-}
-.header-profile .logo .img-logo{
-    grid-area: logo;
-    width: 200px;
-    height: auto;
-    margin-top: 0.5%;
-   
+    border: 4px solid blue;
     
 }
 .header-profile .logo{
-
+    grid-area: logo;
+    margin-top: 0.5%; 
+    align-self: self-start;
+    justify-content: center;
+    border: 4px solid red;
     display: flex;
     justify-content: center;
+        
+    
 }
 
+.header-profile .logo .img-logo {
+    border: 4px solid green;
+    width: 200px;
+    height: auto;
+}
+
+
 .profile-icon-user{
+    align-items: center;
     align-self: center;
     border: 4px solid blue;
 
 }
 
-.profile-icon-user .default-icon-user{
+ .default-icon-user{
     align-self: center;
     border: 4px solid purple;
 
+
+}
+
+.page-profile-true{
+    min-height: 860px;
+    display: grid;
+    grid-template-areas: "bars-menu content";
+    grid-template-columns: 18% auto;
+    
+}
+.page-profile-false{
+    min-height: 860px;
+    display: grid;
+    grid-template-areas: "bars-menu content";
+    grid-template-columns: 4% auto;
 }
 
 
-.button-icon {
-    color: #000;
+.content{
+    grid-area: content;
+    
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaBars } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
+import "../css/Sidebar.css"
 
 const Sidebar = ({sidebar, setSidebar}) => {
 

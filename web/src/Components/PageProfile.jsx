@@ -7,6 +7,7 @@ import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import IconDropdown from "./IconDropdown";
 import { MyButton } from "./MyButton";
+import Header from "./Header";
 
 
 
@@ -15,35 +16,43 @@ import { MyButton } from "./MyButton";
   const {auth} = useAuth()
   return (
 
-    <div className={"page-"+sidebar}>
-      <Sidebar className="sidebar"sidebar={sidebar} setSidebar={setSidebar}/>
-      <div className="content">
+    // <div className={"page-profile-"+sidebar}>
+    //     <Sidebar className="sidebar"sidebar={sidebar} setSidebar={setSidebar}/>
+    //       <div className="content">
       
+    //         <div className='header-profile'>
+    //           <Logo />
+    //             
+    //         </div>
+    //       <button className=" profile-icon-user">
+    //           {auth.imagen = "default.png" ? 
+    //             <div >
+    //               <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
+    //             </div>
+    //           : <div>
+    //               <img className='default-img-user' src={auth.imagen}/>
+    //             </div>}
+    //       </button>
+    //     </div>
+    //   </div>
+    
+    <div className={"page-profile-"+sidebar}>
+      <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='header-profile'>
-          <Logo />
-         <div className="settings-logo">
+        <Logo />
+        <div className="settings-logo">
           <IoMdSettings color='#fba92c' size="50px"/>
-          </div>
-      </div>
-      <div className=" profile-icon-user">
-        {auth.imagen = "default.png" ? 
-        <div className='default-icon-user'>
-           <FaUserCircle color='#fba92c' size="50px"/> 
         </div>
-
-        
-        :  <div>
-            <img src={auth.imagen}/>
-          </div>}
+        {/* <div className=" profile-icon-user">
+          {auth.imagen = "default.png" ? 
+            <div >
+              <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
+            </div>
+          : <div>
+              <img className='default-img-user' src={auth.imagen}/>
+            </div>}
+        </div> */}
       </div>
-      <div>
-      <MyButton color="orange">Hola</MyButton>
-      </div>
-          
-     
-  </div>
-      
-
     </div>
 
   )

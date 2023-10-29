@@ -9,6 +9,7 @@ import { MyDropDown } from "./MyDropDown";
 
 
 
+
 export default function IconDropdown() {
   const {auth} = useAuth()
 
@@ -19,29 +20,30 @@ export default function IconDropdown() {
       <DropdownTrigger>
         <button className= "button-icon">
           {auth.imagen = "default.png" ? 
-              <FaUserCircle color='#fba92c' size="50px" stroke="0"/> 
-          : <img src={auth.imagen}/>}
+              <FaUserCircle className= "button-icon-img"color='#fba92c' size="50px" stroke="0"/> 
+          : <img className="button-icon-img"src={auth.imagen}/>}
         </button >
       </DropdownTrigger>
       <DropdownMenu
        aria-label="Action event example"  
        >
-        <DropdownItem key="profile"><NavLink to="/profile" style={() => {
+        <DropdownItem color="warning" key="profile"><NavLink to="/profile" style={() => {
     return {
       alignSelf: "center",
       color:"white",
       viewTransitionName:  "slide",
     };
   }}>Mi perfil</NavLink></DropdownItem>
-        <DropdownItem key="settings"><NavLink to="/profile" style={() => {
+        <DropdownItem color="warning" key="settings"><NavLink to="/profile" style={() => {
     return {
-     
+      alignSelf: "center",
       color:"white",
       viewTransitionName:  "slide",
     };
   }}>Ajustes</NavLink></DropdownItem>
         <DropdownItem color="danger" key="logOut" ><NavLink to="/profile" style={() => {
     return {
+      alignSelf: "center",
       fontWeight:"bold",
       color:"white",
       viewTransitionName:  "slide",

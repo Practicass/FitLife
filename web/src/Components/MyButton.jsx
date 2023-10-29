@@ -7,7 +7,7 @@ export const MyButton = extendVariants(Button, {
     color: {
       grey:  "text-[#000] bg-[#242424]",
       olive: "text-[#000] bg-[#84cc16]",
-      orange: "bg-[#ff8c00] text-[#fff]",
+      orange: "bg-[#fba92c] text-[#fff]",
       violet: "bg-[#8b5cf6] text-[#fff]",
     },
     isDisabled: {
