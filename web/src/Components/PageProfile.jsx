@@ -36,24 +36,28 @@ import Header from "./Header";
     //     </div>
     //   </div>
     
+
     <div className={"page-profile-"+sidebar}>
-      <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
-      <div className='header-profile'>
-        <Logo />
-        <div className="settings-logo">
-          <IoMdSettings color='#fba92c' size="50px"/>
+        <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
+        <div className='header-profile'>
+            <Logo />
+            <div className="settings-logo">
+              <IoMdSettings color='#fba92c' size="50px"/>
+            </div> 
         </div>
-        {/* <div className=" profile-icon-user">
-          {auth.imagen = "default.png" ? 
-            <div >
-              <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
-            </div>
-          : <div>
-              <img className='default-img-user' src={auth.imagen}/>
-            </div>}
-        </div> */}
-      </div>
+
+        <div className=" profile-icon-user">
+            {auth.imagen = "default.png" ? 
+              <div >
+                <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
+              </div>
+            : <div>
+                <img className='default-img-user' src={auth.imagen}/>
+              </div>}
+        </div>
     </div>
+    
+
 
   )
 };

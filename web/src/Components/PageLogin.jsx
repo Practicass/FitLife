@@ -5,6 +5,8 @@ import { Global } from '../helpers/Global'
 import { useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import {useAuth} from '../hooks/useAuth'
+import { Button } from '@nextui-org/react'
+import { MyButton } from './MyButton'
 
 
 
@@ -59,7 +61,7 @@ const PageLogin = () => {
         <div>
           <label>¿No tienes una cuenta?</label><NavLink className="goRegister" to="/register"><label>Registrate</label></NavLink>
         </div>
-        <input type='submit' value="Inicia Sesion"/>
+        <MyButton color='orange' type='submit' value="Inicia Sesion">Inicar sesión</MyButton>
       </form>
       
     </div>
