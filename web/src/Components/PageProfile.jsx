@@ -35,7 +35,7 @@ import Header from "./Header";
             : <div>
                 <img className='profile-img-user' src={auth.imagen}/>
               </div>}
-              <h1 className="username">@username{auth.nick}</h1> {/*No funciona lo de auth. nich, revisar como conseguir el nick*/}
+              <h1 className="username">@{auth.nick}</h1> {/*No funciona lo de auth. nich, revisar como conseguir el nick*/}
               <p className="friends">AMIGOS</p>
               <p className="friends-num">80</p>{/* No funciona lo de auth. nich, revisar como conseguir el nick*/}
               
