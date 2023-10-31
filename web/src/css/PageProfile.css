@@ -20,12 +20,12 @@
 
 .header-profile{
     grid-area: content;
-    /* justify-self: center; */
     border: 4px solid white;
     display:grid;
-    grid-template-areas: "logo settings-logo";
+    grid-template-areas: "logo settings-logo ";
     grid-template-columns: auto 4.16%;
-    /* align-self: self-start; */
+    grid-template-rows: auto 85%;
+    
 }
 
 
@@ -35,15 +35,12 @@
     justify-self: right;
     margin-right: 10%;
     margin-top: 10%;
-    border: 4px solid blue;
+    
     
 }
 .header-profile .logo{
     grid-area: logo;
-    margin-top: 0.5%; 
-    align-self: self-start;
-    justify-content: center;
-    border: 4px solid red;
+    margin-top: 0.5%;     
     display: flex;
     justify-content: center;
         
@@ -51,7 +48,6 @@
 }
 
 .header-profile .logo .img-logo {
-    border: 4px solid green;
     width: 200px;
     height: auto;
 }
@@ -59,18 +55,57 @@
 
 .profile-icon-user{
     justify-self: center;
-    justify-items: center;
-    border: 4px solid yellow;
     align-self: self-start;
+    border: 4px solid white;
+    align-items: center;
+    align-content: center;
 
 }
 
  .default-icon-user{
+    margin-left: 2.4px;
+   
+    
+
+
+
+}
+
+.profile-img-user{
+    width: 100px;
+    height: auto;
+    
+   
+}
+
+.username{
+    color: white;
+    margin-top: 5px;
     align-self: center;
-    border: 4px solid purple;
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+}
 
-
-
+.friends{
+    color: white;
+    margin-top: 2px;
+   
+    font-weight: bolder;
+    font-size: 25px;
+    align-self: baseline;
+    text-align: center;
+    
+}
+.friends-num{
+    color: white;
+    margin-top: 2px;
+    font-weight: bolder;
+    font-size: 25px;
+    align-self: baseline;
+    align-content: center;
+    text-align: center;
+    
 }
 
 
