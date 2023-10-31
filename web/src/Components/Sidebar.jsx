@@ -12,7 +12,7 @@ const Sidebar = ({sidebar, setSidebar}) => {
 
   return (
     <div className='icon-bars-menu'>
-        <FaBars  size="50px" color='#fba92c' onClick={mostrarSidebar}/>
+        <FaBars className={'icon-sidebar-'+sidebar} size="50px" color='#fba92c' onClick={mostrarSidebar}/>
         {sidebar &&
         (<ul className='sidebar'>
                 <NavLink to="/history" className="sidebar-options"><li>HISTORIAL</li></NavLink>
