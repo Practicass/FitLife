@@ -5,19 +5,46 @@ import "../css/PageProfile.css"
 import { IoMdSettings } from "react-icons/io";
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
-import IconDropdown from "./IconDropdown";
-import { MyButton } from "./MyButton";
-import Header from "./Header";
+import { Global } from '../helpers/Global'
+import { useEffect } from 'react'
 
 
 
  const ProfilePage = () => {
   const [sidebar, setSidebar] = useState(false)
   const {auth} = useAuth()
+  const [friends, setFriends] = useState([])
+  const [id, setId] = useState("")
  
+
+
+  const getFriends = async() => {
+
+    const request = await fetch(Global.url+"friend/friends", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+            
+          }
+    })
+
+    const data = await request.json()
+    setFriends(data.friends)    
+}
+
+useEffect(() => {
+  getFriends()
+}, [])  
+
+
+
+
+
+
   return (
 
-    
+   
 
     <div className={"page-profile-"+sidebar}>
         <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
@@ -35,9 +62,9 @@ import Header from "./Header";
             : <div>
                 <img className='profile-img-user' src={auth.imagen}/>
               </div>}
-              <h1 className="username">@{auth.nick}</h1> {/*No funciona lo de auth. nich, revisar como conseguir el nick*/}
+              <h1 className="username">@{auth.nick}</h1> 
               <p className="friends">AMIGOS</p>
-              <p className="friends-num">80</p>{/* No funciona lo de auth. nich, revisar como conseguir el nick*/}
+              <p className="friends-num">{ }</p>{/* Revisar*/}
               
             </div>
             
