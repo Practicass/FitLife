@@ -25,7 +25,7 @@ const PageHome = () => {
         </div>
       </div>
     </div>
-  )
+  ) 
 }
 
 export default PageHome
