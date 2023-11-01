@@ -54,6 +54,16 @@ import Header from "./Header";
             : <div>
                 <img className='default-img-user' src={auth.imagen}/>
               </div>}
+<<<<<<< Updated upstream
+=======
+              <h1 className="username">@{auth.nick}</h1> 
+              <p className="friends">AMIGOS</p>
+              <p className="friends-num">{ }</p>{/* Revisar para que muestre el numero de amigos*/}
+              {/* Hacer componente historial y llamarlo aqui */}
+            </div>
+            
+           
+>>>>>>> Stashed changes
         </div>
     </div>
     
