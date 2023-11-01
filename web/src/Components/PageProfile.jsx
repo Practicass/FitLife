@@ -64,7 +64,7 @@ useEffect(() => {
               </div>}
               <h1 className="username">@{auth.nick}</h1> 
               <p className="friends">AMIGOS</p>
-              <p className="friends-num">{ }</p>{/* Revisar*/}
+              <p className="friends-num">{ }</p>{/* Revisar para que muestre el numero de amigos*/}
               
             </div>
             
