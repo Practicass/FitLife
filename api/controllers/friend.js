@@ -131,7 +131,21 @@ const friends = (req,res) => {
 
         
     
+const numFriends = (req,res) => {
 
+    let userId = req.params.id
+
+    Friend.find({$or: [{user: userId},{friend: userId}]})
+    .populate("user friend", "-password -role -__v -email")
+    .then(async(friends) => {
+
+        return res.status(200).send({
+            status: "success",
+            message: "Listado de amigos",
+            total: friends.length,
+        })
+    })
+}
 
 
 
@@ -142,5 +156,6 @@ module.exports = {
     
     add,
     eliminate,
-    friends
+    friends, 
+    numFriends
 }
