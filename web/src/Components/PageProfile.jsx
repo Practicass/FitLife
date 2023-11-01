@@ -13,14 +13,14 @@ import { useEffect } from 'react'
  const ProfilePage = () => {
   const [sidebar, setSidebar] = useState(false)
   const {auth} = useAuth()
-  const [friends, setFriends] = useState([])
+  const [friends, setFriends] = useState(0)
   const [id, setId] = useState("")
  
 
 
   const getFriends = async() => {
 
-    const request = await fetch(Global.url+"friend/friends", {
+    const request = await fetch(Global.url+"friend/numFriends", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -30,7 +30,7 @@ import { useEffect } from 'react'
     })
 
     const data = await request.json()
-    setFriends(data.friends)    
+    setFriends(data.total)    
 }
 
 useEffect(() => {
@@ -66,7 +66,7 @@ useEffect(() => {
 
               <h1 className="username">@{auth.nick}</h1> 
               <p className="friends">AMIGOS</p>
-              <p className="friends-num">{ }</p>{/* Revisar para que muestre el numero de amigos*/}
+              <p className="friends-num">{friends}</p>{/* Revisar para que muestre el numero de amigos*/}
               
             </div>
             

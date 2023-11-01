@@ -133,7 +133,9 @@ const friends = (req,res) => {
     
 const numFriends = (req,res) => {
 
-    let userId = req.params.id
+    let userId = req.user.id
+
+    if(req.params.id) userId = req.params.id
 
     Friend.find({$or: [{user: userId},{friend: userId}]})
     .populate("user friend", "-password -role -__v -email")
