@@ -7,6 +7,7 @@ import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import { Global } from '../helpers/Global'
 import { useEffect } from 'react'
+import Historial from "./Historial";
 
 
 
@@ -54,11 +55,11 @@ useEffect(() => {
               {/* Add navLink to settings page */}
               <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/>
             </div> 
-            <div className=" profile-icon-user">
+            <div className="profile-content">
             {auth.imagen = "default.png" ? 
-              <div >
+              <center><div >
                 <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
-              </div>
+              </div></center>
             : <div>
                 <img className='profile-img-user' src={auth.imagen}/>
               </div>}
@@ -67,7 +68,7 @@ useEffect(() => {
               <h1 className="username">@{auth.nick}</h1> 
               <p className="friends">AMIGOS</p>
               <p className="friends-num">{friends}</p>{/* Revisar para que muestre el numero de amigos*/}
-              
+              <Historial />
             </div>
             
            
