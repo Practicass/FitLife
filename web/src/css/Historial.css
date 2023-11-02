@@ -1,13 +1,16 @@
 body{
     color: white;
+    
 }
 
 
 .principal-history{
-    margin-right: 4.16%;
+    border: 4px solid orange ;
+    /* margin-right: 4.16%; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
 
 }
 

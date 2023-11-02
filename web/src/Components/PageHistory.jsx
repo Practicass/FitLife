@@ -20,7 +20,9 @@ const PageHistory = () => {
       <div className='content'>
         <Header/>
         <h1 style={styleTitle}>HISTORIAL</h1>
+        <div className='history-page-content'>  
         <Historial />
+        </div>
       </div>
     </div>
   )
