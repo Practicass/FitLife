@@ -1,0 +1,51 @@
+
+.header-settings{
+
+    display:grid;
+    margin-top: 2%;
+    grid-template-areas: "cross logo-set check";
+    grid-template-columns: 4,16% 91,68% 4,16%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo-settings{
+    grid-area: logo-set;
+    width: 200px;
+    height: auto;
+    justify-content: center;
+
+    
+}
+
+.check-settings{
+     grid-area: check;
+     margin-right: 15px;
+    
+}
+
+.cross-settings{
+    grid-area: cross;
+    margin-left: 15px;
+}
+
+.settings-square{
+    border: 1px solid #fba92c;
+
+    margin-right: 1.3%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 12%;
+    height: 160px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-img{
+   width: 100px;
+   height: auto;
+
+}
