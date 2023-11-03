@@ -41,7 +41,7 @@ export default function IconDropdown() {
       viewTransitionName:  "slide",
     };
   }}>Ajustes</NavLink></DropdownItem>
-        <DropdownItem color="danger" key="logOut" ><NavLink to="/profile" style={() => {
+        <DropdownItem color="danger" key="logOut" ><NavLink to="/login" style={() => {
     return {
       alignSelf: "center",
       fontWeight:"bold",

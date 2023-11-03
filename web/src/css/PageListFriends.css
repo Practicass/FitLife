@@ -1,0 +1,61 @@
+:root{
+    --color-background:#242424;
+    --color-primary: #404040;
+    --color-second: #9e9e9e;
+    --color-text: #fff;
+    --color-black: #000;
+    --color-third: #fba92c;
+    --color-stats: #05ff00;
+}
+
+.busqueda {
+    height: 5%;
+    display: grid;
+    grid-template-areas: "barraBusqueda";
+    margin-top: -5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.friend{
+    /* border: 4px solid white; */
+    background-color: var(--color-primary);
+    width: 50%;
+    height: 12%;
+    display: grid;
+    grid-template-areas: "foto-friend nick-friend cruz";
+    grid-template-columns: 15% 70% auto;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.foto-friend{
+    grid-area: foto-friend;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nick-friend{
+    grid-area: nick-friend;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--color-text)
+}
+
+.cruz {
+    grid-area: cruz;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-third)
+}
+
+.principal{
+    height: 70%;
+}
+.busqueda{
+    width: 30%;
+}
