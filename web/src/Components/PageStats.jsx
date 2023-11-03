@@ -17,8 +17,8 @@ const PageStats = () => {
         <div className='principal'>
             <div className={"stat-"+ sidebar}></div>
             <div className={"stat-"+ sidebar}></div>
-            <div className={"stat-"+ sidebar}></div>
-            <Stat1/>
+            <div className={"stat-"+ sidebar}><Stat1/></div>
+            
         </div>
       </div>
     </div>

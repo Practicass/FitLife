@@ -17,13 +17,18 @@
 .stat-false{
     align-self: center;
     background-color: var(--color-primary);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 30%;
-    height: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40%;
+    height: 40%;
     border-radius: 10px;
-    display: grid;
-    grid-template-areas: "info separator rectangle";
-    grid-template-columns: 35% 1% auto;
+    display:flex;
+    justify-content: center;
+
     
+}
+
+.stat{
+    width: 80%;
+    height: 70%;
 }
