@@ -32,7 +32,7 @@ const PageListFriends = () => {
                 </div>
             </div>
         </div>
-    )
+    ) 
 }
 
 export default PageListFriends
