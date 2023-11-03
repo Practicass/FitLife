@@ -1,10 +1,10 @@
+import React from "react"
+import {ReactApexChart} from "react-apexcharts"
+import { useState } from "react";
 
-class ApexChart extends React.Component {
-    constructor(props) {
-      super(props);
 
-      this.state = {
-      
+const Stat1 = () => {
+    const [state, setState] = useState({
         series: [{
             name: "Desktops",
             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
@@ -37,22 +37,13 @@ class ApexChart extends React.Component {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
           }
         },
-      
-      
-      };
-    }
+    })
 
-    render() {
+
       return (
-    <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="line" height={350} />
-    </div>
+        <ReactApexChart options={state.options} series={state.series} type="line" height={350} />
       );
-    }
+    
   }
-
-  const domContainer = document.querySelector('#app');
-  ReactDOM.render(React.createElement(ApexChart), domContainer);
-
 
 export default Stat1

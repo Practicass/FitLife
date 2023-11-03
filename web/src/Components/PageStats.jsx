@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Header from './Header'
 import { useState } from 'react'
+import Stat1 from './Stat1'
 import "../css/PageStats.css"
 
 const PageStats = () => {
@@ -17,6 +18,7 @@ const PageStats = () => {
             <div className={"stat-"+ sidebar}></div>
             <div className={"stat-"+ sidebar}></div>
             <div className={"stat-"+ sidebar}></div>
+            <Stat1/>
         </div>
       </div>
     </div>
