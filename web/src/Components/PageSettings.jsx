@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/PageSettings.css"
 import Logo from "./Logo";
 import {FaCheck} from "react-icons/fa"
@@ -6,18 +6,32 @@ import {ImCross} from "react-icons/im"
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
+import { Global } from '../helpers/Global'
 
  const PageSettings = () => {
     const {auth} = useAuth()
 
 
-    const email = auth.email
+    const getUser = async() => {
+
+      const request = await fetch(Global.url+"user/profile", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": localStorage.getItem("token")
+              
+            }
+      })
+  
+      const data = await request.json()
+      setFriends(data.total)    
+  }
     
-    const nickname = auth.nick
-    const password = ''
-    const [inputValue1, setInputValue1] = useState(email)
-    const [inputValue2, setInputValue2] = useState(nickname)
-    const [inputValue3, setInputValue3] = useState(password) 
+    
+    
+    const [inputValue1, setInputValue1] = useState('')
+    const [inputValue2, setInputValue2] = useState('')
+    const [inputValue3, setInputValue3] = useState('') 
     const onInputChange1 = ({target}) =>{
         setInputValue1(target.value)
     }
@@ -30,13 +44,20 @@ import {FaUserCircle} from "react-icons/fa"
     
 }
 
-
     const onSubmit = (event) => {
+      
       event.preventDefault();
       
       
+      
     }
-
+    useEffect(()=>{
+      const {user} = getUser()
+     
+      // setInputValue1(user.email)
+      // setInputValue2(user.nickname)
+     
+    },[])
 
     const styleTitle = {
         "fontSize":"60px",
@@ -44,6 +65,7 @@ import {FaUserCircle} from "react-icons/fa"
         "fontWeight":"bolder",
         "marginLeft": "100px"
     }
+    
   return(
     <div className="settings-page">
 
