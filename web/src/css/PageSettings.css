@@ -1,6 +1,13 @@
+.settings-page{
+    display: grid;
+    grid-template-areas: "header-s"
+                         "body-s";
+    
+}
+
 
 .header-settings{
-
+    grid-area: header-s;
     display:grid;
     margin-top: 2%;
     grid-template-areas: "cross logo-set check";
@@ -30,13 +37,29 @@
     margin-left: 15px;
 }
 
+
+
+.principal-settings{
+    grid-area: body-s;
+    /* border: 4px solid white; */
+
+    display: grid;
+    grid-template-areas: "lf1 ct1 rg1"
+                        "lf2 ct2 rg2"
+                        "lf3 ct3 rg3"
+                        "lf4 ct4 rg4";
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 110% 40% 40% 40%;
+}
+
 .settings-square{
+    grid-area: ct1;
     border: 1px solid #fba92c;
 
     margin-right: 1.3%;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-bottom: 20px;
-    width: 12%;
+    width: 25%;
     height: 160px;
     border-radius: 10px;
     display: flex;
@@ -48,4 +71,9 @@
    width: 100px;
    height: auto;
 
+}
+
+
+.settings-form{
+    grid-area: ct2;
 }
