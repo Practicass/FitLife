@@ -29,7 +29,7 @@ const RouterPrincipal = () => {
               <Route path='/profile' element={<PageProfile/>}/>
               <Route path='/stats' element={<PageStats/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
-              <Route path='/settings' element={<PageSettings/>}/>
+              <Route path='/profile/settings' element={<PageSettings/>}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>

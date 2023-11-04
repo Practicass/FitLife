@@ -8,6 +8,7 @@ import {FaUserCircle} from "react-icons/fa"
 import { Global } from '../helpers/Global'
 import { useEffect } from 'react'
 import Historial from "./Historial";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -52,8 +53,8 @@ useEffect(() => {
         <div className='profile-content'>
             <div className="header-profile">  
               <Logo />
-              {/* Add navLink to settings page */}
-              <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/>
+              <NavLink to="settings"> <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/></NavLink>
+              
             </div>
             <div className="profile-principal">
               {auth.imagen = "default.png" ? 
