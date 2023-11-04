@@ -11,15 +11,28 @@ import {FaUserCircle} from "react-icons/fa"
     const {auth} = useAuth()
 
 
-    const email = "EMAIL"
-    const [inputValue, setInputValue] = useState('')    
-    const onInputChange = ({target}) =>{
-        setInputValue(target.value)
+    const email = auth.email
+    
+    const nickname = auth.nick
+    const password = ''
+    const [inputValue1, setInputValue1] = useState(email)
+    const [inputValue2, setInputValue2] = useState(nickname)
+    const [inputValue3, setInputValue3] = useState(password) 
+    const onInputChange1 = ({target}) =>{
+        setInputValue1(target.value)
     }
+    const onInputChange2 = ({target}) =>{
+      setInputValue2(target.value)
+      console.log(inputValue2)
+  }
+  const onInputChange3 = ({target}) =>{
+    setInputValue3(target.value)
+    
+}
+
 
     const onSubmit = (event) => {
       event.preventDefault();
-      console.log(inputValue)
       
       
     }
@@ -53,12 +66,38 @@ import {FaUserCircle} from "react-icons/fa"
               <FaUserCircle className= "settings-img"color='#fba92c' size="100px" stroke="0"/> 
           : <img className="settings-img"src={auth.imagen}/>}</div></center>
 
+            <h1 className="settings-co">Correo electrónico:</h1>
+            <h1 className="settings-nm">Nombre de usuario:</h1>
+            <h1 className="settings-psw">Contraseña:</h1> 
             <form className="settings-form" onSubmit={onSubmit}>
+              
             <input 
               type="text"
-              placeholder={email}
-              value={inputValue}
-              onChange={onInputChange}
+              
+              value={inputValue1}
+              onChange={onInputChange1}
+              className="settings-inp1"
+
+            
+            
+            />
+            <input 
+              type="text"
+              
+              value={inputValue2}
+              onChange={onInputChange2}
+              className="settings-inp2"
+              
+
+            
+            
+            />
+            <input 
+              type="password"
+              
+              value={inputValue3}
+              onChange={onInputChange3}
+              className="settings-inp3"
 
             
             
