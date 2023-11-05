@@ -14,7 +14,7 @@ import { Global } from '../helpers/Global'
 
     const getUser = async() => {
 
-      const request = await fetch(Global.url+"user/profile", {
+      const request = await fetch(Global.url+"user/profile/"+auth.id, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -24,13 +24,16 @@ import { Global } from '../helpers/Global'
       })
   
       const data = await request.json()
-      setFriends(data.total)    
+      
+      return data
   }
     
-    
-    
-    const [inputValue1, setInputValue1] = useState('')
-    const [inputValue2, setInputValue2] = useState('')
+  const userInfo = getUser()
+  console.log(userInfo)
+
+ 
+    const [inputValue1, setInputValue1] = useState('') //useState(auth.email)
+    const [inputValue2, setInputValue2] = useState('') //useState(auth.nick)
     const [inputValue3, setInputValue3] = useState('') 
     const onInputChange1 = ({target}) =>{
         setInputValue1(target.value)
@@ -52,8 +55,8 @@ import { Global } from '../helpers/Global'
       
     }
     useEffect(()=>{
-      const {user} = getUser()
-     
+      
+      
       // setInputValue1(user.email)
       // setInputValue2(user.nickname)
      
