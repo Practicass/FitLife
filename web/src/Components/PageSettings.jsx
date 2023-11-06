@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "../css/PageSettings.css"
 import Logo from "./Logo";
 import {FaCheck} from "react-icons/fa"
@@ -6,30 +6,17 @@ import {ImCross} from "react-icons/im"
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
-import { Global } from '../helpers/Global'
+import useEffectDiff from "../hooks/useEffectDiff";
+
 
  const PageSettings = () => {
     const {auth} = useAuth()
 
 
-    const getUser = async() => {
-
-      const request = await fetch(Global.url+"user/profile/"+auth.id, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": localStorage.getItem("token")
-              
-            }
-      })
-  
-      const data = await request.json()
-      
-      return data
-  }
     
-  const userInfo = getUser()
-  console.log(userInfo)
+    
+
+
 
  
     const [inputValue1, setInputValue1] = useState('') //useState(auth.email)
@@ -40,7 +27,7 @@ import { Global } from '../helpers/Global'
     }
     const onInputChange2 = ({target}) =>{
       setInputValue2(target.value)
-      console.log(inputValue2)
+
   }
   const onInputChange3 = ({target}) =>{
     setInputValue3(target.value)
@@ -51,16 +38,16 @@ import { Global } from '../helpers/Global'
       
       event.preventDefault();
       
-      
-      
     }
-    useEffect(()=>{
-      
-      
-      // setInputValue1(user.email)
-      // setInputValue2(user.nickname)
+    useEffectDiff(()=>{
+       setInputValue1(auth.email)
+       setInputValue2(auth.nick)
      
-    },[])
+    },[auth])
+
+
+    
+    
 
     const styleTitle = {
         "fontSize":"60px",
@@ -130,7 +117,7 @@ import { Global } from '../helpers/Global'
 
 
             </form>
-
+        <h1>{auth.name}</h1>
         </div>
     </div>
   )
