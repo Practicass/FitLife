@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/PageSettings.css"
 import Logo from "./Logo";
 import {FaCheck} from "react-icons/fa"
@@ -6,18 +6,11 @@ import {ImCross} from "react-icons/im"
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
-import useEffectDiff from "../hooks/useEffectDiff";
+
 
 
  const PageSettings = () => {
     const {auth} = useAuth()
-
-
-    
-    
-
-
-
  
     const [inputValue1, setInputValue1] = useState('') //useState(auth.email)
     const [inputValue2, setInputValue2] = useState('') //useState(auth.nick)
@@ -39,9 +32,15 @@ import useEffectDiff from "../hooks/useEffectDiff";
       event.preventDefault();
       
     }
-    useEffectDiff(()=>{
-       setInputValue1(auth.email)
-       setInputValue2(auth.nick)
+    useEffect(()=>{
+      if(auth.email !== undefined){
+        setInputValue1(auth.email)
+        setInputValue2(auth.nick)
+       
+      }else{
+        setInputValue1("")
+        setInputValue2("")
+      }
      
     },[auth])
 
