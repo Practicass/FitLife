@@ -6,23 +6,39 @@ import {ImCross} from "react-icons/im"
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
+import { MyButton } from "./MyButton";
 
 
 
  const PageSettings = () => {
     const {auth} = useAuth()
+    let emailBool = false;
+    let nickBool = false;
+    let passwordBool = false;
+
+    const [cambios, setCambios] = useState({});
+    
  
     const [inputValue1, setInputValue1] = useState('') //useState(auth.email)
     const [inputValue2, setInputValue2] = useState('') //useState(auth.nick)
     const [inputValue3, setInputValue3] = useState('') 
     const onInputChange1 = ({target}) =>{
+        if (emailBool === false) {
+          emailBool = true;
+        }
         setInputValue1(target.value)
     }
     const onInputChange2 = ({target}) =>{
+      if (nickBool === false) {
+        nickBool = true;
+      }
       setInputValue2(target.value)
 
   }
   const onInputChange3 = ({target}) =>{
+    if (passwordBool === false) {
+      passwordBool = true;
+    }
     setInputValue3(target.value)
     
 }
@@ -67,7 +83,9 @@ import {FaUserCircle} from "react-icons/fa"
 
             <NavLink to="/profile"><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
             {/* Call update to change the user's value */}
-            <NavLink to="/profile"><FaCheck className="check-settings" color='#fba92c' size="50px"/></NavLink>
+              <MyButton size="xs" type="submit">
+              <FaCheck className="check-settings" color='#fba92c' size="50px"/>
+              </MyButton>
         </div>
         <div className="principal-settings">
             <h1 style={styleTitle}>MI PERFIL</h1>
@@ -82,41 +100,31 @@ import {FaUserCircle} from "react-icons/fa"
             <h1 className="settings-psw">Contraseña:</h1> 
             <form className="settings-form" onSubmit={onSubmit}>
               
-            <input 
-              type="text"
-              
-              value={inputValue1}
-              onChange={onInputChange1}
-              className="settings-inp1"
-
-            
-            
-            />
-            <input 
-              type="text"
-              
-              value={inputValue2}
-              onChange={onInputChange2}
-              className="settings-inp2"
-              
-
-            
-            
-            />
-            <input 
-              type="password"
-              
-              value={inputValue3}
-              onChange={onInputChange3}
-              className="settings-inp3"
-
-            
-            
-            />
+                <input 
+                  type="text"
+                  
+                  value={inputValue1}
+                  onChange={onInputChange1}
+                  className="settings-inp1"
+                />
+                <input 
+                  type="text"
+                  
+                  value={inputValue2}
+                  onChange={onInputChange2}
+                  className="settings-inp2"
+                />
+                <input 
+                  type="password"
+                  
+                  value={inputValue3}
+                  onChange={onInputChange3}
+                  className="settings-inp3"
+                />
 
 
             </form>
-        <h1>{auth.name}</h1>
+        
         </div>
     </div>
   )
