@@ -142,6 +142,6 @@
     justify-self: end;;
 }
 
-::placeholder{
-    color: black;
+.check{
+    border: 4px solid white;
 }

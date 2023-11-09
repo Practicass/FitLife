@@ -7,39 +7,40 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
 import { MyButton } from "./MyButton";
+import { Global } from '../helpers/Global'
 
 
 
  const PageSettings = () => {
     const {auth} = useAuth()
-    let emailBool = false;
-    let nickBool = false;
-    let passwordBool = false;
 
-    const [cambios, setCambios] = useState({});
+    
+
+    
+    
     
  
     const [inputValue1, setInputValue1] = useState('') //useState(auth.email)
     const [inputValue2, setInputValue2] = useState('') //useState(auth.nick)
     const [inputValue3, setInputValue3] = useState('') 
     const onInputChange1 = ({target}) =>{
-        if (emailBool === false) {
-          emailBool = true;
-        }
+        
         setInputValue1(target.value)
+        
+       
     }
     const onInputChange2 = ({target}) =>{
-      if (nickBool === false) {
-        nickBool = true;
-      }
+      
       setInputValue2(target.value)
+      
+      
 
   }
   const onInputChange3 = ({target}) =>{
-    if (passwordBool === false) {
-      passwordBool = true;
-    }
+    
     setInputValue3(target.value)
+   
+   
     
 }
 
@@ -61,7 +62,80 @@ import { MyButton } from "./MyButton";
     },[auth])
 
 
+    const updateUser = async(e) => {
+      // Para que no se recargue la pagina
+      e.preventDefault();
+
+      
+      const cambios = {
+        email: inputValue1,
+        nick: inputValue2
+      }
+      
+      const request = await fetch(Global.url+"user/update", {
+      method: "POST",
+      body: JSON.stringify(cambios),
+      headers: {
+          "Content-Type":"application/json"
+      }
+      })
+
+      const data = await request.json()
+
+      console.log(data)
+
+      if(data.status == "success"){
+
+          navigate("/profile")
+      }else{
+      console.log("ERROR")
+      
+      }
+
+  }
+
+  const updateUserPassword = async(e) => {
+    // Para que no se recargue la pagina
+    e.preventDefault();
+
     
+    const cambio = {
+      password: inputValue3
+    }
+    const request = await fetch(Global.url+"user/update", {
+    method: "POST",
+    body: JSON.stringify(cambio.password),
+    headers: {
+        "Content-Type":"application/json"
+    }
+    })
+
+    const data = await request.json()
+
+    console.log(data)
+
+    if(data.status == "success"){
+
+        navigate("/profile")
+    }else{
+    console.log("ERROR")
+    
+    }
+
+}
+
+const update = (e) => {
+  // console.log("dentro")
+  
+  if (auth.email !== inputValue1 || auth.nick !== inputValue2) {
+    // console.log("dentro2")
+    updateUser(e);
+    
+  } 
+  if(inputValue3 !== ""){
+    updateUserPassword(e);
+  }
+}
     
 
     const styleTitle = {
@@ -83,7 +157,7 @@ import { MyButton } from "./MyButton";
 
             <NavLink to="/profile"><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
             {/* Call update to change the user's value */}
-              <MyButton size="xs" type="submit">
+              <MyButton size="xs" type="submit" onClick={update}>
               <FaCheck className="check-settings" color='#fba92c' size="50px"/>
               </MyButton>
         </div>
@@ -124,6 +198,7 @@ import { MyButton } from "./MyButton";
 
 
             </form>
+            
         
         </div>
     </div>
