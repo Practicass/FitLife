@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import RegisterForm1 from './RegisterForm1'
 import RegisterForm2 from './RegisterForm2'
 import RegisterForm3 from './RegisterForm3'

@@ -1,10 +1,10 @@
-import React from "react";
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, extendVariants} from "@nextui-org/react";
+
+import {DropdownTrigger, DropdownMenu, DropdownItem} from "@nextui-org/react";
 // import {  Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownSection,  DropdownItem} from "@nextui-org/dropdown";
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import { NavLink } from "react-router-dom";
-import { color } from "framer-motion";
+// import { color } from "framer-motion";
 import { MyDropDown } from "./MyDropDown";
 
 
@@ -19,7 +19,7 @@ export default function IconDropdown() {
     <MyDropDown color="grey">
       <DropdownTrigger>
         <button className= "button-icon">
-          {auth.imagen = "default.png" ? 
+          {auth.image == "default.png" ? 
               <FaUserCircle className= "button-icon-img"color='#fba92c' size="50px" stroke="0"/> 
           : <img className="button-icon-img"src={auth.imagen}/>}
         </button >
