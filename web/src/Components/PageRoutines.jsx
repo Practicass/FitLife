@@ -130,7 +130,7 @@ const PageRoutines = () => {
                                 )
                             }
                         })}
-                        <NavLink className='squareAdd' to="/addRoutine">
+                        <NavLink className='squareAdd' to="/newroutine">
                                 <div className='addRoutine'>
                                     <AiFillPlusCircle color='#9e9e9e' size="50px"/>
                                 </div>

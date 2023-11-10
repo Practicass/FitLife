@@ -11,6 +11,8 @@ import PageRoutine from '../Components/PageRoutine'
 import PageProfile from '../Components/PageProfile'
 import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
+import PageNuevaRutina from '../Components/PageNuevaRutina'
+import PageEjercicios from '../Components/PageEjercicios'
 
 
 const RouterPrincipal = () => {
@@ -28,6 +30,9 @@ const RouterPrincipal = () => {
               <Route path='/profile' element={<PageProfile/>}/>
               <Route path='/stats' element={<PageStats/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
+              <Route path='/newroutine' element={<PageNuevaRutina/>}/>
+              <Route path='/exercises' element={<PageEjercicios/>}/>
+
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
