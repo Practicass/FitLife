@@ -1,16 +1,17 @@
-import React from "react"
 import ReactApexChart from "react-apexcharts"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import "../css/PageStats.css"
+import { Global } from "../helpers/Global";
 
 
 const Stat1 = () => {
 
-    const [values, setValues] = useState([])
+    const [values, setValues] = useState([10,12,8,2,19,17,14])
 
     const getValues = async() => {
 
-        const request = await fetch(Global.url+"stats/Weight", {
+      const request = await fetch(Global.url + "stat/stats/Weight", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -21,16 +22,32 @@ const Stat1 = () => {
 
       const data = await request.json()
 
+      let aux
 
-      setValues(data.stats)
+      for( let i=0; i<data.stats.length;i++){
+        aux[i] = data.stats[i].value
+      }
+
+      console.log(aux)
+
+      setValues(aux)
 
     }
 
-    const [state, setState] = useState({
+    useEffect(()=> {
+      getValues()
+    }, [])
+    
+    useEffect(()=> {
+      console.log(values)
+      
+    }, [values])
+
+    let state = {
         series: [
             {
               name: "High - 2013",
-              data: [values[0].value, values[1].value]
+              data: values
             },
             {
               name: "Low - 2013",
@@ -96,7 +113,7 @@ const Stat1 = () => {
               offsetX: -5
             }
           },
-    })
+    }
 
 
       return (
