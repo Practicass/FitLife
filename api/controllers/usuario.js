@@ -112,8 +112,8 @@ const login = (req, res) => {
             message: "Login correcto",
             user: {
                 id: user._id,
-                name: user.name,
-                nick: user.nick
+                // name: user.name,
+                // nick: user.nick
             },
             token
         })
@@ -129,10 +129,13 @@ const profile = (req, res) => {
     id = req.params.id
 
     if(id == req.user.id){
-        return res.status(200).send({
-            status: "success",
-            user: req.user
-            
+        User.findById(id)
+        .select({password:0, role:0}).then(user => {
+            return res.status(200).send({
+                status: "success",
+                user
+                
+            })
         })
     }else{
 

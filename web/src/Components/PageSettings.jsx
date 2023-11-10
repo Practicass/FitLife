@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../css/PageSettings.css"
 import Logo from "./Logo";
 import {FaCheck} from "react-icons/fa"
 import {ImCross} from "react-icons/im"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {FaUserCircle} from "react-icons/fa"
 import { MyButton } from "./MyButton";
@@ -12,7 +12,9 @@ import { Global } from '../helpers/Global'
 
 
  const PageSettings = () => {
-    const {auth} = useAuth()
+    const {auth,authUser} = useAuth()
+    const navigate = useNavigate()
+    
 
     
 
@@ -73,10 +75,11 @@ import { Global } from '../helpers/Global'
       }
       
       const request = await fetch(Global.url+"user/update", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(cambios),
       headers: {
-          "Content-Type":"application/json"
+          "Content-Type":"application/json",
+          "Authorization": localStorage.getItem("token")
       }
       })
 
@@ -86,6 +89,8 @@ import { Global } from '../helpers/Global'
 
       if(data.status == "success"){
 
+        // localStorage.setItem("user", JSON.stringify(data.user._id));
+          authUser()
           navigate("/profile")
       }else{
       console.log("ERROR")
@@ -103,7 +108,7 @@ import { Global } from '../helpers/Global'
       password: inputValue3
     }
     const request = await fetch(Global.url+"user/update", {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(cambio.password),
     headers: {
         "Content-Type":"application/json"
@@ -115,7 +120,7 @@ import { Global } from '../helpers/Global'
     console.log(data)
 
     if(data.status == "success"){
-
+        authUser()
         navigate("/profile")
     }else{
     console.log("ERROR")
@@ -165,7 +170,7 @@ const update = (e) => {
             <h1 style={styleTitle}>MI PERFIL</h1>
             {/* Call upload to change the user's img */}
             <center><div className="settings-square">
-            {auth.imagen = "default.png" ? 
+            {auth.image == "default.png" ? 
               <FaUserCircle className= "settings-img"color='#fba92c' size="100px" stroke="0"/> 
           : <img className="settings-img"src={auth.imagen}/>}</div></center>
 
