@@ -24,11 +24,10 @@
     border-radius: 10px;
     display:flex;
     justify-content: center;
+    align-items: center;
 
-    
 }
 
 .stat{
-    width: 80%;
-    height: 70%;
+    width: 70%;
 }

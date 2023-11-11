@@ -3,6 +3,8 @@ import Sidebar from './Sidebar'
 import Header from './Header'
 import { useState } from 'react'
 import Stat1 from './Stat1'
+import Stat2 from './Stat2'
+import Stat3 from './Stat3'
 import "../css/PageStats.css"
 
 const PageStats = () => {
@@ -15,9 +17,10 @@ const PageStats = () => {
       <div className='content'>
         <Header/>
         <div className='principal'>
-            <div className={"stat-"+ sidebar}></div>
-            <div className={"stat-"+ sidebar}></div>
+            
             <div className={"stat-"+ sidebar}><Stat1/></div>
+            <div className={"stat-"+ sidebar}><Stat2/></div>
+            <div className={"stat-"+ sidebar}><Stat3/></div>
             
         </div>
       </div>

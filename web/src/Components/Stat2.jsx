@@ -13,7 +13,7 @@ const Stat1 = () => {
 
     const getValues = async() => {
 
-      const request = await fetch(Global.url + "stat/stats/Weight", {
+      const request = await fetch(Global.url + "training/trainings/", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -27,16 +27,21 @@ const Stat1 = () => {
       let aux=[]
       let aux2=[]
 
-      for( let i=0; i<data.stats.length;i++){
-        let fecha = new Date(data.stats[i].date)
+      for( let i=0; i<data.trainings.length;i++){
+        let fecha = new Date(data.trainings[i].created_at)
         let numeroMes = fecha.getMonth() + 1;
 
         let numeroDia = fecha.getDate();
         aux2[i] = numeroDia + "/" + numeroMes;
-        aux[i] = data.stats[i].value
+        let suma = 0
+        let hola = data.trainings[i].sets.length
+        for( let y=0; y<hola; y++){
+          suma += data.trainings[i].sets[y].weight * data.trainings[i].sets[y].reps 
+        }
+        aux[i] =  suma
       }
-
-
+//
+//
       setStats({dates:aux2, values:aux})
 
     }
