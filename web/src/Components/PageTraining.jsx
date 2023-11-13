@@ -5,7 +5,7 @@ import "../css/PageTraining.css"
 import { useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
-import {BiSolidXSquare} from "react-icons/bi"
+import {BiSolidXSquare, BiSolidPlusSquare} from "react-icons/bi"
 import useForm from "../hooks/useForm"
 
 const PageTraining = () => {
@@ -13,6 +13,7 @@ const PageTraining = () => {
     const id = params.id
     const [routine, setRoutine] = useState({exercises:[]})
     const {form,changed} = useForm({})
+    
 
 
     const getRoutine = async() => {
@@ -53,8 +54,35 @@ const PageTraining = () => {
 
     useEffect(() => {
         getRoutine()
+        routine.exercises.forEach((exercise, exerciseIndex) => {
+          handleAddSet(exerciseIndex);
+        })
     }, [])  
 
+    const [sets, setSets] = useState([]);
+
+  const handleAddSet = (exerciseIndex) => {
+    // Crear una copia del array de sets
+    
+    const setsCopy = [...sets];
+
+    if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].length >= 5) {
+      // Puedes manejar esta situación de alguna manera, por ejemplo, mostrando un mensaje al usuario
+      console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
+      return;
+    }
+    
+    // Agregar un nuevo set para el ejercicio específico
+    setsCopy[exerciseIndex] = setsCopy[exerciseIndex] || [];
+    setsCopy[exerciseIndex].push({
+      // Aquí puedes colocar cualquier información que necesites para cada set
+      reps: 0,
+      weight: 0,
+    });
+
+    // Actualizar el estado con la nueva copia del array de sets
+    setSets(setsCopy);
+  }
 
 
   return (
@@ -62,28 +90,30 @@ const PageTraining = () => {
       <div className="cross-training"><ImCross size="35px" color='#fba92c'/></div>
       <div className="title-training"><h1>{routine.name}</h1></div>
       <div className="addTraining">
-        {routine.exercises.map( (exercise,index) => {
+        {routine.exercises.map( (exercise,exerciseIndex) => {
+
             return(
                 <div className="exercise-training" key={exercise._id}>
-                    <h2 className="title-exercise">{index+1}.{exercise.name}</h2>
-                    <div className="sets">
-                        <div className="num">
-                            <label>Serie</label>
-                            <label className="input-exercise">0</label>
-                        </div>
-                        <div className="rep">
-                            <label>Repeticiones</label>
-                            <input className="input-exercise" type="number" name="reps" min="1" onKeyDown={validarNumero} onChange={changed}/>
-                        </div>
-                        <div className="kg">
-                            <label>Peso(kg)</label>
-                            <input className="input-exercise" type="number" name="weight"min="1" onKeyDown={validarNumero} onChange={changed}/>
-                        </div>
-                        <div className="eliminate-set">
-                            <BiSolidXSquare size="30px" color='#fba92c'/>
-                        </div>
+                    <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
+                    <div className="categories">
+                      <label className="title-num">Serie</label>
+                      <label className="title-reps">Repeticiones</label>
+                      <label className="title-kg">Peso(kg)</label>
                     </div>
-                    <div className="addSet"></div>
+                    <div className="sets">
+                      {sets[exerciseIndex] && sets[exerciseIndex].map((set, setIndex) => (
+                        <div className="set" key={setIndex}>
+                          <label className="input-exercise num" >{setIndex+1}</label>
+                          <input className="input-exercise reps" type="number" name="reps" min="1" onKeyDown={validarNumero} onChange={changed}/> 
+                          <input className="input-exercise kg" type="number" name="weight"min="1" onKeyDown={validarNumero} onChange={changed}/>
+                          <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c'/>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="addSet">
+                      <BiSolidPlusSquare size="30px" color="#fba92c" onClick={() => handleAddSet(exerciseIndex)}/>
+                    </div>
                 </div>
             )
         })}
@@ -91,5 +121,6 @@ const PageTraining = () => {
     </div>
   )
 }
+
 
 export default PageTraining

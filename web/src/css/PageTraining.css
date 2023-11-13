@@ -64,11 +64,35 @@
     background-color: var(--color-primary);
     display:grid;
     grid-template-areas: "title-exercise"
+                         "categories"
                          "sets"
                          "addSet";
 
-    grid-template-rows: 15% auto 20%;
+    grid-template-rows: 15% 10% auto 15%;
 }
+.categories{
+    margin-left:15%;
+    margin-right:15%;
+
+    display: grid;
+    grid-template-areas: "title-num title-reps title-kg";
+    align-items: center;
+
+}
+
+.title-num{
+    grid-area: title-num;
+    justify-self: center;
+}
+.title-reps{
+    grid-area: title-reps;
+    justify-self: center;
+}
+.title-kg{
+    grid-area: title-kg;
+    justify-self: center;
+}
+
 .addSet{
     grid-area: addSet;
 }
@@ -81,44 +105,48 @@
 
 .sets{
     grid-area: sets;
-    display:grid;
-    grid-template-areas: "vacio num rep kg eliminate";
-    grid-template-columns: 17% 22% 22% 22% 17%;
+
 }
 
 .num{
     grid-area: num;
-    display: flex;
-    flex-direction: column;
-
+    justify-self: center;
 }
+.reps{
+    grid-area: reps;
+    justify-self: center;
 
-.rep{
-    grid-area: rep;
-    display: flex;
-    flex-direction: column;
 }
 .kg{
     grid-area: kg;
-    display: flex;
-    flex-direction: column;
+    justify-self: center;
+
+}
+.delete-set{
+    grid-area: delete-set;
+    justify-self: center;
+
 }
 
-.eliminate-set{
-    grid-area: eliminate;
-    display: flex;
-    flex-direction: column;
-}
+
 .input-exercise{
     border: 2px solid orange;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 30px;
-    margin-top: 10%;
+    width: 40px;
+    height: 35px;
     text-align: center;
+}
+
+.set{
+    display: grid;
+    grid-template-areas: "num reps kg delete-set";
+    grid-template-columns: 20.6% 35% 26.8% 17%;
+    align-items: center;
+    margin-left: 15%;
+    margin-top: 1%;
 }
 
 input[type="number"] {
@@ -132,6 +160,12 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
+.addSet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
