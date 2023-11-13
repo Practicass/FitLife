@@ -12,6 +12,7 @@ import PageProfile from '../Components/PageProfile'
 import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
+import PageAdminHome from '../Components/PageAdminHome'
 
 
 const RouterPrincipal = () => {
@@ -30,10 +31,11 @@ const RouterPrincipal = () => {
               <Route path='/stats' element={<PageStats/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
+              <Route path='/adminHome' element={<PageAdminHome />}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
-                        
+
                       <h1>Error 404</h1>
                       <Link to="/">Volver al inicio</Link>
                         

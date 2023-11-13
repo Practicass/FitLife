@@ -1,6 +1,7 @@
-import {extendVariants, Dropdown} from "@nextui-org/react";
+import {extendVariants} from "@nextui-org/react";
+import IconDropdownAdmin from "./IconDropdownAdmin";
 
-export const MyDropDown = extendVariants(Dropdown, {
+export const MyDropDown = extendVariants(IconDropdownAdmin, {
   variants: {
     // <- modify/add variants
     color: {

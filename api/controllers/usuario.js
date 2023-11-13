@@ -115,7 +115,8 @@ const login = (req, res) => {
                 // name: user.name,
                 // nick: user.nick
             },
-            token
+            token,
+            rol: user.rol
         })
 
 
