@@ -85,6 +85,27 @@ const eliminate = (req,res) => {
 
 //Muestra todos los ejercicios de un músculo de la base de datos 
 const exercises = (req, res) => {
+    
+    
+    Exercise.then(exercises => {
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado correctamente los ejercicios",
+            exercises
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar los ejercicios",
+            error
+        })
+    })
+    
+}
+
+//Muestra todos los ejercicios de un músculo de la base de datos 
+const exercisesBy = (req, res) => {
     let muscle = req.params.muscle
     
     Exercise.find({muscle}).then(exercises => {
@@ -105,9 +126,9 @@ const exercises = (req, res) => {
 }
 
 
-
 module.exports = {
     add,
     eliminate,
-    exercises
+    exercises, 
+    exercisesBy
 }

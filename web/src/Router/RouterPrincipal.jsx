@@ -13,6 +13,10 @@ import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
 import PageAdminHome from '../Components/PageAdminHome'
+import PageAddExerciseAdmin from '../Components/PageAddExerciseAdmin'
+import PageAddRoutineAdmin from '../Components/PageAddRoutineAdmin'
+
+
 
 
 const RouterPrincipal = () => {
@@ -32,6 +36,8 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
               <Route path='/adminHome' element={<PageAdminHome />}/>
+              <Route path='/adminHome/addExercise' element={<PageAddExerciseAdmin />}/>
+              <Route path='/adminHome/addRoutine' element={< PageAddRoutineAdmin/>}/>
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
@@ -46,6 +52,7 @@ const RouterPrincipal = () => {
         </AuthProvider>
   
       </BrowserRouter>
+      
     )
   }
   

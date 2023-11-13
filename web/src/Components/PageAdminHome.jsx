@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import "../css/PageAdminHome.css"
 
 import { NavLink } from "react-router-dom";
+import ExercisesListAdmin from "./ExercisesListAdmin";
 
 
  const PageAdminHome = () => {
@@ -32,13 +33,17 @@ import { NavLink } from "react-router-dom";
             <div className="body2Admin">
                 <h1 style={styleTitle}>RUITNAS</h1>
             </div>
-            <div className="rectangle1-admin"></div>        
-            <div className="rectangle2-admin"></div>
+            <div className="rectangle1-admin">
+                <ExercisesListAdmin />
+            </div>        
+            <div className="rectangle2-admin">
+
+            </div>
             <div className="buttonArea1-admin">
-            <NavLink to="/home"><button className="button1-admin"style={style5}>AÑADIR</button></NavLink>
+                <NavLink to="addExercise"><button className="button1-admin"style={style5}>AÑADIR</button></NavLink>
             </div>
             <div className="buttonArea2-admin">
-            <NavLink to="/home"><button className="button2-admin"style={style5}>AÑADIR</button></NavLink>
+                <NavLink to="addRoutine"><button className="button2-admin"style={style5}>AÑADIR</button></NavLink>
             </div>
 
         </div>
