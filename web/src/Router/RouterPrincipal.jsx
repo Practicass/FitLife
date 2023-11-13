@@ -1,4 +1,3 @@
-import React from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
@@ -12,6 +11,7 @@ import PageProfile from '../Components/PageProfile'
 import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
+import PageTraining from '../Components/PageTraining'
 
 
 const RouterPrincipal = () => {
@@ -30,6 +30,8 @@ const RouterPrincipal = () => {
               <Route path='/stats' element={<PageStats/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
+              <Route path='/training/:id' element={<PageTraining/>}/>
+
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>

@@ -1,0 +1,137 @@
+:root{
+    --color-background:#242424;
+    --color-primary: #404040;
+    --color-second: #9e9e9e;
+    --color-text: #fff;
+    --color-black: #000;
+    --color-third: #fba92c;
+    --color-stats: #05ff00;
+}
+
+.pageTraining{
+    height: 700px;
+    display: grid;
+    grid-template-areas:    "cross title"
+                            "training training";
+    grid-template-rows: 10% auto;
+    grid-template-columns: 5% auto;
+
+    
+
+}
+
+
+.cross-training{
+    grid-area: cross;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-training{
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.title-training h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.addTraining{
+    grid-area: training;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    
+
+}
+
+.exercise-training:first-child{
+    margin-top: 5%;
+}
+
+.exercise-training{
+    margin-bottom: 5%;
+    width: 30%;
+    height: 350px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    display:grid;
+    grid-template-areas: "title-exercise"
+                         "sets"
+                         "addSet";
+
+    grid-template-rows: 15% auto 20%;
+}
+.addSet{
+    grid-area: addSet;
+}
+
+.title-exercise{
+    grid-area: title-exercise;
+    align-self: center;
+    justify-self: center;
+}
+
+.sets{
+    grid-area: sets;
+    display:grid;
+    grid-template-areas: "vacio num rep kg eliminate";
+    grid-template-columns: 17% 22% 22% 22% 17%;
+}
+
+.num{
+    grid-area: num;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.rep{
+    grid-area: rep;
+    display: flex;
+    flex-direction: column;
+}
+.kg{
+    grid-area: kg;
+    display: flex;
+    flex-direction: column;
+}
+
+.eliminate-set{
+    grid-area: eliminate;
+    display: flex;
+    flex-direction: column;
+}
+.input-exercise{
+    border: 2px solid orange;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 30px;
+    margin-top: 10%;
+    text-align: center;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; 
+    background-color: var(--color-primary);
+    outline: none;
+  }
+  
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+
