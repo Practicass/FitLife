@@ -4,31 +4,31 @@
 
 ### User
 
-- [X] Home
- - [ ] Home Dropdown
+- [x] Home
+ - [x] Home Dropdown
 - [x] Sidebar
-- [x] Friends feed
+- [ ] Friends feed
 - [x] User profile
-- [X] Register
-- [ ] History
-- [ ] Routines
-- [ ] Statistics
-- [ ] My profile
-- [ ] Settings
-- [ ] Statiscts view
-- [ ] Add statistics
-- [ ] Create training
-- [ ] Friends list
-- [ ] Create routine
+- [x] Register
+- [x] History
+- [x] Routines (review)
+- [ ] Statistics (Pablo)
+- [x] My profile
+- [x] Settings
+- [ ] Statiscts view 
+- [ ] Add statistics 
+- [ ] Create training (Pablo)
+- [ ] Friends list (Josemi)
+- [ ] Create routine 
 - [ ] Log out
 
 ### Admin
 
-- [ ] Admin home
- - [ ] Filter exercises
- - [ ] Search exercise
- - [ ] Search routine
- - [ ] Admin home dropdown
+- [ ] Admin home (Miguel)
+ - [ ] Filter exercises (Miguel)
+ - [ ] Search exercise (Miguel)
+ - [ ] Search routine (Miguel)
+ - [ ] Admin home dropdown (Miguel)
 - [ ] Create exercise
 - [ ] Create routine
 - [ ] Edit exercise
