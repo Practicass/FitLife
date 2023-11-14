@@ -1,0 +1,87 @@
+
+.page-adminAddExercise{
+    display: grid;
+    grid-template-areas: "header-aH"
+                         "body-aH";
+    grid-template-rows: 10% 95%;
+
+    height: 900px;
+}
+
+.header-adminAddExercise{
+    grid-area: header-aH;
+    display: grid;
+    align-self: center;
+    grid-template-areas: "cross logo-aH dropDown-aH";
+    grid-template-columns: 4.16% auto 4.16%;
+
+    
+
+
+}
+
+.logo-adminAddExercise{
+    grid-area: logo-aH;
+    margin-left: 5%;
+    justify-content: center;
+
+    display: flex;
+    justify-self: center;
+    
+
+    
+}
+.logoAdminAddExercise{
+    width: 200px;
+    height: auto;
+
+
+}
+
+.drop-adminAddExercise{
+    grid-area: dropDown-aH;
+
+    margin-left: -20%;
+
+}
+
+.cross-adminAddExercise{
+    grid-area: cross;
+}
+
+
+.bodyAdminAddExercise{
+    grid-area: body-aH;
+    display:  grid;
+    grid-template-areas:    "body1-aH" 
+                            "body2-aH"
+                            "body3-aH"
+                            "body4-aH"
+                            "body5-aH";
+    
+    grid-template-rows: 10% 20% 25% 35% 10%;
+}
+
+.body1AdminAddExercise{
+    grid-area: body1-aH;
+    
+    
+
+}
+
+.buttonArea-adminAddExercise{
+    grid-area: body5-aH;
+    height: 60px;
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    justify-self: end;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.button-adminAddExercise{
+    background-color:#fba92c;
+    border-radius: 10px;
+    width: 140%;
+}
