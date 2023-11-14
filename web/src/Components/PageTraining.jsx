@@ -54,9 +54,7 @@ const PageTraining = () => {
 
     useEffect(() => {
         getRoutine()
-        routine.exercises.forEach((exercise, exerciseIndex) => {
-          handleAddSet(exerciseIndex);
-        })
+        
     }, [])  
 
     const [sets, setSets] = useState([]);
@@ -84,6 +82,53 @@ const PageTraining = () => {
     setSets(setsCopy);
   }
 
+  const handleDeleteSet = (exerciseIndex) => {
+    // Crear una copia del array de sets
+    const setsCopy = [...sets];
+  
+    if (setsCopy[exerciseIndex]) {
+      setsCopy[exerciseIndex].pop();
+    }
+  
+    // Actualizar el estado con la nueva copia del array de sets
+    setSets(setsCopy);
+  
+    // Actualizar el estado de info directamente
+    setInfo((prevSets) => {
+      const newSets = [...prevSets];
+      if (newSets[exerciseIndex]) {
+        console.log(newSets[exerciseIndex].weight)
+        newSets[exerciseIndex].weight.pop();
+        newSets[exerciseIndex].reps.pop();
+        console.log(newSets[exerciseIndex].weight)
+      }
+      return newSets;
+    });
+  
+    //console.log(sets, info);
+  };
+
+  const [info, setInfo] = useState([]);
+
+  const saveInfo = (event, exerciseIndex, setIndex) => {
+    const { name, value } = event.target;
+
+    // Actualizar el estado con los nuevos datos
+    setInfo((prevSets) => {
+      const newSets = [...prevSets];
+      if (!newSets[exerciseIndex]) {
+        newSets[exerciseIndex] = { reps: [], weight: [] };
+      }
+
+        newSets[exerciseIndex][name][setIndex] = value
+      
+
+      // Almacenar el valor en el array correspondiente en el objeto
+      
+      return newSets;
+    });
+  };
+
 
   return (
     <div className="pageTraining">
@@ -104,9 +149,9 @@ const PageTraining = () => {
                       {sets[exerciseIndex] && sets[exerciseIndex].map((set, setIndex) => (
                         <div className="set" key={setIndex}>
                           <label className="input-exercise num" >{setIndex+1}</label>
-                          <input className="input-exercise reps" type="number" name="reps" min="1" onKeyDown={validarNumero} onChange={changed}/> 
-                          <input className="input-exercise kg" type="number" name="weight"min="1" onKeyDown={validarNumero} onChange={changed}/>
-                          <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c'/>
+                          <input className="input-exercise reps" type="number" name={`reps`} min="1" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
+                          <input className="input-exercise kg" type="number" name={`weight`} min="1" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
+                          <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
                         </div>
                       ))}
                     </div>

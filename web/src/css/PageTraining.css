@@ -165,7 +165,14 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
+.sets > :not(:last-child) .delete-set {
+    display: none;
+}
 
+ .delete-set {
+    cursor:pointer
+}
 
