@@ -20,15 +20,15 @@ const PageEjercicios = () => {
         const fetchdata = async () => {
             try {
                 // Llamar a la API para obtener los múscilos
-                const musclesResponse = await fetch(Global.url+'musculo/muscles')
+                const musclesResponse = await fetch(Global.url+'muscle/muscles')
                 const musclesData = await musclesResponse.json()
                 setMuscles(musclesData.muscles)
 
-                const exercisesResponse = await fetch(Global.url+'ejercicio/exercises')
+                const exercisesResponse = await fetch(Global.url+'exercise/exercises')
                 const exercisesData = await exercisesResponse.json()
                 setExercises(exercisesData.exercises)
             } catch (error) {
-                console.error("Error al obtener datos: ", error)
+                // console.error("Error al obtener datos: ", error)
             }
         }
         fetchdata()
@@ -64,7 +64,7 @@ const PageEjercicios = () => {
                             </div>
                         ))}
                         <Link to="/newroutine">
-                            <MyButton color="red" size="xxl" type="submit" value="cancelar">Cancelar</MyButton>
+                            <MyButton className="boton-cancelar" color="red" size="xxl" type="submit" value="cancelar">Cancelar</MyButton>
                         </Link>
                     </div>                    
                 </div>

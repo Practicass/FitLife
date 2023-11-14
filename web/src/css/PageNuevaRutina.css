@@ -9,26 +9,29 @@
 }
 
 .titulo-boton {
-    position: abs;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-areas: "nueva-rutina boton-anadir";
+    grid-template-columns: 60% auto;
     align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+    position: absolute;
+    left: 20%;
+    top: 20%;
 }
 
 .nueva-rutina {
+    grid-area: nueva-rutina;
     color: var(--color-third);
     font-size: 400%;
     font-weight: bold;
     text-align: center;
-    position: relative;
-    left: 36%;
+    margin: 0;
     /* left: 37%; */
 }
 
-
 .boton-anadir {
-    position: relative;
-    right: 20%;
+    grid-area: boton-anadir;
 }
 
 .div-form-nombre-rutina {

@@ -7,3 +7,7 @@
     --color-third: #fba92c;
     --color-stats: #05ff00;
 }
+
+.boton-cancelar {
+    position: absolute;
+}
