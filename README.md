@@ -19,8 +19,10 @@
 - [ ] Add statistics 
 - [ ] Create training (Pablo)
 - [ ] Friends list (Josemi)
-- [ ] Create routine 
-- [ ] Log out
+- [ ] Create routine  (Josemi)
+- [ ] Log out (Pablo)
+- [ ] Error messages
+- [ ] Error 404 if not login (Pablo)
 
 ### Admin
 
@@ -30,7 +32,7 @@
  - [ ] Search routine (Miguel)
  - [ ] Admin home dropdown (Miguel)
 - [ ] Create exercise
-- [ ] Create routine
+- [ ] Create routine 
 - [ ] Edit exercise
 - [ ] Edit routine
 - [ ] Remove exercise
