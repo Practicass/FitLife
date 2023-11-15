@@ -87,7 +87,7 @@ const eliminate = (req,res) => {
 const exercises = (req, res) => {
     
     
-    Exercise.then(exercises => {
+    Exercise.find().then(exercises => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado correctamente los ejercicios",
