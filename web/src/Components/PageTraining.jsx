@@ -6,14 +6,19 @@ import { useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
 import {BiSolidXSquare, BiSolidPlusSquare} from "react-icons/bi"
-import useForm from "../hooks/useForm"
+
 
 const PageTraining = () => {
     const params = useParams()
     const id = params.id
-    const [routine, setRoutine] = useState({exercises:[]})
-    const {form,changed} = useForm({})
-    
+    const [routine, setRoutine] = useState([])
+    const [sets, setSets] = useState([]);
+    const [mostrarTerminarMenu, setMostrarTerminarMenu] = useState(false);
+  
+
+    useEffect(() => {
+      getRoutine()
+  }, []) 
 
 
     const getRoutine = async() => {
@@ -30,10 +35,20 @@ const PageTraining = () => {
         const data = await request.json()
 
 
-        setRoutine(data.rutine)
-
         
-        console.log(routine)
+        let routineAux = data.rutine.exercises
+
+        const setsCopy = [];
+        for(let i=0; i<routineAux.length; i++){
+          if(!sets[i]){
+            setsCopy.push({reps:[], weight:[]});
+          }
+        } 
+        console.log(routineAux, setsCopy)
+        console.log("HOLA")
+        setSets(setsCopy);
+        setRoutine(data.rutine.exercises)
+
         
     }
 
@@ -51,79 +66,60 @@ const PageTraining = () => {
           e.preventDefault();
         }
       };
+      
 
-    useEffect(() => {
-        getRoutine()
-        
-    }, [])  
+    
 
-    const [sets, setSets] = useState([]);
+
+    
+
 
   const handleAddSet = (exerciseIndex) => {
-    // Crear una copia del array de sets
     
     const setsCopy = [...sets];
 
-    if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].length >= 5) {
-      // Puedes manejar esta situación de alguna manera, por ejemplo, mostrando un mensaje al usuario
+    if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].reps.length >= 5) {
       console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
       return;
     }
-    
-    // Agregar un nuevo set para el ejercicio específico
-    setsCopy[exerciseIndex] = setsCopy[exerciseIndex] || [];
-    setsCopy[exerciseIndex].push({
-      // Aquí puedes colocar cualquier información que necesites para cada set
-      reps: 0,
-      weight: 0,
-    });
+    console.log(exerciseIndex, setsCopy)
+    setsCopy[exerciseIndex].reps.push(0);
+    setsCopy[exerciseIndex].weight.push(0);
+    console.log(setsCopy)
 
-    // Actualizar el estado con la nueva copia del array de sets
     setSets(setsCopy);
   }
 
   const handleDeleteSet = (exerciseIndex) => {
-    // Crear una copia del array de sets
+
     const setsCopy = [...sets];
-  
-    if (setsCopy[exerciseIndex]) {
-      setsCopy[exerciseIndex].pop();
-    }
-  
-    // Actualizar el estado con la nueva copia del array de sets
+
     setSets(setsCopy);
   
-    // Actualizar el estado de info directamente
-    setInfo((prevSets) => {
+
+    setSets((prevSets) => {
       const newSets = [...prevSets];
       if (newSets[exerciseIndex]) {
-        console.log(newSets[exerciseIndex].weight)
+
         newSets[exerciseIndex].weight.pop();
         newSets[exerciseIndex].reps.pop();
-        console.log(newSets[exerciseIndex].weight)
+
       }
       return newSets;
     });
   
-    //console.log(sets, info);
-  };
 
-  const [info, setInfo] = useState([]);
+  };
 
   const saveInfo = (event, exerciseIndex, setIndex) => {
     const { name, value } = event.target;
 
     // Actualizar el estado con los nuevos datos
-    setInfo((prevSets) => {
+    setSets((prevSets) => {
       const newSets = [...prevSets];
-      if (!newSets[exerciseIndex]) {
-        newSets[exerciseIndex] = { reps: [], weight: [] };
-      }
 
         newSets[exerciseIndex][name][setIndex] = value
       
-
-      // Almacenar el valor en el array correspondiente en el objeto
       
       return newSets;
     });
@@ -135,10 +131,10 @@ const PageTraining = () => {
       <div className="cross-training"><ImCross size="35px" color='#fba92c'/></div>
       <div className="title-training"><h1>{routine.name}</h1></div>
       <div className="addTraining">
-        {routine.exercises.map( (exercise,exerciseIndex) => {
-
+        {routine.map( (exercise,exerciseIndex) => {
+          
             return(
-                <div className="exercise-training" key={exercise._id}>
+                <div className={"exercise-training-"+mostrarTerminarMenu} key={exercise._id}>
                     <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
                     <div className="categories">
                       <label className="title-num">Serie</label>
@@ -146,7 +142,7 @@ const PageTraining = () => {
                       <label className="title-kg">Peso(kg)</label>
                     </div>
                     <div className="sets">
-                      {sets[exerciseIndex] && sets[exerciseIndex].map((set, setIndex) => (
+                      {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
                         <div className="set" key={setIndex}>
                           <label className="input-exercise num" >{setIndex+1}</label>
                           <input className="input-exercise reps" type="number" name={`reps`} min="1" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
@@ -162,6 +158,11 @@ const PageTraining = () => {
                 </div>
             )
         })}
+        <button className={"terminar-boton-"+mostrarTerminarMenu} onClick={() => setMostrarTerminarMenu(!mostrarTerminarMenu)} >
+        TERMINAR
+        </button>
+        {mostrarTerminarMenu && <div className="terminar-menu"></div>}
+        
       </div>
     </div>
   )

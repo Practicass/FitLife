@@ -56,7 +56,8 @@
     margin-top: 5%;
 }
 
-.exercise-training{
+
+.exercise-training-false{
     margin-bottom: 5%;
     width: 30%;
     height: 350px;
@@ -69,6 +70,21 @@
                          "addSet";
 
     grid-template-rows: 15% 10% auto 15%;
+}
+.exercise-training-true{
+    margin-bottom: 5%;
+    width: 30%;
+    height: 350px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    display:grid;
+    grid-template-areas: "title-exercise"
+                         "categories"
+                         "sets"
+                         "addSet";
+
+    grid-template-rows: 15% 10% auto 15%;
+    filter:blur(2px);
 }
 .categories{
     margin-left:15%;
@@ -175,4 +191,45 @@ input::-webkit-inner-spin-button {
  .delete-set {
     cursor:pointer
 }
+
+.terminar-boton-false{
+    background-color: var(--color-third);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    color: black;
+    font-weight:bolder ;
+
+}
+.terminar-boton-true{
+    background-color: var(--color-third);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    color: black;
+    font-weight:bolder ;
+    filter:blur(2px);
+
+}
+
+.terminar-menu{
+    width: 40%;
+    height: 60%;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 2;
+    
+
+}
+
+
 
