@@ -10,9 +10,14 @@ import "../css/PageNuevaRutina.css"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
 
+
 const PageNuevaRutina = () => {
-    
     const[sidebar,setSidebar] = useState(false)
+    const[ejercicios, setEjercicios] = useState([])
+
+    const handleAgregarEjercicio = (nuevoEjercicio) => {
+        setEjercicios([...ejercicios, nuevoEjercicio])
+    }
 
     return (
         <div className={"page-"+sidebar}>
@@ -34,7 +39,7 @@ const PageNuevaRutina = () => {
                     </div>
                     <div className="div-button-ejercicios">
                         <p className="ejercicios-titulo-boton"> EJERCICIOS </p>
-                        <Link to="/exercises">
+                        <Link to={{ pathname: "/exercises", state: {handleAgregarEjercicio}}}>
                             <MyButton className="boton-ejercicio" color="lightGrey" size="xxl" type="submit" value="+">+</MyButton>
                         </Link>
                     </div>                    

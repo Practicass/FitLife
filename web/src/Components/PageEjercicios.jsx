@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Sidebar from "./Sidebar"
 import Header from "./Header"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa"
 import {ImCross} from "react-icons/im"
 import "../css/PageEjercicios.css"
@@ -14,7 +14,16 @@ const PageEjercicios = () => {
     
     const[sidebar,setSidebar] = useState(false)
     const[muscle, setMuscles] = useState([])
-    const[exercises, setExercises] = useState({})
+    const[exercises, setExercises] = useState([])
+    
+    // Para pasar el ejercicio a PageNuevaRutina
+    const navigate = useNavigate()
+    const [nuevoEjercicio, setNuevoEjercicio] = useState("")
+
+    const handleGuardar = () => {
+        // Se guarda el ejercicio y se envia de vuelta a PageNuevaRutina
+        navigate.push("/newroutine", {nuevoEjercicio})
+    }
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -57,8 +66,19 @@ const PageEjercicios = () => {
                             <div className="column-muscle" key={item.muscle} >
                                 <p className="muscle">{item.muscle}</p>
                                 <ul>
-                                    {item.exercises.map(exercise => (
-                                        <li key={exercise._id}>{exercise.name}</li>
+                                    {item.exercises.map((exercise) => (
+                                        <MyButton
+                                            key={exercise.id}
+                                            className="boton-ejercicio"
+                                            color="lightGrey"
+                                            size="xl"
+                                            type="submit"
+                                            value={exercise.name}
+                                            onClick={() => {
+                                                setNuevoEjercicio(exercise.name)
+                                                handleGuardar()
+                                            }}
+                                            ></MyButton>
                                     ))}
                                 </ul>
                             </div>
