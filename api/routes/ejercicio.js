@@ -8,8 +8,8 @@ const ExerciseController = require("../controllers/ejercicio")
 
 router.post("/add",  ExerciseController.add)
 router.delete("/eliminate/:id",  ExerciseController.eliminate)
-router.get("/exercises", ExerciseController.exercises)
-router.get("/exercisesBy/:muscle", ExerciseController.exercisesBy)
+router.get("/allExercises", ExerciseController.exercises)
+router.get("/exercises/:muscle", ExerciseController.exercisesBy)
 
 
 

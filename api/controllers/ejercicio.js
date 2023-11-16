@@ -84,7 +84,7 @@ const eliminate = (req,res) => {
 
 
 //Muestra todos los ejercicios de un músculo de la base de datos 
-const exercises = (req, res) => {
+const allExercises = (req, res) => {
     
     
     Exercise.find().then(exercises => {
@@ -105,7 +105,7 @@ const exercises = (req, res) => {
 }
 
 //Muestra todos los ejercicios de un músculo de la base de datos 
-const exercisesBy = (req, res) => {
+const exercises = (req, res) => {
     let muscle = req.params.muscle
     
     Exercise.find({muscle}).then(exercises => {
@@ -129,6 +129,6 @@ const exercisesBy = (req, res) => {
 module.exports = {
     add,
     eliminate,
-    exercises, 
-    exercisesBy
+    allExercises, 
+    exercises
 }
