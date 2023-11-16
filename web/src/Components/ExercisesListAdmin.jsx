@@ -3,7 +3,7 @@ import { Global } from '../helpers/Global'
 
  const ExercisesListAdmin = () => {
 
-  const [exercises, setExercises] = useState({})
+  // const [exercises, setExercises] = useState({})
   const getExercises = async() => {
 
     const request = await fetch(Global.url+"exercise/exercises", {
@@ -18,7 +18,7 @@ import { Global } from '../helpers/Global'
     const data = await request.json()
 
 
-
+    console.log(data)
     return data;
 
 
@@ -26,14 +26,14 @@ import { Global } from '../helpers/Global'
 
 }
 useEffect(() => {
- setExercises( getExercises())
-// getExercises()
+//  setExercises( getExercises())
+getExercises()
 
 }, [])
 
   return (
-    <div>{exercises.map}</div>
-    // <></>
+    // <div>{exercises}</div>
+    <></>
   )
 }
 
