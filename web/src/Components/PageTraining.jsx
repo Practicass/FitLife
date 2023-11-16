@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
 import {BiSolidXSquare, BiSolidPlusSquare} from "react-icons/bi"
+import {IoIosSend} from "react-icons/io"
+import { FaClock } from "react-icons/fa6";
 
 
 const PageTraining = () => {
@@ -14,6 +16,9 @@ const PageTraining = () => {
     const [routine, setRoutine] = useState([])
     const [sets, setSets] = useState([]);
     const [mostrarTerminarMenu, setMostrarTerminarMenu] = useState(false);
+    const [name , setName] = useState("")
+    const [duration, setDuration] = useState(0)
+    const inicio = Date.now()
   
 
     useEffect(() => {
@@ -47,6 +52,7 @@ const PageTraining = () => {
         console.log(routineAux, setsCopy)
         console.log("HOLA")
         setSets(setsCopy);
+        setName(data.rutine.name)
         setRoutine(data.rutine.exercises)
 
         
@@ -125,16 +131,27 @@ const PageTraining = () => {
     });
   };
 
+  const menuTerminar = () => {
+    setMostrarTerminarMenu(!mostrarTerminarMenu)
+    const fin = Date.now()
+    const diferenciaEnMilisegundos = Math.abs(fin - inicio);
+
+    const diferenciaEnMinutos = Math.floor(diferenciaEnMilisegundos / (1000 * 60));
+    setDuration(diferenciaEnMinutos)
+  }
+
 
   return (
     <div className="pageTraining">
       <div className="cross-training"><ImCross size="35px" color='#fba92c'/></div>
-      <div className="title-training"><h1>{routine.name}</h1></div>
+      <div className="title-training"><h1>{name}</h1></div>
       <div className="addTraining">
+        {!mostrarTerminarMenu ? 
+        <>
         {routine.map( (exercise,exerciseIndex) => {
           
             return(
-                <div className={"exercise-training-"+mostrarTerminarMenu} key={exercise._id}>
+                <div className={"exercise-training"} key={exercise._id}>
                     <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
                     <div className="categories">
                       <label className="title-num">Serie</label>
@@ -158,10 +175,38 @@ const PageTraining = () => {
                 </div>
             )
         })}
-        <button className={"terminar-boton-"+mostrarTerminarMenu} onClick={() => setMostrarTerminarMenu(!mostrarTerminarMenu)} >
+        <button className={"terminar-boton"} onClick={() => menuTerminar()} >
         TERMINAR
         </button>
-        {mostrarTerminarMenu && <div className="terminar-menu"></div>}
+        </>
+        : <div className="terminar-menu">
+            <h2 className="title-menu-terminar">FIN DE ENTRENAMIENTO</h2>
+            <div className="tiempo">
+              <div className="title-tiempo">
+                <h4>Tiempo</h4>
+                <FaClock size="25px" color='#fba92c'/>
+              </div>
+              <label>{duration}</label>
+            </div>
+            <div className="publicar">
+              
+              <div className="title-publicar">
+                <h4>Publicar</h4>
+                <IoIosSend size="30px" color='#fba92c'/>
+              </div>
+              <div>
+                <button className="publicar-boton">SI</button>
+                <button className="publicar-boton">NO</button>
+              </div>
+              
+
+            </div>
+            
+            
+            <button className="terminar-boton" onClick={() => setMostrarTerminarMenu(!mostrarTerminarMenu) }>ATRÁS</button>
+          </div>}
+        
+        
         
       </div>
     </div>
