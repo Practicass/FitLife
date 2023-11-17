@@ -42,7 +42,12 @@ const PageLogin = () => {
 
       authUser()
       
-      navigate("/home")
+      if(data.rol ==="usuario"){
+
+        navigate("/home")
+      }else{
+        navigate("/adminHome")
+      }
 
     }else{
       console.log("ERROR")

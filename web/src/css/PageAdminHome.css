@@ -1,0 +1,127 @@
+
+.page-adminHome{
+    display: grid;
+    grid-template-areas: "header-aH"
+                         "body-aH";
+    grid-template-rows: 10% 95%;
+
+    height: 900px;
+}
+
+.header-adminHome{
+    grid-area: header-aH;
+    display: grid;
+    align-self: center;
+    grid-template-areas: "logo-aH dropDown-aH";
+    grid-template-columns: 95.84% 4.16%;
+
+    
+
+
+}
+
+.logo-adminHome{
+    grid-area: logo-aH;
+    margin-left: 5%;
+    justify-content: center;
+
+    display: flex;
+    justify-self: center;
+    
+
+    
+}
+.logoAdmin{
+    width: 200px;
+    height: auto;
+
+
+}
+
+.drop-adminHome{
+    grid-area: dropDown-aH;
+
+    margin-left: -20%;
+
+}
+
+.bodyAdmin{
+    grid-area: body-aH;
+    display:  grid;
+    grid-template-areas: "body1-aH body2-aH"
+    "body3-aH body4-aH"
+    "body5-aH body6-aH";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 10% 70% 20%;
+}
+.body1Admin{
+    grid-area: body1-aH;
+
+}
+.body2Admin{
+    grid-area: body2-aH;
+    
+}
+
+.rectangle1-admin{
+    display: flex;
+    justify-self: center;
+    background-color: #404040;
+    grid-area: body3-aH;
+    margin-top: 5%;
+    margin-left: 20%;
+    width: 55%;
+    height: 550px;
+    border-radius: 10px;
+}
+
+.rectangle2-admin{
+    display: flex;
+    justify-self: center;
+    background-color: #404040;
+    grid-area: body4-aH;
+    margin-top: 5%;
+    margin-left: 20%;
+    width: 55%;
+    height: 550px;
+    border-radius: 10px;
+}
+
+.buttonArea1-admin{
+    grid-area: body5-aH ;
+    height: 60px;
+    width: 50%;
+
+ 
+    display: flex;
+    justify-content: start;
+    justify-self: end;
+    align-items: center;
+    margin-top: 2%;
+
+    
+}
+.buttonArea2-admin{
+    grid-area: body6-aH ;
+    height: 60px;
+    width: 50%;
+    
+    display: flex;
+    justify-content: start;
+    justify-self: end;
+    align-items: center;
+    margin-top: 2%;
+
+
+}
+.button1-admin{
+    background-color:#fba92c;
+    border-radius: 10px;
+    width: 140%;
+}
+
+.button2-admin{
+    background-color:#fba92c;
+    border-radius: 10px;
+    width: 140%;
+}

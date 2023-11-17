@@ -9,6 +9,7 @@ const ExerciseController = require("../controllers/ejercicio")
 router.post("/add",  ExerciseController.add)
 router.delete("/eliminate/:id",  ExerciseController.eliminate)
 router.get("/exercises/:muscle", ExerciseController.exercises)
+router.get("/allExercises/", ExerciseController.allExercises)
 
 
 
