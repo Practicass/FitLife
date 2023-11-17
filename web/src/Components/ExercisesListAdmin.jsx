@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 
+import { MyButton } from "../Components/MyButton";
+
  const ExercisesListAdmin = () => {
 
-  const [exercises, setExercises] = useState({})
+  const [exercises, setExercises] = useState([])
   const getExercises = async() => {
 
-    const request = await fetch(Global.url+"exercise/exercises", {
+    const request = await fetch(Global.url+"exercise/allExercises", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -17,22 +19,29 @@ import { Global } from '../helpers/Global'
 
     const data = await request.json()
 
+    console.log(data.exercises)
 
-
-    return data;
+    setExercises(data.exercises)
+    // return data.exercises;
 
 
 
 
 }
 useEffect(() => {
- setExercises( getExercises())
-// getExercises()
+
+  getExercises()
 
 }, [])
 
   return (
-    <div>{exercises.map}</div>
+    
+    <div>{ exercises.map((exercise) => {
+      return(
+        
+        <MyButton color="orange" key={exercise._id}>{exercise.name}</MyButton>
+      )
+    } )}</div>
     // <></>
   )
 }

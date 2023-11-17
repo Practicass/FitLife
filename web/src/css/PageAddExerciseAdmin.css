@@ -64,10 +64,34 @@
 
 .body1AdminAddExercise{
     grid-area: body1-aH;
-    
-    
-
 }
+
+
+
+/* .body1AdminAddExerciseButton{
+    grid-area: buttonBody1 ;
+    background-color:#f00;
+    border-radius: 10px;
+    width: 35%;
+    height: 70%;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+} */
+
+.body2AdminAddExerciseTitle{
+    grid-area: titleBody2 ;
+}
+.body3AdminAddExerciseTitle{
+    grid-area: titleBody3 ;
+}
+.body4AdminAddExerciseTitle{
+    grid-area: titleBody4 ;
+}
+
+
 
 .buttonArea-adminAddExercise{
     grid-area: body5-aH;
@@ -84,4 +108,30 @@
     background-color:#fba92c;
     border-radius: 10px;
     width: 140%;
+}
+
+.inputBody2{
+    background-color: #404040;
+    border-radius: 10px;
+    width: 75%;
+    height: 30%;
+    margin-left: 12.5%;
+    margin-top: 0.25%;
+    font-size: large;
+    padding: 1%;
+}
+.inputBody4{
+    background-color: #404040;
+    border-radius: 10px;
+    width: 75%;
+    height: 80%;
+    margin-left: 12.5%;
+    margin-top: 0.25%;
+    font-size: large;
+    padding: 1%;
+}
+
+.musculos{
+    align-items: center;
+    justify-content: center;
 }

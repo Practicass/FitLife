@@ -73,6 +73,7 @@
     width: 55%;
     height: 550px;
     border-radius: 10px;
+    justify-content: center;
 }
 
 .rectangle2-admin{

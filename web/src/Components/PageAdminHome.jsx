@@ -1,5 +1,5 @@
 import IconDropdownAdmin from "./IconDropdownAdmin";
-import Logo from "./Logo";
+import Logo from "./LogoAdmin";
 import "../css/PageAdminHome.css"
 
 import { NavLink } from "react-router-dom";
