@@ -16,7 +16,7 @@ const PageStats = () => {
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='content'>
         <Header/>
-        <div className='principal'>
+        <div className='principal-stat'>
             
             <div className={"stat-"+ sidebar}><Stat1/></div>
             <div className={"stat-"+ sidebar}><Stat2/></div>

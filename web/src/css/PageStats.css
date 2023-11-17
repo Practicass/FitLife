@@ -27,7 +27,25 @@
     align-items: center;
 
 }
+.stat-true{
+    align-self: center;
+    background-color: var(--color-primary);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40%;
+    height: 40%;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
 
 .stat{
     width: 70%;
+}
+.principal-stat{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

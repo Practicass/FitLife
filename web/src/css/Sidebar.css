@@ -28,8 +28,10 @@
 .icon-sidebar-false{
     margin-top: 25%;
     margin-left: 10%;
+    cursor: pointer;
 }
 .icon-sidebar-true{
     margin-top: 5.4%;
     margin-left: 2.4%;
+    cursor: pointer;
 }
