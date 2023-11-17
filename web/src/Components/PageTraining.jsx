@@ -8,6 +8,9 @@ import { useEffect, useState } from "react"
 import {BiSolidXSquare, BiSolidPlusSquare} from "react-icons/bi"
 import {IoIosSend} from "react-icons/io"
 import { FaClock } from "react-icons/fa6";
+import useAuth from "../hooks/useAuth"
+import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 
 const PageTraining = () => {
@@ -19,6 +22,9 @@ const PageTraining = () => {
     const [name , setName] = useState("")
     const [duration, setDuration] = useState(0)
     const inicio = Date.now()
+    const {auth} = useAuth()
+    const navigate = useNavigate()
+    
   
 
     useEffect(() => {
@@ -140,10 +146,38 @@ const PageTraining = () => {
     setDuration(diferenciaEnMinutos)
   }
 
+  const send = async(publico) => {
+    const setsEnviar = []
+    routine.map((exercise, exerciseIndex)=>{
+      sets[exerciseIndex].reps.map((reps, index)=>{
+        setsEnviar.push({"exercise":exercise._id, "weight": sets[exerciseIndex].weight[index], "reps":reps})
+      })
+    })
+    console.log(setsEnviar)
+
+    const request = await fetch(Global.url+"training/add", {
+      method: "POST",
+      body: JSON.stringify({"name": name,"user": auth._id, "sets":setsEnviar, "public": publico, "duration": duration}),
+      headers: {
+          "Content-Type":"application/json",
+          "Authorization": localStorage.getItem("token")
+      }
+    })
+    const data = await request.json()
+
+    if(data.status == "success"){
+      navigate("/routines")
+    }else{
+      console.log("MAL")
+    }
+
+
+  }
+
 
   return (
     <div className="pageTraining">
-      <div className="cross-training"><ImCross size="35px" color='#fba92c'/></div>
+      <div className="cross-training"><NavLink to="/routines"><ImCross size="35px" color='#fba92c'/></NavLink></div>
       <div className="title-training"><h1>{name}</h1></div>
       <div className="addTraining">
         {!mostrarTerminarMenu ? 
@@ -195,8 +229,8 @@ const PageTraining = () => {
                 <IoIosSend size="30px" color='#fba92c'/>
               </div>
               <div>
-                <button className="publicar-boton">SI</button>
-                <button className="publicar-boton">NO</button>
+                <button className="publicar-boton" onClick={() => send(false)}>NO</button>
+                <button className="publicar-boton" onClick={() => send(true)}>SI</button>
               </div>
               
 
