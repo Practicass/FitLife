@@ -8,6 +8,64 @@
     --color-stats: #05ff00;
 }
 
-.boton-cancelar {
+.extit-boton {
+    display: grid;
+    grid-template-areas: "ejercicios-titulo boton-cancelar";
+    grid-template-columns: 40% auto;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
     position: absolute;
+    left: 30%;
+    top: 15%;
+
+}
+
+.ejercicios-titulo {
+    grid-area: ejercicios-titulo;
+    color: var(--color-third);
+    font-size: 400%;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.boton-cancelar {
+    grid-area: boton-cancelar;
+}
+
+.div-ejercicios {
+    position: absolute;
+    top: 30%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cada-musculo {
+    background-color: var(--color-primary);
+    min-width: 15%;
+    max-width: 15%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    text-align: center;
+}
+
+.muscle-titulo {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.boton-ejercicio {
+    max-width: 80%;
+    min-width: 80%;
+    margin-bottom: 5%;
+    text-align: center;
 }

@@ -46,21 +46,31 @@ const PageEjercicios = () => {
             <div className='content'>
                 <Header/>
                 <div className="principal">
-                    <h1 className="nueva-rutina"> EJERCICIOS </h1>
+                    <div className="extit-boton">
+                        <h1 className="ejercicios-titulo"> EJERCICIOS </h1>
+                        <Link to="/newroutine">
+                            <MyButton className="boton-cancelar" color="red" size="xxl" type="submit" value="cancelar">Cancelar</MyButton>
+                        </Link>
+                    </div>
                     <div className="div-ejercicios">
                         {musclesWithExercises.map(({muscle, exercises}) => (
-                            <div key={muscle}>
-                                <p className="muscletit">{muscle}</p>
+                            <div className="cada-musculo" key={muscle}>
+                                <p className="muscle-titulo">{muscle}</p>
                                 <ul>
                                     {exercises.map(exercise => (
-                                        <li key={exercise.id}>{exercise.name}</li>
+                                        <li key={exercise.id}>
+                                            <MyButton className="boton-ejercicio"
+                                                      color="lightGrey"
+                                                      size="xl"
+                                                      type="submit"
+                                                      value={exercise.name}>
+                                                {exercise.name}
+                                            </MyButton>
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
                         ))}
-                        <Link to="/newroutine">
-                            <MyButton className="boton-cancelar" color="red" size="xxl" type="submit" value="cancelar">Cancelar</MyButton>
-                        </Link>
                     </div>                    
                 </div>
             </div>
