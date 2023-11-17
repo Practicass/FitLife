@@ -1,16 +1,15 @@
 import React from "react"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Sidebar from "./Sidebar"
 import Header from "./Header"
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import "../css/PageEjercicios.css"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
+import { ImCross } from "react-icons/im"
 
 const PageEjercicios = () => {
     
-    const[sidebar,setSidebar] = useState(false)
     const[musclesWithExercises, setMusclesWithExercises] = useState([])
     
     const fetchMusclesWithExercises = async () => {
@@ -41,10 +40,14 @@ const PageEjercicios = () => {
 
 
     return (
-        <div className={"page-"+sidebar}>
-            <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
+        <div className="page">
             <div className='content'>
-                <Header/>
+                <div className="cabecera-ejercicios">
+                    <NavLink to="/newroutine">
+                        <ImCross className="cruz" size="35px" color="#fba92c"></ImCross>
+                    </NavLink>
+                    <Header className="header-ejercicios"/>
+                </div>
                 <div className="principal">
                     <div className="extit-boton">
                         <h1 className="ejercicios-titulo"> EJERCICIOS </h1>
@@ -59,13 +62,13 @@ const PageEjercicios = () => {
                                 <ul>
                                     {exercises.map(exercise => (
                                         <li key={exercise.id}>
-                                            <MyButton className="boton-ejercicio"
-                                                      color="lightGrey"
-                                                      size="xl"
-                                                      type="submit"
-                                                      value={exercise.name}>
-                                                {exercise.name}
-                                            </MyButton>
+                                                <MyButton className="boton-ejercicio"
+                                                        color="lightGrey"
+                                                        size="xl"
+                                                        type="submit"
+                                                        value={exercise.name}>
+                                                    {exercise.name}
+                                                </MyButton>
                                         </li>
                                     ))}
                                 </ul>

@@ -4,20 +4,14 @@ import { useEffect } from 'react'
 import Sidebar from "./Sidebar"
 import Header from "./Header"
 import { Link } from 'react-router-dom'
-import { FaUserCircle } from "react-icons/fa"
-import {ImCross} from "react-icons/im"
+// import { useNuevaRutinaContext } from "./NuevaRutinaContext"
 import "../css/PageNuevaRutina.css"
 import { MyButton } from './MyButton'
-import { Global } from "../helpers/Global"
 
 
 const PageNuevaRutina = () => {
     const[sidebar,setSidebar] = useState(false)
-    const[ejercicios, setEjercicios] = useState([])
 
-    const handleAgregarEjercicio = (nuevoEjercicio) => {
-        setEjercicios([...ejercicios, nuevoEjercicio])
-    }
 
     return (
         <div className={"page-"+sidebar}>
@@ -39,9 +33,22 @@ const PageNuevaRutina = () => {
                     </div>
                     <div className="div-button-ejercicios">
                         <p className="ejercicios-titulo-boton"> EJERCICIOS </p>
-                        <Link to={{ pathname: "/exercises", state: {handleAgregarEjercicio}}}>
-                            <MyButton className="boton-ejercicio" color="lightGrey" size="xxl" type="submit" value="+">+</MyButton>
-                        </Link>
+                        <ul>
+                            {/* {listaEjercicios.map((ejercicio, index) => (
+                                <li key={index}>{ejercicio}</li>
+                            ))} */}
+                            <li>
+                                <Link to={{ pathname: "/exercises"}}>
+                                    <MyButton className="boton-ejercicio"
+                                            color="lightGrey"
+                                            size="xxl" 
+                                            type="submit" 
+                                            value="+">
+                                        +
+                                    </MyButton>
+                                </Link>
+                            </li>
+                        </ul>
                     </div>                    
                 </div>
             </div>

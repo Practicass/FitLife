@@ -8,17 +8,36 @@
     --color-stats: #05ff00;
 }
 
-.extit-boton {
-    display: grid;
-    grid-template-areas: "ejercicios-titulo boton-cancelar";
-    grid-template-columns: 40% auto;
-    align-items: center;
-    /* justify-content: space-between; */
-    width: 100%;
-    position: absolute;
-    left: 30%;
-    top: 15%;
 
+.page {
+    min-height: 860px;
+    display: grid;
+    grid-template-areas: "cabecera-ejercicios content";
+}
+
+.cabecera-ejercicios {
+    grid-area: cabecera-ejercicios;
+    display: grid;
+    grid-template-areas: "cruz header-ejercicios";
+    grid-template-columns: 0% auto;
+}
+
+.cruz {
+    grid-area: cruz;
+}
+
+.header-ejercicios {
+    grid-area: header-ejercicios;
+}
+
+.content {
+    grid-area: content;
+}
+
+.extit-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ejercicios-titulo {
@@ -27,16 +46,17 @@
     font-size: 400%;
     font-weight: bold;
     text-align: center;
-
 }
 
 .boton-cancelar {
-    grid-area: boton-cancelar;
+    margin-left: 20%;
+}
+.principal {
+    display: grid;
+    flex-direction: column;
 }
 
 .div-ejercicios {
-    position: absolute;
-    top: 30%;
 
     display: flex;
     flex-wrap: wrap;
@@ -44,8 +64,9 @@
 
 .cada-musculo {
     background-color: var(--color-primary);
-    min-width: 15%;
-    max-width: 15%;
+    border-radius: 10px;
+    min-width: 20%;
+    max-width: 20%;
     margin-bottom: 3%;
     margin-right: 3%;
     text-align: center;
@@ -60,6 +81,7 @@
     font-weight: bold;
     font-size: 150%;
     text-align: center;
+    margin-top: 5%;
     margin-bottom: 5%;
 }
 
