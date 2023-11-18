@@ -12,6 +12,7 @@ import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
 import PageTraining from '../Components/PageTraining'
+import PageStat from "../Components/PageStat"
 
 
 const RouterPrincipal = () => {
@@ -28,6 +29,7 @@ const RouterPrincipal = () => {
               <Route path='/routine' element={<PageRoutine/>}/>
               <Route path='/profile' element={<PageProfile/>}/>
               <Route path='/stats' element={<PageStats/>}/>
+              <Route path='/stats/:num' element={<PageStat/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
               <Route path='/training/:id' element={<PageTraining/>}/>

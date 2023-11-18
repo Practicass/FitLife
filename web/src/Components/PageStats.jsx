@@ -6,6 +6,7 @@ import Stat1 from './Stat1'
 import Stat2 from './Stat2'
 import Stat3 from './Stat3'
 import "../css/PageStats.css"
+import { NavLink } from 'react-router-dom'
 
 const PageStats = () => {
 
@@ -18,9 +19,9 @@ const PageStats = () => {
         <Header/>
         <div className='principal-stat'>
             
-            <div className={"stat-"+ sidebar}><Stat1/></div>
-            <div className={"stat-"+ sidebar}><Stat2/></div>
-            <div className={"stat-"+ sidebar}><Stat3/></div>
+            <NavLink to="/stats/1" className="stats"><Stat1/></NavLink>
+            <NavLink to="/stats/2" className="stats"><Stat2/></NavLink>
+            <NavLink to="/stats/3" className="stats"><Stat3/></NavLink>
             
         </div>
       </div>

@@ -106,13 +106,10 @@ const Stat1 = () => {
               forceNiceScale: true,
               
             },
-            legend: {
-              position: 'top',
-              horizontalAlign: 'right',
-              floating: true,
-              offsetY: -25,
-              offsetX: -5
+            tooltip:{
+              enabled: false
             }
+            
           },
     }
 

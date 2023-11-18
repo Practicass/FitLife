@@ -73,6 +73,9 @@ const Stat1 = () => {
           max: Math.max(...y) +1,
           forceNiceScale: true,
           
+        },
+        tooltip:{
+          enabled: false
         }
         
       },

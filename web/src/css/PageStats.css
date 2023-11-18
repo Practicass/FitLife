@@ -14,7 +14,7 @@
 
 
 
-.stat-false{
+.stats{
     align-self: center;
     background-color: var(--color-primary);
     margin-top: 10px;
@@ -27,25 +27,46 @@
     align-items: center;
 
 }
-.stat-true{
-    align-self: center;
-    background-color: var(--color-primary);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 40%;
-    height: 40%;
-    border-radius: 10px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
 
-}
 
 .stat{
     width: 70%;
+    padding-top: 10px;
 }
 .principal-stat{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+.principal-stat1{
+    display: flex;
+    flex-direction: column;
+}
+
+.stat1{
+    align-self: center;
+    background-color: var(--color-primary);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.cancelar-stat{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.introducir-metrica{
+    align-self: center;
+    margin-top: 5%;
+    height: 45px;
+    width: 17%;
+    border-radius: 10px;
+    background-color: var(--color-third);
+    color: black;
+    font-weight: bold;
 }
