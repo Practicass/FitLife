@@ -261,8 +261,24 @@
     position:absolute;
     align-self: center;
     justify-self: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-primary);
     
+}
+.boton-eliminar-routine{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    background-color: var(--color-third);
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    height: 35px;
+    width: 50px;
+
 }
 
 .routines{

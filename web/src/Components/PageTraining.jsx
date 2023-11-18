@@ -10,7 +10,6 @@ import {IoIosSend} from "react-icons/io"
 import { FaClock } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
-import { NavLink } from "react-router-dom"
 
 
 const PageTraining = () => {
@@ -19,6 +18,7 @@ const PageTraining = () => {
     const [routine, setRoutine] = useState([])
     const [sets, setSets] = useState([]);
     const [mostrarTerminarMenu, setMostrarTerminarMenu] = useState(false);
+    const [mostrarCancelarMenu, setMostrarCancelarMenu] = useState(false);
     const [name , setName] = useState("")
     const [duration, setDuration] = useState(0)
     const inicio = Date.now()
@@ -77,6 +77,10 @@ const PageTraining = () => {
         if (codigoTecla < 48 || codigoTecla > 57) {
           e.preventDefault();
         }
+        const valorInput = e.target.value;
+        if (valorInput.length >= 3) {
+          e.preventDefault();
+        }
       };
       
 
@@ -126,6 +130,10 @@ const PageTraining = () => {
   const saveInfo = (event, exerciseIndex, setIndex) => {
     const { name, value } = event.target;
 
+    if (parseInt(value, 10) > 999) {
+      // No actualices el estado si el valor supera el máximo
+      return;
+    }
     // Actualizar el estado con los nuevos datos
     setSets((prevSets) => {
       const newSets = [...prevSets];
@@ -177,68 +185,91 @@ const PageTraining = () => {
 
   return (
     <div className="pageTraining">
-      <div className="cross-training"><NavLink to="/routines"><ImCross size="35px" color='#fba92c'/></NavLink></div>
+      {!mostrarCancelarMenu && <div className="cross-training"><ImCross size="35px" color='#fba92c' onClick={()=>{setMostrarCancelarMenu(!mostrarCancelarMenu)}}/></div>}
       <div className="title-training"><h1>{name}</h1></div>
       <div className="addTraining">
-        {!mostrarTerminarMenu ? 
+      {!mostrarCancelarMenu ? 
+        (!mostrarTerminarMenu ? 
+          (
+        // Código a ejecutar si ambas condiciones son verdaderas
         <>
         {routine.map( (exercise,exerciseIndex) => {
-          
-            return(
-                <div className={"exercise-training"} key={exercise._id}>
-                    <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
-                    <div className="categories">
-                      <label className="title-num">Serie</label>
-                      <label className="title-reps">Repeticiones</label>
-                      <label className="title-kg">Peso(kg)</label>
-                    </div>
-                    <div className="sets">
-                      {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
-                        <div className="set" key={setIndex}>
-                          <label className="input-exercise num" >{setIndex+1}</label>
-                          <input className="input-exercise reps" type="number" name={`reps`} min="1" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
-                          <input className="input-exercise kg" type="number" name={`weight`} min="1" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
-                          <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="addSet">
-                      <BiSolidPlusSquare size="30px" color="#fba92c" onClick={() => handleAddSet(exerciseIndex)}/>
-                    </div>
-                </div>
-            )
+        
+          return(
+              <div className={"exercise-training"} key={exercise._id}>
+                  <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
+                  <div className="categories">
+                    <label className="title-num">Serie</label>
+                    <label className="title-reps">Repeticiones</label>
+                    <label className="title-kg">Peso(kg)</label>
+                  </div>
+                  <div className="sets">
+                    {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
+                      <div className="set" key={setIndex}>
+                        <label className="input-exercise num" >{setIndex+1}</label>
+                        <input className="input-exercise reps" type="number" name={`reps`} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
+                        <input className="input-exercise kg" type="number" name={`weight`} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
+                        <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="addSet">
+                    <BiSolidPlusSquare size="30px" color="#fba92c" onClick={() => handleAddSet(exerciseIndex)}/>
+                  </div>
+              </div>
+          )
         })}
-        <button className={"terminar-boton"} onClick={() => menuTerminar()} >
-        TERMINAR
-        </button>
-        </>
-        : <div className="terminar-menu">
-            <h2 className="title-menu-terminar">FIN DE ENTRENAMIENTO</h2>
-            <div className="tiempo">
-              <div className="title-tiempo">
-                <h4>Tiempo</h4>
-                <FaClock size="25px" color='#fba92c'/>
-              </div>
-              <label>{duration}</label>
-            </div>
-            <div className="publicar">
-              
-              <div className="title-publicar">
-                <h4>Publicar</h4>
-                <IoIosSend size="30px" color='#fba92c'/>
-              </div>
-              <div>
-                <button className="publicar-boton" onClick={() => send(false)}>NO</button>
-                <button className="publicar-boton" onClick={() => send(true)}>SI</button>
-              </div>
-              
+        <button className={"terminar-boton"} onClick={() => menuTerminar()} >TERMINAR</button>
+      </>
+          )
+        : (
+        // Código a ejecutar si mostrarTerminarMenu es falso
+        <div className="terminar-menu">
+        <h2 className="title-menu-terminar">FIN DE ENTRENAMIENTO</h2>
+        <div className="tiempo">
+          <div className="title-tiempo">
+            <h4>Tiempo</h4>
+            <FaClock size="25px" color='#fba92c'/>
+          </div>
+          <label>{duration}</label>
+        </div>
+        <div className="publicar">
+          
+          <div className="title-publicar">
+            <h4>Publicar</h4>
+            <IoIosSend size="30px" color='#fba92c'/>
+          </div>
+          <div>
+            <button className="publicar-boton" onClick={() => send(false)}>NO</button>
+            <button className="publicar-boton" onClick={() => send(true)}>SI</button>
+          </div>
+          
 
-            </div>
+        </div>
+        
+        
+        <button className="terminar-boton" onClick={() => setMostrarTerminarMenu(!mostrarTerminarMenu) }>ATRÁS</button>
+    </div>
+          )
+        )
+      : (
+        // Código a ejecutar si mostrarCancelarMenu es falso
+        <div className="terminar-menu">
+            <h2 className="title-menu-terminar">¿CANCELAR ENTRENAMIENTO?</h2>
+            
+
+              <div>
+                <button className="publicar-boton" onClick={() => setMostrarCancelarMenu(!mostrarCancelarMenu) }>NO</button>
+                <button className="publicar-boton" onClick={() => navigate("/routines")}>SI</button>
+              </div>
+              
             
             
-            <button className="terminar-boton" onClick={() => setMostrarTerminarMenu(!mostrarTerminarMenu) }>ATRÁS</button>
-          </div>}
+          </div>
+      )
+}
+
         
         
         
