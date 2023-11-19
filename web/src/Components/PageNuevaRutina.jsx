@@ -12,7 +12,20 @@ import { Global } from "../helpers/Global"
 
 const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
 
-    const [nombreRutina, setNombreRutina] = useState("")
+    const [nombreRutina, setNombreRutina] = useState(() => {
+        try {
+            const storedNombreRutina = localStorage.getItem("nombreRutina")
+            return storedNombreRutina ? JSON.parse(storedNombreRutina) : ""
+        } catch (error) {
+            console.error("Error al analizar JSON desde localStorage: ", error)
+            return ""
+        }
+    })
+
+    useEffect(() => {
+        localStorage.setItem("nombreRutina", JSON.stringify(nombreRutina))
+    }, [nombreRutina])
+
     const navigate = useNavigate()
 
     const eliminarEjercicio = (index) => {
@@ -40,6 +53,8 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
             if (data.status === "success") {
                 const newEjercicios = setEjercicios([])
                 localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
+                const newNombreRutina = setNombreRutina("")
+                localStorage.setItem('nombreRutina', JSON.stringify(newNombreRutina))
                 navigate("/routines")
             }
             else {
