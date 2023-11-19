@@ -108,7 +108,7 @@ const Stat1 = () => {
             },
             tooltip:{
               enabled: false
-            }
+            },
             
           },
     }

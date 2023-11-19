@@ -67,19 +67,19 @@ const PageRegister = () => {
                 <div className='register1'>
                     <RegisterForm1  form={form} changed={changed}/>
                     <NavLink to="/login"><button>Atras</button></NavLink>
-                    <button onClick={e => setNum(2)}>Siguiente</button>
+                    <button onClick={() => setNum(2)}>Siguiente</button>
                 </div>
                 
             : num==2 ? 
                 <div className='register2' >
                     <RegisterForm2 form={form}  changed={changed}/>
-                    <button onClick={e => setNum(1)}>Atras</button>
-                    <button onClick={e => setNum(3)}>Siguiente</button>
+                    <button onClick={() => setNum(1)}>Atras</button>
+                    <button onClick={() => setNum(3)}>Siguiente</button>
                 </div>
             :
                 <div className='register3'>
                     <RegisterForm3 form={form} changed={changed}/>
-                    <button onClick={e => setNum(2)}>Atras</button>
+                    <button onClick={() => setNum(2)}>Atras</button>
                     <button type='submit' onClick={registerUser}>Registrarse</button>
                 </div>
             }

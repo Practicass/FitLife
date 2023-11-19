@@ -317,7 +317,7 @@
 .cross{
     grid-area: cross;
     
-
+    cursor: pointer;
     display:flex;
     align-items: center;
 

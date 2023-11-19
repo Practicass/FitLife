@@ -207,8 +207,8 @@ const PageTraining = () => {
                     {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
                       <div className="set" key={setIndex}>
                         <label className="input-exercise num" >{setIndex+1}</label>
-                        <input className="input-exercise reps" type="number" name={`reps`} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
-                        <input className="input-exercise kg" type="number" name={`weight`} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
+                        <input className="input-exercise reps" type="number" name={`reps`} defaultValue={set} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
+                        <input className="input-exercise kg" type="number" name={`weight`} defaultValue={sets[exerciseIndex].weight[setIndex]} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
                         <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
                       </div>
                     ))}

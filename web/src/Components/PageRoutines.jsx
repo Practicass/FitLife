@@ -81,8 +81,9 @@ const PageRoutines = () => {
                     <div className='askEliminate'>
                         <h3>¿ESTAS SEGURO?</h3>
                         <div>
+                        <button className="boton-eliminar-routine" onClick={() => setEliminate(false)}>NO</button>
                             <button className="boton-eliminar-routine" onClick={eliminateRoutine}>SI</button>
-                            <button className="boton-eliminar-routine" onClick={() => setEliminate(false)}>NO</button>
+                            
                         </div>
                     </div>
                     :
