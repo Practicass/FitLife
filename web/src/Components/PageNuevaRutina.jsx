@@ -125,7 +125,7 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
                                 ))}
                                 <li>
                                     <Link to={{ pathname: "/exercises"}}>
-                                        <MyButton className="boton-ejercicio"
+                                        <MyButton className="boton-anadir-ejercicio"
                                                 color="orangeblack"
                                                 size="xxl" 
                                                 type="submit" 
