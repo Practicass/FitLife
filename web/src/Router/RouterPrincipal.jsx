@@ -1,5 +1,6 @@
 import React from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
+import { useState } from 'react'
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
 import PageHome from '../Components/PageHome'
@@ -15,9 +16,19 @@ import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageEjercicios from '../Components/PageEjercicios'
 // import PageSettings from '../Components/PageSettings'
 
-
-
 const RouterPrincipal = () => {
+
+  const [ejercicios, setEjercicios] = useState(() => {
+    try {
+      const storedEjercicios = localStorage.getItem('ejercicios')
+      return storedEjercicios ? JSON.parse(storedEjercicios) : []  
+    } catch (error) {
+      console.error("Error al analizar JSON desde localStorage: ", error)
+      return []
+    }
+  })
+  console.log("Router: ", ejercicios)
+
     return (
       <BrowserRouter >
         <AuthProvider>
@@ -32,8 +43,8 @@ const RouterPrincipal = () => {
               <Route path='/profile' element={<PageProfile/>}/>
               <Route path='/stats' element={<PageStats/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
-              <Route path='/newroutine' element={<PageNuevaRutina/>}/>
-              <Route path='/exercises' element={<PageEjercicios/>}/>
+              <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
+              <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
 
 
               {/* <Route path='/profile/settings' element={<PageSettings/>}/> */}

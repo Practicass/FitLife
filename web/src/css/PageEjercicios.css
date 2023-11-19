@@ -8,34 +8,30 @@
     --color-stats: #05ff00;
 }
 
-
-.page {
+.page-ejercicios {
     min-height: 860px;
     display: grid;
-    grid-template-areas: "cabecera-ejercicios content";
 }
 
 .cabecera-ejercicios {
-    grid-area: cabecera-ejercicios;
     display: grid;
-    grid-template-areas: "cruz header-ejercicios";
-    grid-template-columns: 0% auto;
+    grid-template-areas: "cruz-ejercicios header-ejercicios";
+    grid-template-columns: 0% 100%;
 }
 
-.cruz {
-    grid-area: cruz;
+.cruz-ejercicios {
+    grid-area: cruz-ejercicio;
 }
 
 .header-ejercicios {
     grid-area: header-ejercicios;
 }
 
-.content {
-    grid-area: content;
-}
-
 .extit-boton {
-    display: flex;
+    display: grid;
+    grid-template-areas: "ejercicios-titulo";
+    grid-template-columns: 70% auto;
+    margin-left: 13%;
     justify-content: center;
     align-items: center;
 }
@@ -46,18 +42,12 @@
     font-size: 400%;
     font-weight: bold;
     text-align: center;
+    margin-right: 5%;
 }
 
-.boton-cancelar {
-    margin-left: 20%;
-}
-.principal {
-    display: grid;
-    flex-direction: column;
-}
 
 .div-ejercicios {
-
+    margin-left: 5%;
     display: flex;
     flex-wrap: wrap;
 }

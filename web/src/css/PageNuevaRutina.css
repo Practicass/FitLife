@@ -8,16 +8,37 @@
     --color-stats: #05ff00;
 }
 
+.page-nueva-rutina {
+    min-height: 860px;
+    display: grid;
+}
+
+
+.cabecera-nueva-rutina {
+    display: grid;
+    grid-template-areas: "cruz-nueva-rutina header-nueva-rutina";
+    grid-template-columns: 0% 100%;
+}
+
+.cruz-nueva-rutina {
+    grid-area: cruz-nueva-rutina;
+}
+
+.header-nueva-rutina {
+    grid-area: header-nueva-rutina;
+}
+
+.principal-nueva-rutina {
+    grid-area: principal-nueva-rutina;
+}
+
+
 .titulo-boton {
     display: grid;
     grid-template-areas: "nueva-rutina boton-anadir";
-    grid-template-columns: 60% auto;
+    grid-template-columns: 80% auto;
     align-items: center;
-    /* justify-content: space-between; */
-    width: 100%;
-    position: absolute;
-    left: 20%;
-    top: 15%;
+    margin-left: 15%;
 }
 
 .nueva-rutina {
@@ -27,18 +48,19 @@
     font-weight: bold;
     text-align: center;
     margin: 0;
-    /* left: 37%; */
 }
 
 .boton-anadir {
     grid-area: boton-anadir;
+    width: 20%;
 }
 
 .div-form-nombre-rutina {
-    align-items: start;
-    position: absolute;
-    top: 40%;
-    left: 10%;
+    /* grid-area: div-form-nombre-rutina; */
+    /* align-items: start; */
+    width: 15%;
+    margin-top: 2%;
+    margin-left: 10%;
 }
 
 .nombre-rutina-titulo {
@@ -56,18 +78,48 @@
     font-size: 120%;
 }
 
+.ejercicio-rutina {
+    display: grid;
+    grid-template-areas: "nom-ex eliminar-ex";
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: start;
+    margin-left: 0%;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.nom-ex {
+    grid-area: nom-ex;
+    font-size: 120%;
+    border-radius: 10px;
+    max-width: 500px;
+    min-width: 500px;
+    background-color: var(--color-second);
+}
+
+.eliminar-ex {
+    grid-area: eliminar-ex;
+    margin-left: 20%;
+    align-items: center;
+}
+
 .form-nombre-rutina input {
     width: 200%;
     height: 400%;
 }
 
 .div-button-ejercicios {
-    position: absolute;
-    top: 55%;
-    left: 10%;
+    grid-area: div-button-ejercicios;
+    margin-top: 2%;
+    margin-left: 10%;
 }
 
 .nombre-rutina {
     display: block;
     width: 200%;
+}
+
+.boton-ejercicio {
+    margin-left: 7%;
 }
