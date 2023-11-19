@@ -69,9 +69,9 @@ const PageEjercicios = ({ ejercicios, setEjercicios }) => {
                         {musclesWithExercises.map(({muscle, exercises}) => (
                             <div className="cada-musculo" key={muscle}>
                                 <p className="muscle-titulo">{muscle}</p>
-                                <ul>
+                                <ul className="ul-ex">
                                     {exercises.map((exercise, index) => (
-                                        <li key={index}>
+                                        <li className="li-ex" key={index}>
                                             <MyButton className="boton-ejercicio"
                                                     color="lightGrey"
                                                     size="xl"
