@@ -13,7 +13,7 @@ const Stat1 = () => {
 
     const getValues = async() => {
 
-      const request = await fetch(Global.url + "training/trainings/", {
+      const request = await fetch(Global.url + "training/trainingsLast", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -43,6 +43,7 @@ const Stat1 = () => {
 //
 //
       setStats({dates:aux2, values:aux})
+      console.log(aux)
 
     }
 

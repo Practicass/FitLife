@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react'
+import React from 'react'
 import "../css/PageStats.css"
 import { NavLink } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
@@ -15,7 +15,6 @@ const PageStat = () => {
     const num = params.num
 
     const StatComponent = React.lazy(() => import(/* @vite-ignore */`./Stat${num}`));
-    const [metrica, setMetrica] = useState()
     const {auth} = useAuth()
 
     const validarNumero = (e) => {
@@ -61,11 +60,11 @@ const PageStat = () => {
             "Authorization": localStorage.getItem("token")
             
           },
-          body: {
+          body: JSON.stringify({
             "user": auth._id,
             "value": value,
             "name": category
-          }
+          })
 
         })
       const data = await request.json()

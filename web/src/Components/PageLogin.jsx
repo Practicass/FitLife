@@ -13,7 +13,6 @@ import { MyButton } from './MyButton'
 const PageLogin = () => {
 
   const {form,changed} = useForm({})
-  const [saved, setSaved] = useState("not_sended")
   let navigate = useNavigate()
 
   const {authUser} = useAuth()
@@ -36,17 +35,15 @@ const PageLogin = () => {
     //console.log(data)
 
     if(data.status == "success"){
-      setSaved("login")
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
       authUser()
-      
       navigate("/home")
+      
 
     }else{
       console.log("ERROR")
-      setSaved("error")
     }
 
   }

@@ -17,14 +17,16 @@ const add = async(req, res) => {
         })
     }
     
-    let exercisesIds = sets.map(set => set.exercise)
+    let exercisesIds = [...new Set(sets.map(set => set.exercise))];
     //console.log(exercisesIds)
     let exercisesFound = await Exercise.find({_id: {$in: exercisesIds}})
     //console.log(exercisesFound)
-    if(exercisesFound.length != sets.length){
+    if(exercisesFound.length != exercisesIds.length){
         return res.status(500).send({
             status:"error",
-            message: "Error en al menos un ejercicio"
+            message: "Error en al menos un ejercicio",
+            exercisesFound, 
+            exercisesIds
         })
     }
 
@@ -79,10 +81,16 @@ const trainings = async(req,res) => {
     page = parseInt(page);
   
     let itemsPerPage = 5;
+
+    
     
     let friendsIds = await friendService.friendUserids(req.user.id)
+    let traingingsAux = await Training.find({user: {$in: friendsIds.friends}})
 
-    Training.find({user: {$in: friendsIds.friends}}).sort('created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage)
+    Training.find({user: {$in: friendsIds.friends}}).sort('-created_at').populate("sets.exercise", " -__v").populate({
+        path: 'user',
+        select: 'nick'
+}).paginate(page, itemsPerPage)
     .then((trainings,error) => {
 
         if(error ||!trainings){
@@ -97,7 +105,8 @@ const trainings = async(req,res) => {
           status: "success",
           trainings,
           page,
-          itemsPerPage
+          itemsPerPage,
+          total: traingingsAux.length
           
         })
     })
@@ -107,7 +116,7 @@ const trainings = async(req,res) => {
 }
 
 //Muestra todos los entrenamientos de un usuario 
-const trainingsUser = (req, res) => {
+const trainingsUser = async(req, res) => {
 
     idUser = req.user.id
 
@@ -122,8 +131,10 @@ const trainingsUser = (req, res) => {
     page = parseInt(page);
   
     let itemsPerPage = 5;
+    let traingingsAux = await Training.find({user:idUser})
+
   
-    Training.find({user:idUser}).sort('created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
+    Training.find({user:idUser}).sort('-created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
 
         if(error ||!trainings){
           return res.status(500).send({
@@ -132,16 +143,44 @@ const trainingsUser = (req, res) => {
             error
           })
         }
-  
+        
         return res.status(200).send({
           status: "success",
           trainings,
           page,
-          itemsPerPage
+          itemsPerPage,
+          total: traingingsAux.length
           
         })
     })
 }
+
+const trainingsUserLastPage = (req, res) => {
+
+    let idUser = req.user.id;
+
+
+    let itemsPerPage = 5;
+
+    Training.find({ user: idUser }).sort('-created_at').populate("sets.exercise", "-user -__v").paginate(1, itemsPerPage).then(async (trainings, error) => {
+
+        if (error || !trainings) {
+            return res.status(500).send({
+                status: "error",
+                message: "No hay entrenamientos disponibles",
+                error
+            });
+        }
+
+        trainings.reverse();
+        return res.status(200).send({
+            status: "success",
+            trainings
+        });
+    });
+};
+
+
 
 
 module.exports = {
@@ -149,5 +188,6 @@ module.exports = {
     add,
     eliminate,
     trainings,
-    trainingsUser
+    trainingsUser,
+    trainingsUserLastPage
 }

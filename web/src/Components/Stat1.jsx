@@ -50,7 +50,7 @@ const Stat1 = () => {
     let state = {
         series: [
             {
-              data: stats.values
+              data: stats.values.slice(-5)
             }
           ],
           options: {

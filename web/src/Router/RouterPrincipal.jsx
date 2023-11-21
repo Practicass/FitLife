@@ -20,6 +20,7 @@ const RouterPrincipal = () => {
       <BrowserRouter >
         <AuthProvider>
           <Routes>
+              <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
               <Route path='/home' element={<PageHome/>}/>
               <Route path='/history' element={<PageHistory/>}/>
