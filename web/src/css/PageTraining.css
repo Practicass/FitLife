@@ -1,0 +1,236 @@
+:root{
+    --color-background:#242424;
+    --color-primary: #404040;
+    --color-second: #9e9e9e;
+    --color-text: #fff;
+    --color-black: #000;
+    --color-third: #fba92c;
+    --color-stats: #05ff00;
+}
+
+.pageTraining{
+    height: 700px;
+    display: grid;
+    grid-template-areas:    "cross title"
+                            "training training";
+    grid-template-rows: 10% auto;
+    grid-template-columns: 5% auto;
+
+    
+
+}
+
+
+.cross-training{
+    grid-area: cross;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title-training{
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.title-training h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.addTraining{
+    grid-area: training;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    
+
+}
+
+.exercise-training:first-child{
+    margin-top: 5%;
+}
+
+
+.exercise-training{
+    margin-bottom: 5%;
+    width: 30%;
+    height: 350px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    display:grid;
+    grid-template-areas: "title-exercise"
+                         "categories"
+                         "sets"
+                         "addSet";
+
+    grid-template-rows: 15% 10% auto 15%;
+}
+.categories{
+    margin-left:15%;
+    margin-right:15%;
+
+    display: grid;
+    grid-template-areas: "title-num title-reps title-kg";
+    align-items: center;
+
+}
+
+.title-num{
+    grid-area: title-num;
+    justify-self: center;
+}
+.title-reps{
+    grid-area: title-reps;
+    justify-self: center;
+}
+.title-kg{
+    grid-area: title-kg;
+    justify-self: center;
+}
+
+.addSet{
+    grid-area: addSet;
+}
+
+.title-exercise{
+    grid-area: title-exercise;
+    align-self: center;
+    justify-self: center;
+}
+
+.sets{
+    grid-area: sets;
+
+}
+
+.num{
+    grid-area: num;
+    justify-self: center;
+}
+.reps{
+    grid-area: reps;
+    justify-self: center;
+
+}
+.kg{
+    grid-area: kg;
+    justify-self: center;
+
+}
+.delete-set{
+    grid-area: delete-set;
+    justify-self: center;
+}
+
+
+.input-exercise{
+    border: 2px solid orange;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 35px;
+    text-align: center;
+}
+
+.set{
+    display: grid;
+    grid-template-areas: "num reps kg delete-set";
+    grid-template-columns: 20.6% 35% 26.8% 17%;
+    align-items: center;
+    margin-left: 15%;
+    margin-top: 1%;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; 
+    background-color: var(--color-primary);
+    outline: none;
+  }
+  
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+.addSet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sets > :not(:last-child) .delete-set {
+    display: none;
+}
+
+ .delete-set {
+    cursor:pointer
+}
+
+.terminar-boton{
+    background-color: var(--color-third);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    color: black;
+    font-weight:bolder ;
+
+}
+
+
+.terminar-menu{
+    width: 40%;
+    height: 80%;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    
+
+}
+
+.tiempo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title-tiempo{
+    display: flex;
+}
+
+.publicar{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.title-publicar{
+    display: flex;
+}
+
+.publicar-boton{
+    width: 50px;
+    height: 40px;
+    background-color: var(--color-third);
+    border-radius: 10px;
+    color: black;
+    font-weight: bolder;
+}
+
+
+

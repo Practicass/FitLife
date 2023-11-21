@@ -15,6 +15,8 @@ import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
 import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageEjercicios from '../Components/PageEjercicios'
+import PageTraining from '../Components/PageTraining'
+import PageStat from "../Components/PageStat"
 
 
 const RouterPrincipal = () => {
@@ -31,6 +33,7 @@ const RouterPrincipal = () => {
       <BrowserRouter >
         <AuthProvider>
           <Routes>
+              <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
               <Route path='/home' element={<PageHome/>}/>
               <Route path='/history' element={<PageHistory/>}/>
@@ -40,10 +43,13 @@ const RouterPrincipal = () => {
               <Route path='/routine' element={<PageRoutine/>}/>
               <Route path='/profile' element={<PageProfile/>}/>
               <Route path='/stats' element={<PageStats/>}/>
+              <Route path='/stats/:num' element={<PageStat/>}/>
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
               <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
               <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
+
+              <Route path='/training/:id' element={<PageTraining/>}/>
 
                 {/* <Footer/> */}
                 <Route path="*"  element ={

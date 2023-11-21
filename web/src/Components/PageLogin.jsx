@@ -41,8 +41,8 @@ const PageLogin = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       authUser()
-      
       navigate("/home")
+      
 
     }else{
       console.log("ERROR")
