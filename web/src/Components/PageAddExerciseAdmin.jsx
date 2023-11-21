@@ -3,9 +3,50 @@ import Logo from "./LogoAdmin";
 import { NavLink } from "react-router-dom";
 import "../css/PageAddExerciseAdmin.css"
 import {ImCross} from "react-icons/im"
-import {Checkbox} from "@nextui-org/react";
+
+import { useEffect, useState } from "react";
+import { Global } from '../helpers/Global'
+
+import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import { MyCheckbox } from "./MyCheckbox";
 
  const PageAddExerciseAdmin = () => {
+
+const [muscles, setMuscles] = useState([])
+
+  const getMuscles = async() => {
+
+    const request = await fetch(Global.url+"muscle/muscles", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+
+          }
+    })
+
+    const data = await request.json()
+
+    console.log(data.muscles)
+
+    setMuscles(data.muscles)
+    // return data.exercises;
+
+
+
+
+}
+useEffect(() => {
+
+  getMuscles()
+
+}, [])
+
+const style4 = {
+  "color" : "#fff",
+  "fontWeight" : "bolder",
+
+}
 
   const styleTitle = {
     "fontSize":"60px",
@@ -19,9 +60,13 @@ const styleTitle2 = {
   "fontWeight":"bolder",
   "marginLeft": "10%"
 }
+
 const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
+
+
 // const style1 = { "fontSize": "20px", "fontWeight":"bolder", "color":"#242424"}
   return (
+    
     <div className="page-adminAddExercise">
     <div className="header-adminAddExercise">
     <NavLink to={-1}><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
@@ -44,8 +89,25 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
          </div>
          <div className="body3AdminAddExercise">
             <h1 style={styleTitle2}>GRUPO MUSCULAR</h1>
-            <div className="musculos"></div>
-            <Checkbox defaultValue={false} color="warning">Option</Checkbox>
+            <div className="musculos">
+            
+              <CheckboxGroup
+                
+                orientation="horizontal"
+                color="warning"
+                size="lg"
+                
+              >
+                  { muscles.map((muscles) => {
+                      return(
+        
+                        <Checkbox style={style4} value={muscles.name} key={muscles._id}>{muscles.name}&nbsp;&nbsp;&nbsp;</Checkbox>
+                    )
+                  } )}
+        </CheckboxGroup>
+       
+            </div>
+           
          </div>
          <div className="body4AdminAddExercise">
             <h1 style={styleTitle2}>DESCRIPCIÓN</h1>

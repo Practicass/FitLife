@@ -81,14 +81,20 @@
     align-self: center;
 } */
 
-.body2AdminAddExerciseTitle{
-    grid-area: titleBody2 ;
+.body2AdminAddExercise{
+    grid-area: body2-aH;
 }
-.body3AdminAddExerciseTitle{
-    grid-area: titleBody3 ;
+.body3AdminAddExercise{
+    grid-area: body3-aH;
+    display: grid;
+    grid-template-areas:    "title1Area3"
+                            "title2Area3";
+    grid-template-rows: 20% auto;
+
+
 }
-.body4AdminAddExerciseTitle{
-    grid-area: titleBody4 ;
+.body4AdminAddExercise{
+    grid-area: body4-aH;
 }
 
 
@@ -98,10 +104,13 @@
     height: 60px;
     width: 50%;
     display: flex;
-    justify-content: start;
-    justify-self: end;
+    justify-content: center;
+    justify-self: center;
     align-items: center;
     margin-top: 2%;
+    /* background-color:#bbb7b1; */
+    /* margin-left: 4%; */
+
 }
 
 .button-adminAddExercise{
@@ -132,6 +141,13 @@
 }
 
 .musculos{
-    align-items: center;
-    justify-content: center;
+    /* background-color: #fba92c; */
+    width: 80%;
+    height: 80%;
+    grid-area: title2Area3;
+    justify-self: center;
+    display: flex;
+    justify-content:space-evenly ;
+    margin-top: 2%;
+    
 }
