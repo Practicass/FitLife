@@ -27,7 +27,8 @@ const RouterPrincipal = () => {
       return []
     }
   })
-  console.log("Router: ", ejercicios)
+
+  const [ejerciciosEdit, setEjerciciosEdit]
 
     return (
       <BrowserRouter >

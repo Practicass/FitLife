@@ -44,11 +44,24 @@ const add = async(req, res) => {
         message: "Se ha guardado la rutina correctamente",
         rutineSaved
     })
+}
 
+const routine = (req,res) => {
+    let rutineId = req.params.id
 
-
-    
-
+    Rutine.findById(rutineId).populate('exercises').then(rutine => {
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha mostrado la rutina correctamente",
+            rutine
+        })
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar la rutina",
+            error
+        })
+    })
 }
 
 //Elimina una rutina de la base de datos
@@ -131,5 +144,6 @@ module.exports = {
     add,
     eliminate,
     update,
+    routine,
     rutines
 }
