@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Global } from '../helpers/Global'
 
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
-import { MyCheckbox } from "./MyCheckbox";
+// import { MyCheckbox } from "./MyCheckbox";
 
  const PageAddExerciseAdmin = () => {
 
