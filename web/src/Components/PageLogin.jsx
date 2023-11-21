@@ -14,6 +14,9 @@ const PageLogin = () => {
 
   const {form,changed} = useForm({})
   const [saved, setSaved] = useState("not_sended")
+  const [errorCorreo, setErrorCorreo] = useState(null)
+  const [errorPasswd, setErrorPasswd] = useState(null)
+
   let navigate = useNavigate()
 
   const {authUser} = useAuth()
@@ -35,7 +38,8 @@ const PageLogin = () => {
 
     //console.log(data)
 
-    if(data.status == "success"){
+    if (data.status === "success") {
+      setErrorPasswd("")
       setSaved("login")
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
@@ -44,9 +48,30 @@ const PageLogin = () => {
       
       navigate("/home")
 
-    }else{
+    } 
+    else if (data.message === "La contraseña no es correcta") {
       console.log("ERROR")
       setSaved("error")
+      setErrorCorreo("")
+      setErrorPasswd("Contraseña incorrecta. Inténtelo de nuevo")
+    }
+    else if (data.message === "Error en la consulta de usuarios") {
+      setErrorPasswd("")
+      setErrorCorreo("Correo electrónico incorrecto. Inténtelo de nuevo")
+    }
+    else { // data.message == "Faltas datos por enviar"
+      if (userToLogin.password === "") {
+        console.error(userToLogin.password, 2)
+        setErrorPasswd("Contraseña incorrecta. Inténtelo de nuevo")
+      } else {
+        setErrorPasswd("")
+      }
+      if (userToLogin.email === "") {
+        console.error(userToLogin.password, 1)
+        setErrorCorreo("Correo electrónico incorrecto. Inténtelo de nuevo")
+      } else {
+        setErrorCorreo("")
+      }
     }
 
   }
@@ -61,8 +86,10 @@ const PageLogin = () => {
       <Logo />
       <form className='form-login' onSubmit={loginUser}>
         <label style={style2}>Correo Electronico</label>
+        {errorCorreo && <div className='error-message' >{errorCorreo}</div>}
         <input type='text' name='email' onChange={changed} style={style1}></input>
         <label style={style3}>Contraseña</label>
+        {errorPasswd && <div className='error-message'>{errorPasswd}</div>}
         <input type='password' name='password' onChange={changed} style={style1} ></input>
         <div style={style4}>
           <label >¿No tienes una cuenta?</label><NavLink className="goRegister" to="/register"><label>Registrate</label></NavLink>
