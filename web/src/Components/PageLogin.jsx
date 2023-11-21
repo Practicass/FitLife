@@ -1,11 +1,11 @@
-import React from 'react'
+
 import Logo from './Logo'
 import useForm from '../hooks/useForm'
 import { Global } from '../helpers/Global'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import {useAuth} from '../hooks/useAuth'
-import { Button } from '@nextui-org/react'
+
 import { MyButton } from './MyButton'
 
 
@@ -13,6 +13,7 @@ import { MyButton } from './MyButton'
 const PageLogin = () => {
 
   const {form,changed} = useForm({})
+  // const [saved, setSaved] = useState("not_sended")
   let navigate = useNavigate()
 
   const {authUser} = useAuth()
@@ -35,6 +36,7 @@ const PageLogin = () => {
     //console.log(data)
 
     if(data.status == "success"){
+      // setSaved("login")
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -44,6 +46,7 @@ const PageLogin = () => {
 
     }else{
       console.log("ERROR")
+      // setSaved("error")
     }
 
   }

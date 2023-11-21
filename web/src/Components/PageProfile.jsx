@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Sidebar from './Sidebar'
 import Logo from './Logo'
 import "../css/PageProfile.css"
@@ -16,7 +16,7 @@ import { NavLink } from "react-router-dom";
   const [sidebar, setSidebar] = useState(false)
   const {auth} = useAuth()
   const [friends, setFriends] = useState(0)
-  const [id, setId] = useState("")
+
  
 
 
@@ -57,7 +57,7 @@ useEffect(() => {
               
             </div>
             <div className="profile-principal">
-              {auth.imagen = "default.png" ? 
+              {auth.image == "default.png" ? 
                 <center><div >
                   <FaUserCircle className='default-icon-user' color='#fba92c' size="100px"/> 
                 </div></center>

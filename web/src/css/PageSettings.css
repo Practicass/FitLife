@@ -1,6 +1,13 @@
+.settings-page{
+    display: grid;
+    grid-template-areas: "header-s"
+                         "body-s";
+    
+}
+
 
 .header-settings{
-
+    grid-area: header-s;
     display:grid;
     margin-top: 2%;
     grid-template-areas: "cross logo-set check";
@@ -30,13 +37,28 @@
     margin-left: 15px;
 }
 
+
+
+.principal-settings{
+    grid-area: body-s;
+
+    display: grid;
+    grid-template-areas: "lf1 ct1 rg1"
+                        "lf2 ct2 rg2"
+                        "lf3 ct2 rg3"
+                        "lf4 ct2 rg4";
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 80% 25% 25% 25%;
+}
+
 .settings-square{
+    grid-area: ct1;
     border: 1px solid #fba92c;
 
     margin-right: 1.3%;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-bottom: 20px;
-    width: 12%;
+    width: 25%;
     height: 160px;
     border-radius: 10px;
     display: flex;
@@ -48,4 +70,78 @@
    width: 100px;
    height: auto;
 
+}
+
+
+.settings-form{
+    grid-area: ct2;
+    display: flex;
+    justify-content: safe;
+    display: grid;
+    grid-template-areas:  "in1"
+                          "in2"
+                          "in3"  ;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+    
+    
+
+}
+
+.settings-co{
+    grid-area: lf2;
+    font-weight: bolder;
+    font-size: 34px;
+    justify-self: end;;
+}
+
+.settings-inp1{
+    color: black;
+    height: 40px;
+    width: 80%;
+    margin-top: 1%;
+    grid-area: in1;
+    display: flex;
+    justify-self: center;
+    background-color: #9e9e9e;
+    
+   
+}
+.settings-inp2{
+    color: black;
+    height: 40px;
+    width: 80%;
+    margin-top: 1%;
+    grid-area: in2;
+    display: flex;
+    justify-self: center;
+    background-color: #9e9e9e;
+   
+}
+.settings-form input[type="password"]{
+    color: black;
+    height: 40px;
+    width: 80%;
+    margin-top: 1%;
+    grid-area: in3;
+    display: flex;
+    justify-self: center;
+    background-color: #9e9e9e;
+   
+}
+.settings-nm{
+    grid-area: lf3;
+    font-weight: bolder;
+    font-size: 34px;
+    justify-self: end;;
+}
+
+.settings-psw{
+    grid-area: lf4;
+    font-weight: bolder;
+    font-size: 34px;
+    justify-self: end;;
+}
+
+.check{
+    border: 4px solid white;
 }
