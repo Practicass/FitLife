@@ -4,6 +4,7 @@ import "../css/PageAdminHome.css"
 
 import { NavLink } from "react-router-dom";
 import ExercisesListAdmin from "./ExercisesListAdmin";
+import { ScrollShadow } from "@nextui-org/react";
 
 
  const PageAdminHome = () => {
@@ -34,7 +35,10 @@ import ExercisesListAdmin from "./ExercisesListAdmin";
                 <h1 style={styleTitle}>RUITNAS</h1>
             </div>
             <div className="rectangle1-admin">
-                <ExercisesListAdmin />
+                <ScrollShadow className="w-[450px] h-[550px]">
+                    <ExercisesListAdmin />
+                </ScrollShadow>
+                
             </div>        
             <div className="rectangle2-admin">
 

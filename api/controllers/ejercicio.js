@@ -106,7 +106,7 @@ const exercises = (req, res) => {
 
 //Muestra todos los ejercicios de un músculo de la base de datos 
 const allExercises = (req, res) => {
-    let muscle = req.params.muscle
+    
     
     Exercise.find().then(exercises => {
         return res.status(200).json({
@@ -124,6 +124,7 @@ const allExercises = (req, res) => {
     })
     
 }
+
 
 
 module.exports = {

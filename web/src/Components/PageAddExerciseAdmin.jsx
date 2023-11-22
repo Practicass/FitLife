@@ -1,18 +1,39 @@
 import IconDropdownAdmin from "./IconDropdownAdmin";
 import Logo from "./LogoAdmin";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../css/PageAddExerciseAdmin.css"
 import {ImCross} from "react-icons/im"
 
 import { useEffect, useState } from "react";
 import { Global } from '../helpers/Global'
 
-import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import { RadioGroup, Radio } from "@nextui-org/react";
 // import { MyCheckbox } from "./MyCheckbox";
 
  const PageAddExerciseAdmin = () => {
-
+  const navigate = useNavigate()
 const [muscles, setMuscles] = useState([])
+const [inputValue1, setInputValue1] = useState('') 
+const [inputValue2, setInputValue2] = useState('') 
+const [selected, setSelected] = useState([]);
+
+const onInputChange1 = ({target}) =>{
+    
+    setInputValue1(target.value)
+    console.log(inputValue1)
+    
+   
+}
+const onInputChange2 = ({target}) =>{
+  
+  setInputValue2(target.value)
+  console.log(inputValue2)
+  
+  
+
+}
+
+
 
   const getMuscles = async() => {
 
@@ -31,11 +52,53 @@ const [muscles, setMuscles] = useState([])
 
     setMuscles(data.muscles)
     // return data.exercises;
+}
 
 
 
+const add = async(e) => {
+  // Para que no se recargue la pagina
+  e.preventDefault();
+
+  
+  const cambios = {
+    name: inputValue1,
+    description: inputValue2,
+    muscle: selected
+  }
+  
+  const request = await fetch(Global.url+"exercise/add", {
+  method: "POST",
+  body: JSON.stringify(cambios),
+  headers: {
+      "Content-Type":"application/json",
+      "Authorization": localStorage.getItem("token")
+  }
+  })
+
+  const data = await request.json()
+
+  console.log(data)
+
+  if(data.status == "success"){
+
+    // localStorage.setItem("user", JSON.stringify(data.user._id));
+      
+      navigate("/adminHome")
+      
+  }else{
+  console.log("ERROR")
+  
+  }
 
 }
+
+const addExercise = (e) => {
+  if (inputValue1 !== "" && inputValue2 !== "" && selected.length !== 0) {
+    add(e)
+  }
+}
+
 useEffect(() => {
 
   getMuscles()
@@ -68,6 +131,7 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
   return (
     
     <div className="page-adminAddExercise">
+      
     <div className="header-adminAddExercise">
     <NavLink to={-1}><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
          <div className="logo-adminAddExercise">
@@ -85,36 +149,38 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
          </div>
          <div className="body2AdminAddExercise">
             <h1 style={styleTitle2}>NOMBRE</h1>
-            <input className="inputBody2" />
+            <input className="inputBody2" onChange={onInputChange1}/>
          </div>
          <div className="body3AdminAddExercise">
             <h1 style={styleTitle2}>GRUPO MUSCULAR</h1>
             <div className="musculos">
-            
-              <CheckboxGroup
+
+              <RadioGroup
                 
                 orientation="horizontal"
                 color="warning"
                 size="lg"
+                onValueChange={setSelected}
                 
               >
                   { muscles.map((muscles) => {
                       return(
         
-                        <Checkbox style={style4} value={muscles.name} key={muscles._id}>{muscles.name}&nbsp;&nbsp;&nbsp;</Checkbox>
+                        <Radio style={style4} value={muscles._id} key={muscles._id}>{muscles.name}&nbsp;&nbsp;&nbsp;</Radio>
                     )
                   } )}
-        </CheckboxGroup>
+        </RadioGroup>
+        <p className="text-default-500 text-small">Selected: {selected}</p>
        
             </div>
            
          </div>
          <div className="body4AdminAddExercise">
             <h1 style={styleTitle2}>DESCRIPCIÓN</h1>
-            <textarea  className="inputBody4" />
+            <textarea  className="inputBody4" onChange={onInputChange2} />
          </div>
          <div className="buttonArea-adminAddExercise">
-                <NavLink to={-1}><button className="button-adminAddExercise"style={style5}>AÑADIR</button></NavLink>
+                <NavLink to={-1}><button className="button-adminAddExercise"style={style5} onClick={addExercise}>AÑADIR</button></NavLink>
             </div>
          
            
@@ -125,6 +191,8 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
 
   )
 }
+
+
 
 
 export default PageAddExerciseAdmin
