@@ -149,7 +149,7 @@ const PageRoutines = () => {
                     <div className='routines' >
                         {routines.map( routine => {
                             
-                            if(routine.user.rol == "administrador"){
+                            if(routine.user.rol == "admin"){
 
                                 return(
                                     
