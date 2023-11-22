@@ -104,11 +104,11 @@ const exercises = (req, res) => {
     
 }
 
-//Muestra todos los ejercicios de un músculo de la base de datos 
+//Muestra todos los ejercicios  de la base de datos 
 const allExercises = (req, res) => {
     
     
-    Exercise.find().then(exercises => {
+    Exercise.find().sort({ name: 1 }).then(exercises => {
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado correctamente los ejercicios",
