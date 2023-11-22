@@ -126,3 +126,19 @@
     border-radius: 10px;
     width: 140%;
 }
+
+.exerciseScroll{
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+   
+    margin-bottom: 5%;
+}
+
+.routinesScroll{
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+   margin-left: 7%;
+    margin-bottom: 5%;
+}

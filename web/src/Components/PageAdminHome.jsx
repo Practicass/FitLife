@@ -4,7 +4,8 @@ import "../css/PageAdminHome.css"
 
 import { NavLink } from "react-router-dom";
 import ExercisesListAdmin from "./ExercisesListAdmin";
-import { ScrollShadow } from "@nextui-org/react";
+import { Avatar, ScrollShadow } from "@nextui-org/react";
+import RoutinesListAdmin from "./RoutinesListAdmin";
 
 
  const PageAdminHome = () => {
@@ -32,15 +33,26 @@ import { ScrollShadow } from "@nextui-org/react";
                 <h1 style={styleTitle}>EJERCICIOS</h1>
             </div>
             <div className="body2Admin">
-                <h1 style={styleTitle}>RUITNAS</h1>
+                <h1 style={styleTitle}>RUTINAS</h1>
             </div>
             <div className="rectangle1-admin">
-                <ScrollShadow className="w-[450px] h-[550px]">
+                <div className="exerciseScroll">
+
+                
+                <ScrollShadow   size="0" className="w-[450px] h-[490px] inline-block">
                     <ExercisesListAdmin />
                 </ScrollShadow>
+                </div>
                 
             </div>        
             <div className="rectangle2-admin">
+            <div className="routinesScroll">
+
+                                
+                <ScrollShadow   size="0" className="w-[450px] h-[490px] inline-block">
+                    <RoutinesListAdmin />
+                </ScrollShadow>
+                </div>
 
             </div>
             <div className="buttonArea1-admin">
@@ -51,6 +63,7 @@ import { ScrollShadow } from "@nextui-org/react";
             </div>
 
         </div>
+
 
     </div>
   );

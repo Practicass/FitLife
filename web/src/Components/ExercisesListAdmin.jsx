@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
-
+import "../css/ExerciseListAdmin.css"
 import { MyButton } from "../Components/MyButton";
+import { NavLink } from 'react-router-dom';
 
  const ExercisesListAdmin = () => {
 
@@ -36,12 +37,17 @@ useEffect(() => {
 
   return (
     
-    <div>{ exercises.map((exercise) => {
+    <div>
+      <ul className='ul-adminEx'>
+
+      
+      { exercises.map((exercise,index) => {
       return(
-        
-        <MyButton color="orange" key={exercise._id}>{exercise.name}</MyButton>
+        <li className='li-adminEx' key={index}>
+         <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
+        </li>
       )
-    } )}</div>
+    } )}</ul></div>
     // <></>
   )
 }
