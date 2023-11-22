@@ -10,7 +10,8 @@ const Stat4 = () => {
 
     const [stats, setStats] = useState([])
     const [goal, setGoal] = useState(480)
-    let statsHM = []
+    const [date, setDate] = useState([])
+
 
 
 
@@ -28,16 +29,21 @@ const Stat4 = () => {
 
       const data = await request.json()
 
-      let aux =[{}]
+      let aux =[]
+      let aux2 = []
       for( let i=0; i<data.stats.length;i++){
         aux[i] = (data.stats[i].value/goal)*100
-        statsHM[i] = data.stats[i].value
+        let fecha = new Date(data.stats[i].date)
+        let numeroMes = fecha.getMonth() + 1;
+        let numeroDia = fecha.getDate();
+        aux2[i] = numeroDia + '/' + numeroMes;
       }
 //
-      console.log("hola", aux, statsHM)
+      //console.log("hola", aux, statsHM)
 //
       setStats(aux)
-
+      setDate(aux2)
+      console.log(aux2)
 
     }
 
@@ -54,32 +60,55 @@ const Stat4 = () => {
           height: 350,
           type: 'radialBar',
         },
+        title:{
+          text: 'Sueño',
+          align: 'center',
+          style:{
+            color:'white'
+          } 
+        },
         plotOptions: {
           radialBar: {
             dataLabels: {
               name: {
-                fontSize: '22px',
+                fontSize: '20px',
                 color: "white",
               },
               value: {
                 fontSize: '16px',
                 color: "white",
+                formatter: function (value) {
+                  let minutos = Math.trunc((value*goal)/100) 
+                  let horas = Math.floor(minutos / 60);
+                  let minutosRestantes = minutos % 60;
+                  return horas+"h "+minutosRestantes+"m"
+                }
               },
               total: {
                 show: true,
                 label: 'Media',
                 color: "white",
-                formatter: function () {
+                formatter: function (values) {
                   // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                  return 249
+                  const sum = values.config.series.reduce((acc, value) => acc + value, 0);
+                  const average = sum / values.config.series.length;
+                  let minutos = Math.trunc((average*goal)/100)
+                  let horas = Math.floor(minutos / 60);
+                  let minutosRestantes = minutos % 60;
+                  return horas+"h "+minutosRestantes+"m"
                 }
               },
-              max: 300,
+              
             }
             ,
-          }
+            track:{
+              background:'transparent',
+              margin:"1px"
+            }
+          },
+          
         },
-        labels: [statsHM],
+        labels: date,
         
       },
     
@@ -90,7 +119,7 @@ const Stat4 = () => {
 
       return (
         <div className="stat">
-             <ReactApexChart options={state.options} series={state.series} type="radialBar" width="86%"/>
+             <ReactApexChart className="stat4" options={state.options} series={state.series} type="radialBar" width="86%"/>
         </div>
        
       );

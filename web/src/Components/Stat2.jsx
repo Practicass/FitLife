@@ -84,8 +84,8 @@ const Stat1 = () => {
               curve: 'smooth'
             },
             title: {
-              text: 'Weight',
-              align: 'left'
+              text: 'Peso levantado en últimos entrenamientos',
+              align: 'center'
             },
             grid: {
               borderColor: '#ffffff',
