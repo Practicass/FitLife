@@ -14,6 +14,8 @@ import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageEjercicios from '../Components/PageEjercicios'
+import PageEditRoutine from '../Components/PageEditRoutine'
+import PageEjerciciosEdit from '../Components/PageEjerciciosEdit'
 // import PageSettings from '../Components/PageSettings'
 
 const RouterPrincipal = () => {
@@ -28,7 +30,25 @@ const RouterPrincipal = () => {
     }
   })
 
-  const [ejerciciosEdit, setEjerciciosEdit]
+  const [ejerciciosEdit, setEjerciciosEdit] = useState(() => {
+    try {
+      const storedEjercicios = localStorage.getItem('ejerciciosEdit')
+      return storedEjercicios ? JSON.parse(storedEjercicios) : []  
+    } catch (error) {
+      console.error("Error al analizar JSON desde localStorage: ", error)
+      return []
+    }
+  })
+
+  const [idRutinaEdit, setIdRutinaEdit] = useState(() => {
+    try {
+      const storedIdRutina = localStorage.getItem('idRutinaEdit')
+      return storedIdRutina ? parseInt(storedIdRutina, 10) : null
+    } catch (error) {
+      console.error("Error al analizar JSON desde localStorage: ", error)
+      return null
+    }
+  })
 
     return (
       <BrowserRouter >
@@ -46,6 +66,8 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
               <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
+              <Route path='/editroutine' element={<PageEditRoutine ejercicios={ejerciciosEdit} setEjercicios={setEjerciciosEdit} idRutina={idRutinaEdit}></PageEditRoutine>}/>
+              <Route path='/ejerciciosedit' element={<PageEjerciciosEdit ejercicios={ejerciciosEdit} setEjercicios={setEjercicios}></PageEjerciciosEdit>}/>
 
 
               {/* <Route path='/profile/settings' element={<PageSettings/>}/> */}

@@ -10,7 +10,9 @@ import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
 
 
-const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
+const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
+
+    const navigate = useNavigate()
 
     const [nombreRutina, setNombreRutina] = useState(() => {
         try {
@@ -21,22 +23,29 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
             return ""
         }
     })
-
+    
     useEffect(() => {
-        localStorage.setItem("nombreRutina", JSON.stringify(nombreRutina))
-    }, [nombreRutina])
-
-    const navigate = useNavigate()
+        const obtenerNombreRutina = async () => {
+            try {
+                const response = await fetch(Global.url + "rutine/get/${idRutina}")
+                const rutina = response.data.rutine
+                setNombreRutina(rutina.name)
+            } catch (error) {
+                console.error("Error al obtener el nombre de la rutina", error)
+            }
+        }
+        obtenerNombreRutina()
+    }, [idRutina])
 
     const eliminarEjercicio = (index) => {
         const newEjercicios = [...ejercicios]
         newEjercicios.splice(index,1)
-        localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
+        localStorage.setItem('ejerciciosEdit', JSON.stringify(newEjercicios))
     }
 
-    const anadirRutina = async () => {
+    const updateRutina = async () => {
         try {
-            const response = await fetch(Global.url + "rutine/add", {
+            const response = await fetch(Global.url + "rutine/update", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,7 +61,7 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
 
             if (data.status === "success") {
                 const newEjercicios = setEjercicios([])
-                localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
+                localStorage.setItem('ejerciciosEdit', JSON.stringify(newEjercicios))
                 const newNombreRutina = setNombreRutina("")
                 localStorage.setItem('nombreRutina', JSON.stringify(newNombreRutina))
                 navigate("/routines")
@@ -71,6 +80,7 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
         <div className={"page-nueva-rutina"}>
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
+                    {/* HAY QUE MIRAR PQ TMB PUEDE VOLVER AL HOME ADMIN */}
                     <NavLink to="/routines">
                         <ImCross
                             className="cruz-nueva-rutina" 
@@ -82,16 +92,16 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
                 </div>
                 <div className="principal-nueva-rutina">
                     <div className="titulo-boton">
-                        <h1 className="nueva-rutina"> NUEVA RUTINA </h1>
-                            <MyButton
-                                className="boton-anadir"
-                                color="orangeblack"
-                                size="xxl"
-                                type="submit"
-                                value="Añadir"
-                                onClick={anadirRutina}>
-                                Añadir
-                            </MyButton>
+                        <h1 className="nueva-rutina"> {nombreRutina.toUpperCase()} </h1>
+                        <MyButton
+                            className="boton-anadir"
+                            color="orangeblack"
+                            size="xxl"
+                            type="submit"
+                            value="Guardar"
+                            onClick={updateRutina}>
+                            Guardar
+                        </MyButton>
                     </div>
                     <div className="forms-nueva-rutina">
                         <div className="div-form-nombre-rutina">
@@ -143,4 +153,4 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios, idRutina }) => {
     )
 }
 
-export default PageNuevaRutina
+export default PageEditRoutine
