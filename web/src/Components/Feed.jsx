@@ -3,13 +3,13 @@ import { Global } from '../helpers/Global'
 import "../css/Historial.css"
 import { IoChevronBackOutline , IoChevronForwardOutline} from "react-icons/io5";
 
+
 import ReactTimeAgo from "react-time-ago"
 
 
-const Historial = () => {
+const Feed = () => {
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(1)
-    
 
 
   
@@ -20,7 +20,7 @@ const Historial = () => {
 
     const getHistory = async() => {
 
-        const request = await fetch(Global.url+"training/trainings/"+page, {
+        const request = await fetch(Global.url+"training/trainingsFriends/" + page, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -34,6 +34,7 @@ const Historial = () => {
 
         setHistory(data.trainings)
         setMaxPage(Math.ceil(data.total/data.itemsPerPage))
+
         
 
         
@@ -57,7 +58,6 @@ const Historial = () => {
         getHistory()
     }, [page])
 
-
     
     
 
@@ -65,10 +65,10 @@ const Historial = () => {
   return (
     <div className='principal-history'>
         {history.map(training => {
-            
             return(
                 <div key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
+                        <h3>@{training.user.nick}</h3>
                         <h3>{training.name}</h3>
                         <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
                         <label>{segundosATiempo(training.duration)}</label>
@@ -107,4 +107,4 @@ const Historial = () => {
 }
 
 
-export default Historial
+export default Feed

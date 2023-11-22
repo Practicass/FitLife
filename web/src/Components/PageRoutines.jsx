@@ -1,4 +1,3 @@
-import React from 'react'
 import Sidebar from './Sidebar'
 import { useState } from 'react'
 import Header from './Header'
@@ -10,11 +9,15 @@ import { AiFillPlusCircle } from "react-icons/ai"
 import { NavLink } from 'react-router-dom'
 
 
+
 const PageRoutines = () => {
     const[sidebar,setSidebar] = useState(false)
     const [routines, setRoutines] = useState([])
     const [eliminate, setEliminate] = useState(false)
     const [id, setId] = useState("")
+
+
+        
     
     const getRoutines = async() => {
 
@@ -77,8 +80,11 @@ const PageRoutines = () => {
                 {eliminate ? 
                     <div className='askEliminate'>
                         <h3>¿ESTAS SEGURO?</h3>
-                        <button onClick={eliminateRoutine}>SI</button>
-                        <button onClick={e => setEliminate(false)}>NO</button>
+                        <div>
+                        <button className="boton-eliminar-routine" onClick={() => setEliminate(false)}>NO</button>
+                            <button className="boton-eliminar-routine" onClick={eliminateRoutine}>SI</button>
+                            
+                        </div>
                     </div>
                     :
                     <></>
@@ -94,9 +100,9 @@ const PageRoutines = () => {
                                 return(
                                     
                                         <div className='square' key={routine._id}>
-                                            <h3 className='title-routine'>{routine.name}</h3>
-                                            <div className='cross' ><ImCross size="25px" color='#fba92c' onClick={e => {setId(routine._id) ; setEliminate(true) }}/></div>
-                                            <div className='exercises-routine'>
+                                            <NavLink to={"/training/"+routine._id} className='title-routine'><h3 >{routine.name}</h3></NavLink>
+                                            <div className='cross' ><ImCross size="25px" color='#fba92c' onClick={() => {setId(routine._id) ; setEliminate(true) }}/></div>
+                                            <NavLink to={"/training/"+routine._id} className='exercises-routine'>
                                                 <div className='exercises-par'>
                                                 
                                                     { routine.exercises.map((exercise,index) => {
@@ -123,14 +129,14 @@ const PageRoutines = () => {
                                                         
                                                     })} 
                                                 </div>
-                                            </div>
+                                            </NavLink>
                                             <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
                                         </div> 
                                     
                                 )
                             }
                         })}
-                        <NavLink className='squareAdd' to="/addRoutine">
+                        <NavLink className='squareAdd' to="/newroutine">
                                 <div className='addRoutine'>
                                     <AiFillPlusCircle color='#9e9e9e' size="50px"/>
                                 </div>

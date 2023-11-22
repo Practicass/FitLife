@@ -7,22 +7,22 @@
 - [x] Home
  - [x] Home Dropdown
 - [x] Sidebar
-- [ ] Friends feed
+- [x] Friends feed
 - [x] User profile
 - [x] Register
 - [x] History
 - [x] Routines (review)
-- [ ] Statistics (Pablo)
+- [x] Statistics (Pablo)
 - [x] My profile
 - [x] Settings
-- [ ] Statiscts view 
-- [ ] Add statistics 
-- [ ] Create training (Pablo)
+- [x] Statiscts view 
+- [x] Add statistics 
+- [x] Create training (Pablo)
 - [ ] Friends list (Josemi)
-- [ ] Create routine  (Josemi)
-- [ ] Log out (Pablo)
+- [x] Create routine  (Josemi)
+- [x] Log out (Pablo)
 - [ ] Error messages
-- [ ] Error 404 if not login (Pablo)
+- [x] Error 404 if not login (Pablo)
 
 ### Admin
 
@@ -32,8 +32,8 @@
  - [ ] Search routine (Miguel)
  - [ ] Admin home dropdown (Miguel)
 - [ ] Create exercise
-- [ ] Create routine 
+- [x] Create routine 
 - [ ] Edit exercise
-- [ ] Edit routine
+- [ ] Edit routine (Josemi)
 - [ ] Remove exercise
 - [ ] Remove routine
