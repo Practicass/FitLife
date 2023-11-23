@@ -32,7 +32,38 @@ const PageListFriends = () => {
         getFriendList()
     }, [])
 
-    const eliminarAmigo = ()
+    const eliminarAmigo = async (idAmigo) => {
+        try {
+            await fetch(Global.url+'friend/eliminate/' + idAmigo, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            })
+            window.location.reload()
+        } catch (error) {
+            console.error("No se pudo eliminar el amigo: ", error)
+        }
+    }
+
+    const [busqueda, setBusqueda] = useState("")
+
+    const [showFriends, setShowFriends] = useState(true)
+
+    const search = async(e) => {
+        setBusqueda(e)
+        if (e !== '') {
+            setShowFriends(false)
+
+            try {
+                const response 
+            }
+        }
+        else {
+            setShowFriends(true)
+        }
+    }
 
     return (
         <div className={"page-"+sidebar}>
@@ -43,8 +74,16 @@ const PageListFriends = () => {
                 <div className="principal-list">
                     <form className="busqueda-form-friends" >
                         {/* Sustituir esto por una búsqueda */}
-                        <input className="busqueda-friends" type="text" name="busqueda" />
+                        <input 
+                            className="busqueda-friends"
+                            type="text"
+                            name="busqueda"
+                            value={busqueda}
+                            placeholder="Busca para añadir un amigo..."
+                            onChange={(e) => search(e.target.value)}
+                            />
                     </form>
+                    {showFriends ?
                     <div className="list-friends">
                         {friends.map((friend, index) => (
                             <div className='friend' key={index}>
@@ -53,11 +92,26 @@ const PageListFriends = () => {
                                 </div>
                                 <h2 className="nick-friend"> {friend.name} </h2>
                                 <div className="cruz">
-                                    <ImCross size="25px" onClick={eliminarAmigo}/>
+                                    <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
                                 </div>
                             </div>
                         ))}
                     </div>
+                    :
+                    <div className="list-friends">
+                    {friends.map((friend, index) => (
+                        <div className='friend' key={index}>
+                            <div className="foto-friend">
+                                <FaUserCircle color='#fba92c' size="50px"/>
+                            </div>
+                            <h2 className="nick-friend"> {friend.name} </h2>
+                            <div className="cruz">
+                                <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
+                    }
                 </div>
             </div>
         </div>

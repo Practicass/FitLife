@@ -41,8 +41,10 @@
     margin-left: 37%;
 }
 
+
 .busqueda-friends {
     font-size: 25px;
+    color: var(--color-black);
 }
 
 .list-friends {
