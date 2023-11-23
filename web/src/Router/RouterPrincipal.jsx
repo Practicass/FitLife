@@ -13,7 +13,6 @@ import PageProfile from '../Components/PageProfile'
 import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageNuevaRutina from '../Components/PageNuevaRutina'
-import PageEjercicios from '../Components/PageEjercicios'
 import PageEditRoutine from '../Components/PageEditRoutine'
 // import PageSettings from '../Components/PageSettings'
 
