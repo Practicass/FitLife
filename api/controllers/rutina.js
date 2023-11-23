@@ -1,6 +1,8 @@
 
 const Rutine = require("../models/rutineSchema")
 const Exercise = require ("../models/exerciseSchema")
+const User = require ("../models/usersSchema")
+
 
 
 
@@ -72,26 +74,42 @@ const eliminate = (req,res) => {
 }
 
 
-//Muesta todas las rutinas de un usuario y las del administrador
-const rutines = (req,res) => {
+// Muesta todas las rutinas de un usuario y las del administrador
+const rutines = async(req,res) => {
 
     let me = req.user.id
 
-    Rutine.find({$or: [{user: me},{rol: "admin" }]}).populate("exercises user").then(rutines => {
+    const admins = await User.find({rol: "admin"})
+
+    Rutine.find(
+    {
+             $or: [
+                 { user: me }, // Rutinas del usuario actual
+                 { user:{
+                    $in : admins
+                 }  } // Rutinas de usuarios con rol de administrador
+             ]
+            })
+    .populate("exercises user") // Popula los campos 'exercises' y 'user' con sus respectivos datos
+    .then(rutines => {
+        
         return res.status(200).json({
             status: "success",
             message: "Se han mostrado las rutinas correctamente",
             rutines
-        })
+        });
     })
     .catch(error => {
         return res.status(500).json({
             status: "error",
             message: "No se han podido mostrar las rutinas",
             error
-        })
-    })
-}
+        });
+    });
+};
+
+
+
 
 //Actualiza una rutina de la base de datos
 const update = (req, res) => {

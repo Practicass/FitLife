@@ -4,7 +4,7 @@ import "../css/PageAdminHome.css"
 
 import { NavLink } from "react-router-dom";
 import ExercisesListAdmin from "./ExercisesListAdmin";
-import { Avatar, ScrollShadow } from "@nextui-org/react";
+import { ScrollShadow } from "@nextui-org/react";
 import RoutinesListAdmin from "./RoutinesListAdmin";
 
 
