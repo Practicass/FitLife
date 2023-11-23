@@ -130,7 +130,9 @@ const PageRoutines = () => {
                                                     })} 
                                                 </div>
                                             </NavLink>
-                                            <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                            <NavLink to={"/editroutine/" + routine._id}>
+                                                <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                            </NavLink>
                                         </div> 
                                     
                                 )
