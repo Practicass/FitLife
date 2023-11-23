@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
   const [routines, setRoutines] = useState([])
   const getRoutines = async() => {
 
-    const request = await fetch(Global.url+"rutine/rutines", {
+    const request = await fetch(Global.url+"rutine/rutinesScroll", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

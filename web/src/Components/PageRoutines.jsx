@@ -7,21 +7,28 @@ import { useEffect } from 'react'
 import { Global } from '../helpers/Global'
 import { AiFillPlusCircle } from "react-icons/ai"
 import { NavLink } from 'react-router-dom'
+import { IoChevronBackOutline , IoChevronForwardOutline} from "react-icons/io5";
+
 
 
 
 const PageRoutines = () => {
     const[sidebar,setSidebar] = useState(false)
     const [routines, setRoutines] = useState([])
+    const [routinesAdmin, setRoutinesAdmin] = useState([])
     const [eliminate, setEliminate] = useState(false)
     const [id, setId] = useState("")
+    const [page, setPage] = useState(1)
+    const [pageAdmin, setPageAdmin] = useState(1)
+    const [maxPage, setMaxPage] = useState(1)
+    const [maxPageAdmin, setMaxPageAdmin] = useState(1)
 
 
         
     
-    const getRoutines = async() => {
+    const getRoutinesUser = async() => {
 
-        const request = await fetch(Global.url+"rutine/rutines", {
+        const request = await fetch(Global.url+"rutine/rutinesUser/"+page, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -32,9 +39,30 @@ const PageRoutines = () => {
 
         const data = await request.json()
 
-
+        
         setRoutines(data.rutines)
+        setMaxPage(Math.ceil(data.total/data.itemsPage))
+        console.log
+        
 
+        
+    }
+    const getRoutinesAdmin = async() => {
+
+        const request = await fetch(Global.url+"rutine/rutinesAdmin/"+pageAdmin, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+                
+              }
+        })
+
+        const data = await request.json()
+
+        
+        setRoutinesAdmin(data.rutines)
+        setMaxPageAdmin(Math.ceil(data.total/data.itemsPage))
         
 
         
@@ -59,15 +87,20 @@ const PageRoutines = () => {
       console.log(data.status)
 
         if(data.status == "success"){
-            getRoutines()
+            getRoutinesUser()
         }
 
     }
 
 
     useEffect(() => {
-        getRoutines()
-    }, [])  
+        getRoutinesUser()
+        
+    }, [page]) 
+    useEffect(() => {
+        getRoutinesAdmin()
+    }, [pageAdmin])  
+    
       
     
 
@@ -144,12 +177,25 @@ const PageRoutines = () => {
                                 </div>
                         </NavLink>
                     </div>
+                    <div className='pages-historial'>
+                        <IoChevronBackOutline className="modify-num-page-icon" size="35px" color='#fba92c'onClick={()=>{
+                            if(page>1){
+                                setPage(page-1)
+                            }
+                        }}/>
+                        <label>{page}</label>
+                        <IoChevronForwardOutline className="modify-num-page-icon"size="35px" color='#fba92c' onClick={()=>{
+                            if(page<maxPage){
+                                setPage(page+1)
+                            }
+                        }}/>
+                    </div>
                     
                 </div>
                 <div className={'popRoutines-'+eliminate}>
-                    <h2>RUTINAS POPULARES</h2>
+                    <h2>RUTINAS PREDETERMINADAS</h2>
                     <div className='routines' >
-                        {routines.map( routine => {
+                        {routinesAdmin.map( routine => {
                             
                             if(routine.user.rol == "admin"){
 
@@ -192,6 +238,19 @@ const PageRoutines = () => {
                                 )
                             }
                         })}
+                    </div>
+                    <div className='pages-historial'>
+                        <IoChevronBackOutline className="modify-num-page-icon" size="35px" color='#fba92c'onClick={()=>{
+                            if(pageAdmin>1){
+                                setPageAdmin(pageAdmin-1)
+                            }
+                        }}/>
+                        <label>{pageAdmin}</label>
+                        <IoChevronForwardOutline className="modify-num-page-icon"size="35px" color='#fba92c' onClick={()=>{
+                            if(pageAdmin<maxPageAdmin){
+                                setPageAdmin(pageAdmin+1)
+                            }
+                        }}/>
                     </div>
                 </div>
             </div>
