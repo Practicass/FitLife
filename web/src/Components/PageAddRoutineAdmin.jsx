@@ -123,6 +123,7 @@ const PageAddRoutineAdmin = () => {
                             <p className="nombre-rutina-titulo">NOMBRE DE LA RUTINA</p>
                             <form className="form-nombre-rutina">
                                 <input
+                                    className='input-nombre-rutina'
                                     type="text"
                                     name="nombre-rutina"
                                     value={nombreRutina}
