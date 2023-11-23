@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
-import PageHome from '../Components/PageHome'
+import PageHome2 from '../Components/PageHome2'
 import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
@@ -35,7 +35,7 @@ const RouterPrincipal = () => {
           <Routes>
               <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
-              <Route path='/home' element={<PageHome/>}/>
+              <Route path='/home' element={<PageHome2/>}/>
               <Route path='/history' element={<PageHistory/>}/>
               <Route path='/register' element={<PageRegister/>}/>
               <Route path='/routines' element={<PageRoutines/>}/>

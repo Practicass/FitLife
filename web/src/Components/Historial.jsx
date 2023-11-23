@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 import "../css/Historial.css"
 import { IoChevronBackOutline , IoChevronForwardOutline} from "react-icons/io5";
+import {NavLink} from "react-router-dom"
 
 import ReactTimeAgo from "react-time-ago"
 
@@ -31,7 +32,7 @@ const Historial = () => {
 
         const data = await request.json()
 
-
+        console.log(data)
         setHistory(data.trainings)
         setMaxPage(Math.ceil(data.total/data.itemsPerPage))
         
@@ -57,7 +58,7 @@ const Historial = () => {
         getHistory()
     }, [page])
 
-
+    const uniqueExerciseNames = new Set();
     
     
 
@@ -67,7 +68,7 @@ const Historial = () => {
         {history.map(training => {
             
             return(
-                <div key={training._id} className='rectangle'>
+                <NavLink key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
                         <h3>{training.name}</h3>
                         <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
@@ -77,16 +78,23 @@ const Historial = () => {
                     <div className='exercises-rectangle'>
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
-                            console.log(set.exercise)
-                            return(
+                            const exerciseName = set.exercise.name;
+
+                            if (!uniqueExerciseNames.has(exerciseName)) {
+                                uniqueExerciseNames.add(exerciseName);
+
+                            return (
                                 <div key={set._id}>
-                                    <label>{set.exercise.name}</label>
+                                <label>{exerciseName}</label>
                                 </div>
-                            
-                            )
+                            );
+                            }
+
+                            // Return null for sets with duplicate exercise names
+                            return null;
                         })}
                     </div>
-                </div>
+                </NavLink>
             )
         })}
         <div className='pages-historial'>

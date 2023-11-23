@@ -165,7 +165,7 @@ const PageTraining = () => {
 
     const request = await fetch(Global.url+"training/add", {
       method: "POST",
-      body: JSON.stringify({"name": name,"user": auth._id, "sets":setsEnviar, "public": publico, "duration": duration}),
+      body: JSON.stringify({"name": name,"user": auth._id, "sets":setsEnviar, "public": publico, "duration": duration, "routine": id}),
       headers: {
           "Content-Type":"application/json",
           "Authorization": localStorage.getItem("token")

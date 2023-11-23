@@ -37,6 +37,11 @@ const trainingSchema = Schema({
     created_at: {
         type: Date,
         default: Date.now
+    },
+    routine:{
+        type: Schema.ObjectId,
+        ref: "Rutine"
+        
     }
 })
 

@@ -30,7 +30,7 @@ const add = async(req, res) => {
         })
     }
 
-    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public, duration: req.body.duration})
+    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public, duration: req.body.duration, routine: req.body.routine})
 
     let trainingSaved = await newTraining.save()
     if(!trainingSaved){
@@ -114,6 +114,8 @@ const trainings = async(req,res) => {
     
 
 }
+
+
 
 //Muestra todos los entrenamientos de un usuario 
 const trainingsUser = async(req, res) => {

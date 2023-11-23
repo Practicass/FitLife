@@ -122,7 +122,7 @@ const PageStat = () => {
 
   return (
     <div className={"page"}>
-      <NavLink to="/stats"><ImCross size="35px" className='cancelar-stat' color='#fba92c'/></NavLink> 
+      <NavLink to={-1}><ImCross size="35px" className='cancelar-stat' color='#fba92c'/></NavLink> 
       
         <div className='principal-stat1'>
             <div className='stat1'>
