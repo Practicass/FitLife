@@ -33,7 +33,7 @@ const PageLogin = () => {
 
     const data = await request.json()
 
-    //console.log(data)
+    console.log(data)
 
     if(data.status == "success"){
       // setSaved("login")
@@ -42,7 +42,7 @@ const PageLogin = () => {
 
       authUser()
       
-      if(data.rol ==="usuario"){
+      if(data.user.rol =="usuario"){
 
         navigate("/home")
       }else{
