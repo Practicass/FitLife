@@ -85,29 +85,6 @@ const eliminate = (req,res) => {
 }
 
 
-// const routine = async (req, res) => {
-//     try {
-//         const rutineId = req.params.id
-//         const rutine = await Rutine.findById(rutineId).populate("exercises user")
-    
-//         if (!rutine) {
-//             return res.status(400).json({
-//                 status: "error",
-//                 message: "No se encontro ninguna rutina con el ID proporcionado"
-//             })
-//         }
-        
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Rutina obtenida correctamente",
-//             rutine,
-//         })
-//     } catch (error) {
-//         console.error("Error")
-//     }
-
-// }
-
 //Muesta todas las rutinas de un usuario y las del administrador
 const rutines = (req,res) => {
 
