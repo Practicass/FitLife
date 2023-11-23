@@ -7,7 +7,7 @@ import {FaRegEdit} from "react-icons/fa"
 import { useEffect } from 'react'
 import { Global } from '../helpers/Global'
 import { AiFillPlusCircle } from "react-icons/ai"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
 const PageRoutines = () => {
@@ -66,7 +66,31 @@ const PageRoutines = () => {
         getRoutines()
     }, [])  
       
-    
+    const navigate = useNavigate()
+    const editarRutina = async (idRutina) => {
+        try {
+            const response = await fetch(Global.url + "rutine/routine/" + idRutina, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            })
+
+            const data = await response.json()
+
+            if (data.status === "success") {
+                navigate("/editroutine/" + idRutina)
+            }
+            else {
+                // Error
+                console.error("Error")
+            }
+
+        } catch (error) {
+            console.log("Error en llamada a editar la rutina: ", error)
+        }
+    }
 
   return (
     <div className={'page-'+sidebar}>
@@ -124,7 +148,9 @@ const PageRoutines = () => {
                                                     })} 
                                                 </div>
                                             </div>
-                                            <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                            <div className='/editroutine' onClick={() => editarRutina(routine._id)}>
+                                                <FaRegEdit size="32px" color='#fba92c' />
+                                            </div>
                                         </div> 
                                     
                                 )

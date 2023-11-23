@@ -1,37 +1,27 @@
 /* eslint-disable react/prop-types */
-import React from "react"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Header from "./Header"
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/PageNuevaRutina.css"
+import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
 
 
-const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
-
-    const [nombreRutina, setNombreRutina] = useState(() => {
-        try {
-            const storedNombreRutina = localStorage.getItem("nombreRutina")
-            return storedNombreRutina ? JSON.parse(storedNombreRutina) : ""
-        } catch (error) {
-            console.error("Error al analizar JSON desde localStorage: ", error)
-            return ""
-        }
-    })
-
-    useEffect(() => {
-        localStorage.setItem("nombreRutina", JSON.stringify(nombreRutina))
-    }, [nombreRutina])
+const PageNuevaRutina = () => {
+   
+    const [num, setNum] = useState(1)
+    const [ejercicios, setEjercicios] = useState([])
+    const [nombreRutina, setNombreRutina] = useState("")
 
     const navigate = useNavigate()
 
     const eliminarEjercicio = (index) => {
         const newEjercicios = [...ejercicios]
         newEjercicios.splice(index,1)
-        localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
+        setEjercicios(newEjercicios)
     }
 
     const anadirRutina = async () => {
@@ -51,10 +41,6 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
             const data = await response.json()
 
             if (data.status === "success") {
-                const newEjercicios = setEjercicios([])
-                localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
-                const newNombreRutina = setNombreRutina("")
-                localStorage.setItem('nombreRutina', JSON.stringify(newNombreRutina))
                 navigate("/routines")
             }
             else {
@@ -67,8 +53,48 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
         }
     }
 
+        // Para mostrar los ejercicios
+
+    // Se obtiene todos los ejercicios ordenados por musculo
+    const[musclesWithExercises, setMusclesWithExercises] = useState([])
+
+    const fetchMusclesWithExercises = async () => {
+        try {
+            const response = await fetch(Global.url + "muscle/muscles")
+            const muscleData = await response.json()
+            const muscles = muscleData.muscles
+
+            const musclesWithExercisesPromises = muscles.map(async (muscle) => {
+                const exerciseResponse = await fetch(Global.url + 'exercise/exercises/'+  muscle._id)
+                const exerciseData = await exerciseResponse.json()
+
+                return {
+                    muscle: muscle.name,
+                    exercises: exerciseData.exercises,
+                }
+            })
+            const musclesWithExercises = await Promise.all(musclesWithExercisesPromises)
+            setMusclesWithExercises(musclesWithExercises)
+        } catch (error) {
+            console.error('Error fetching muscles with exercises', error)
+        }
+    }
+
+    useEffect(() => {
+        fetchMusclesWithExercises()
+    }, [])
+
+    const agregarEjercicio = (ejercicio) => {
+        const estaEjercicio = ejercicios.find(e => ejercicio._id === e._id)
+
+        if (!estaEjercicio) {
+            setEjercicios(prevEjercicios => [...prevEjercicios, ejercicio])
+        }
+    }
+
     return (
         <div className={"page-nueva-rutina"}>
+            {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
                     <NavLink to="/routines">
@@ -118,27 +144,65 @@ const PageNuevaRutina = ({ ejercicios, setEjercicios }) => {
                                             color="#fba92c"
                                             onClick={() => {
                                                 eliminarEjercicio(index)
-                                                window.location.reload()
                                             }}>
                                         </ImCross>
                                     </li>
                                 ))}
                                 <li>
-                                    <Link to={{ pathname: "/exercises"}}>
-                                        <MyButton className="boton-anadir-ejercicio"
-                                                color="orangeblack"
-                                                size="xxl" 
-                                                type="submit" 
-                                                value="+">
-                                            +
-                                        </MyButton>
-                                    </Link>
+                                    <MyButton className="boton-anadir-ejercicio"
+                                            color="orangeblack"
+                                            size="xxl" 
+                                            type="submit" 
+                                            value="+"
+                                            onClick={() => setNum(2)}>
+                                        +
+                                    </MyButton>
                                 </li>
                             </ul>
                         </div>                    
                     </div>
                 </div>
             </div>
+        
+            :
+            <div className="page-ejercicios">
+                <div className='content-ejercicios'>
+                    <div className="cabecera-ejercicios">
+                        <NavLink to="/newroutine">
+                            <ImCross className="cruz-ejercicios" size="35px" color="#fba92c"></ImCross>
+                        </NavLink>
+                        <Header className="header-ejercicios"/>
+                    </div>
+                    <div className="principal-ejercicios">
+                        <h1 className="ejercicios-titulo"> EJERCICIOS </h1>
+                        <div className="div-ejercicios">
+                            {musclesWithExercises.map(({muscle, exercises}) => (
+                                <div className="cada-musculo" key={muscle}>
+                                    <p className="muscle-titulo">{muscle}</p>
+                                    <ul className="ul-ex">
+                                        {exercises.map((exercise, index) => (
+                                            <li className="li-ex" key={index}>
+                                                <MyButton className="boton-ejercicio"
+                                                        color="lightGrey"
+                                                        size="xl"
+                                                        type="submit"
+                                                        value={exercise.name}
+                                                        onClick={() => {
+                                                            agregarEjercicio(exercise)
+                                                            setNum(1)
+                                                        }} >
+                                                    {exercise.name}
+                                                </MyButton>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+            }
         </div>
     )
 }

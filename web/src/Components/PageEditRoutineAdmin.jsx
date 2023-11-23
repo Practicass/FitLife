@@ -10,7 +10,7 @@ import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
 
 
-const PageEditRoutine = () => {
+const PageEditRoutineAdmin = () => {
 
     const {id} = useParams()
     const [num, setNum] = useState(1)
@@ -266,4 +266,4 @@ const PageEditRoutine = () => {
     )
 }
 
-export default PageEditRoutine
+export default PageEditRoutineAdmin
