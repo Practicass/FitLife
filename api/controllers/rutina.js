@@ -183,8 +183,18 @@ const favRoutines = async(req,res) => {
                 };
             })
         );
-        const routines = rutinesWithTrainings.sort((a, b) => b.numTrainings - a.numTrainings).slice(0,3);
-
+        
+        let routines = rutinesWithTrainings.sort((a, b) => b.numTrainings - a.numTrainings).slice(0,3);
+        console.log("hola", routines.length)
+        let routinesAdmin = []
+        if(routines.length < 3){
+            console.log("adios")
+            const admins = await User.find({rol: "admin"})
+            routinesAdmin = await Rutine.find({ user:{$in : admins}}).limit(3-routines.length)
+            console.log(routinesAdmin)
+            routines = [...routines, ...routinesAdmin];
+            console.log(routines, routinesAdmin)
+        }
         return res.status(200).json({
             status: "success",
             message: "Se ha mostrado la rutina correctamente",
