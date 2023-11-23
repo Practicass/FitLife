@@ -13,16 +13,24 @@ const PageListFriends = () => {
     const[sidebar,setSidebar] = useState(false)
     const[friends, setFriends] = useState([])
     const getFriendList = async() => {
-        const request = await fetch(Global.url+'user/friends')
+        const request = await fetch(Global.url+'friend/friends', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            },
+        })
         if (request.ok) {
             const data = await request.json()
-            setFriends(data.friends)
+
+            setFriends(data.friendsIds.friends)
         } 
     }
 
+
     useEffect(() => {
-        getFriendList();
-    }, []);
+        getFriendList()
+    }, [])
 
     return (
         <div className={"page-"+sidebar}>
@@ -35,17 +43,17 @@ const PageListFriends = () => {
                         <input type="text" name="busqueda" />
                     </form>
                     <div className="ListFriends">
-                        {friends.map( friend => {
-                            <div className='friend' >
+                        {friends.map((friend, index) => (
+                            <div className='friend' key={index}>
                                 <div className="foto-friend">
                                     <FaUserCircle color='#fba92c' size="50px"/>
                                 </div>
-                                <h2 className="nick-friend"> Pablo </h2>
+                                <h2 className="nick-friend"> {friend.name} </h2>
                                 <div className="cruz">
                                     <ImCross size="25px"/>
                                 </div>
                             </div>
-                        })}
+                        ))}
                     </div>
                 </div>
             </div>
