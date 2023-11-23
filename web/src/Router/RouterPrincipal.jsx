@@ -19,7 +19,7 @@ import PageAdminHome from '../Components/PageAdminHome'
 import PageAddExerciseAdmin from '../Components/PageAddExerciseAdmin'
 import PageAddRoutineAdmin from '../Components/PageAddRoutineAdmin'
 import PageEditExerciseAdmin from '../Components/PageEditExerciseAdmin'
-import PageEditRoutineAdmin from '../Components/PageAddRoutineAdmin'
+import PageEditRoutineAdmin from '../Components/PageEditRoutineAdmin'
 import PageEditRoutine from "../Components/PageEditRoutine"
 // import PageNewPassword from '../Components/PageNewPassword'
 
