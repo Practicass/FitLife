@@ -192,7 +192,13 @@ const training = (req, res) => {
 
     const idTraining = req.params.id
 
-    Training.findById(idTraining).populate("sets.exercise user", "-__v").then(async (training, error) => {
+    Training.findById(idTraining).populate("sets.exercise user", "-__v").populate({
+        path: 'sets.exercise',
+        populate: {
+          path: 'muscle',
+          model: 'Muscle' // Reemplaza 'Muscle' con el nombre de tu modelo de músculos
+        }
+      }).then(async (training, error) => {
 
         
 

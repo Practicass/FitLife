@@ -96,6 +96,22 @@
     justify-self: center;
 }
 
+.title-num-cardio{
+    grid-area: title-num;
+    justify-self: center;
+    padding-right: 30%;
+}
+
+.title-reps-cardio{
+    grid-area: title-reps;
+    justify-self: center;
+    padding-right: 45%;
+}
+.title-kg{
+    grid-area: title-kg;
+    justify-self: center;
+}
+
 .addSet{
     grid-area: addSet;
 }

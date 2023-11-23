@@ -107,7 +107,7 @@ const Stat1 = () => {
               title: {
                 text: 'Value'
               },
-              min: Math.min(...stats.values) -1,
+              min: Math.max(Math.min(...stats.values) -1, 0),
               max: Math.max(...stats.values) +1,
               forceNiceScale: true,
               

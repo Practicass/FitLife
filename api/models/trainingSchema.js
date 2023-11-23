@@ -22,7 +22,8 @@ const trainingSchema = Schema({
             ref: "Exercise"
         },
         weight: Number,
-        reps: Number
+        reps: Number,
+        time: Number
     }],
     //si va a poder ser vista por sus amigos
     public:{

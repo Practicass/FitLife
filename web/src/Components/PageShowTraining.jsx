@@ -84,26 +84,50 @@ const PageShowTraining = () => {
 
             if (!uniqueSetId.includes(setId)) {
                 uniqueSetId.push(setId);
-                console.log(uniqueSetId)
+                console.log(set)
           return(
               <div className={"exercise-training"} key={set._id}>
                   <h2 className="title-exercise">{uniqueSetId.length}.{set.exercise.name}</h2>
                   <div className="categories">
-                    <label className="title-num">Serie</label>
-                    <label className="title-reps">Repeticiones</label>
-                    <label className="title-kg">Peso(kg)</label>
+                  {set.exercise.muscle.name == "Cardio" || set.exercise.muscle.name == "Full-body" ?
+                      <>
+                        <label className="title-num-cardio">Serie</label>
+                        <label className="title-reps-cardio">Tiempo</label>
+                      </>
+                      :
+                      
+                        <>
+                        <label className="title-num">Serie</label>
+                        <label className="title-reps">Repeticiones</label>
+                        <label className="title-kg">Peso(kg)</label>
+                        </>
+                      
+                    }
                   </div>
                   <div className="sets">
                     {sets.map((set2, setIndex2) => {
+                      
                         if(set2.exercise._id == setId){
                             numSerie++
-                        return(
-                      <div className="set" key={setIndex2}>
-                        <label className="input-exercise num" >{numSerie}</label>
-                        <label className="input-exercise reps"   >{set2.reps}</label> 
-                        <label className="input-exercise kg" >{set2.weight}</label>
-                      </div>
-                    )}})}
+                            if(set2.exercise.muscle.name == "Cardio" || set2.exercise.muscle.name == "Full-body" ){
+                              return(
+                                <div className="set" key={setIndex2}>
+                                  <label className="input-exercise num" >{numSerie}</label>
+                                  <label className="input-exercise reps">{set2.time}</label> 
+                                </div>
+                              )
+                            }else{
+                              return(
+                                <div className="set" key={setIndex2}>
+                                  <label className="input-exercise num" >{numSerie}</label>
+                                  <label className="input-exercise reps"   >{set2.reps}</label> 
+                                  <label className="input-exercise kg" >{set2.weight}</label>
+                                </div>
+                              )
+                            }
+                            
+                          }
+                    })}
                   </div>
                   
 

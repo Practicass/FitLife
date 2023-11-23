@@ -58,7 +58,7 @@ const Historial = () => {
         getHistory()
     }, [page])
 
-    const uniqueExerciseNames = new Set();
+    let uniqueExerciseNames = [];
     
     
 
@@ -66,7 +66,7 @@ const Historial = () => {
   return (
     <div className='principal-history'>
         {history.map(training => {
-            
+            uniqueExerciseNames = []
             return(
                 <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
@@ -79,9 +79,9 @@ const Historial = () => {
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
                             const exerciseName = set.exercise.name;
-
-                            if (!uniqueExerciseNames.has(exerciseName)) {
-                                uniqueExerciseNames.add(exerciseName);
+                            console.log(uniqueExerciseNames)
+                            if (!uniqueExerciseNames.includes(exerciseName)) {
+                                uniqueExerciseNames.push(exerciseName);
 
                             return (
                                 <div key={set._id}>
