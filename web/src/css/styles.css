@@ -190,6 +190,12 @@
     height: 70%;
     align-self: center;
 }
+.separatorR{
+    border-right: 0.5px solid white;
+    height: 85%;
+    align-self: center;
+    margin-bottom: 500%;
+}
 
 .info-rectangle{
     grid-area: info;
@@ -302,6 +308,7 @@
                          "exer edit";
     grid-template-columns: 90% auto;
     grid-template-rows: 25% auto;
+    
 }
 
 .title-routine{
@@ -342,6 +349,7 @@
 .ejerciciosLabel{
     color: white;
     cursor:pointer;
+    margin-left: 8%;
 }
 
 
@@ -437,4 +445,14 @@
     flex-direction: column;
     justify-content: space-around;
     
+}
+
+.exercises-par{
+    display: flex;
+    flex-direction: column;
+}
+
+.exercises-impar{
+    display: flex;
+    flex-direction: column;
 }
