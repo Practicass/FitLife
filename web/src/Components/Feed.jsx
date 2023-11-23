@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 import "../css/Historial.css"
 import { IoChevronBackOutline , IoChevronForwardOutline} from "react-icons/io5";
-
+import { NavLink } from 'react-router-dom';
 
 import ReactTimeAgo from "react-time-ago"
 
@@ -59,14 +59,14 @@ const Feed = () => {
     }, [page])
 
     
-    
+    const uniqueExerciseNames = []
 
 
   return (
     <div className='principal-history'>
         {history.map(training => {
             return(
-                <div key={training._id} className='rectangle'>
+                <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
                         <h3>@{training.user.nick}</h3>
                         <h3>{training.name}</h3>
@@ -77,16 +77,20 @@ const Feed = () => {
                     <div className='exercises-rectangle'>
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
-                            console.log(set.exercise)
+                             const exerciseName = set.exercise.name;
+
+                             if (!uniqueExerciseNames.includes(exerciseName)) {
+                                 uniqueExerciseNames.push(exerciseName);
+ 
                             return(
                                 <div key={set._id}>
                                     <label>{set.exercise.name}</label>
                                 </div>
                             
-                            )
+                            )}
                         })}
                     </div>
-                </div>
+                </NavLink>
             )
         })}
         <div className='pages-historial'>

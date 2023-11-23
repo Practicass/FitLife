@@ -77,25 +77,66 @@
     flex-direction: column;
     align-items: center;
     margin-top: 3%;
+    grid-area: introducir-metrica;
 }
 
 .newMetrica input{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
 .newMetrica input[type="number"]{
     height: 40px;
-    width: 5%;
+    width: 10%;
     border-radius: 10px; 
     text-align: center;
  
 }
 .newMetrica input[type="submit"]{
     height: 40px;
-    width: 16%;
+    width: 40%;
     border-radius: 10px;
     background-color: var(--color-third);
     color: black;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 5px;
+}
+
+
+.stat4{
+    display: flex;
+    justify-content: center;
+}
+
+.time-hm-metrica{
+    display: flex;
+    justify-content:space-around;
+    width: 22%;
+}
+
+.time-hm-metrica input[type="number"]{
+    height: 40px;
+    width: 44%;
+    
+}
+
+.metrica-menu{
+    display:grid;
+    grid-template-areas: "vacio introducir-metrica eliminar-metrica";
+    grid-template-columns: 30% 40% 30%;
+}
+
+.eliminar-metrica{
+    grid-area: eliminar-metrica;
+    justify-self: start;
+    align-self: end;
+    height: 40px;
+    width: 60%;
+    border-radius: 10px;
+    color: red;
+    border: 3px solid red;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 2%;
+
 }

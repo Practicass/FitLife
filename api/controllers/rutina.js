@@ -1,7 +1,11 @@
 
 const Rutine = require("../models/rutineSchema")
 const Exercise = require ("../models/exerciseSchema")
+
+const Training = require("../models/trainingSchema")
+
 const User = require ("../models/usersSchema")
+
 
 
 
@@ -146,7 +150,13 @@ const update = (req, res) => {
 const routine = (req,res) => {
     let rutineId = req.params.id
 
-    Rutine.findById(rutineId).populate('exercises').then(rutine => {
+    Rutine.findById(rutineId).populate({
+        path: 'exercises',
+        populate: {
+          path: 'muscle',
+          model: 'Muscle' // Reemplaza 'Muscle' con el nombre de tu modelo de músculos
+        }
+      }).then(rutine => {
         return res.status(200).json({
             status: "success",
             message: "Se ha mostrado la rutina correctamente",
@@ -161,6 +171,35 @@ const routine = (req,res) => {
     })
 }
 
+const favRoutines = async(req,res) => {
+    try{
+        const rutines = await Rutine.find({ user: req.user.id })
+        const rutinesWithTrainings = await Promise.all(
+            rutines.map(async (rutine) => {
+                const numTrainings = await Training.countDocuments({ routine: rutine._id, user: req.user.id });
+                return {
+                    ...rutine.toObject(),
+                    numTrainings,
+                };
+            })
+        );
+        const routines = rutinesWithTrainings.sort((a, b) => b.numTrainings - a.numTrainings).slice(0,3);
+
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha mostrado la rutina correctamente",
+            routines
+        })
+    }catch(error){
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar la rutina",
+            error
+        })
+    }
+
+}
+
 
 module.exports = {
    
@@ -168,5 +207,6 @@ module.exports = {
     eliminate,
     update,
     rutines,
-    routine
+    routine,
+    favRoutines
 }

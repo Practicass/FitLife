@@ -58,6 +58,29 @@ const eliminate = (req,res) => {
     })
 }
 
+
+
+const eliminateLast = (req,res) => {
+
+    Stat.findOneAndRemove({user: req.user.id, name: req.body.name}).sort("-date").then(statDeleted => {
+        if(!statDeleted) {
+            return res.status(500).json({
+                status: "error",
+                message: "No se ha podido eliminar el dato",
+            })
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha eliminado correctamente el dato",
+            statDeleted
+        })
+    })
+}
+
+
+
+
+
 //Muestra los datos de un usuario
 const stats = (req, res) => {
 
@@ -129,10 +152,32 @@ const trainings = (req, res) => {
 
 }
 
+const statsLastFive = (req, res) => {
+    let category = req.params.category
+    
+    Stat.find({user: req.user.id, name: category}).sort('-date') // Ordenar por fecha en orden descendente
+    .limit(5).then(stats => {
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado correctamente los datos del usuario",
+            stats
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar los datos del usuario",
+            error
+        })
+    })
+} 
+
 
 module.exports = {
     add,
     eliminate,
+    eliminateLast,
     stats,
-    trainings
+    trainings,
+    statsLastFive
 }

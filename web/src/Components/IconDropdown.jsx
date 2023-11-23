@@ -41,7 +41,7 @@ export default function IconDropdown() {
       viewTransitionName:  "slide",
     };
   }}>Ajustes</NavLink></DropdownItem>
-        <DropdownItem color="danger" key="logOut" ><NavLink to="/login" onClick={()=>{localStorage.removeItem("miDatos");}} style={() => {
+        <DropdownItem color="danger" key="logOut" ><NavLink to="/login" onClick={()=>{localStorage.removeItem("token");localStorage.removeItem("user")}} style={() => {
     return {
       alignSelf: "center",
       fontWeight:"bold",
