@@ -141,7 +141,7 @@ const rutinesUser = async(req,res) => {
       page = req.params.page;
     }
     page = parseInt(page);
-    const itemsPage = 1
+    const itemsPage = 2
     
     const admins = await User.find({rol: "admin"})
     const rutineAux = await Rutine.find({ user: me })
@@ -178,7 +178,7 @@ const rutinesAdmin = async(req,res) => {
       page = req.params.page;
     }
     page = parseInt(page);
-    const itemsPage = 1
+    const itemsPage = 3
     
     const admins = await User.find({rol: "admin"})
     const rutineAux = await Rutine.find(
