@@ -130,7 +130,13 @@ const update = (req, res) => {
 const routine = (req,res) => {
     let rutineId = req.params.id
 
-    Rutine.findById(rutineId).populate('exercises').then(rutine => {
+    Rutine.findById(rutineId).populate({
+        path: 'exercises',
+        populate: {
+          path: 'muscle',
+          model: 'Muscle' // Reemplaza 'Muscle' con el nombre de tu modelo de músculos
+        }
+      }).then(rutine => {
         return res.status(200).json({
             status: "success",
             message: "Se ha mostrado la rutina correctamente",

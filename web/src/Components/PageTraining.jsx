@@ -194,12 +194,26 @@ const PageTraining = () => {
         // Código a ejecutar si ambas condiciones son verdaderas
         <>
         {routine.map( (exercise,exerciseIndex) => {
+          console.log(exercise)
         
           return(
               <div className={"exercise-training"} key={exercise._id}>
                   <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
                   <div className="categories">
                     <label className="title-num">Serie</label>
+                    {/* {exercise.muscle.name == "Cardio" || exercise.muscle.name == "Full-body" ?
+                      <>
+                        <label className="title-reps">Hola</label>
+                        <label className="title-kg">Adios</label>
+                      </>
+                      :
+                      
+                        <>
+                        <label className="title-reps">Repeticiones</label>
+                        <label className="title-kg">Peso(kg)</label>
+                        </>
+                      
+                    } */}
                     <label className="title-reps">Repeticiones</label>
                     <label className="title-kg">Peso(kg)</label>
                   </div>

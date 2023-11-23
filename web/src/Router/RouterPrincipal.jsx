@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
-import PageHome2 from '../Components/PageHome2'
+import PageHome2 from '../Components/PageHome'
 import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
@@ -17,6 +17,7 @@ import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageEjercicios from '../Components/PageEjercicios'
 import PageTraining from '../Components/PageTraining'
 import PageStat from "../Components/PageStat"
+import PageShowTraining from "../Components/PageShowTraining"
 
 
 const RouterPrincipal = () => {
@@ -48,7 +49,7 @@ const RouterPrincipal = () => {
               <Route path='/profile/settings' element={<PageSettings/>}/>
               <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
               <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
-
+              <Route path='/showTraining/:id' element={<PageShowTraining/>}/>
               <Route path='/training/:id' element={<PageTraining/>}/>
 
                 {/* <Footer/> */}

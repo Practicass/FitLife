@@ -68,7 +68,7 @@ const Historial = () => {
         {history.map(training => {
             
             return(
-                <NavLink key={training._id} className='rectangle'>
+                <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
                         <h3>{training.name}</h3>
                         <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
