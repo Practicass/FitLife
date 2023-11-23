@@ -116,7 +116,7 @@ const PageRoutines = () => {
                                                     })} 
 
                                                 </div>
-                                                <div className='separator'></div>
+                                                <div className='separatorR'></div>
 
                                                 <div className='exercises-impar'>
                                                 { routine.exercises.map((exercise,index) => {
@@ -156,9 +156,10 @@ const PageRoutines = () => {
                                 return(
                                     
                                         <div className='square' key={routine._id}>
-                                            <h3 className='title-routine'>{routine.name}</h3>
+                                             <NavLink to={"/training/"+routine._id} className='title-routine'><h3 className='title-routine'>{routine.name}</h3></NavLink>
                                         
-                                            <div className='exercises-routine'>
+                                            
+                                            <NavLink to={"/training/"+routine._id} className='exercises-routine'>
                                                 <div className='exercises-par'>
                                                 
                                                     { routine.exercises.map((exercise,index) => {
@@ -172,7 +173,7 @@ const PageRoutines = () => {
                                                     })} 
 
                                                 </div>
-                                                <div className='separator'></div>
+                                                <div className='separatorR'></div>
 
                                                 <div className='exercises-impar'>
                                                 { routine.exercises.map((exercise,index) => {
@@ -184,8 +185,8 @@ const PageRoutines = () => {
                                                         }
                                                         
                                                     })} 
-                                                </div>
-                                            </div>
+                                                </div></NavLink>
+                                            
                                         </div> 
                                     
                                 )
