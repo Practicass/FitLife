@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Header from "./Header"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/PageNuevaRutina.css"
@@ -10,7 +9,7 @@ import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
 
 
-const PageNuevaRutina = () => {
+const PageAddRoutineAdmin = () => {
    
     const [num, setNum] = useState(1)
     const [ejercicios, setEjercicios] = useState([])
@@ -41,7 +40,7 @@ const PageNuevaRutina = () => {
             const data = await response.json()
 
             if (data.status === "success") {
-                navigate("/routines")
+                navigate("/adminHome")
             }
             else {
                 // Mensaje o Pantalla de error
@@ -97,7 +96,7 @@ const PageNuevaRutina = () => {
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/routines">
+                    <NavLink to="/adminhome">
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
@@ -206,4 +205,4 @@ const PageNuevaRutina = () => {
     )
 }
 
-export default PageNuevaRutina
+export default PageAddRoutineAdmin

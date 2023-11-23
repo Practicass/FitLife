@@ -78,6 +78,10 @@
     font-size: 120%;
 }
 
+.input-nombre-rutina {
+    background-color: var(--color-text);
+}
+
 .ejercicio-rutina {
     display: grid;
     grid-template-areas: "nom-ex eliminar-ex";

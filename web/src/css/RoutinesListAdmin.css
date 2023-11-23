@@ -1,0 +1,18 @@
+.ul-adminRo {
+    padding: 0;
+    
+}
+
+.li-adminRo {
+    justify-content: center;
+}
+
+.boton-adminRutina {
+    width: 80%;
+    margin-bottom: 5%;
+    margin-left: 0%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}

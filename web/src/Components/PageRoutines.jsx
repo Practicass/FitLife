@@ -130,7 +130,9 @@ const PageRoutines = () => {
                                                     })} 
                                                 </div>
                                             </NavLink>
-                                            <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                            <NavLink to={"/editroutine/" + routine._id}>
+                                                <div className='edit'><FaRegEdit size="32px" color='#fba92c'/></div>
+                                            </NavLink>
                                         </div> 
                                     
                                 )
@@ -149,7 +151,7 @@ const PageRoutines = () => {
                     <div className='routines' >
                         {routines.map( routine => {
                             
-                            if(routine.user.rol == "administrador"){
+                            if(routine.user.rol == "admin"){
 
                                 return(
                                     
