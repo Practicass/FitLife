@@ -16,20 +16,40 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
 
     const [nombreRutina, setNombreRutina] = useState(() => {
         try {
-            const storedNombreRutina = localStorage.getItem("nombreRutina")
+            const storedNombreRutina = localStorage.getItem("nombreRutinaEdit")
             return storedNombreRutina ? JSON.parse(storedNombreRutina) : ""
         } catch (error) {
             console.error("Error al analizar JSON desde localStorage: ", error)
             return ""
         }
     })
+
+    const [nombreRutinaEditTitulo, setNombreRutinaEditTitulo] = useState(() => {
+        try {
+            const storedNombreRutinaEdit = localStorage.getItem('nombreRutinaEditTitulo')
+            return storedNombreRutinaEdit ? JSON.parse(storedNombreRutinaEdit) : ""
+        } catch (error) {
+            console.error("Error al analizar JSON desde localStorage:", error)
+            return ""
+        }
+    })
+
+    useEffect(() => {
+        localStorage.setItem("nombreRutinaEdit", JSON.stringify(nombreRutina))
+    }, [nombreRutina])
     
     useEffect(() => {
         const obtenerNombreRutina = async () => {
             try {
-                const response = await fetch(Global.url + "rutine/get/${idRutina}")
-                const rutina = response.data.rutine
-                setNombreRutina(rutina.name)
+                const response = await fetch(Global.url + "rutine/routine/" + idRutina, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }
+                })
+                const rutina = response.rutine
+                setNombreRutinaEditTitulo(rutina.name)
             } catch (error) {
                 console.error("Error al obtener el nombre de la rutina", error)
             }
@@ -45,8 +65,8 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
 
     const updateRutina = async () => {
         try {
-            const response = await fetch(Global.url + "rutine/update", {
-                method: "POST",
+            const response = await fetch(Global.url + "rutine/update/" + idRutina, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": localStorage.getItem("token")
@@ -60,14 +80,14 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
             const data = await response.json()
 
             if (data.status === "success") {
+                
                 const newEjercicios = setEjercicios([])
                 localStorage.setItem('ejerciciosEdit', JSON.stringify(newEjercicios))
                 const newNombreRutina = setNombreRutina("")
-                localStorage.setItem('nombreRutina', JSON.stringify(newNombreRutina))
+                localStorage.setItem('nombreRutinaEdit', JSON.stringify(newNombreRutina))
                 navigate("/routines")
             }
             else {
-                // Mensaje o Pantalla de error
                 console.error(data.message)
             }
         }
@@ -76,23 +96,33 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
         }
     }
 
+    const vaciar = () => {
+        const newEjercicios = []
+        localStorage.setItem('ejerciciosEdit', JSON.stringify(newEjercicios))
+        console.log(localStorage.getItem('ejercicios'))
+        const newNombre = ""
+        localStorage.setItem('nombreRutina', JSON.stringify(newNombre))
+        navigate("/routines")
+    }
+
     return (
         <div className={"page-nueva-rutina"}>
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
                     {/* HAY QUE MIRAR PQ TMB PUEDE VOLVER AL HOME ADMIN */}
-                    <NavLink to="/routines">
+                    {/* <NavLink to="/routines"> */}
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
                             color="#fba92c"
+                            onClick={vaciar}
                         ></ImCross>
-                    </NavLink>
+                    {/* </NavLink> */}
                     <Header className="header-nueva-rutina"/>
                 </div>
                 <div className="principal-nueva-rutina">
                     <div className="titulo-boton">
-                        <h1 className="nueva-rutina"> {nombreRutina.toUpperCase()} </h1>
+                        <h1 className="nueva-rutina"> {nombreRutinaEditTitulo.toUpperCase()} </h1>
                         <MyButton
                             className="boton-anadir"
                             color="orangeblack"
@@ -111,7 +141,7 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
                                     type="text"
                                     name="nombre-rutina"
                                     value={nombreRutina}
-                                    onChange={(e) => setNombreRutina(e.target.value)}    
+                                    onChange={(e) => setNombreRutina(e.target.value)}
                                 />
                             </form>
                         </div>
@@ -134,7 +164,7 @@ const PageEditRoutine = ({ ejercicios, setEjercicios, idRutina }) => {
                                     </li>
                                 ))}
                                 <li>
-                                    <Link to={{ pathname: "/exercises"}}>
+                                    <Link to={{ pathname: "/exercisesedit"}}>
                                         <MyButton className="boton-anadir-ejercicio"
                                                 color="orangeblack"
                                                 size="xxl" 

@@ -46,13 +46,12 @@ const PageEjerciciosEdit = ({ ejercicios, setEjercicios }) => {
         if (!ejercicios.some((e) => e._id === ejercicio._id)) {
             setEjercicios((prevEjercicios) => {
                 const newEjercicios = [...prevEjercicios, ejercicio]
-                localStorage.setItem('ejercicios', JSON.stringify(newEjercicios))
+                localStorage.setItem('ejerciciosEdit', JSON.stringify(newEjercicios))
                 return newEjercicios    
             })
         }
         forceUpdate.current = Date.now()
     }
-
 
     return (
         <div className="page-ejercicios">

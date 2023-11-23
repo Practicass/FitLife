@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import { useState } from 'react'
 import PageLogin from '../Components/PageLogin'
@@ -19,7 +19,6 @@ import PageEjerciciosEdit from '../Components/PageEjerciciosEdit'
 // import PageSettings from '../Components/PageSettings'
 
 const RouterPrincipal = () => {
-
   const [ejercicios, setEjercicios] = useState(() => {
     try {
       const storedEjercicios = localStorage.getItem('ejercicios')
@@ -43,7 +42,7 @@ const RouterPrincipal = () => {
   const [idRutinaEdit, setIdRutinaEdit] = useState(() => {
     try {
       const storedIdRutina = localStorage.getItem('idRutinaEdit')
-      return storedIdRutina ? parseInt(storedIdRutina, 10) : null
+      return storedIdRutina ? JSON.parse(storedIdRutina) : null
     } catch (error) {
       console.error("Error al analizar JSON desde localStorage: ", error)
       return null
@@ -67,7 +66,7 @@ const RouterPrincipal = () => {
               <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
               <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
               <Route path='/editroutine' element={<PageEditRoutine ejercicios={ejerciciosEdit} setEjercicios={setEjerciciosEdit} idRutina={idRutinaEdit}></PageEditRoutine>}/>
-              <Route path='/ejerciciosedit' element={<PageEjerciciosEdit ejercicios={ejerciciosEdit} setEjercicios={setEjercicios}></PageEjerciciosEdit>}/>
+              <Route path='/exercisesedit' element={<PageEjerciciosEdit ejercicios={ejerciciosEdit} setEjercicios={setEjerciciosEdit}></PageEjerciciosEdit>}/>
 
 
               {/* <Route path='/profile/settings' element={<PageSettings/>}/> */}
