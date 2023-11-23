@@ -20,7 +20,7 @@ const PageEditRoutine = () => {
     useEffect(() => {
         const ponerNombreRutina = async () => {
             try {
-                const response = await fetch(Global.url + "rutine/routine/" + id, {
+                const response = await fetch(Global.url + "rutine/rutine/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
