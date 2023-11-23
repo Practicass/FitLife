@@ -40,7 +40,7 @@ const PageAddRoutineAdmin = () => {
             const data = await response.json()
 
             if (data.status === "success") {
-                navigate("/routines")
+                navigate("/adminHome")
             }
             else {
                 // Mensaje o Pantalla de error
@@ -96,7 +96,7 @@ const PageAddRoutineAdmin = () => {
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/routines">
+                    <NavLink to="/adminhome">
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
@@ -168,7 +168,7 @@ const PageAddRoutineAdmin = () => {
             <div className="page-ejercicios">
                 <div className='content-ejercicios'>
                     <div className="cabecera-ejercicios">
-                        <NavLink to="/newroutine">
+                        <NavLink to="/adminHome/addRoutine">
                             <ImCross className="cruz-ejercicios" size="35px" color="#fba92c"></ImCross>
                         </NavLink>
                         <Header className="header-ejercicios"/>
