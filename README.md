@@ -26,14 +26,14 @@
 
 ### Admin
 
-- [ ] Admin home (Miguel)
+- [x] Admin home (Miguel)
  - [ ] Filter exercises (Miguel)
  - [ ] Search exercise (Miguel)
  - [ ] Search routine (Miguel)
- - [ ] Admin home dropdown (Miguel)
-- [ ] Create exercise
+ - [x] Admin home dropdown (Miguel)
+- [x] Create exercise
 - [x] Create routine 
-- [ ] Edit exercise
+- [x] Edit exercise
 - [ ] Edit routine (Josemi)
-- [ ] Remove exercise
+- [x] Remove exercise
 - [ ] Remove routine
