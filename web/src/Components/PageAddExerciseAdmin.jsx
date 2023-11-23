@@ -20,17 +20,10 @@ const [selected, setSelected] = useState([]);
 const onInputChange1 = ({target}) =>{
 
     setInputValue1(target.value)
-    console.log(inputValue1)
-
-
 }
 const onInputChange2 = ({target}) =>{
 
   setInputValue2(target.value)
-  console.log(inputValue2)
-
-
-
 }
 
 

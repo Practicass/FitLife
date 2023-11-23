@@ -21,6 +21,7 @@ import PageAdminHome from '../Components/PageAdminHome'
 import PageAddExerciseAdmin from '../Components/PageAddExerciseAdmin'
 import PageAddRoutineAdmin from '../Components/PageAddRoutineAdmin'
 import PageEditExerciseAdmin from '../Components/PageEditExerciseAdmin'
+// import PageNewPassword from '../Components/PageNewPassword'
 
 
 
@@ -41,6 +42,7 @@ const RouterPrincipal = () => {
             
               <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
+              {/* <Route path='/newPassword' element={<PageNewPassword/>}/> */}
               <Route path='/home' element={<PageHome/>}/>
               <Route path='/history' element={<PageHistory/>}/>
               <Route path='/register' element={<PageRegister/>}/>
@@ -61,6 +63,7 @@ const RouterPrincipal = () => {
               <Route path='/adminHome/addExercise' element={<PageAddExerciseAdmin />}/>
               <Route path='/adminHome/editExercise/:id' element={<PageEditExerciseAdmin />}/>
               <Route path='/adminHome/addRoutine' element={< PageAddRoutineAdmin/>}/>
+
               
                 {/* <Footer/> */}
                 <Route path="*"  element ={
