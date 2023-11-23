@@ -41,8 +41,13 @@ const PageLogin = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       authUser()
-      navigate("/home")
       
+      if(data.rol ==="usuario"){
+
+        navigate("/home")
+      }else{
+        navigate("/adminHome")
+      }
 
     }else{
       console.log("ERROR")

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useState } from 'react'
 import {Route, BrowserRouter, Link, Routes} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
@@ -17,6 +17,11 @@ import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageEjercicios from '../Components/PageEjercicios'
 import PageTraining from '../Components/PageTraining'
 import PageStat from "../Components/PageStat"
+import PageAdminHome from '../Components/PageAdminHome'
+import PageAddExerciseAdmin from '../Components/PageAddExerciseAdmin'
+import PageAddRoutineAdmin from '../Components/PageAddRoutineAdmin'
+import PageEditExerciseAdmin from '../Components/PageEditExerciseAdmin'
+
 
 
 const RouterPrincipal = () => {
@@ -33,6 +38,7 @@ const RouterPrincipal = () => {
       <BrowserRouter >
         <AuthProvider>
           <Routes>
+            
               <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
               <Route path='/home' element={<PageHome/>}/>
@@ -50,7 +56,12 @@ const RouterPrincipal = () => {
               <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
 
               <Route path='/training/:id' element={<PageTraining/>}/>
-
+      
+              <Route path='/adminHome' element={<PageAdminHome />}/>
+              <Route path='/adminHome/addExercise' element={<PageAddExerciseAdmin />}/>
+              <Route path='/adminHome/editExercise/:id' element={<PageEditExerciseAdmin />}/>
+              <Route path='/adminHome/addRoutine' element={< PageAddRoutineAdmin/>}/>
+              
                 {/* <Footer/> */}
                 <Route path="*"  element ={
                     <>
