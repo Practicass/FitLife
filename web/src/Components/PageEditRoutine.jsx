@@ -8,6 +8,7 @@ import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
+import { Tooltip } from '@nextui-org/react'
 
 
 const PageEditRoutine = () => {
@@ -239,6 +240,7 @@ const PageEditRoutine = () => {
                                 <ul className="ul-ex">
                                     {exercises.map((exercise, index) => (
                                         <li className="li-ex" key={index}>
+                                            <Tooltip color='warning' placement='bottom' content={exercise.description}>
                                             <MyButton className="boton-ejercicio"
                                                     color="lightGrey"
                                                     size="xl"
@@ -249,7 +251,7 @@ const PageEditRoutine = () => {
                                                         setNum(1)
                                                     }} >
                                                 {exercise.name}
-                                            </MyButton>
+                                            </MyButton></Tooltip> 
                                         </li>
                                     ))}
                                 </ul>
