@@ -10,7 +10,7 @@ import { MyDropDown } from "./MyDropDown";
 
 
 
-export default function IconDropdown() {
+export default function IconDropdownAdmin() {
   const {auth} = useAuth()
 
   return (
@@ -27,7 +27,7 @@ export default function IconDropdown() {
       <DropdownMenu
        aria-label="Action event example"  
        >
-        <DropdownItem color="warning" key="profile"><NavLink to="/profile" style={() => {
+        {/* <DropdownItem color="warning" key="profile"><NavLink to="/profile" style={() => {
     return {
       alignSelf: "center",
       color:"white",
@@ -40,8 +40,8 @@ export default function IconDropdown() {
       color:"white",
       viewTransitionName:  "slide",
     };
-  }}>Ajustes</NavLink></DropdownItem>
-        <DropdownItem color="danger" key="logOut" ><NavLink to="/login" onClick={()=>{localStorage.removeItem("miDatos");}} style={() => {
+  }}>Ajustes</NavLink></DropdownItem> */}
+        <DropdownItem color="danger" key="logOut" ><NavLink to="/login" style={() => {
     return {
       alignSelf: "center",
       fontWeight:"bold",

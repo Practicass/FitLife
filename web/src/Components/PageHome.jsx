@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
-import {useAuth} from "../hooks/useAuth"
 import {FaBars} from "react-icons/fa"
 
 import { useState } from 'react'
 import Sidebar from './Sidebar'
+import { useNavigate } from 'react-router-dom'
+import Feed from './Feed'
 
 const PageHome = () => {
-  const {auth} = useAuth()
-  const [sidebar, setSidebar] = useState(false)
 
+  const [sidebar, setSidebar] = useState(false)
+  let navigate = useNavigate()
+
+  useEffect(() => {
+    if(!localStorage.getItem("token")){
+      navigate("/")
+    }
+  })
   
 
   //console.log(auth)
@@ -18,10 +25,8 @@ const PageHome = () => {
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='content'>
         <Header/>
-        <div className='principal'>
-          <div className={"rectangle-"+ sidebar}></div>
-          <div className={"rectangle-"+ sidebar}></div>
-          <div className={"rectangle-"+ sidebar}></div>
+        <div className='principal-feed'>
+          <Feed/>
         </div>
       </div>
     </div>

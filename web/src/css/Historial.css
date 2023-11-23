@@ -32,3 +32,19 @@ body{
     grid-template-columns: 35% 1% auto;
     
 }
+
+.pages-historial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.pages-historial label{
+    font-weight: bold;
+    margin: 20px;
+}
+.modify-num-page-icon{
+    cursor: pointer;
+}

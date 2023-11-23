@@ -1,0 +1,129 @@
+:root{
+    --color-background:#242424;
+    --color-primary: #404040;
+    --color-second: #9e9e9e;
+    --color-text: #fff;
+    --color-black: #000;
+    --color-third: #fba92c;
+    --color-stats: #05ff00;
+}
+
+.page-nueva-rutina {
+    min-height: 860px;
+    display: grid;
+}
+
+
+.cabecera-nueva-rutina {
+    display: grid;
+    grid-template-areas: "cruz-nueva-rutina header-nueva-rutina";
+    grid-template-columns: 0% 100%;
+}
+
+.cruz-nueva-rutina {
+    grid-area: cruz-nueva-rutina;
+}
+
+.header-nueva-rutina {
+    grid-area: header-nueva-rutina;
+}
+
+.principal-nueva-rutina {
+    grid-area: principal-nueva-rutina;
+}
+
+
+.titulo-boton {
+    display: grid;
+    grid-template-areas: "nueva-rutina boton-anadir";
+    grid-template-columns: 80% auto;
+    align-items: center;
+    margin-left: 15%;
+}
+
+.nueva-rutina {
+    grid-area: nueva-rutina;
+    color: var(--color-third);
+    font-size: 400%;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.boton-anadir {
+    grid-area: boton-anadir;
+    width: 20%;
+}
+
+.div-form-nombre-rutina {
+    /* grid-area: div-form-nombre-rutina; */
+    /* align-items: start; */
+    width: 15%;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.nombre-rutina-titulo {
+    font-size: 140%;
+    font-weight: bold;
+}
+
+.ejercicios-titulo-boton {
+    font-size: 140%;
+    font-weight: bold;
+}
+
+.form-nombre-rutina {
+    color: var(--color-black);
+    font-size: 120%;
+}
+
+.input-nombre-rutina {
+    background-color: var(--color-text);
+}
+
+.ejercicio-rutina {
+    display: grid;
+    grid-template-areas: "nom-ex eliminar-ex";
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: start;
+    margin-left: 0%;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.nom-ex {
+    grid-area: nom-ex;
+    font-size: 120%;
+    border-radius: 10px;
+    max-width: 500px;
+    min-width: 500px;
+    background-color: var(--color-second);
+}
+
+.eliminar-ex {
+    grid-area: eliminar-ex;
+    margin-left: 20%;
+    align-items: center;
+}
+
+.form-nombre-rutina input {
+    width: 200%;
+    height: 400%;
+}
+
+.div-button-ejercicios {
+    grid-area: div-button-ejercicios;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.nombre-rutina {
+    display: block;
+    width: 200%;
+}
+
+.boton-anadir-ejercicio {
+    margin-left: 7%;
+}

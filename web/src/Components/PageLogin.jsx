@@ -33,7 +33,7 @@ const PageLogin = () => {
 
     const data = await request.json()
 
-    //console.log(data)
+    console.log(data)
 
     if(data.status == "success"){
       // setSaved("login")
@@ -42,7 +42,12 @@ const PageLogin = () => {
 
       authUser()
       
-      navigate("/home")
+      if(data.user.rol =="usuario"){
+
+        navigate("/home")
+      }else{
+        navigate("/adminHome")
+      }
 
     }else{
       console.log("ERROR")
@@ -66,6 +71,8 @@ const PageLogin = () => {
         <input type='password' name='password' onChange={changed} style={style1} ></input>
         <div style={style4}>
           <label >¿No tienes una cuenta?</label><NavLink className="goRegister" to="/register"><label>Registrate</label></NavLink>
+          {/* <h2 >¿Te has olvidado de tu contraseña?</h2> <NavLink className="goRegister" to="/newPassword"><label>Restablecer contraseña</label></NavLink> */}
+            
         </div>
         <MyButton style={style5} color='orange' type='submit' value="Inicia Sesion">Inicar sesión</MyButton>
       </form>

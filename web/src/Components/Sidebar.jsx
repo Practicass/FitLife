@@ -19,7 +19,7 @@ const Sidebar = ({sidebar, setSidebar}) => {
                 <NavLink to="/friends" className="sidebar-options"><li>AMIGOS</li></NavLink>
                 <NavLink to="/routines" className="sidebar-options"><li>MIS RUTINAS</li></NavLink>
                 <NavLink to="/stats" className="sidebar-options"><li>MIS ESTADISTICAS</li></NavLink>
-                <NavLink to="/salud" className="sidebar-options"><li>DATOS SALUD</li></NavLink>
+                {/* <NavLink to="/salud" className="sidebar-options"><li>DATOS SALUD</li></NavLink> */}
         </ul>
         )}
     
