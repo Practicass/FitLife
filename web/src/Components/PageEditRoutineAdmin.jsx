@@ -156,7 +156,7 @@ const PageEditRoutineAdmin = () => {
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/routines">
+                    <NavLink to="/adminHome">
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
@@ -227,7 +227,7 @@ const PageEditRoutineAdmin = () => {
             <div className="page-ejercicios">
             <div className='content-ejercicios'>
                 <div className="cabecera-ejercicios">
-                    <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={setNum(1)}></ImCross>
+                    <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
                     <Header className="header-ejercicios"/>
                 </div>
                 <div className="principal-ejercicios">

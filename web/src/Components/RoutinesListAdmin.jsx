@@ -45,7 +45,7 @@ useEffect(() => {
          if(routine.user.rol == "admin"){
       return(
         <li className='li-adminRo' key={index}>
-          <NavLink to={"editRoutine/"+routine._id}>
+          <NavLink to={`editRoutine/${routine._id}`}>
            <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
           </NavLink>
         </li>

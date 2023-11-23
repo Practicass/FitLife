@@ -227,7 +227,7 @@ const PageEditRoutine = () => {
             <div className="page-ejercicios">
             <div className='content-ejercicios'>
                 <div className="cabecera-ejercicios">
-                    <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={setNum(1)}></ImCross>
+                    <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
                     <Header className="header-ejercicios"/>
                 </div>
                 <div className="principal-ejercicios">

@@ -168,9 +168,7 @@ const PageAddRoutineAdmin = () => {
             <div className="page-ejercicios">
                 <div className='content-ejercicios'>
                     <div className="cabecera-ejercicios">
-                        <NavLink to="/adminHome/addRoutine">
-                            <ImCross className="cruz-ejercicios" size="35px" color="#fba92c"></ImCross>
-                        </NavLink>
+                        <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
                         <Header className="header-ejercicios"/>
                     </div>
                     <div className="principal-ejercicios">
