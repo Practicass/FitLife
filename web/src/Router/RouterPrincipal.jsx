@@ -53,8 +53,8 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
 
-              <Route path='/newroutine' element={<PageNuevaRutina ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
-              <Route path='/exercises' element={<PageEjercicios ejercicios={ejercicios} setEjercicios={setEjercicios}/>}/>
+              <Route path='/newroutine' element={<PageNuevaRutina/>}/>
+              <Route path='/editroutine/:id' element={<PageEditRoutine/>}/>
               <Route path='/showTraining/:id' element={<PageShowTraining/>}/>
 
               <Route path='/newroutine' element={<PageNuevaRutina/>}/>
