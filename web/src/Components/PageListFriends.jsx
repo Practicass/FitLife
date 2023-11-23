@@ -32,17 +32,20 @@ const PageListFriends = () => {
         getFriendList()
     }, [])
 
+    const eliminarAmigo = ()
+
     return (
         <div className={"page-"+sidebar}>
             <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
             <div className='content'>
                 <Header/>
-                <div className="principal">
-                    <form className="busqueda" >
+                <h1 className="titulo-list-friends"> MIS AMIGOS </h1>
+                <div className="principal-list">
+                    <form className="busqueda-form-friends" >
                         {/* Sustituir esto por una búsqueda */}
-                        <input type="text" name="busqueda" />
+                        <input className="busqueda-friends" type="text" name="busqueda" />
                     </form>
-                    <div className="ListFriends">
+                    <div className="list-friends">
                         {friends.map((friend, index) => (
                             <div className='friend' key={index}>
                                 <div className="foto-friend">
@@ -50,7 +53,7 @@ const PageListFriends = () => {
                                 </div>
                                 <h2 className="nick-friend"> {friend.name} </h2>
                                 <div className="cruz">
-                                    <ImCross size="25px"/>
+                                    <ImCross size="25px" onClick={eliminarAmigo}/>
                                 </div>
                             </div>
                         ))}
