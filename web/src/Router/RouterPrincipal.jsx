@@ -2,7 +2,7 @@
 import {Route, BrowserRouter, Link, Routes, Navigate} from "react-router-dom"
 import PageLogin from '../Components/PageLogin'
 import { AuthProvider } from '../context/AuthProvider'
-import PageHome2 from '../Components/PageHome2'
+import PageHome from '../Components/PageHome'
 import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
@@ -15,7 +15,7 @@ import PageSettings from '../Components/PageSettings'
 import PageNuevaRutina from '../Components/PageNuevaRutina'
 import PageTraining from '../Components/PageTraining'
 import PageStat from "../Components/PageStat"
-
+import PageFeed from "../Components/PageFeed"
 import PageShowTraining from "../Components/PageShowTraining"
 
 import PageAdminHome from '../Components/PageAdminHome'
@@ -41,7 +41,7 @@ const RouterPrincipal = () => {
               <Route path='/' element={<PageLogin/>}/>
               <Route path='/login' element={<PageLogin/>}/>
 
-              <Route path='/home' element={<PrivateRoute><PageHome2/></PrivateRoute>}/>
+              <Route path='/home' element={<PrivateRoute><PageHome/></PrivateRoute>}/>
 
               {/* <Route path='/newPassword' element={<PageNewPassword/>}/> */}
 
@@ -53,9 +53,9 @@ const RouterPrincipal = () => {
               <Route path='/profile' element={<PrivateRoute><PageProfile/></PrivateRoute>}/>
               <Route path='/stats' element={<PrivateRoute><PageStats/></PrivateRoute>}/>
               <Route path='/stats/:num' element={<PrivateRoute><PageStat/></PrivateRoute>}/>
-              <Route path='/friends' element={<PrivateRoute><PageListFriends/></PrivateRoute>}/>
+              <Route path='/friends' element={<PrivateRoute><PageFeed/></PrivateRoute>}/>
               <Route path='/profile/settings' element={<PrivateRoute><PageSettings/></PrivateRoute>}/>
-
+              <Route path='/listFriends' element={<PrivateRoute><PageListFriends/></PrivateRoute>}/>
               <Route path='/newroutine' element={<PrivateRoute><PageNuevaRutina/></PrivateRoute>}/>
               <Route path='/editroutine/:id' element={<PrivateRoute><PageEditRoutine/></PrivateRoute>}/>
               <Route path='/showTraining/:id' element={<PrivateRoute><PageShowTraining/></PrivateRoute>}/>

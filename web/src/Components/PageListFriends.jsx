@@ -1,17 +1,16 @@
 import React from "react"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Sidebar from "./Sidebar"
 import Header from "./Header"
 import { FaUserCircle } from "react-icons/fa"
 import {ImCross} from "react-icons/im"
 import "../css/PageListFriends.css"
 import { Global } from "../helpers/Global"
 import { MyButton } from "./MyButton"
+import { NavLink } from "react-router-dom"
 
 const PageListFriends = () => {
     
-    const[sidebar,setSidebar] = useState(false)
     const[friends, setFriends] = useState([])
     const getFriendList = async() => {
         const request = await fetch(Global.url+'friend/friends', {
@@ -102,9 +101,11 @@ const PageListFriends = () => {
     }
 
     return (
-        <div className={"page-"+sidebar}>
-            <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
-            <div className='content'>
+        <div className="page-list-friends">
+            <NavLink to={-1} className="cruz-list-friends">
+                <ImCross size="35px" color="#fba92c"></ImCross>
+            </NavLink>
+            <div className='content-list-friends'>
                 <Header/>
                 <h1 className="titulo-list-friends"> MIS AMIGOS </h1>
                 <div className="principal-list">

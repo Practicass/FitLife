@@ -128,7 +128,8 @@
 
 .content{
     grid-area: content;
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .principal{
@@ -457,4 +458,10 @@
 .exercises-impar{
     display: flex;
     flex-direction: column;
+}
+
+.buscar-usuario{
+    margin-top: 2%;
+    margin-right: 5%;
+    align-self: center;
 }

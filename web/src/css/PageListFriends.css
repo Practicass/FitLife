@@ -8,19 +8,20 @@
     --color-stats: #05ff00;
 }
 
-.page-profile-true{
+.page-list-friends{
     min-height: 860px;
     display: grid;
-    grid-template-areas: "bars-menu content";
-    grid-template-columns: 18% auto;
-    
-}
-.page-profile-false{
-    min-height: 860px;
-    display: grid;
-    grid-template-areas: "bars-menu content";
+    grid-template-areas: "cruz-list-friends content-list-friends";
     grid-template-columns: 4% auto;
 
+}
+
+.cruz-list-friends{
+    grid-area: cruz-list-friends;
+}
+
+.content-list-friends {
+    grid-area: content-list-friends;
 }
 
 .titulo-list-friends {
