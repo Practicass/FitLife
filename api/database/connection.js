@@ -7,10 +7,10 @@ const connection = async() => {
         await mongoose.connect("mongodb+srv://sisInfo:bT6VZSdvqs6kCRHi@fitlife.nnl10ji.mongodb.net/sisInfo")
 
 
-        console.log("Conectado correctamente a bd: fitLife")
+        //console.log("Conectado correctamente a bd: fitLife")
 
     }catch(error){
-        console.log(error)
+        //console.log(error)
         throw new Error("No se ha podido conectar a la base de datos")
     }
 }

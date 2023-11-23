@@ -55,8 +55,8 @@ const PageTraining = () => {
             setsCopy.push({reps:[], weight:[], time:[]});
           }
         } 
-        console.log(routineAux, setsCopy)
-        console.log("HOLA")
+        //console.log(routineAux, setsCopy)
+        //console.log("HOLA")
         setSets(setsCopy);
         setName(data.rutine.name)
         setRoutine(data.rutine.exercises)
@@ -95,22 +95,22 @@ const PageTraining = () => {
     const setsCopy = [...sets];
     if(exerciseMuscle== "Cardio" || exerciseMuscle == "Full-Body"){
       if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].time.length >= 1) {
-        console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
+        //console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
         return;
       }
     }else{
       if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].reps.length >= 5) {
-        console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
+        //console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
         return;
       }
     }
-    console.log(exerciseIndex, setsCopy)
+    //console.log(exerciseIndex, setsCopy)
     setsCopy[exerciseIndex].time.push(null);
     setsCopy[exerciseIndex].reps.push(null);
     setsCopy[exerciseIndex].weight.push(null);
 
 
-    console.log(setsCopy)
+    //console.log(setsCopy)
     setSets(setsCopy);
   }
 
@@ -170,7 +170,7 @@ const PageTraining = () => {
         setsEnviar.push({"exercise":exercise._id, "weight": sets[exerciseIndex].weight[index], "reps":reps, "time": sets[exerciseIndex].time[index]})
       })
     })
-    console.log(setsEnviar)
+    //console.log(setsEnviar)
 
     const request = await fetch(Global.url+"training/add", {
       method: "POST",
@@ -185,7 +185,7 @@ const PageTraining = () => {
     if(data.status == "success"){
       navigate("/routines")
     }else{
-      console.log("MAL")
+      //console.log("MAL")
     }
 
 
@@ -203,7 +203,7 @@ const PageTraining = () => {
         // Código a ejecutar si ambas condiciones son verdaderas
         <>
         {routine.map( (exercise,exerciseIndex) => {
-          console.log(exercise)
+          //console.log(exercise)
         
           return(
               <div className={"exercise-training"} key={exercise._id}>

@@ -34,7 +34,7 @@ const Stat1 = () => {
         };
       }
 //
-      console.log("hola", aux)
+      ////console.log("hola", aux)
 //
       setStats(aux)
       setY(data.stats.mes)

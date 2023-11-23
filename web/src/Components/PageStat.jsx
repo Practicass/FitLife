@@ -34,7 +34,7 @@ const PageStat = () => {
       if (valorInput.length >= 3) {
         e.preventDefault();
       }
-      console.log(valorInput)
+      //console.log(valorInput)
       if(num==4){
         if(e.target.name == "hours" && ((valorInput>2) || (valorInput == 2  && codigoTecla>52) || (valorInput.length >= 2))){
           e.preventDefault()
@@ -49,10 +49,10 @@ const PageStat = () => {
     const saveInfo = async(event) => {
       event.preventDefault()
       let value
-      console.log(num)
+      //console.log(num)
       if(num == 4){
         value = parseInt(event.target.hours.value)*60+parseInt(event.target.minutes.value)
-        console.log(value)
+        //console.log(value)
       }else{
         value = event.target.newMetrica.value;
         if (parseInt(value, 10) > 999) {
@@ -86,7 +86,7 @@ const PageStat = () => {
 
         })
       const data = await request.json()
-      console.log(data.status)
+      //console.log(data.status)
       setTimeout(()=>{window.location.reload()}, 100)
     }
 
@@ -115,7 +115,7 @@ const PageStat = () => {
 
         })
       const data = await request.json()
-      console.log(data.status)
+      //console.log(data.status)
       setTimeout(()=>{window.location.reload()}, 100)
     }
 

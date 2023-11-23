@@ -82,7 +82,7 @@ const PageListFriends = () => {
     }
 
     const anadirAmigo = async(idFriend) => {
-        console.log(idFriend)
+        //console.log(idFriend)
         try {
             await fetch(Global.url + "friend/add", {
                 method: "POST",

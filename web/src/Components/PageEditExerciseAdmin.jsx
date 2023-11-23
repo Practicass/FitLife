@@ -14,7 +14,7 @@ import { RadioGroup, Radio } from "@nextui-org/react";
  const PageEditExerciseAdmin = () => {
 
     const {id} = useParams()
-    console.log(id)
+    //console.log(id)
     const navigate = useNavigate()
     const [muscles, setMuscles] = useState([])
     const [inputValue1, setInputValue1] = useState('') 
@@ -25,13 +25,13 @@ import { RadioGroup, Radio } from "@nextui-org/react";
     const onInputChange1 = ({target}) =>{
         
         setInputValue1(target.value)
-        console.log(inputValue1)
+        //console.log(inputValue1)
         
     }
     const onInputChange2 = ({target}) =>{
       
       setInputValue2(target.value)
-      console.log(inputValue2)
+      //console.log(inputValue2)
       
       
 
@@ -70,13 +70,13 @@ import { RadioGroup, Radio } from "@nextui-org/react";
   
       const data = await request.json()
   
-      // console.log(data)
+      // //console.log(data)
   
       setInputValue1(data.exercises.name)
       setInputValue2(data.exercises.description)
       setSelected(data.exercises.muscle)
       // exercise.name =  data.exercises.name
-      // console.log(`Input11: ${inputValue1}, name: ${exercise.name}`)
+      // //console.log(`Input11: ${inputValue1}, name: ${exercise.name}`)
       
   
   }
@@ -93,7 +93,7 @@ import { RadioGroup, Radio } from "@nextui-org/react";
         description: inputValue2,
         muscle: selected
       }
-      console.log(cambios)
+      //console.log(cambios)
 
       const request = await fetch(Global.url+"exercise/update/"+id, {
       method: "PUT",
@@ -106,13 +106,13 @@ import { RadioGroup, Radio } from "@nextui-org/react";
 
       const data2 = await request.json()
 
-      console.log(data2)
+      //console.log(data2)
 
       if(data2.status == "success"){
           navigate(-1)
           
       }else{
-      console.log("ERROR")
+      //console.log("ERROR")
       
       }
 
@@ -126,7 +126,7 @@ import { RadioGroup, Radio } from "@nextui-org/react";
 
     const deleteExercise = async(e) => {
       e.preventDefault()
-      console.log(id)
+      //console.log(id)
       
 
       const request = await fetch(Global.url+"exercise/eliminate/"+ id, {
@@ -140,7 +140,7 @@ import { RadioGroup, Radio } from "@nextui-org/react";
 
     const data = await request.json()
 
-    console.log(data.status)
+    //console.log(data.status)
 
       if(data.status == "success"){
           navigate(-1)

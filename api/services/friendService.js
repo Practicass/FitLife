@@ -7,7 +7,7 @@ const friendUserids = async(identityUserId) => {
         let friends = await Friend.find({"user": identityUserId }).select({"friend": 1, "_id": 0}).populate("friend")
         let friends2 = await Friend.find({"friend": identityUserId}).select({"user": 1, "_id": 0}).populate("user")
         
-        //console.log(friends)
+        ////console.log(friends)
         let friendsClean = [];
 
         friends.forEach(friends => {

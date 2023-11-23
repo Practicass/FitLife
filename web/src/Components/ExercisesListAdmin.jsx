@@ -20,7 +20,7 @@ import { NavLink } from 'react-router-dom';
 
     const data = await request.json()
 
-    console.log(data.exercises)
+    //console.log(data.exercises)
 
     setExercises(data.exercises)
     // return data.exercises;

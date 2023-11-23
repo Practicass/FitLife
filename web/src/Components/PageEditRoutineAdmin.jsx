@@ -41,7 +41,7 @@ const PageEditRoutineAdmin = () => {
                 }
             }
             catch (error) {
-                console.log("Error al pedir el nombre de la rutina :", error)
+                //console.log("Error al pedir el nombre de la rutina :", error)
             }
         }
         const ponerEjercicios = async() => {
@@ -65,7 +65,7 @@ const PageEditRoutineAdmin = () => {
                 }
             }
             catch (error) {
-                console.log("Error al pedir los ejercicios de la rutina")
+                //console.log("Error al pedir los ejercicios de la rutina")
             }
 
         }

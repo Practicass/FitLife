@@ -20,7 +20,7 @@ const PageFeed = () => {
   })
   
 
-  //console.log(auth)
+  ////console.log(auth)
   return (
     <div className={"page-"+sidebar}>
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>

@@ -112,7 +112,7 @@ const friends = (req,res) => {
     .paginate(page,itemsPerPage)
     .then(async(friends, error) => {
         
-        console.log()
+        //console.log()
         let friendsIds = await friendService.friendUserids(userId)
 
 

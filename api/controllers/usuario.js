@@ -34,8 +34,8 @@ const register = (req, res) => {
             
 
             if(users && users.length >= 1){
-                return res.status(200).send({
-                    status: "success",
+                return res.status(400).send({
+                    status: "error",
                     message: "El usuario ya existe"
                 })
             }else{

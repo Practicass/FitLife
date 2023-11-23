@@ -54,7 +54,7 @@ const RouterPrincipal = () => {
               {/* <Route path='/newPassword' element={<PageNewPassword/>}/> */}
 
               <Route path='/history' element={<PrivateRoute><PageHistory/></PrivateRoute>}/>
-              <Route path='/register' element={<PrivateRoute><PageRegister/></PrivateRoute>}/>
+              <Route path='/register' element={<PageRegister/>}/>
               <Route path='/routines' element={<PrivateRoute><PageRoutines/></PrivateRoute>}/>
               <Route path='/addRoutine' element={<PrivateRoute><PageAddRoutine/></PrivateRoute>}/>
               <Route path='/routine' element={<PrivateRoute><PageRoutine/></PrivateRoute>}/>

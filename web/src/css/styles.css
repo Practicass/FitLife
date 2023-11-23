@@ -378,6 +378,7 @@
 }
 
 .pageRegister{
+    margin-top: 8%;
     height: 800px;
     display: flex;
     align-items: center;
@@ -396,6 +397,7 @@
 .register-bar{
     display:flex;
     width: 40%;
+    margin-bottom: 5%;
     justify-content: space-around;
 }
 
@@ -476,4 +478,10 @@
     font-weight: bold;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+
+.register3{
+    display: flex;
+    flex-direction: column;
 }

@@ -21,7 +21,7 @@ import { NavLink } from 'react-router-dom';
 
     const data = await request.json()
 
-    console.log(data.rutines)
+    //console.log(data.rutines)
     setRoutines(data.rutines)
 
     

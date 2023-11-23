@@ -85,7 +85,7 @@ import { Global } from '../helpers/Global'
 
       const data = await request.json()
 
-      console.log(data)
+      //console.log(data)
 
       if(data.status == "success"){
 
@@ -93,7 +93,7 @@ import { Global } from '../helpers/Global'
           authUser()
           navigate("/profile")
       }else{
-      console.log("ERROR")
+      //console.log("ERROR")
       
       }
 
@@ -119,23 +119,23 @@ import { Global } from '../helpers/Global'
 
     const data = await request.json()
 
-    console.log(data)
+    //console.log(data)
 
     if(data.status == "success"){
         authUser()
         navigate("/profile")
     }else{
-    console.log("ERROR")
+    //console.log("ERROR")
     
     }
 
 }
 
 const update = (e) => {
-  // console.log("dentro")
+  // //console.log("dentro")
   
   if (auth.email !== inputValue1 || auth.nick !== inputValue2) {
-    // console.log("dentro2")
+    // //console.log("dentro2")
     updateUser(e);
     
   } 

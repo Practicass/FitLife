@@ -42,7 +42,7 @@ const PageRoutines = () => {
         
         setRoutines(data.rutines)
         setMaxPage(Math.ceil(data.total/data.itemsPage))
-        console.log
+        //console.log
         
 
         
@@ -70,7 +70,7 @@ const PageRoutines = () => {
 
     const eliminateRoutine = async(e) => {
         e.preventDefault()
-        console.log(id)
+        //console.log(id)
         setEliminate(false)
 
         const request = await fetch(Global.url+"rutine/eliminate/"+ id, {
@@ -84,7 +84,7 @@ const PageRoutines = () => {
 
       const data = await request.json()
 
-      console.log(data.status)
+      //console.log(data.status)
 
         if(data.status == "success"){
             getRoutinesUser()
