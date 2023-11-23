@@ -105,13 +105,15 @@ import { Global } from '../helpers/Global'
 
     
     const cambio = {
-      password: inputValue3
+      password: inputValue3,
+      email: inputValue1
     }
     const request = await fetch(Global.url+"user/update", {
     method: "PUT",
-    body: JSON.stringify(cambio.password),
+    body: JSON.stringify(cambio),
     headers: {
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "Authorization": localStorage.getItem("token")
     }
     })
 
