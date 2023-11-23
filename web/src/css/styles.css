@@ -465,3 +465,15 @@
     margin-right: 5%;
     align-self: center;
 }
+
+.pages-historial-routines{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.pages-historial-routines label{
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+}

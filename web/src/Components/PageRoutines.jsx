@@ -177,7 +177,7 @@ const PageRoutines = () => {
                                 </div>
                         </NavLink>
                     </div>
-                    <div className='pages-historial'>
+                    <div className='pages-historial-routines'>
                         <IoChevronBackOutline className="modify-num-page-icon" size="35px" color='#fba92c'onClick={()=>{
                             if(page>1){
                                 setPage(page-1)
@@ -239,7 +239,7 @@ const PageRoutines = () => {
                             }
                         })}
                     </div>
-                    <div className='pages-historial'>
+                    <div className='pages-historial-routines'>
                         <IoChevronBackOutline className="modify-num-page-icon" size="35px" color='#fba92c'onClick={()=>{
                             if(pageAdmin>1){
                                 setPageAdmin(pageAdmin-1)

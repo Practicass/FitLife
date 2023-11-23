@@ -25,7 +25,7 @@ import PageEditExerciseAdmin from '../Components/PageEditExerciseAdmin'
 import PageEditRoutineAdmin from '../Components/PageEditRoutineAdmin'
 import PageEditRoutine from "../Components/PageEditRoutine"
 // import PageNewPassword from '../Components/PageNewPassword'
-
+import useAuth from "../hooks/useAuth"
 
 
 
@@ -33,6 +33,14 @@ const RouterPrincipal = () => {
     const PrivateRoute = ({ children }) => {
       return !localStorage.getItem('token') ? <Navigate to="/login" /> : children;
     };
+
+    const AdminRoute = ({ children }) => {
+      const {auth} = useAuth()
+      return !localStorage.getItem('token') ?
+        <Navigate to="/login" />
+      :
+      auth.rol == "usuario" ? <Navigate to="/login" /> : children;
+    }
     return (
       <BrowserRouter >
         <AuthProvider>
@@ -67,11 +75,11 @@ const RouterPrincipal = () => {
 
               <Route path='/training/:id' element={<PrivateRoute><PageTraining/></PrivateRoute>}/>
       
-              <Route path='/adminHome' element={<PrivateRoute><PageAdminHome /></PrivateRoute>}/>
-              <Route path='/adminHome/addExercise' element={<PrivateRoute><PageAddExerciseAdmin /></PrivateRoute>}/>
-              <Route path='/adminHome/editExercise/:id' element={<PrivateRoute><PageEditExerciseAdmin /></PrivateRoute>}/>
-              <Route path='/adminHome/addRoutine' element={<PrivateRoute>< PageAddRoutineAdmin/></PrivateRoute>}/>
-              <Route path='/adminHome/editRoutine/:id' element={<PrivateRoute>< PageEditRoutineAdmin/></PrivateRoute>}/>
+              <Route path='/adminHome' element={<AdminRoute><PageAdminHome /></AdminRoute>}/>
+              <Route path='/adminHome/addExercise' element={<AdminRoute><PageAddExerciseAdmin /></AdminRoute>}/>
+              <Route path='/adminHome/editExercise/:id' element={<AdminRoute><PageEditExerciseAdmin /></AdminRoute>}/>
+              <Route path='/adminHome/addRoutine' element={<AdminRoute>< PageAddRoutineAdmin/></AdminRoute>}/>
+              <Route path='/adminHome/editRoutine/:id' element={<AdminRoute>< PageEditRoutineAdmin/></AdminRoute>}/>
 
 
               
