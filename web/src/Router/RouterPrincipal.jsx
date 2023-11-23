@@ -62,7 +62,7 @@ const RouterPrincipal = () => {
               <Route path='/stats' element={<PrivateRoute><PageStats/></PrivateRoute>}/>
               <Route path='/stats/:num' element={<PrivateRoute><PageStat/></PrivateRoute>}/>
               <Route path='/friends' element={<PrivateRoute><PageFeed/></PrivateRoute>}/>
-              <Route path='/profile/settings' element={<PrivateRoute><PageSettings/></PrivateRoute>}/>
+              <Route path='/settings' element={<PrivateRoute><PageSettings/></PrivateRoute>}/>
               <Route path='/listFriends' element={<PrivateRoute><PageListFriends/></PrivateRoute>}/>
               <Route path='/newroutine' element={<PrivateRoute><PageNuevaRutina/></PrivateRoute>}/>
               <Route path='/editroutine/:id' element={<PrivateRoute><PageEditRoutine/></PrivateRoute>}/>

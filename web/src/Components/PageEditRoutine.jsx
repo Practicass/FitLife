@@ -157,7 +157,7 @@ const PageEditRoutine = () => {
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/adminHome">
+                    <NavLink to={-1}>
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 

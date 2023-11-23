@@ -162,7 +162,7 @@ const update = (e) => {
                 <Logo />
                 </div>
 
-            <NavLink to="/profile"><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
+            <NavLink to={-1}><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
             {/* Call update to change the user's value */}
               <MyButton size="xs" type="submit" onClick={update}>
               <FaCheck className="check-settings" color='#fba92c' size="50px"/>

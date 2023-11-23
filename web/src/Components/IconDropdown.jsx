@@ -34,7 +34,7 @@ export default function IconDropdown() {
       viewTransitionName:  "slide",
     };
   }}>Mi perfil</NavLink></DropdownItem>
-        <DropdownItem color="warning" key="settings"><NavLink to="/profile/settings" style={() => {
+        <DropdownItem color="warning" key="settings"><NavLink to="/settings" style={() => {
     return {
       alignSelf: "center",
       color:"white",
