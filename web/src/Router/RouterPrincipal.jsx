@@ -20,6 +20,7 @@ import PageAddExerciseAdmin from '../Components/PageAddExerciseAdmin'
 import PageAddRoutineAdmin from '../Components/PageAddRoutineAdmin'
 import PageEditExerciseAdmin from '../Components/PageEditExerciseAdmin'
 import PageEditRoutineAdmin from '../Components/PageAddRoutineAdmin'
+import PageEditRoutine from "../Components/PageEditRoutine"
 
 
 const RouterPrincipal = () => {
@@ -42,7 +43,7 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PageListFriends/>}/>
               <Route path='/profile/settings' element={<PageSettings/>}/>
               <Route path='/newroutine' element={<PageNuevaRutina/>}/>
-              <Route path='/editroutine/:id' element={<PageNuevaRutina/>}/>
+              <Route path='/editroutine/:id' element={<PageEditRoutine/>}/>
 
 
               <Route path='/training/:id' element={<PageTraining/>}/>
