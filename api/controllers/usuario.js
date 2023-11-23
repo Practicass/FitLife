@@ -353,13 +353,45 @@ const counters = async (req, res) => {
     }
 }
 
+const searchUsers = async (req, res) => {
+    try {
+        let searchTerm = req.params.searchTerm
+        let userId = req.user.id
+        if (!searchTerm) {
+            return res.status(400).send({
+                status: "error",
+                message: "Falta el término de la busqueda"
+            })
+        }
 
+        const regex = new RegExp(searchTerm, 'i')
 
+        const users = await User.find({
+            $and: [
+                {
+                    $or: [
+                        { name: regex },
+                        { surname: regex },
+                        { nick: regex },
+                        { email: regex },
+                    ]
+                },
+                { _id: { $ne: userId } }
+            ]
+        })
 
-
-
-
-
+        return res.status(200).send({
+            status: "success",
+            users
+        })
+    } catch (error) {
+        return res.status(500).send({
+            status: "error",
+            message: "Error en la busqueda de usuarios",
+            error
+        })
+    }
+}
 
 module.exports = {
     
@@ -369,5 +401,6 @@ module.exports = {
     update,
     avatar,
     upload,
-    counters
+    counters,
+    searchUsers
 }

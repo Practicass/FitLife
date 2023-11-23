@@ -7,6 +7,7 @@ import { FaUserCircle } from "react-icons/fa"
 import {ImCross} from "react-icons/im"
 import "../css/PageListFriends.css"
 import { Global } from "../helpers/Global"
+import { MyButton } from "./MyButton"
 
 const PageListFriends = () => {
     
@@ -48,7 +49,7 @@ const PageListFriends = () => {
     }
 
     const [busqueda, setBusqueda] = useState("")
-
+    const [searchResults, setSearchResults] = useState([])
     const [showFriends, setShowFriends] = useState(true)
 
     const search = async(e) => {
@@ -57,11 +58,46 @@ const PageListFriends = () => {
             setShowFriends(false)
 
             try {
-                const response 
+                const response = await fetch(Global.url + "user/searchUsers/" + e, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }    
+                })
+                const data = await response.json()
+
+                if (data.status === "success") {
+                    setSearchResults(data.users)
+                }
+                else {
+                    console.error("Error en la busqueda: ", data.message)
+                }
+            } catch (error) {
+                console.error("Error en la busqueda", error)
             }
         }
         else {
             setShowFriends(true)
+        }
+    }
+
+    const anadirAmigo = async(idFriend) => {
+        console.log(idFriend)
+        try {
+            await fetch(Global.url + "friend/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                },
+                body: JSON.stringify({
+                    friend: idFriend
+                })
+            })
+            window.location.reload()
+        } catch (error) {
+            console.error("Error al añadir el amigo: ", error)
         }
     }
 
@@ -85,7 +121,9 @@ const PageListFriends = () => {
                     </form>
                     {showFriends ?
                     <div className="list-friends">
-                        {friends.map((friend, index) => (
+                        {friends.map((friend, index) => {
+                            
+                            return(
                             <div className='friend' key={index}>
                                 <div className="foto-friend">
                                     <FaUserCircle color='#fba92c' size="50px"/>
@@ -95,21 +133,30 @@ const PageListFriends = () => {
                                     <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
                                 </div>
                             </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     :
                     <div className="list-friends">
-                    {friends.map((friend, index) => (
-                        <div className='friend' key={index}>
+                    {searchResults.map((friend, index) => {
+                        console.log(friend)
+                        return(
+                        <div className='user-not-friend' key={index}>
                             <div className="foto-friend">
                                 <FaUserCircle color='#fba92c' size="50px"/>
                             </div>
                             <h2 className="nick-friend"> {friend.name} </h2>
-                            <div className="cruz">
-                                <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
-                            </div>
+                            <MyButton
+                                className="anadir-friend"
+                                color="orangeblack"
+                                size="xl"
+                                type="submit"
+                                onClick={() => anadirAmigo(friend._id)}>
+                                Añadir
+                            </MyButton>
                         </div>
-                    ))}
+                        )
+                    })}
                     </div>
                     }
                 </div>

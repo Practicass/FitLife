@@ -27,6 +27,7 @@ router.put("/update", auth.auth, UserController.update)
 router.post("/upload", [auth.auth, uploads.single("file")], UserController.upload)
 router.get("/avatar/:file", auth.auth, UserController.avatar)
 router.get("/counters/:id?", auth.auth, UserController.counters)
+router.get("/searchUsers/:searchTerm?", auth.auth, UserController.searchUsers)
 
 
 
