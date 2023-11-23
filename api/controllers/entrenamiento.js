@@ -80,7 +80,7 @@ const trainings = async(req,res) => {
     }
     page = parseInt(page);
     let itemsPerPage = 5;
-    if(req.param.itemsPage){
+    if(req.params.itemsPage){
         itemsPerPage = req.params.itemsPage
     }
     itemsPerPage = parseInt(itemsPerPage);

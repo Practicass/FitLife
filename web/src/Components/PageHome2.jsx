@@ -37,7 +37,7 @@ const PageHome = () => {
   }
   const getHistory = async() => {
 
-    const request = await fetch(Global.url+"training/trainingsFriends/" + 1 + "/1", {
+    const request = await fetch(Global.url+"training/trainingsFriends/1/1", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
