@@ -2,17 +2,17 @@ import { useState } from "react";
 import Sidebar from './Sidebar'
 import Logo from './Logo'
 import "../css/PageProfile.css"
-import { IoMdSettings } from "react-icons/io";
+
 import {useAuth} from "../hooks/useAuth"
 import {FaUserCircle} from "react-icons/fa"
 import { Global } from '../helpers/Global'
 import { useEffect } from 'react'
 import Historial from "./Historial";
-import { NavLink } from "react-router-dom";
 
 
 
- const PageProfile = () => {
+
+ const PageProfileFriends = () => {
   const [sidebar, setSidebar] = useState(false)
   const {auth} = useAuth()
   const [friends, setFriends] = useState(0)
@@ -53,7 +53,7 @@ useEffect(() => {
         <div className='profile-content'>
             <div className="header-profile">  
               <Logo />
-              <NavLink to="settings"> <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/></NavLink>
+
               
             </div>
             <div className="profile-principal">
@@ -86,4 +86,4 @@ useEffect(() => {
 };
 
 
-export default PageProfile
+export default PageProfileFriends
