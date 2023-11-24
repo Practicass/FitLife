@@ -15,7 +15,9 @@ const PageShowTraining = () => {
     const [sets, setSets] = useState([]);
 
     const [name , setName] = useState("")
-    const [duration, setDuration] = useState("")
+    const date = new Date()
+
+    const [duration, setDuration] = useState(date)
     const [nick, setNick] = useState("")
   
 
@@ -38,9 +40,6 @@ const PageShowTraining = () => {
         const data = await request.json()
 
 
-        
-        let routineAux = data.training.sets
-
         //console.log(routineAux)
         //console.log(data.training.created_at)
 
@@ -51,17 +50,6 @@ const PageShowTraining = () => {
         setNick(data.training.user.nick)
 
     }  
-
-    const segundosATiempo = (segundos) => {
-        const horas = Math.floor(segundos / 3600);
-        const minutos = Math.floor((segundos % 3600) / 60);
-        if(horas == 0){
-            return`${minutos}m`
-        }else{
-            return `${horas}h ${minutos}m`;
-        }
-        
-    }
 
 
     let uniqueSetId = []
