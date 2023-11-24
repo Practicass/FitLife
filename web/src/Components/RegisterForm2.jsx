@@ -1,6 +1,7 @@
-import { RadioGroup, Radio } from "@nextui-org/react";
+
 // Formulario de la primera pagina de Registro de usuarios
 const RegisterForm2 = ({form, changed}) => {
+    const style = {"accentColor" : "orange"}
     return (
         <div className='registerForm'>
             <form name='form-register2'> 
@@ -13,13 +14,14 @@ const RegisterForm2 = ({form, changed}) => {
                 <p>Altura (cm)</p>
                 <input type='text' name='height' defaultValue={form.height} onChange={changed}/>
                 
-                <p>Sexo</p>
-                <input type='radio' name='sex' value='Hombre' id='campoHombre' checked={form.sex === "Hombre"} onChange={changed}/>
+                 <p>Sexo</p>
+                <input className="custom-radio" type='radio' name='sex' value='Hombre' id='campoHombre' checked={form.sex === "Hombre"} onChange={changed}/>
                 <label >&nbsp;Hombre&nbsp;&nbsp;</label>
-                <input type='radio' name='sex' value='Mujer' id='campoMujer'  checked={form.sex === "Mujer"} onChange={changed}/>
+                <input className="custom-radio" type='radio' name='sex' value='Mujer' id='campoMujer'  checked={form.sex === "Mujer"} onChange={changed}/>
                 <label >&nbsp;Mujer&nbsp;&nbsp;</label>
-                <input type='radio' name='sex' value='Otro' id='campoOtro'  checked={form.sex === "Otro"} onChange={changed}/>
+                <input className="custom-radio" type='radio' name='sex' value='Otro' id='campoOtro'  checked={form.sex === "Otro"} onChange={changed}/>
                 <label >&nbsp;Otro&nbsp;&nbsp;</label>
+                           
                 
             </form>
         </div>
