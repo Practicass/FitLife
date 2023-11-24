@@ -13,7 +13,7 @@
     display: grid;
     grid-template-areas:    "cross title"
                             "training training";
-    grid-template-rows: 10% auto;
+    grid-template-rows: 15% auto;
     grid-template-columns: 5% auto;
 
     
@@ -32,6 +32,7 @@
 .title-training{
     grid-area: title;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-right: 5%;
@@ -54,7 +55,7 @@
 }
 
 .exercise-training:first-child{
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 
@@ -89,6 +90,22 @@
 .title-reps{
     grid-area: title-reps;
     justify-self: center;
+}
+.title-kg{
+    grid-area: title-kg;
+    justify-self: center;
+}
+
+.title-num-cardio{
+    grid-area: title-num;
+    justify-self: center;
+    padding-right: 30%;
+}
+
+.title-reps-cardio{
+    grid-area: title-reps;
+    justify-self: center;
+    padding-right: 45%;
 }
 .title-kg{
     grid-area: title-kg;
@@ -230,7 +247,18 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;
     color: black;
     font-weight: bolder;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
 
+.titulo-showTraining{
+    display:flex;
+}
+
+.titulo-showTraining label{
+    margin-left:3px;
+    margin-right: 3px;
+}

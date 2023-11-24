@@ -8,26 +8,65 @@
     --color-stats: #05ff00;
 }
 
-.busqueda {
-    height: 5%;
+.page-list-friends{
+    min-height: 860px;
     display: grid;
-    grid-template-areas: "barraBusqueda";
-    margin-top: -5%;
-    margin-left: auto;
-    margin-right: auto;
+    grid-template-areas: "cruz-list-friends content-list-friends";
+    grid-template-columns: 4% auto;
+
+}
+
+.cruz-list-friends{
+    grid-area: cruz-list-friends;
+}
+
+.content-list-friends {
+    grid-area: content-list-friends;
+}
+
+.titulo-list-friends {
+    color: var(--color-third);
+    font-size: 400%;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 4%;
+}
+
+.principal-list {
+    display: grid;
+    margin-top: 3%;
+    grid-template-columns: "busqueda-form-friends list-friends";
+}
+
+.busqueda-form-friends {
+    margin-left: 37%;
+}
+
+
+.busqueda-friends {
+    border: 3px solid var(--color-third);
+    border-radius: 10px;
+    font-size: 25px;
+    background-color: var(--color-text);
+    color: var(--color-black);
+}
+
+.list-friends {
+    margin-top: 2%;
+    align-items: center;
+    justify-content: center;
 }
 
 .friend{
-    /* border: 4px solid white; */
     background-color: var(--color-primary);
-    width: 50%;
-    height: 12%;
+    width: 40%;
     display: grid;
     grid-template-areas: "foto-friend nick-friend cruz";
-    grid-template-columns: 15% 70% auto;
-
+    grid-template-columns: 10% 70% auto;
+    padding: 5px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2%;
 }
 
 .foto-friend{
@@ -38,9 +77,11 @@
 }
 
 .nick-friend{
+    margin-left: 2%;
     grid-area: nick-friend;
     display:flex;
     justify-content: flex-start;
+    font-weight: bold;
     align-items: center;
     color: var(--color-text)
 }
@@ -48,14 +89,29 @@
 .cruz {
     grid-area: cruz;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
+    margin-right: 3%;
     color: var(--color-third)
 }
 
-.principal{
-    height: 70%;
+
+.user-not-friend {
+    background-color: var(--color-primary);
+    width: 40%;
+    display: grid;
+    grid-template-areas: "foto-friend nick-friend anadir-friend";
+    grid-template-columns: 10% 70% auto;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
 }
-.busqueda{
-    width: 30%;
+
+.anadir-friend {
+    grid-area: anadir-friend;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
 }

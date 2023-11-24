@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
   const [routines, setRoutines] = useState([])
   const getRoutines = async() => {
 
-    const request = await fetch(Global.url+"rutine/rutines", {
+    const request = await fetch(Global.url+"rutine/rutinesScroll", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -21,7 +21,7 @@ import { NavLink } from 'react-router-dom';
 
     const data = await request.json()
 
-    console.log(data.rutines)
+    //console.log(data.rutines)
     setRoutines(data.rutines)
 
     
@@ -36,22 +36,24 @@ useEffect(() => {
 }, [])
 
   return (
+    <div className="routinesScroll">
     
-    <div>
-      <ul className='ul-adminRo'>
-
-      
-      { routines.map((routine,index) => {
-         if(routine.user.rol == "admin"){
-      return(
-        <li className='li-adminRo' key={index}>
-          <NavLink to={"editRoutine/"+routine._id}>
-           <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
-          </NavLink>
-        </li>
-      )
-    } })}</ul></div>
-    // <></>
+      <div>
+        <ul className='ul-adminRo'>
+          { routines.map((routine,index) => {
+            if (routine.user.rol == "admin"){
+              return(
+                <li className='li-adminRo' key={index}>
+                  <NavLink to={`editRoutine/${routine._id}`}>
+                    <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
+                  </NavLink>
+                </li>
+              )
+            }
+          })}
+        </ul>
+      </div>
+  </div>
   )
 }
 

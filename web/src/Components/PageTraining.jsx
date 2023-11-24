@@ -52,11 +52,11 @@ const PageTraining = () => {
         const setsCopy = [];
         for(let i=0; i<routineAux.length; i++){
           if(!sets[i]){
-            setsCopy.push({reps:[], weight:[]});
+            setsCopy.push({reps:[], weight:[], time:[]});
           }
         } 
-        console.log(routineAux, setsCopy)
-        console.log("HOLA")
+        //console.log(routineAux, setsCopy)
+        //console.log("HOLA")
         setSets(setsCopy);
         setName(data.rutine.name)
         setRoutine(data.rutine.exercises)
@@ -90,19 +90,27 @@ const PageTraining = () => {
     
 
 
-  const handleAddSet = (exerciseIndex) => {
+  const handleAddSet = (exerciseIndex, exerciseMuscle) => {
     
     const setsCopy = [...sets];
-
-    if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].reps.length >= 5) {
-      console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
-      return;
+    if(exerciseMuscle== "Cardio" || exerciseMuscle == "Full-Body"){
+      if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].time.length >= 1) {
+        //console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
+        return;
+      }
+    }else{
+      if (setsCopy[exerciseIndex] && setsCopy[exerciseIndex].reps.length >= 5) {
+        //console.log("Ya has alcanzado el máximo de 6 sets para este ejercicio.");
+        return;
+      }
     }
-    console.log(exerciseIndex, setsCopy)
-    setsCopy[exerciseIndex].reps.push(0);
-    setsCopy[exerciseIndex].weight.push(0);
-    console.log(setsCopy)
+    //console.log(exerciseIndex, setsCopy)
+    setsCopy[exerciseIndex].time.push(null);
+    setsCopy[exerciseIndex].reps.push(null);
+    setsCopy[exerciseIndex].weight.push(null);
 
+
+    //console.log(setsCopy)
     setSets(setsCopy);
   }
 
@@ -119,6 +127,7 @@ const PageTraining = () => {
 
         newSets[exerciseIndex].weight.pop();
         newSets[exerciseIndex].reps.pop();
+        newSets[exerciseIndex].time.pop();
 
       }
       return newSets;
@@ -158,14 +167,14 @@ const PageTraining = () => {
     const setsEnviar = []
     routine.map((exercise, exerciseIndex)=>{
       sets[exerciseIndex].reps.map((reps, index)=>{
-        setsEnviar.push({"exercise":exercise._id, "weight": sets[exerciseIndex].weight[index], "reps":reps})
+        setsEnviar.push({"exercise":exercise._id, "weight": sets[exerciseIndex].weight[index], "reps":reps, "time": sets[exerciseIndex].time[index]})
       })
     })
-    console.log(setsEnviar)
+    //console.log(setsEnviar)
 
     const request = await fetch(Global.url+"training/add", {
       method: "POST",
-      body: JSON.stringify({"name": name,"user": auth._id, "sets":setsEnviar, "public": publico, "duration": duration}),
+      body: JSON.stringify({"name": name,"user": auth._id, "sets":setsEnviar, "public": publico, "duration": duration, "routine": id}),
       headers: {
           "Content-Type":"application/json",
           "Authorization": localStorage.getItem("token")
@@ -176,7 +185,7 @@ const PageTraining = () => {
     if(data.status == "success"){
       navigate("/routines")
     }else{
-      console.log("MAL")
+      //console.log("MAL")
     }
 
 
@@ -194,28 +203,61 @@ const PageTraining = () => {
         // Código a ejecutar si ambas condiciones son verdaderas
         <>
         {routine.map( (exercise,exerciseIndex) => {
+          //console.log(exercise)
         
           return(
               <div className={"exercise-training"} key={exercise._id}>
                   <h2 className="title-exercise">{exerciseIndex+1}.{exercise.name}</h2>
                   <div className="categories">
-                    <label className="title-num">Serie</label>
-                    <label className="title-reps">Repeticiones</label>
-                    <label className="title-kg">Peso(kg)</label>
+                    
+                    {exercise.muscle.name == "Cardio" || exercise.muscle.name == "Full-body" ?
+                      <>
+                        <label className="title-num-cardio">Serie</label>
+                        <label className="title-reps-cardio">Tiempo</label>
+                      </>
+                      :
+                      
+                        <>
+                        <label className="title-num">Serie</label>
+                        <label className="title-reps">Repeticiones</label>
+                        <label className="title-kg">Peso(kg)</label>
+                        </>
+                      
+                    }
+                    {/* <label className="title-reps">Repeticiones</label>
+                    <label className="title-kg">Peso(kg)</label> */}
                   </div>
-                  <div className="sets">
-                    {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
-                      <div className="set" key={setIndex}>
-                        <label className="input-exercise num" >{setIndex+1}</label>
-                        <input className="input-exercise reps" type="number" name={`reps`} defaultValue={set} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
-                        <input className="input-exercise kg" type="number" name={`weight`} defaultValue={sets[exerciseIndex].weight[setIndex]} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
-                        <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
+                  {exercise.muscle.name == "Cardio" || exercise.muscle.name == "Full-Body" ?
+                    <div className="sets">
+
+                      {sets[exerciseIndex].reps && sets[exerciseIndex].time.map((set, setIndex) => (
+                        <div className="set" key={setIndex}>
+                          <label className="input-exercise num" >{setIndex+1}</label>
+                          <input className="input-exercise reps" type="number" name={`time`} defaultValue={set} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
+                          <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
+                        </div>
+                      ))}
+                
+                    </div>
+                      
+                    :
+                     <div className="sets">
+                        
+                          
+                          {sets[exerciseIndex].reps && sets[exerciseIndex].reps.map((set, setIndex) => (
+                            <div className="set" key={setIndex}>
+                              <label className="input-exercise num" >{setIndex+1}</label>
+                              <input className="input-exercise reps" type="number" name={`reps`} defaultValue={set} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/> 
+                              <input className="input-exercise kg" type="number" name={`weight`} defaultValue={sets[exerciseIndex].weight[setIndex]} min="1" max="999" onKeyDown={validarNumero} onChange={(e) => saveInfo(e, exerciseIndex, setIndex)}/>
+                              <BiSolidXSquare className= "delete-set" size="30px" color='#fba92c' onClick={() => handleDeleteSet(exerciseIndex)}/>
+                            </div>
+                          ))}
+                      
                       </div>
-                    ))}
-                  </div>
+                  }
                   
                   <div className="addSet">
-                    <BiSolidPlusSquare size="30px" color="#fba92c" onClick={() => handleAddSet(exerciseIndex)}/>
+                    <BiSolidPlusSquare size="30px" color="#fba92c" onClick={() => handleAddSet(exerciseIndex, exercise.muscle.name)}/>
                   </div>
               </div>
           )

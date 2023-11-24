@@ -18,9 +18,9 @@ const add = async(req, res) => {
     }
     
     let exercisesIds = [...new Set(sets.map(set => set.exercise))];
-    //console.log(exercisesIds)
+    ////console.log(exercisesIds)
     let exercisesFound = await Exercise.find({_id: {$in: exercisesIds}})
-    //console.log(exercisesFound)
+    ////console.log(exercisesFound)
     if(exercisesFound.length != exercisesIds.length){
         return res.status(500).send({
             status:"error",
@@ -30,7 +30,7 @@ const add = async(req, res) => {
         })
     }
 
-    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public, duration: req.body.duration})
+    let newTraining = new Training({name: req.body.name, user: req.user.id, sets: req.body.sets, public: req.body.public, duration: req.body.duration, routine: req.body.routine})
 
     let trainingSaved = await newTraining.save()
     if(!trainingSaved){
@@ -79,8 +79,12 @@ const trainings = async(req,res) => {
       page = req.params.page;
     }
     page = parseInt(page);
-  
     let itemsPerPage = 5;
+    if(req.params.itemsPage){
+        itemsPerPage = req.params.itemsPage
+    }
+    itemsPerPage = parseInt(itemsPerPage);
+
 
     
     
@@ -114,6 +118,8 @@ const trainings = async(req,res) => {
     
 
 }
+
+
 
 //Muestra todos los entrenamientos de un usuario 
 const trainingsUser = async(req, res) => {
@@ -159,7 +165,7 @@ const trainingsUserLastPage = (req, res) => {
 
     let idUser = req.user.id;
 
-
+    
     let itemsPerPage = 5;
 
     Training.find({ user: idUser }).sort('-created_at').populate("sets.exercise", "-user -__v").paginate(1, itemsPerPage).then(async (trainings, error) => {
@@ -181,6 +187,36 @@ const trainingsUserLastPage = (req, res) => {
 };
 
 
+const training = (req, res) => {
+
+
+    const idTraining = req.params.id
+
+    Training.findById(idTraining).populate("sets.exercise user", "-__v").populate({
+        path: 'sets.exercise',
+        populate: {
+          path: 'muscle',
+          model: 'Muscle' // Reemplaza 'Muscle' con el nombre de tu modelo de músculos
+        }
+      }).then(async (training, error) => {
+
+        
+
+        return res.status(200).send({
+            status: "success",
+            training
+        });
+    }).catch(error => {
+        if (error ) {
+            return res.status(500).send({
+                status: "error",
+                message: "No hay entrenamientos disponibles",
+                error
+            });
+        }
+    })
+}
+
 
 
 module.exports = {
@@ -189,5 +225,6 @@ module.exports = {
     eliminate,
     trainings,
     trainingsUser,
-    trainingsUserLastPage
+    trainingsUserLastPage,
+    training
 }

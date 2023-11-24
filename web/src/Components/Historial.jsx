@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 import "../css/Historial.css"
 import { IoChevronBackOutline , IoChevronForwardOutline} from "react-icons/io5";
+import {NavLink} from "react-router-dom"
 
 import ReactTimeAgo from "react-time-ago"
 
@@ -9,6 +10,7 @@ import ReactTimeAgo from "react-time-ago"
 const Historial = () => {
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(1)
+    const [vacio, setVacio] = useState(false)
     
 
 
@@ -31,11 +33,13 @@ const Historial = () => {
 
         const data = await request.json()
 
-
+        //console.log(data)
         setHistory(data.trainings)
         setMaxPage(Math.ceil(data.total/data.itemsPerPage))
         
-
+        if(data.trainings.length === 0){
+            setVacio(true)
+        }
         
     }
 
@@ -57,17 +61,21 @@ const Historial = () => {
         getHistory()
     }, [page])
 
-
+    let uniqueExerciseNames = [];
     
     
 
-
+    const style1 = { "fontSize": "20px", "fontWeight":"bolder"}
   return (
+    
     <div className='principal-history'>
+        {vacio ? <h1 className="self-center" style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
+        <>
         {history.map(training => {
-            
+            uniqueExerciseNames = []
             return(
-                <div key={training._id} className='rectangle'>
+               
+                <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
                         <h3>{training.name}</h3>
                         <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
@@ -77,16 +85,23 @@ const Historial = () => {
                     <div className='exercises-rectangle'>
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
-                            console.log(set.exercise)
-                            return(
+                            const exerciseName = set.exercise.name;
+                            //console.log(uniqueExerciseNames)
+                            if (!uniqueExerciseNames.includes(exerciseName)) {
+                                uniqueExerciseNames.push(exerciseName);
+
+                            return (
                                 <div key={set._id}>
-                                    <label>{set.exercise.name}</label>
+                                <label>{exerciseName}</label>
                                 </div>
-                            
-                            )
+                            );
+                            }
+
+                            // Return null for sets with duplicate exercise names
+                            return null;
                         })}
                     </div>
-                </div>
+                </NavLink>
             )
         })}
         <div className='pages-historial'>
@@ -102,7 +117,9 @@ const Historial = () => {
                 }
             }}/>
         </div>
+        </>}
     </div>
+        
   )
 }
 

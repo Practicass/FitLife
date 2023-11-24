@@ -36,25 +36,15 @@ import RoutinesListAdmin from "./RoutinesListAdmin";
                 <h1 style={styleTitle}>RUTINAS</h1>
             </div>
             <div className="rectangle1-admin">
-                <div className="exerciseScroll">
-
-                
                 <ScrollShadow   size="0" className="w-[450px] h-[490px] inline-block">
                     <ExercisesListAdmin />
                 </ScrollShadow>
-                </div>
-                
             </div>        
             <div className="rectangle2-admin">
-            <div className="routinesScroll">
-
-                                
                 <ScrollShadow   size="0" className="w-[450px] h-[490px] inline-block">
                     <RoutinesListAdmin />
                 </ScrollShadow>
                 </div>
-
-            </div>
             <div className="buttonArea1-admin">
                 <NavLink to="addExercise"><button className="button1-admin"style={style5}>AÑADIR</button></NavLink>
             </div>

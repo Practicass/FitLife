@@ -20,7 +20,7 @@ import { NavLink } from 'react-router-dom';
 
     const data = await request.json()
 
-    console.log(data.exercises)
+    //console.log(data.exercises)
 
     setExercises(data.exercises)
     // return data.exercises;
@@ -36,19 +36,20 @@ useEffect(() => {
 }, [])
 
   return (
+    <div className="exerciseScroll">
     
-    <div>
-      <ul className='ul-adminEx'>
-
-      
-      { exercises.map((exercise,index) => {
-      return(
-        <li className='li-adminEx' key={index}>
-         <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
-        </li>
-      )
-    } )}</ul></div>
-    // <></>
+      <div>
+        <ul className='ul-adminEx'>
+          { exercises.map((exercise,index) => {
+            return(
+              <li className='li-adminEx' key={index}>
+                <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </div>
   )
 }
 

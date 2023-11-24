@@ -34,7 +34,7 @@ const Stat1 = () => {
         };
       }
 //
-      console.log("hola", aux)
+      ////console.log("hola", aux)
 //
       setStats(aux)
       setY(data.stats.mes)
@@ -64,6 +64,7 @@ const Stat1 = () => {
         colors: ['#fba92c', '#545454'],
         title: {
             text: 'Entrenamientos de los últimos 6 meses',
+            align: 'center'
         },
         yaxis: {
           title: {

@@ -45,13 +45,13 @@ const updateUserPassword = async(e) => {
 
     const data = await request.json()
 
-    console.log(data)
+    //console.log(data)
 
     if(data.status == "success"){
 
         navigate("/login")
     }else{
-    console.log("ERROR")
+    //console.log("ERROR")
     
     }
 

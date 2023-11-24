@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import Header from "./Header"
+import Header from "./HeaderAdmin"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/PageNuevaRutina.css"
 import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
+import { Tooltip } from '@nextui-org/react'
 
 
 const PageAddRoutineAdmin = () => {
@@ -40,7 +41,7 @@ const PageAddRoutineAdmin = () => {
             const data = await response.json()
 
             if (data.status === "success") {
-                navigate("/routines")
+                navigate("/adminHome")
             }
             else {
                 // Mensaje o Pantalla de error
@@ -96,7 +97,7 @@ const PageAddRoutineAdmin = () => {
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/routines">
+                    <NavLink to="/adminhome">
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
@@ -168,9 +169,7 @@ const PageAddRoutineAdmin = () => {
             <div className="page-ejercicios">
                 <div className='content-ejercicios'>
                     <div className="cabecera-ejercicios">
-                        <NavLink to="/newroutine">
-                            <ImCross className="cruz-ejercicios" size="35px" color="#fba92c"></ImCross>
-                        </NavLink>
+                        <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
                         <Header className="header-ejercicios"/>
                     </div>
                     <div className="principal-ejercicios">
@@ -182,6 +181,8 @@ const PageAddRoutineAdmin = () => {
                                     <ul className="ul-ex">
                                         {exercises.map((exercise, index) => (
                                             <li className="li-ex" key={index}>
+                                                
+                                                <Tooltip color='warning' placement='bottom' content={exercise.description}>
                                                 <MyButton className="boton-ejercicio"
                                                         color="lightGrey"
                                                         size="xl"
@@ -192,7 +193,7 @@ const PageAddRoutineAdmin = () => {
                                                             setNum(1)
                                                         }} >
                                                     {exercise.name}
-                                                </MyButton>
+                                                </MyButton></Tooltip>
                                             </li>
                                         ))}
                                     </ul>

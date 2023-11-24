@@ -41,7 +41,7 @@ const onInputChange2 = ({target}) =>{
 
     const data = await request.json()
 
-    console.log(data.muscles)
+    //console.log(data.muscles)
 
     setMuscles(data.muscles)
     // return data.exercises;
@@ -71,7 +71,7 @@ const add = async(e) => {
 
   const data = await request.json()
 
-  console.log(data)
+  //console.log(data)
 
   if(data.status == "success"){
 
@@ -80,7 +80,7 @@ const add = async(e) => {
       navigate(-1)
 
   }else{
-  console.log("ERROR")
+  //console.log("ERROR")
 
   }
 

@@ -5,6 +5,7 @@ import RegisterForm3 from './RegisterForm3'
 import useForm from '../hooks/useForm'
 import { Global } from '../helpers/Global'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { Button} from "@nextui-org/react";
 
 
 const PageRegister = () => {
@@ -12,9 +13,10 @@ const PageRegister = () => {
     const [num, setNum] = useState(1)
     const {form, changed} = useForm({})
     const navigate = useNavigate()
+    const [error, setError ] = useState(false)
 
     useEffect(() => {
-        console.log(num)
+        //console.log(num)
     }, [num])
 
 
@@ -34,13 +36,14 @@ const PageRegister = () => {
 
         const data = await request.json()
 
-        console.log(data)
+        //console.log(data)
 
         if(data.status == "success"){
 
             navigate("/login")
         }else{
-        console.log("ERROR")
+            //console.log("ERROR")
+            setError(true)
         
         }
 
@@ -66,21 +69,25 @@ const PageRegister = () => {
             {  num == 1 ? 
                 <div className='register1'>
                     <RegisterForm1  form={form} changed={changed}/>
-                    <NavLink to="/login"><button>Atras</button></NavLink>
-                    <button onClick={() => setNum(2)}>Siguiente</button>
+                    
+                    <NavLink to="/login"><Button style={{"margin":"8px"}} color="warning">Atras</Button></NavLink>
+                    <Button color="warning" style={{"margin":"8px"}} onClick={() => setNum(2)}>Siguiente</Button>
                 </div>
                 
             : num==2 ? 
                 <div className='register2' >
                     <RegisterForm2 form={form}  changed={changed}/>
-                    <button onClick={() => setNum(1)}>Atras</button>
-                    <button onClick={() => setNum(3)}>Siguiente</button>
+                    <Button color="warning" style={{"margin":"8px"}} onClick={() => setNum(1)}>Atras</Button>
+                    <Button color="warning" style={{"margin":"8px"}} onClick={() => setNum(3)}>Siguiente</Button>
                 </div>
             :
                 <div className='register3'>
                     <RegisterForm3 form={form} changed={changed}/>
-                    <button onClick={() => setNum(2)}>Atras</button>
-                    <button type='submit' onClick={registerUser}>Registrarse</button>
+                    {error ? <label style={{"color":"red", "fontWeight": "bolder"}}>El usuario ya existe</label> : null}
+                    <div>
+                        <Button color="warning" style={{"margin":"8px"}} onClick={() => setNum(2)}>Atras</Button>
+                        <Button color="warning" style={{"margin":"8px"}} type='submit' onClick={registerUser}>Registrarse</Button>
+                    </div>
                 </div>
             }
         </div>

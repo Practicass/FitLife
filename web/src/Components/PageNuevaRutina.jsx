@@ -8,6 +8,7 @@ import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
 import { MyButton } from './MyButton'
 import { Global } from "../helpers/Global"
+import { Tooltip } from '@nextui-org/react'
 
 
 const PageNuevaRutina = () => {
@@ -169,9 +170,7 @@ const PageNuevaRutina = () => {
             <div className="page-ejercicios">
                 <div className='content-ejercicios'>
                     <div className="cabecera-ejercicios">
-                        <NavLink to="/newroutine">
-                            <ImCross className="cruz-ejercicios" size="35px" color="#fba92c"></ImCross>
-                        </NavLink>
+                        <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
                         <Header className="header-ejercicios"/>
                     </div>
                     <div className="principal-ejercicios">
@@ -183,6 +182,7 @@ const PageNuevaRutina = () => {
                                     <ul className="ul-ex">
                                         {exercises.map((exercise, index) => (
                                             <li className="li-ex" key={index}>
+                                                <Tooltip color='warning' placement='bottom' content={exercise.description}>
                                                 <MyButton className="boton-ejercicio"
                                                         color="lightGrey"
                                                         size="xl"
@@ -193,7 +193,7 @@ const PageNuevaRutina = () => {
                                                             setNum(1)
                                                         }} >
                                                     {exercise.name}
-                                                </MyButton>
+                                                </MyButton></Tooltip>
                                             </li>
                                         ))}
                                     </ul>

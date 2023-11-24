@@ -1,7 +1,11 @@
 
 const Rutine = require("../models/rutineSchema")
 const Exercise = require ("../models/exerciseSchema")
+
+const Training = require("../models/trainingSchema")
+
 const User = require ("../models/usersSchema")
+
 
 
 
@@ -79,6 +83,146 @@ const rutines = async(req,res) => {
 
     let me = req.user.id
 
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+    const itemsPage = 2
+    
+    const admins = await User.find({rol: "admin"})
+    const rutineAux = await Rutine.find(
+        {
+                 $or: [
+                     { user: me }, // Rutinas del usuario actual
+                     { user:{
+                        $in : admins
+                     }  } // Rutinas de usuarios con rol de administrador
+                 ]
+                })
+                
+    Rutine.find(
+    {
+             $or: [
+                 { user: me }, // Rutinas del usuario actual
+                 { user:{
+                    $in : admins
+                 }  } // Rutinas de usuarios con rol de administrador
+             ]
+            })
+    .populate("exercises user") // Popula los campos 'exercises' y 'user' con sus respectivos datos
+    .paginate(page,itemsPage)
+    .then(rutines => {
+        
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado las rutinas correctamente",
+            rutines,
+            page,
+            itemsPage,
+            total: rutineAux.length
+        });
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se han podido mostrar las rutinas",
+            error
+        });
+    });
+};
+
+const rutinesUser = async(req,res) => {
+
+    let me = req.user.id
+
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+    const itemsPage = 2
+    
+    const admins = await User.find({rol: "admin"})
+    const rutineAux = await Rutine.find({ user: me })
+                
+    Rutine.find({ user: me })
+    .populate("exercises user") // Popula los campos 'exercises' y 'user' con sus respectivos datos
+    .paginate(page,itemsPage)
+    .then(rutines => {
+        
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado las rutinas correctamente",
+            rutines,
+            page,
+            itemsPage,
+            total: rutineAux.length
+        });
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se han podido mostrar las rutinas",
+            error
+        });
+    });
+};
+
+const rutinesAdmin = async(req,res) => {
+
+    let me = req.user.id
+
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+    const itemsPage = 3
+    
+    const admins = await User.find({rol: "admin"})
+    const rutineAux = await Rutine.find(
+        {
+ // Rutinas del usuario actual
+                      user:{
+                        $in : admins
+                     }  // Rutinas de usuarios con rol de administrador
+
+                })
+                
+    Rutine.find(
+    {
+  
+                  user:{
+                    $in : admins
+                 } 
+            })
+    .populate("exercises user") // Popula los campos 'exercises' y 'user' con sus respectivos datos
+    .paginate(page,itemsPage)
+    .then(rutines => {
+        
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado las rutinas correctamente",
+            rutines,
+            page,
+            itemsPage,
+            total: rutineAux.length
+        });
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se han podido mostrar las rutinas",
+            error
+        });
+    });
+};
+
+const rutinesScroll = async(req,res) => {
+
+    let me = req.user.id
+
     const admins = await User.find({rol: "admin"})
 
     Rutine.find(
@@ -146,7 +290,13 @@ const update = (req, res) => {
 const routine = (req,res) => {
     let rutineId = req.params.id
 
-    Rutine.findById(rutineId).populate('exercises').then(rutine => {
+    Rutine.findById(rutineId).populate({
+        path: 'exercises',
+        populate: {
+          path: 'muscle',
+          model: 'Muscle' // Reemplaza 'Muscle' con el nombre de tu modelo de músculos
+        }
+      }).then(rutine => {
         return res.status(200).json({
             status: "success",
             message: "Se ha mostrado la rutina correctamente",
@@ -161,6 +311,41 @@ const routine = (req,res) => {
     })
 }
 
+const favRoutines = async(req,res) => {
+    try{
+        const rutines = await Rutine.find({ user: req.user.id })
+        const rutinesWithTrainings = await Promise.all(
+            rutines.map(async (rutine) => {
+                const numTrainings = await Training.countDocuments({ routine: rutine._id, user: req.user.id });
+                return {
+                    ...rutine.toObject(),
+                    numTrainings,
+                };
+            })
+        );
+        
+        let routines = rutinesWithTrainings.sort((a, b) => b.numTrainings - a.numTrainings).slice(0,3);
+        let routinesAdmin = []
+        if(routines.length < 3){
+            const admins = await User.find({rol: "admin"})
+            routinesAdmin = await Rutine.find({ user:{$in : admins}}).limit(3-routines.length)
+            routines = [...routines, ...routinesAdmin];
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha mostrado la rutina correctamente",
+            routines
+        })
+    }catch(error){
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar la rutina",
+            error
+        })
+    }
+
+}
+
 
 module.exports = {
    
@@ -168,5 +353,9 @@ module.exports = {
     eliminate,
     update,
     rutines,
-    routine
+    rutinesScroll,
+    routine,
+    favRoutines,
+    rutinesUser,
+    rutinesAdmin
 }
