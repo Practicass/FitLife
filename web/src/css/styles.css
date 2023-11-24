@@ -485,3 +485,24 @@
     display: flex;
     flex-direction: column;
 }
+
+/* Estilos para los radio buttons */
+.custom-radio {
+    /* Cambia el color del círculo del radio button */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    outline: none;
+    transition: 0.3s ease-in-out;
+  }
+  
+  /* Cambia el color del círculo cuando está seleccionado */
+  .custom-radio:checked {
+    background-color: var(--color-third); /* Cambia 'YourColorHere' por el color que desees */
+    border-color: var(--color-third); /* Cambia 'YourColorHere' por el color que desees */
+  }
+  
