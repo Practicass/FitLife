@@ -36,22 +36,24 @@ useEffect(() => {
 }, [])
 
   return (
+    <div className="routinesScroll">
     
-    <div>
-      <ul className='ul-adminRo'>
-
-      
-      { routines.map((routine,index) => {
-         if(routine.user.rol == "admin"){
-      return(
-        <li className='li-adminRo' key={index}>
-          <NavLink to={`editRoutine/${routine._id}`}>
-           <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
-          </NavLink>
-        </li>
-      )
-    } })}</ul></div>
-    // <></>
+      <div>
+        <ul className='ul-adminRo'>
+          { routines.map((routine,index) => {
+            if (routine.user.rol == "admin"){
+              return(
+                <li className='li-adminRo' key={index}>
+                  <NavLink to={`editRoutine/${routine._id}`}>
+                    <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
+                  </NavLink>
+                </li>
+              )
+            }
+          })}
+        </ul>
+      </div>
+  </div>
   )
 }
 

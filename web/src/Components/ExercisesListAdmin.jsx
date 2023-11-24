@@ -36,19 +36,20 @@ useEffect(() => {
 }, [])
 
   return (
+    <div className="exerciseScroll">
     
-    <div>
-      <ul className='ul-adminEx'>
-
-      
-      { exercises.map((exercise,index) => {
-      return(
-        <li className='li-adminEx' key={index}>
-         <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
-        </li>
-      )
-    } )}</ul></div>
-    // <></>
+      <div>
+        <ul className='ul-adminEx'>
+          { exercises.map((exercise,index) => {
+            return(
+              <li className='li-adminEx' key={index}>
+                <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </div>
   )
 }
 
