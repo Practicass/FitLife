@@ -127,7 +127,7 @@ const PageListFriends = () => {
                             return(
                                 <>
                                 
-                            <NavLink to={"page"}><div className='friend' key={index}>
+                            <NavLink to={friend._id}><div className='friend' key={index}>
                                 <div className="foto-friend">
                                     <FaUserCircle color='#fba92c' size="50px"/>
                                 </div>
