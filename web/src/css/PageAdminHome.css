@@ -14,10 +14,6 @@
     align-self: center;
     grid-template-areas: "logo-aH dropDown-aH";
     grid-template-columns: 95.84% 4.16%;
-
-    
-
-
 }
 
 .logo-adminHome{
@@ -56,10 +52,12 @@
 }
 .body1Admin{
     grid-area: body1-aH;
+    margin-left: 25%;
 
 }
 .body2Admin{
     grid-area: body2-aH;
+    margin-left: 25%;
     
 }
 
@@ -69,7 +67,7 @@
     background-color: #404040;
     grid-area: body3-aH;
     margin-top: 5%;
-    margin-left: 20%;
+    margin-left: 10%;
     width: 55%;
     height: 550px;
     border-radius: 10px;
@@ -82,7 +80,7 @@
     background-color: #404040;
     grid-area: body4-aH;
     margin-top: 5%;
-    margin-left: 20%;
+    /* margin-left: 0%; */
     width: 55%;
     height: 550px;
     border-radius: 10px;
@@ -96,7 +94,8 @@
  
     display: flex;
     justify-content: start;
-    justify-self: end;
+    justify-self: center;
+    margin-left: 35%;
     align-items: center;
     margin-top: 2%;
 
@@ -109,7 +108,8 @@
     
     display: flex;
     justify-content: start;
-    justify-self: end;
+    justify-self: center;
+    margin-left: 32%;
     align-items: center;
     margin-top: 2%;
 
