@@ -5,6 +5,7 @@ import "../css/PageTraining.css"
 import { NavLink, useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
+import ReactTimeAgo from "react-time-ago"
 
 
 
@@ -14,7 +15,9 @@ const PageShowTraining = () => {
     const [sets, setSets] = useState([]);
 
     const [name , setName] = useState("")
-    const [duration, setDuration] = useState(0)
+    const date = new Date()
+
+    const [duration, setDuration] = useState(date)
     const [nick, setNick] = useState("")
   
 
@@ -37,29 +40,16 @@ const PageShowTraining = () => {
         const data = await request.json()
 
 
-        
-        let routineAux = data.training.sets
-
-        console.log(routineAux)
+        //console.log(routineAux)
+        //console.log(data.training.created_at)
 
         //setSets(setsCopy);
         setName(data.training.name)
         setSets(data.training.sets)
-        setDuration(data.training.duration)
+        setDuration(data.training.created_at)
         setNick(data.training.user.nick)
 
     }  
-
-    const segundosATiempo = (segundos) => {
-        const horas = Math.floor(segundos / 3600);
-        const minutos = Math.floor((segundos % 3600) / 60);
-        if(horas == 0){
-            return`${minutos}m`
-        }else{
-            return `${horas}h ${minutos}m`;
-        }
-        
-    }
 
 
     let uniqueSetId = []
@@ -72,7 +62,7 @@ const PageShowTraining = () => {
         <h1>{name}</h1>
         <div className="titulo-showTraining">
             <label>@{nick}</label>
-            <label>hace {segundosATiempo(1000)}</label>
+            <ReactTimeAgo date={Date.parse(duration)} locale='es-ES' className='date-rectangle'/>
         </div>
         
       </div>
@@ -84,7 +74,7 @@ const PageShowTraining = () => {
 
             if (!uniqueSetId.includes(setId)) {
                 uniqueSetId.push(setId);
-                console.log(set)
+                //console.log(set)
           return(
               <div className={"exercise-training"} key={set._id}>
                   <h2 className="title-exercise">{uniqueSetId.length}.{set.exercise.name}</h2>

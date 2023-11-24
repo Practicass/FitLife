@@ -104,10 +104,80 @@ const exercises = (req, res) => {
     
 }
 
+//Muestra todos los ejercicios  de la base de datos 
+const allExercises = (req, res) => {
+    
+    
+    Exercise.find().sort({ name: 1 }).then(exercises => {
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado correctamente los ejercicios",
+            exercises
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar los ejercicios",
+            error
+        })
+    })
+    
+}
 
+//Actualiza un ejercicio de la base de datos
+const update = (req, res) => {
+
+    let exerciseId = req.params.id
+
+    Exercise.findByIdAndUpdate(exerciseId,{name: req.body.name, muscle: req.body.muscle, description: req.body.description}, {new: true}).then((exercise) => {
+
+        
+        return res.status(200).json({
+            status: "success",
+            message: "Se ha actualizado el ejercicio correctamente",
+            exercise
+        })
+
+    }).catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido actualizar el ejercicio",
+            error
+        })
+    })
+    
+
+
+
+}
+
+//Muestra todos los ejercicios de un músculo de la base de datos 
+const exerciseById = (req, res) => {
+    let id = req.params.id
+    
+    Exercise.findById(id).then(exercises=> {
+        return res.status(200).json({
+            status: "success",
+            message: "Se han mostrado correctamente el ejercicio",
+            exercises
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            status: "error",
+            message: "No se ha podido mostrar el ejercicio",
+            error
+        })
+    })
+    
+}
 
 module.exports = {
     add,
     eliminate,
-    exercises
+    exercises,
+    allExercises, 
+    update,
+    exerciseById
 }

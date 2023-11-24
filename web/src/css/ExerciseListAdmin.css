@@ -1,0 +1,18 @@
+.ul-adminEx {
+    padding: 0;
+    
+}
+
+.li-adminEx {
+    justify-content: center;
+}
+
+.boton-adminEjercicio {
+    width: 80%;
+    margin-bottom: 5%;
+    margin-left: 0%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}

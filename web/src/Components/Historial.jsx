@@ -10,6 +10,7 @@ import ReactTimeAgo from "react-time-ago"
 const Historial = () => {
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(1)
+    const [vacio, setVacio] = useState(false)
     
 
 
@@ -32,11 +33,13 @@ const Historial = () => {
 
         const data = await request.json()
 
-        console.log(data)
+        //console.log(data)
         setHistory(data.trainings)
         setMaxPage(Math.ceil(data.total/data.itemsPerPage))
         
-
+        if(data.trainings.length === 0){
+            setVacio(true)
+        }
         
     }
 
@@ -62,12 +65,16 @@ const Historial = () => {
     
     
 
-
+    const style1 = { "fontSize": "20px", "fontWeight":"bolder"}
   return (
+    
     <div className='principal-history'>
+        {vacio ? <h1 className="self-center" style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
+        <>
         {history.map(training => {
             uniqueExerciseNames = []
             return(
+               
                 <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
                         <h3>{training.name}</h3>
@@ -79,7 +86,7 @@ const Historial = () => {
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
                             const exerciseName = set.exercise.name;
-                            console.log(uniqueExerciseNames)
+                            //console.log(uniqueExerciseNames)
                             if (!uniqueExerciseNames.includes(exerciseName)) {
                                 uniqueExerciseNames.push(exerciseName);
 
@@ -110,7 +117,9 @@ const Historial = () => {
                 }
             }}/>
         </div>
+        </>}
     </div>
+        
   )
 }
 

@@ -43,7 +43,7 @@ const Stat1 = () => {
 //
 //
       setStats({dates:aux2, values:aux})
-      console.log(aux)
+      //console.log(aux)
 
     }
 

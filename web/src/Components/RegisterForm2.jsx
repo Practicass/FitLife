@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { RadioGroup, Radio } from "@nextui-org/react";
 // Formulario de la primera pagina de Registro de usuarios
 const RegisterForm2 = ({form, changed}) => {
     return (
@@ -16,11 +15,12 @@ const RegisterForm2 = ({form, changed}) => {
                 
                 <p>Sexo</p>
                 <input type='radio' name='sex' value='Hombre' id='campoHombre' checked={form.sex === "Hombre"} onChange={changed}/>
-                <label >Hombre</label>
+                <label >&nbsp;Hombre&nbsp;&nbsp;</label>
                 <input type='radio' name='sex' value='Mujer' id='campoMujer'  checked={form.sex === "Mujer"} onChange={changed}/>
-                <label >Mujer</label>
+                <label >&nbsp;Mujer&nbsp;&nbsp;</label>
                 <input type='radio' name='sex' value='Otro' id='campoOtro'  checked={form.sex === "Otro"} onChange={changed}/>
-                <label >Otro</label>
+                <label >&nbsp;Otro&nbsp;&nbsp;</label>
+                
             </form>
         </div>
     )

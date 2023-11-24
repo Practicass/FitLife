@@ -39,11 +39,11 @@ const Stat4 = () => {
         aux2[i] = numeroDia + '/' + numeroMes;
       }
 //
-      //console.log("hola", aux, statsHM)
+      ////console.log("hola", aux, statsHM)
 //
       setStats(aux)
       setDate(aux2)
-      console.log(aux2)
+      ////console.log(aux2)
 
     }
 

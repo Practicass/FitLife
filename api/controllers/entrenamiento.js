@@ -18,9 +18,9 @@ const add = async(req, res) => {
     }
     
     let exercisesIds = [...new Set(sets.map(set => set.exercise))];
-    //console.log(exercisesIds)
+    ////console.log(exercisesIds)
     let exercisesFound = await Exercise.find({_id: {$in: exercisesIds}})
-    //console.log(exercisesFound)
+    ////console.log(exercisesFound)
     if(exercisesFound.length != exercisesIds.length){
         return res.status(500).send({
             status:"error",
@@ -80,7 +80,7 @@ const trainings = async(req,res) => {
     }
     page = parseInt(page);
     let itemsPerPage = 5;
-    if(req.param.itemsPage){
+    if(req.params.itemsPage){
         itemsPerPage = req.params.itemsPage
     }
     itemsPerPage = parseInt(itemsPerPage);

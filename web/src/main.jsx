@@ -19,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
     <NextUIProvider>
+      <main className="dark text-foreground ">
       <App />
+      </main>
     </NextUIProvider>
 
   

@@ -85,7 +85,7 @@ import { Global } from '../helpers/Global'
 
       const data = await request.json()
 
-      console.log(data)
+      //console.log(data)
 
       if(data.status == "success"){
 
@@ -93,7 +93,7 @@ import { Global } from '../helpers/Global'
           authUser()
           navigate("/profile")
       }else{
-      console.log("ERROR")
+      //console.log("ERROR")
       
       }
 
@@ -105,35 +105,37 @@ import { Global } from '../helpers/Global'
 
     
     const cambio = {
-      password: inputValue3
+      password: inputValue3,
+      email: inputValue1
     }
     const request = await fetch(Global.url+"user/update", {
     method: "PUT",
-    body: JSON.stringify(cambio.password),
+    body: JSON.stringify(cambio),
     headers: {
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "Authorization": localStorage.getItem("token")
     }
     })
 
     const data = await request.json()
 
-    console.log(data)
+    //console.log(data)
 
     if(data.status == "success"){
         authUser()
         navigate("/profile")
     }else{
-    console.log("ERROR")
+    //console.log("ERROR")
     
     }
 
 }
 
 const update = (e) => {
-  // console.log("dentro")
+  // //console.log("dentro")
   
   if (auth.email !== inputValue1 || auth.nick !== inputValue2) {
-    // console.log("dentro2")
+    // //console.log("dentro2")
     updateUser(e);
     
   } 
@@ -160,7 +162,7 @@ const update = (e) => {
                 <Logo />
                 </div>
 
-            <NavLink to="/profile"><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
+            <NavLink to={-1}><ImCross className="cross-settings"size="35px" color='#fba92c'/></NavLink>
             {/* Call update to change the user's value */}
               <MyButton size="xs" type="submit" onClick={update}>
               <FaCheck className="check-settings" color='#fba92c' size="50px"/>

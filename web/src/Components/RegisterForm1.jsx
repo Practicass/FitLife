@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 
 // Formulario de la primera pagina de Registro de usuarios

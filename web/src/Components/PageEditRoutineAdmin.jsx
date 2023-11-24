@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Header from "./Header"
-import { NavLink, useNavigate } from 'react-router-dom'
+import Header from "./HeaderAdmin"
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import "../css/PageNuevaRutina.css"
 import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
@@ -11,11 +11,69 @@ import { Global } from "../helpers/Global"
 import { Tooltip } from '@nextui-org/react'
 
 
-const PageNuevaRutina = () => {
-   
+const PageEditRoutineAdmin = () => {
+
+    const {id} = useParams()
     const [num, setNum] = useState(1)
     const [ejercicios, setEjercicios] = useState([])
     const [nombreRutina, setNombreRutina] = useState("")
+    const [nombreRutinaTitulo, setNombreRutinaTitulo] = useState("")
+    useEffect(() => {
+        const ponerNombreRutina = async () => {
+            try {
+                const response = await fetch(Global.url + "rutine/rutine/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }
+                })
+
+                const data = await response.json()
+
+                if (data.status === "success") {
+                    setNombreRutina(data.rutine.name)
+                    setNombreRutinaTitulo(data.rutine.name)
+                }
+                else {
+                    // Mensaje o Pantalla de error
+                    console.error(data.message)
+                }
+            }
+            catch (error) {
+                //console.log("Error al pedir el nombre de la rutina :", error)
+            }
+        }
+        const ponerEjercicios = async() => {
+            try {
+                const response = await fetch(Global.url + "rutine/rutine/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }
+                })
+
+                const data = await response.json()
+
+                if (data.status === "success") {
+                    setEjercicios(data.rutine.exercises)
+                }
+                else {
+                    // Mensaje o Pantalla de error
+                    console.error(data.message)
+                }
+            }
+            catch (error) {
+                //console.log("Error al pedir los ejercicios de la rutina")
+            }
+
+        }
+
+        ponerNombreRutina()
+        ponerEjercicios()
+    }, [])
+
 
     const navigate = useNavigate()
 
@@ -25,10 +83,10 @@ const PageNuevaRutina = () => {
         setEjercicios(newEjercicios)
     }
 
-    const anadirRutina = async () => {
+    const updateRutina = async () => {
         try {
-            const response = await fetch(Global.url + "rutine/add", {
-                method: "POST",
+            const response = await fetch(Global.url + "rutine/update/" + id, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": localStorage.getItem("token")
@@ -54,7 +112,7 @@ const PageNuevaRutina = () => {
         }
     }
 
-        // Para mostrar los ejercicios
+    // Para mostrar los ejercicios
 
     // Se obtiene todos los ejercicios ordenados por musculo
     const[musclesWithExercises, setMusclesWithExercises] = useState([])
@@ -93,12 +151,13 @@ const PageNuevaRutina = () => {
         }
     }
 
+
     return (
         <div className={"page-nueva-rutina"}>
             {num == 1 ?
             <div className='content-nueva-rutina'>
                 <div className="cabecera-nueva-rutina">
-                    <NavLink to="/routines">
+                    <NavLink to="/adminHome">
                         <ImCross
                             className="cruz-nueva-rutina" 
                             size="35px" 
@@ -109,15 +168,15 @@ const PageNuevaRutina = () => {
                 </div>
                 <div className="principal-nueva-rutina">
                     <div className="titulo-boton">
-                        <h1 className="nueva-rutina"> NUEVA RUTINA </h1>
+                        <h1 className="nueva-rutina"> {nombreRutinaTitulo.toUpperCase()} </h1>
                             <MyButton
                                 className="boton-anadir"
                                 color="orangeblack"
                                 size="xxl"
                                 type="submit"
-                                value="Añadir"
-                                onClick={anadirRutina}>
-                                Añadir
+                                value="Guardar"
+                                onClick={updateRutina}>
+                                Guardar
                             </MyButton>
                     </div>
                     <div className="forms-nueva-rutina">
@@ -152,12 +211,12 @@ const PageNuevaRutina = () => {
                                 ))}
                                 <li>
                                     <MyButton className="boton-anadir-ejercicio"
-                                            color="orangeblack"
-                                            size="xxl" 
-                                            type="submit" 
-                                            value="+"
-                                            onClick={() => setNum(2)}>
-                                        +
+                                                color="orangeblack"
+                                                size="xxl" 
+                                                type="submit" 
+                                                value="+"
+                                                onClick={() => setNum(2)}>
+                                            +
                                     </MyButton>
                                 </li>
                             </ul>
@@ -165,47 +224,47 @@ const PageNuevaRutina = () => {
                     </div>
                 </div>
             </div>
-        
             :
             <div className="page-ejercicios">
-                <div className='content-ejercicios'>
-                    <div className="cabecera-ejercicios">
-                        <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
-                        <Header className="header-ejercicios"/>
-                    </div>
-                    <div className="principal-ejercicios">
-                        <h1 className="ejercicios-titulo"> EJERCICIOS </h1>
-                        <div className="div-ejercicios">
-                            {musclesWithExercises.map(({muscle, exercises}) => (
-                                <div className="cada-musculo" key={muscle}>
-                                    <p className="muscle-titulo">{muscle}</p>
-                                    <ul className="ul-ex">
-                                        {exercises.map((exercise, index) => (
-                                            <li className="li-ex" key={index}>
-                                                <Tooltip color='warning' placement='bottom' content={exercise.description}>
-                                                <MyButton className="boton-ejercicio"
-                                                        color="lightGrey"
-                                                        size="xl"
-                                                        type="submit"
-                                                        value={exercise.name}
-                                                        onClick={() => {
-                                                            agregarEjercicio(exercise)
-                                                            setNum(1)
-                                                        }} >
-                                                    {exercise.name}
-                                                </MyButton></Tooltip>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>                    
-                    </div>
+            <div className='content-ejercicios'>
+                <div className="cabecera-ejercicios">
+                    <ImCross className="cruz-ejercicios" size="35px" color="#fba92c" onClick={() => setNum(1)}></ImCross>
+                    <Header className="header-ejercicios"/>
+                </div>
+                <div className="principal-ejercicios">
+                    <h1 className="ejercicios-titulo"> EJERCICIOS </h1>
+                    <div className="div-ejercicios">
+                        {musclesWithExercises.map(({muscle, exercises}) => (
+                            <div className="cada-musculo" key={muscle}>
+                                <p className="muscle-titulo">{muscle}</p>
+                                <ul className="ul-ex">
+                                    {exercises.map((exercise, index) => (
+                                        <li className="li-ex" key={index}>
+                                             <Tooltip color='warning' placement='bottom' content={exercise.description}>
+                                            <MyButton className="boton-ejercicio"
+                                                    color="lightGrey"
+                                                    size="xl"
+                                                    type="submit"
+                                                    value={exercise.name}
+                                                    onClick={() => {
+                                                        agregarEjercicio(exercise)
+                                                        setNum(1)
+                                                    }} >
+                                                {exercise.name}
+                                            </MyButton></Tooltip>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>                    
                 </div>
             </div>
+        </div>
+
             }
         </div>
     )
 }
 
-export default PageNuevaRutina
+export default PageEditRoutineAdmin
