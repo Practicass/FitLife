@@ -1,4 +1,4 @@
-import {extendVariants, Button, Dropdown} from "@nextui-org/react";
+import {extendVariants, Dropdown} from "@nextui-org/react";
 
 export const MyDropDown = extendVariants(Dropdown, {
   variants: {

@@ -53,7 +53,7 @@ useEffect(() => {
         <div className='profile-content'>
             <div className="header-profile">  
               <Logo />
-              <NavLink to="settings"> <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/></NavLink>
+              <NavLink to="/settings"> <IoMdSettings className="settings-logo" color='#fba92c' size="50px"/></NavLink>
               
             </div>
             <div className="profile-principal">
