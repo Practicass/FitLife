@@ -125,9 +125,8 @@ const PageListFriends = () => {
                         {friends.map((friend, index) => {
                             
                             return(
-                                <>
-                                
-                            <NavLink to={friend._id}><div className='friend' key={index}>
+                                <div key={index}> <NavLink to={friend._id}>
+                           <div className='friend' >
                                 <div className="foto-friend">
                                     <FaUserCircle color='#fba92c' size="50px"/>
                                 </div>
@@ -135,8 +134,7 @@ const PageListFriends = () => {
                                 <div className="cruz">
                                     <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
                                 </div>
-                            </div></NavLink>
-                            </>
+                                </div></NavLink></div>
                             )
                         })}
                     </div>
