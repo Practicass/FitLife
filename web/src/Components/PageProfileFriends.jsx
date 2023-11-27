@@ -3,7 +3,7 @@ import Sidebar from './Sidebar'
 import Logo from './Logo'
 import "../css/PageProfile.css"
 import { useParams } from 'react-router-dom'
-import {useAuth} from "../hooks/useAuth"
+
 import {FaUserCircle} from "react-icons/fa"
 import { Global } from '../helpers/Global'
 import { useEffect } from 'react'
@@ -26,7 +26,7 @@ import Historial from "./Historial";
 
   const getProfile = async() => {
     //problemas al pedit autorizacion
-    const request = await fetch(Global.url+"user/profile/"+id, {
+    const request = await fetch(Global.url+"user/profileById/"+id, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +37,7 @@ import Historial from "./Historial";
 
     const data = await request.json()
      setProfile(data.user) 
-    // console.log(data)   
+    console.log(data)   
 }
 
   const getFriends = async() => {
