@@ -47,6 +47,7 @@ const PageListFriends = () => {
         }
     }
 
+
     const [busqueda, setBusqueda] = useState("")
     const [searchResults, setSearchResults] = useState([])
     const [showFriends, setShowFriends] = useState(true)
@@ -68,6 +69,7 @@ const PageListFriends = () => {
 
                 if (data.status === "success") {
                     setSearchResults(data.users)
+                    console.log(data)
                 }
                 else {
                     console.error("Error en la busqueda: ", data.message)
@@ -100,6 +102,21 @@ const PageListFriends = () => {
         }
     }
 
+    const confirmarAmigo = async(idFriend) => {
+        try {
+            await fetch(Global.url + "friend/confirm/"+idFriend, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                },
+            })
+            window.location.reload()
+        } catch (error) {
+            console.error("Error al añadir el amigo: ", error)
+        }
+    }
+
     return (
         <div className="page-list-friends">
             <NavLink to={-1} className="cruz-list-friends">
@@ -108,6 +125,7 @@ const PageListFriends = () => {
             <div className='content-list-friends'>
                 <Header/>
                 <h1 className="titulo-list-friends"> MIS AMIGOS </h1>
+                <NavLink to="/friendrequests" className="solicitud-amistad"><MyButton color="orangeblack" >Solicitudes de amistad</MyButton></NavLink>
                 <div className="principal-list">
                     <form className="busqueda-form-friends" >
                         {/* Sustituir esto por una búsqueda */}
@@ -139,7 +157,43 @@ const PageListFriends = () => {
                     </div>
                     :
                     <div className="list-friends">
-                    {searchResults.map((friend, index) => {
+                    {searchResults.usersRequested && searchResults.usersRequested.map((friend, index) => {
+                        return(
+                        <div className='user-not-friend' key={index}>
+                            <div className="foto-friend">
+                                <FaUserCircle color='#fba92c' size="50px"/>
+                            </div>
+                            <h2 className="nick-friend"> {friend.name} </h2>
+                            <MyButton
+                                className="anadir-friend"
+                                color="orangeblack"
+                                size="xl"
+                                type="submit"
+                                onClick={() => eliminarAmigo(friend._id)}>
+                                Cancelar
+                            </MyButton>
+                        </div>
+                        )
+                    })}
+                    {searchResults.usersRequesting && searchResults.usersRequesting.map((friend, index) => {
+                        return(
+                        <div className='user-not-friend' key={index}>
+                            <div className="foto-friend">
+                                <FaUserCircle color='#fba92c' size="50px"/>
+                            </div>
+                            <h2 className="nick-friend"> {friend.name} </h2>
+                            <MyButton
+                                className="anadir-friend"
+                                color="orangeblack"
+                                size="xl"
+                                type="submit"
+                                onClick={() => confirmarAmigo(friend._id)}>
+                                Aceptar
+                            </MyButton>
+                        </div>
+                        )
+                    })}
+                    {searchResults.users && searchResults.users.map((friend, index) => {
                         return(
                         <div className='user-not-friend' key={index}>
                             <div className="foto-friend">
