@@ -9,6 +9,7 @@ import PageRoutines from '../Components/PageRoutines'
 import PageAddRoutine from '../Components/PageAddRoutine'
 import PageRoutine from '../Components/PageRoutine'
 import PageProfile from '../Components/PageProfile'
+import PageProfileFriends from '../Components/PageProfileFriends'
 import PageStats from '../Components/PageStats'
 import PageListFriends from '../Components/PageListFriends'
 import PageSettings from '../Components/PageSettings'
@@ -64,6 +65,7 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PrivateRoute><PageFeed/></PrivateRoute>}/>
               <Route path='/settings' element={<PrivateRoute><PageSettings/></PrivateRoute>}/>
               <Route path='/listFriends' element={<PrivateRoute><PageListFriends/></PrivateRoute>}/>
+              <Route path='/listFriends/:id' element={<PrivateRoute><PageProfileFriends/></PrivateRoute>}/>
               <Route path='/newroutine' element={<PrivateRoute><PageNuevaRutina/></PrivateRoute>}/>
               <Route path='/editroutine/:id' element={<PrivateRoute><PageEditRoutine/></PrivateRoute>}/>
               <Route path='/showTraining/:id' element={<PrivateRoute><PageShowTraining/></PrivateRoute>}/>

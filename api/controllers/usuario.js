@@ -128,7 +128,7 @@ const login = (req, res) => {
 //Devuelve la informacion de un usuario
 const profile = (req, res) => {
 
-    id = req.params.id
+    let id = req.params.id
 
     if(id == req.user.id){
         User.findById(id)
@@ -163,6 +163,35 @@ const profile = (req, res) => {
 
     
 }
+
+
+
+//Devuelve la informacion de un usuario
+const profileById = (req, res) => {
+
+    let id = req.params.id
+
+        User.findById(id)
+        .select({password:0, role:0})
+        .then(async(user) => {
+            if(!user) return res.status(500).json({status: "error", message: "El usuario no existe"})
+
+
+            return res.status(200).send({
+                status: "success",
+                
+                user
+                
+            })
+
+
+        }).catch(error => {
+            return res.status(500).json({status: "error", message: "Se ha producido un error en la consulta de usuarios"})
+        })
+
+}
+
+    
 
 
 
@@ -408,6 +437,7 @@ module.exports = {
     register,
     login,
     profile,
+    profileById,
     update,
     avatar,
     upload,
