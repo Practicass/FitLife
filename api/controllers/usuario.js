@@ -176,11 +176,10 @@ const profileById = (req, res) => {
         .then(async(user) => {
             if(!user) return res.status(500).json({status: "error", message: "El usuario no existe"})
 
-            let friendInfo = await friendService.friendThisUser(req.user.id , id)
 
             return res.status(200).send({
                 status: "success",
-                user: friendInfo,
+                
                 user
                 
             })

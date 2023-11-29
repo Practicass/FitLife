@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 import {FaUserCircle} from "react-icons/fa"
 import { Global } from '../helpers/Global'
 import { useEffect } from 'react'
-import Historial from "./Historial";
+import HistorialFriend from "./HistorialFriend";
 
 
 
@@ -17,7 +17,7 @@ import Historial from "./Historial";
   const [profile, setProfile] = useState({})
   const [friends, setFriends] = useState(0)
   const {id} = useParams()
-  console.log(id)
+  
  
  
 
@@ -37,7 +37,7 @@ import Historial from "./Historial";
 
     const data = await request.json()
      setProfile(data.user) 
-    console.log(data)   
+
 }
 
   const getFriends = async() => {
@@ -90,7 +90,7 @@ useEffect(() => {
               <h1 className="username">@{profile.nick}</h1> 
               <p className="friends">AMIGOS</p>
               <p className="friends-num">{friends}</p>{/* Revisar para que muestre el numero de amigos*/}
-              <Historial className="hola"/>
+              <HistorialFriend id={id} className="hola"/>
             </div>
             
            

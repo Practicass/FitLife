@@ -40,7 +40,7 @@ export const AuthProvider = ({children}) => {
 
         const data = await request.json()
 
-        console.log(data)
+        // console.log(data)
 
         setAuth(data.user)
         
