@@ -22,7 +22,7 @@ const HistorialFriend = ({id}) => {
 
     const getHistory = async() => {
 
-        const request = await fetch(Global.url+"training/trainings/"+page+"/"+id, {
+        const request = await fetch(Global.url+"training/trainingsById/"+page+"/"+id, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const HistorialFriend = ({id}) => {
   return (
     
     <div className='principal-history'>
-        {vacio ? <h1 className="self-center" style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
+        {vacio ? <h1 className="self-center text-2xl lg:text-6xl " style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
         <>
         {history.map(training => {
             uniqueExerciseNames = []
