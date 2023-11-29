@@ -65,7 +65,8 @@ const HistorialFriend = ({id}) => {
     
     
 
-    const style1 = { "fontSize": "20px", "fontWeight":"bolder"}
+    const style1 = { //"fontSize": "20px",
+     "fontWeight":"bolder"}
   return (
     
     <div className='principal-history'>

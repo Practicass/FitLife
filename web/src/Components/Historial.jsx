@@ -65,11 +65,11 @@ const Historial = () => {
     
     
 
-    const style1 = { "fontSize": "20px", "fontWeight":"bolder"}
+    const style1 = {  "fontWeight":"bolder"}
   return (
     
     <div className='principal-history'>
-        {vacio ? <h1 className="self-center" style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
+        {vacio ? <h1 className="self-center text-xs lg:text-xl" style={style1}>Todavía no has hecho ningún entrenamiento, realiza un entrenamiento y observa aquí tu historial de entrenamientos</h1> :
         <>
         {history.map(training => {
             uniqueExerciseNames = []

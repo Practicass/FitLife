@@ -105,19 +105,21 @@ const style4 = {
 }
 
   const styleTitle = {
-    "fontSize":"60px",
+    //"fontSize":"60px",
     "color":"#fba92c",
     "fontWeight":"bolder",
     "marginLeft": "6.5%"
 }
 const styleTitle2 = {
-  "fontSize":"30px",
+  //"fontSize":"30px",
   "color":"#fff",
   "fontWeight":"bolder",
   "marginLeft": "10%"
 }
 
-const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
+const style5 = { //"fontSize": "40px", 
+                "fontWeight":"bolder", 
+                    "color":"#242424"}
 
 
 // const style1 = { "fontSize": "20px", "fontWeight":"bolder", "color":"#242424"}
@@ -136,16 +138,16 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
     </div>
     <div className="bodyAdminAddExercise">
          <div className="body1AdminAddExercise">
-             <h1   style={styleTitle}>NUEVO EJERCICIO</h1>
+             <h1 className='text-4xl lg:text-6xl'  style={styleTitle}>NUEVO EJERCICIO</h1>
              {/* <button className="body1AdminAddExerciseButton"style={style1}>Eliminar ejercicio</button> */}
 
          </div>
          <div className="body2AdminAddExercise">
-            <h1 style={styleTitle2}>NOMBRE</h1>
+            <h1 style={styleTitle2} className='text-2xl lg:text-3xl'>NOMBRE</h1>
             <input className="inputBody2" onChange={onInputChange1}/>
          </div>
          <div className="body3AdminAddExercise">
-            <h1 style={styleTitle2}>GRUPO MUSCULAR</h1>
+            <h1  className='text-2xl lg:text-3xl'style={styleTitle2}>GRUPO MUSCULAR</h1>
             <div className="musculos">
 
               <RadioGroup
@@ -169,11 +171,11 @@ const style5 = { "fontSize": "40px", "fontWeight":"bolder", "color":"#242424"}
 
          </div>
          <div className="body4AdminAddExercise">
-            <h1 style={styleTitle2}>DESCRIPCIÓN</h1>
+            <h1 style={styleTitle2} className='text-2xl lg:text-3xl'>DESCRIPCIÓN</h1>
             <textarea  className="inputBody4" onChange={onInputChange2} />
          </div>
          <div className="buttonArea-adminAddExercise">
-             <button className="button-adminAddExercise"style={style5} onClick={addExercise}>AÑADIR</button>
+             <button className="button-adminAddExercise text-base lg:text-3xl "style={style5} onClick={addExercise}>AÑADIR</button>
             </div>
 
 

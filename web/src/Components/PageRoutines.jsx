@@ -124,7 +124,7 @@ const PageRoutines = () => {
                 }
                 
                 <div className={'myRoutines-'+eliminate}>
-                    <h2>MIS RUTINAS</h2>
+                    <h2 className='text-2xl lg:text-4xl'>MIS RUTINAS</h2>
                     <div className='routines' >
                         {routines.map( routine => {
                             
@@ -132,8 +132,8 @@ const PageRoutines = () => {
 
                                 return(
                                     
-                                        <div className='square' key={routine._id}>
-                                            <NavLink to={"/training/"+routine._id} className='title-routine'><h3 >{routine.name}</h3></NavLink>
+                                        <div className='square ' key={routine._id}>
+                                            <NavLink to={"/training/"+routine._id} className='title-routine '><h3 className='text-lg lg:text-2xl'>{routine.name}</h3></NavLink>
                                             <div className='cross' ><ImCross size="25px" color='#fba92c' onClick={() => {setId(routine._id) ; setEliminate(true) }}/></div>
                                             <NavLink to={"/training/"+routine._id} className='exercises-routine'>
                                                 <div className='exercises-par'>
@@ -142,7 +142,7 @@ const PageRoutines = () => {
                                                         if(index % 2 == 0 ){
                                                             return(
                                                     
-                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                                <label className="ejerciciosLabel text-xs lg:text-base" key={exercise._id}>{exercise.name}</label>
                                                             )
                                                         }
                                                         
@@ -156,7 +156,7 @@ const PageRoutines = () => {
                                                         if(index % 2 != 0 ){
                                                             return(
                                                     
-                                                                <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
+                                                                <label className="ejerciciosLabel text-xs lg:text-base" key={exercise._id}>{exercise.name}</label>
                                                             )
                                                         }
                                                         
@@ -193,7 +193,7 @@ const PageRoutines = () => {
                     
                 </div>
                 <div className={'popRoutines-'+eliminate}>
-                    <h2>RUTINAS PREDETERMINADAS</h2>
+                    <h2 className='text-2xl lg:text-4xl'>RUTINAS PREDETERMINADAS</h2>
                     <div className='routines' >
                         {routinesAdmin.map( routine => {
                             
@@ -202,7 +202,7 @@ const PageRoutines = () => {
                                 return(
                                     
                                         <div className='square' key={routine._id}>
-                                             <NavLink to={"/training/"+routine._id} className='title-routine'><h3 className='title-routine'>{routine.name}</h3></NavLink>
+                                             <NavLink to={"/training/"+routine._id} className='title-routine'><h3 className='title-routine text-lg lg:text-2xl'>{routine.name}</h3></NavLink>
                                         
                                             
                                             <NavLink to={"/training/"+routine._id} className='exercises-routine'>
