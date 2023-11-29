@@ -11,7 +11,7 @@ const Stat4 = () => {
     const [stats, setStats] = useState([])
     const [goal, setGoal] = useState(480)
     const [date, setDate] = useState([])
-
+    const [error, setError] = useState(false)
 
 
 
@@ -31,12 +31,20 @@ const Stat4 = () => {
 
       let aux =[]
       let aux2 = []
-      for( let i=0; i<data.stats.length;i++){
-        aux[i] = (data.stats[i].value/goal)*100
-        let fecha = new Date(data.stats[i].date)
-        let numeroMes = fecha.getMonth() + 1;
-        let numeroDia = fecha.getDate();
-        aux2[i] = numeroDia + '/' + numeroMes;
+      if (data.stats.length > 0) {
+        console.log('Hay datos')
+        setError(false)
+        for( let i=0; i<data.stats.length;i++){
+          aux[i] = (data.stats[i].value/goal)*100
+          let fecha = new Date(data.stats[i].date)
+          let numeroMes = fecha.getMonth() + 1;
+          let numeroDia = fecha.getDate();
+          aux2[i] = numeroDia + '/' + numeroMes;
+        }  
+      }
+      else {
+        console.log('no hay datos')
+        setError(true)
       }
 //
       ////console.log("hola", aux, statsHM)
@@ -119,7 +127,13 @@ const Stat4 = () => {
 
       return (
         <div className="stat">
-             <ReactApexChart className="stat4" options={state.options} series={state.series} type="radialBar" width="86%"/>
+            { error ?
+            <div className="stat4">
+              <p style={{color: '#fba92c', fontWeight: 'bold', fontSize: '20px'}}>Pinche para añadir nuevas estadísticas de su sueño</p>
+            </div>            
+            : 
+            <ReactApexChart className="stat4" options={state.options} series={state.series} type="radialBar" width="86%"/>
+            }
         </div>
        
       );

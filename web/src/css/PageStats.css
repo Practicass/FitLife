@@ -20,7 +20,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     width: 41%;
-    height: 47%;
+    min-height: 47%;
     border-radius: 10px;
     display:flex;
     justify-content: center;

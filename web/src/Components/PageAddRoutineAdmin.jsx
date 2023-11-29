@@ -15,6 +15,8 @@ const PageAddRoutineAdmin = () => {
     const [num, setNum] = useState(1)
     const [ejercicios, setEjercicios] = useState([])
     const [nombreRutina, setNombreRutina] = useState("")
+    const [errorNombre, setErrorNombre] = useState(false)
+    const [errorEjercicios, setErrorEjercicios] = useState(false)
 
     const navigate = useNavigate()
 
@@ -26,6 +28,20 @@ const PageAddRoutineAdmin = () => {
 
     const anadirRutina = async () => {
         try {
+            if (!nombreRutina.trim()) {
+                setErrorNombre(true)
+            } else {
+                setErrorNombre(false)
+            }
+            if (ejercicios.length === 0) {
+                setErrorEjercicios(true)
+            } else {
+                setErrorEjercicios(false)
+            }
+            if (errorNombre || errorEjercicios) {
+                return
+            }
+
             const response = await fetch(Global.url + "rutine/add", {
                 method: "POST",
                 headers: {
@@ -92,6 +108,8 @@ const PageAddRoutineAdmin = () => {
         }
     }
 
+    const styleError = {"color": "red", "fontWeight": "bold", "marginBottom": "1%"}
+
     return (
         <div className={"page-nueva-rutina"}>
             {num == 1 ?
@@ -131,6 +149,11 @@ const PageAddRoutineAdmin = () => {
                                     onChange={(e) => setNombreRutina(e.target.value)}    
                                 />
                             </form>
+                            { errorNombre ? (
+                                <p style={styleError}> La rutina debe poseer un nombre </p>
+                            ) : (
+                                null
+                            )}
                         </div>
                         <div className="div-button-ejercicios">
                             <p className="ejercicios-titulo-boton"> EJERCICIOS </p>
@@ -149,6 +172,13 @@ const PageAddRoutineAdmin = () => {
                                         </ImCross>
                                     </li>
                                 ))}
+                                <li>
+                                    { errorEjercicios ? (
+                                        <p style={styleError}> La rutina debe poseer 1 o más ejercicios </p>
+                                    ) : (
+                                        null
+                                    ) }
+                                </li>
                                 <li>
                                     <MyButton className="boton-anadir-ejercicio"
                                             color="orangeblack"
