@@ -81,7 +81,7 @@ const Feed = () => {
                             {training.sets.map(set => {
                                     const exerciseName = set.exercise.name;
                             console.log(set.exercise.name)    
-                                    if (!uniqueExerciseNames.includes(exerciseName)) {
+                                    if (!uniqueExerciseNames.includes(exerciseName) && uniqueExerciseNames.length < 5) {
                                         uniqueExerciseNames.push(exerciseName);
         
                                 return(

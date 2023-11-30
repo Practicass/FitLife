@@ -87,7 +87,8 @@ const Historial = () => {
                         {training.sets.map(set => {
                             const exerciseName = set.exercise.name;
                             //console.log(uniqueExerciseNames)
-                            if (!uniqueExerciseNames.includes(exerciseName)) {
+                            if (!uniqueExerciseNames.includes(exerciseName) && uniqueExerciseNames.length < 5) {
+                                //console.log(uniqueExerciseNames.length)
                                 uniqueExerciseNames.push(exerciseName);
 
                             return (
