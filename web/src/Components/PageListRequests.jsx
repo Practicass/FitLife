@@ -53,25 +53,6 @@ const PageListRequests = () => {
 
 
 
-    const anadirAmigo = async(idFriend) => {
-        //console.log(idFriend)
-        try {
-            await fetch(Global.url + "friend/add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": localStorage.getItem("token")
-                },
-                body: JSON.stringify({
-                    friend: idFriend
-                })
-            })
-            window.location.reload()
-        } catch (error) {
-            console.error("Error al añadir el amigo: ", error)
-        }
-    }
-
     const confirmarAmigo = async(idFriend) => {
         try {
             await fetch(Global.url + "friend/confirm/"+idFriend, {
