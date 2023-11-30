@@ -124,7 +124,6 @@ import { Global } from '../helpers/Global'
 
     const data = await request.json()
 
-    console.log(data)
 
     if(data.status === "success"){
         authUser()
@@ -139,7 +138,7 @@ const update = async(e) => {
   // //console.log("dentro")
   let resultUser 
   let resultPasswd
-
+  
   if (inputValue1 === "") {
     setErrorInput1(1)
     if (inputValue2 === "") {
@@ -155,7 +154,7 @@ const update = async(e) => {
     setErrorInput2(0)
 
     if (auth.email !== inputValue1 || auth.nick !== inputValue2) {
-      resultUser = updateUser(e)
+      resultUser = await updateUser(e)
     } else {
       resultUser = "success"
     }
@@ -197,6 +196,11 @@ const update = async(e) => {
       "color": "red",
       "fontWeight": "bold", 
       "marginBottom": "1%"}
+
+    const styleErrorGeneral = {
+      "color": "white",
+      "fontWeight": "bold", 
+      "marginBottom": "1%"}
     
   return(
     <div className="settings-page">
@@ -227,12 +231,12 @@ const update = async(e) => {
             <h1 className="settings-psw">Contraseña:</h1> 
             { errorGeneral == 1 ? (
               <p
-                style={styleError}>
+                style={styleErrorGeneral}>
                 Se ha actualizado la contraseña pero el correo electrónico y el nombre de usuario no
               </p>
             ) : errorGeneral == 2 ? (
               <p
-                style={styleError}>
+                style={styleErrorGeneral}>
                 Se han actualizado el correo electrónico y el nombre de usuario pero la contraseña no
               </p>
             ) : (
