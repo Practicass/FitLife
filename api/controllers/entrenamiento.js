@@ -91,7 +91,7 @@ const trainings = async(req,res) => {
     let friendsIds = await friendService.friendUserids(req.user.id)
     let traingingsAux = await Training.find({user: {$in: friendsIds.friends}})
 
-    Training.find({user: {$in: friendsIds.friends}}).sort('-created_at').populate("sets.exercise", " -__v").populate({
+    Training.find({user: {$in: friendsIds.friends}, public: true}).sort('-created_at').populate("sets.exercise", " -__v").populate({
         path: 'user',
         select: 'nick'
 }).paginate(page, itemsPerPage)
