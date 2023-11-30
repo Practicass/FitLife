@@ -123,5 +123,29 @@
     margin-right: 10%;
 }
 
+.user-request {
+    background-color: var(--color-primary);
+    width: 40%;
+    display: grid;
+    grid-template-areas: "foto-friend nick-friend anadir-friend-request cruz-request";
+    grid-template-columns: 10% 60% auto auto;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+}
 
 
+.anadir-friend-request {
+    grid-area: auto;
+    display: flex;
+    align-self: center;
+}
+
+.cruz-request {
+    grid-area: auto;
+    color: var(--color-third);
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}

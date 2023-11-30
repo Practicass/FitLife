@@ -83,20 +83,20 @@ const PageListRequests = () => {
                          friends.usersRequesting.map((friend, index) => {
                             
                             return(
-                                <div className='user-not-friend' key={index}>
+                                <div className='user-request' key={index}>
                                 <div className="foto-friend">
                                     <FaUserCircle color='#fba92c' size="50px"/>
                                 </div>
                                 <h2 className="nick-friend"> {friend.name} </h2>
                                 <MyButton
-                                    className="anadir-friend"
+                                    className="anadir-friend-request"
                                     color="orangeblack"
                                     size="xl"
                                     type="submit"
                                     onClick={() => confirmarAmigo(friend._id)}>
                                     Aceptar
                                 </MyButton>
-                                <div className="cruz">
+                                <div className="cruz-request">
                                     <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
                                 </div>
                             </div>
