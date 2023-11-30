@@ -79,7 +79,8 @@ const PageListRequests = () => {
                 <div className="principal-list">
                     
                     <div className="list-friends">
-                        {friends.usersRequesting && friends.usersRequesting.map((friend, index) => {
+                    { friends.usersRequesting.length > 0 ? (
+                        friends.usersRequesting && friends.usersRequesting.map((friend, index) => {
                             
                             return(
                                 <div className='user-not-friend' key={index}>
@@ -100,7 +101,14 @@ const PageListRequests = () => {
                                 </div>
                             </div>
                             )
-                        })}
+                        })
+                    ) : (
+                        <p style={{"marginLeft": "41%", 
+                            "alignSelf": "center",
+                            "fontWeight":"bolder"}}> 
+                            No hay solicitudes pendientes
+                        </p>
+                    )}
                     </div>
                     
                     
