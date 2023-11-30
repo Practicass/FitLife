@@ -7,7 +7,6 @@ import PageHistory from '../Components/PageHistory'
 import PageRegister from '../Components/PageRegister'
 import PageRoutines from '../Components/PageRoutines'
 import PageAddRoutine from '../Components/PageAddRoutine'
-import PageRoutine from '../Components/PageRoutine'
 import PageProfile from '../Components/PageProfile'
 import PageProfileFriends from '../Components/PageProfileFriends'
 import PageStats from '../Components/PageStats'
@@ -59,7 +58,6 @@ const RouterPrincipal = () => {
               <Route path='/register' element={<PageRegister/>}/>
               <Route path='/routines' element={<PrivateRoute><PageRoutines/></PrivateRoute>}/>
               <Route path='/addRoutine' element={<PrivateRoute><PageAddRoutine/></PrivateRoute>}/>
-              <Route path='/routine' element={<PrivateRoute><PageRoutine/></PrivateRoute>}/>
               <Route path='/profile' element={<PrivateRoute><PageProfile/></PrivateRoute>}/>
               <Route path='/stats' element={<PrivateRoute><PageStats/></PrivateRoute>}/>
               <Route path='/stats/:num' element={<PrivateRoute><PageStat/></PrivateRoute>}/>
