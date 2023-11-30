@@ -156,7 +156,7 @@ const PageListFriends = () => {
                                     </div>
                                     <h2 className="nick-friend"> {friend.name} </h2>
                                     <div className="cruz">
-                                        <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
+                                        <NavLink><ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/></NavLink>
                                     </div>
                                     </div></NavLink></div>
                                 )
