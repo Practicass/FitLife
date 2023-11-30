@@ -397,7 +397,7 @@
 .register-bar{
     display:flex;
     width: 40%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     justify-content: space-around;
 }
 
