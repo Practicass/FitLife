@@ -119,7 +119,45 @@ const trainings = async(req,res) => {
 
 }
 
+const trainingsById = async(req,res) => {
 
+    idUser = req.params.id
+
+    if(req.params.id){
+        idUser = req.params.id
+    }
+
+    let page = 1;
+    if(req.params.page){
+      page = req.params.page;
+    }
+    page = parseInt(page);
+  
+    let itemsPerPage = 5;
+    let traingingsAux = await Training.find({user:idUser})
+
+  
+    Training.find({user:idUser}).sort('-created_at').populate("sets.exercise", "-user -__v").paginate(page, itemsPerPage).then(async (trainings,error) => {
+
+        if(error ||!trainings){
+          return res.status(500).send({
+            status: "error",
+            message: "No hay entrenamientos disponibles",
+            error
+          })
+        }
+        
+        return res.status(200).send({
+          status: "success",
+          trainings,
+          page,
+          itemsPerPage,
+          total: traingingsAux.length
+          
+        })
+    })
+
+}
 
 //Muestra todos los entrenamientos de un usuario 
 const trainingsUser = async(req, res) => {
@@ -226,5 +264,6 @@ module.exports = {
     trainings,
     trainingsUser,
     trainingsUserLastPage,
-    training
+    training,
+    trainingsById
 }

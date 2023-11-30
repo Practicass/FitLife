@@ -18,6 +18,9 @@ const PageEditRoutine = () => {
     const [ejercicios, setEjercicios] = useState([])
     const [nombreRutina, setNombreRutina] = useState("")
     const [nombreRutinaTitulo, setNombreRutinaTitulo] = useState("")
+    const [errorNombre, setErrorNombre] = useState(false)
+    const [errorEjercicios, setErrorEjercicios] = useState(false)
+
     useEffect(() => {
         const ponerNombreRutina = async () => {
             try {
@@ -85,6 +88,23 @@ const PageEditRoutine = () => {
 
     const updateRutina = async () => {
         try {
+            if (!nombreRutina.trim()) {
+                setErrorNombre(true)
+                if (ejercicios.length == 0) {
+                    setErrorEjercicios(true)
+                } else {
+                    setErrorEjercicios(false)
+                }
+                return
+            } else if (ejercicios.length == 0) {
+                setErrorNombre(false)
+                setErrorEjercicios(true)
+                return
+            } else {
+                setErrorNombre(false)
+                setErrorEjercicios(false)
+            }
+
             const response = await fetch(Global.url + "rutine/update/" + id, {
                 method: "PUT",
                 headers: {
@@ -151,7 +171,7 @@ const PageEditRoutine = () => {
         }
     }
 
-
+    const styleError = {"color": "red", "fontWeight": "bold", "marginBottom": "1%"}
     return (
         <div className={"page-nueva-rutina"}>
             {num == 1 ?
@@ -169,15 +189,15 @@ const PageEditRoutine = () => {
                 <div className="principal-nueva-rutina">
                     <div className="titulo-boton">
                         <h1 className="nueva-rutina"> {nombreRutinaTitulo.toUpperCase()} </h1>
-                            <MyButton
-                                className="boton-anadir"
-                                color="orangeblack"
-                                size="xxl"
-                                type="submit"
-                                value="Guardar"
-                                onClick={updateRutina}>
-                                Guardar
-                            </MyButton>
+                        <MyButton
+                            className="boton-anadir"
+                            color="orangeblack"
+                            size="xxl"
+                            type="submit"
+                            value="Guardar"
+                            onClick={updateRutina}>
+                            Guardar
+                        </MyButton>
                     </div>
                     <div className="forms-nueva-rutina">
                         <div className="div-form-nombre-rutina">
@@ -191,6 +211,11 @@ const PageEditRoutine = () => {
                                     onChange={(e) => setNombreRutina(e.target.value)}    
                                 />
                             </form>
+                            { errorNombre ? (
+                                <p style={styleError}> La rutina debe poseer un nombre </p>
+                            ) : (
+                                null
+                            )}
                         </div>
                         <div className="div-button-ejercicios">
                             <p className="ejercicios-titulo-boton"> EJERCICIOS </p>
@@ -209,6 +234,13 @@ const PageEditRoutine = () => {
                                         </ImCross>
                                     </li>
                                 ))}
+                                <li>
+                                    { errorEjercicios ? (
+                                        <p style={styleError}> La rutina debe poseer 1 o más ejercicios </p>
+                                    ) : (
+                                        null
+                                    ) }
+                                </li>
                                 <li>
                                     <MyButton className="boton-anadir-ejercicio"
                                                 color="orangeblack"

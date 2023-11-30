@@ -110,7 +110,6 @@ const PageListFriends = () => {
                 <h1 className="titulo-list-friends"> MIS AMIGOS </h1>
                 <div className="principal-list">
                     <form className="busqueda-form-friends" >
-                        {/* Sustituir esto por una búsqueda */}
                         <input 
                             className="busqueda-friends"
                             type="text"
@@ -122,41 +121,58 @@ const PageListFriends = () => {
                     </form>
                     {showFriends ?
                     <div className="list-friends">
-                        {friends.map((friend, index) => {
+                        { friends.length === 0 ? (
+                            <p style={{
+                                    fontWeight: "bold", 
+                                    marginLeft: "37%"}}> 
+                                Aún no has añadido ningún amigo. Busca para añadir 
+                            </p>
+                        ) : (
+                            friends.map((friend, index) => {
                             
-                            return(
-                            <div className='friend' key={index}>
-                                <div className="foto-friend">
-                                    <FaUserCircle color='#fba92c' size="50px"/>
-                                </div>
-                                <h2 className="nick-friend"> {friend.name} </h2>
-                                <div className="cruz">
-                                    <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
-                                </div>
-                            </div>
-                            )
-                        })}
+                                return(
+                                    <div key={index}> <NavLink to={friend._id}>
+                               <div className='friend' >
+                                    <div className="foto-friend">
+                                        <FaUserCircle color='#fba92c' size="50px"/>
+                                    </div>
+                                    <h2 className="nick-friend"> {friend.name} </h2>
+                                    <div className="cruz">
+                                        <ImCross size="25px" onClick={() => eliminarAmigo(friend._id)}/>
+                                    </div>
+                                    </div></NavLink></div>
+                                )
+                            })    
+                        )}
                     </div>
                     :
                     <div className="list-friends">
-                    {searchResults.map((friend, index) => {
-                        return(
-                        <div className='user-not-friend' key={index}>
-                            <div className="foto-friend">
-                                <FaUserCircle color='#fba92c' size="50px"/>
-                            </div>
-                            <h2 className="nick-friend"> {friend.name} </h2>
-                            <MyButton
-                                className="anadir-friend"
-                                color="orangeblack"
-                                size="xl"
-                                type="submit"
-                                onClick={() => anadirAmigo(friend._id)}>
-                                Añadir
-                            </MyButton>
-                        </div>
-                        )
-                    })}
+                        { searchResults.length === 0 ? (
+                            <p style={{
+                                    fontWeight: "bold", 
+                                    marginLeft: "37%"}}> 
+                                No hay resultados para su búsqueda 
+                            </p>
+                        ) : (
+                            searchResults.map((friend, index) => {
+                                return(
+                                <div className='user-not-friend' key={index}>
+                                    <div className="foto-friend">
+                                        <FaUserCircle color='#fba92c' size="50px"/>
+                                    </div>
+                                    <h2 className="nick-friend"> {friend.name} </h2>
+                                    <MyButton
+                                        className="anadir-friend"
+                                        color="orangeblack"
+                                        size="xl"
+                                        type="submit"
+                                        onClick={() => anadirAmigo(friend._id)}>
+                                        Añadir
+                                    </MyButton>
+                                </div>
+                                )
+                            })
+                        )}
                     </div>
                     }
                 </div>
