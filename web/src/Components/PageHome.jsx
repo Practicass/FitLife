@@ -84,19 +84,19 @@ const PageHome = () => {
 
   ////console.log(auth)
   return (
-    <div className={"page-"+sidebar}>
+    <div className={"page-"+sidebar }>
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='content'>
         <Header/>
-        <div className='principal-home'>
+        <div className='principal-home '>
 
-                <NavLink to="/stats/3" className="stats"><Stat3/></NavLink>
-                <div to="/routines" className="routines-home">
+                <NavLink to="/stats/3" className="stats "><Stat3/></NavLink>
+                <div to="/routines" className="routines-home text-xs lg:text-xl">
                   {routines.map((routine) =>  {
                       return(
                         <div className='routine-home' key={routine._id}>
                           <label>{routine.name}</label>
-                          <NavLink to={"/training/"+routine._id} className="iniciar-training-home">INICIAR</NavLink>
+                          <NavLink to={"/training/"+routine._id} className="iniciar-training-home text-xs lg:text-xl">INICIAR</NavLink>
                         </div>
                       )
                     }
@@ -109,14 +109,14 @@ const PageHome = () => {
                     return(
                         <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                             <div className='info-rectangle'>
-                                <h3>{training.name}</h3>
-                                <h3>@{training.user.nick}</h3>
-                                <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
-                                <label>{segundosATiempo(training.duration)}</label>
+                                <h3 className='text-1xs lg:text-xl '>{training.name}</h3>
+                                <h3 className='text-xs lg:text-xl'>@{training.user.nick}</h3>
+                                <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='text-xs lg:text-xl date-rectangle'/>
+                                <label className='text-xs lg:text-xl'>{segundosATiempo(training.duration)}</label>
                             </div>
-                            <div className='separator'></div>
-                            <div className='exercises-rectangle'>
-                                <h4>Ejercicios:</h4>
+                            <div className='separator '></div>
+                            <div className='exercises-rectangle text-xs lg:text-xl'>
+                                <h4 className='text-1xs lg:text-xl'>Ejercicios:</h4>
                                 {training.sets.map(set => {
                                     const exerciseName = set.exercise.name;
 

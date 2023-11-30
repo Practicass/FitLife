@@ -8,7 +8,7 @@ import Historial from './Historial'
 const PageHistory = () => {
     const [sidebar, setSidebar] = useState(false)
     const styleTitle = {
-        "fontSize":"60px",
+        //"fontSize":"60px",
         "color":"#fba92c", 
         "fontWeight":"bolder",
         "marginLeft": "100px"
@@ -19,7 +19,7 @@ const PageHistory = () => {
       <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
       <div className='content'>
         <Header/>
-        <h1 style={styleTitle}>HISTORIAL</h1>
+        <h1 style={styleTitle} className='text-4xl lg:text-6xl'>HISTORIAL</h1>
         <div className='history-page-content'>  
           <Historial />
         </div>
