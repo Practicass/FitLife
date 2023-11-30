@@ -79,8 +79,8 @@ const PageListRequests = () => {
                 <div className="principal-list">
                     
                     <div className="list-friends">
-                    { friends.usersRequesting.length > 0 ? (
-                        friends.usersRequesting && friends.usersRequesting.map((friend, index) => {
+                    { friends.usersRequesting && friends.usersRequesting.length > 0 ? (
+                         friends.usersRequesting.map((friend, index) => {
                             
                             return(
                                 <div className='user-not-friend' key={index}>
