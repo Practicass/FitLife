@@ -209,7 +209,7 @@ const PageRoutines = () => {
                                                 <div className='exercises-par'>
                                                 
                                                     { routine.exercises.map((exercise,index) => {
-                                                        if(index % 2 == 0 ){
+                                                        if(index % 2 == 0 && index < 12){
                                                             return(
                                                     
                                                                 <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
@@ -223,7 +223,7 @@ const PageRoutines = () => {
 
                                                 <div className='exercises-impar'>
                                                 { routine.exercises.map((exercise,index) => {
-                                                        if(index % 2 != 0 ){
+                                                        if(index % 2 != 0 && index < 12){
                                                             return(
                                                     
                                                                 <label className="ejerciciosLabel" key={exercise._id}>{exercise.name}</label>
