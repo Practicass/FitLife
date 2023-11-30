@@ -98,7 +98,6 @@ const Feed = () => {
             <p style={{"marginTop": "2%", 
                        "textAlign": "center", 
                        "alignItems": "center", 
-                       "fontSize": "20px", 
                        "fontWeight":"bolder"}}> 
                 No hay actividad registrada de tus amigos 
             </p>

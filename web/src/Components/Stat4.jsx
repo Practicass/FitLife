@@ -32,7 +32,6 @@ const Stat4 = () => {
       let aux =[]
       let aux2 = []
       if (data.stats.length > 0) {
-        console.log('Hay datos')
         setError(false)
         for( let i=0; i<data.stats.length;i++){
           aux[i] = (data.stats[i].value/goal)*100
@@ -43,7 +42,6 @@ const Stat4 = () => {
         }  
       }
       else {
-        console.log('no hay datos')
         setError(true)
       }
 //
@@ -129,7 +127,7 @@ const Stat4 = () => {
         <div className="stat">
             { error ?
             <div className="stat4">
-              <p style={{color: '#fba92c', fontWeight: 'bold', fontSize: '20px'}}>Pinche para añadir nuevas estadísticas de su sueño</p>
+              <p style={{color: '#fba92c', fontWeight: 'bold'}}>Pinche para añadir nuevas estadísticas de su "Sueño" </p>
             </div>            
             : 
             <ReactApexChart className="stat4" options={state.options} series={state.series} type="radialBar" width="86%"/>

@@ -31,16 +31,19 @@ const PageNuevaRutina = () => {
         try {
             if (!nombreRutina.trim()) {
                 setErrorNombre(true)
+                if (ejercicios.length == 0) {
+                    setErrorEjercicios(true)
+                } else {
+                    setErrorEjercicios(false)
+                }
+                return
+            } else if (ejercicios.length == 0) {
+                setErrorNombre(false)
+                setErrorEjercicios(true)
+                return
             } else {
                 setErrorNombre(false)
-            }
-            if (ejercicios.length === 0) {
-                setErrorEjercicios(true)
-            } else {
                 setErrorEjercicios(false)
-            }
-            if (errorNombre || errorEjercicios) {
-                return
             }
 
             const response = await fetch(Global.url + "rutine/add", {

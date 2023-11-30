@@ -90,16 +90,19 @@ const PageEditRoutine = () => {
         try {
             if (!nombreRutina.trim()) {
                 setErrorNombre(true)
+                if (ejercicios.length == 0) {
+                    setErrorEjercicios(true)
+                } else {
+                    setErrorEjercicios(false)
+                }
+                return
+            } else if (ejercicios.length == 0) {
+                setErrorNombre(false)
+                setErrorEjercicios(true)
+                return
             } else {
                 setErrorNombre(false)
-            }
-            if (ejercicios.length === 0) {
-                setErrorEjercicios(true)
-            } else {
                 setErrorEjercicios(false)
-            }
-            if (errorNombre || errorEjercicios) {
-                return
             }
 
             const response = await fetch(Global.url + "rutine/update/" + id, {
@@ -186,15 +189,15 @@ const PageEditRoutine = () => {
                 <div className="principal-nueva-rutina">
                     <div className="titulo-boton">
                         <h1 className="nueva-rutina"> {nombreRutinaTitulo.toUpperCase()} </h1>
-                            <MyButton
-                                className="boton-anadir"
-                                color="orangeblack"
-                                size="xxl"
-                                type="submit"
-                                value="Guardar"
-                                onClick={updateRutina}>
-                                Guardar
-                            </MyButton>
+                        <MyButton
+                            className="boton-anadir"
+                            color="orangeblack"
+                            size="xxl"
+                            type="submit"
+                            value="Guardar"
+                            onClick={updateRutina}>
+                            Guardar
+                        </MyButton>
                     </div>
                     <div className="forms-nueva-rutina">
                         <div className="div-form-nombre-rutina">
