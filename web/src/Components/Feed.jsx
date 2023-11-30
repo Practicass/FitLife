@@ -59,12 +59,13 @@ const Feed = () => {
     }, [page])
 
     
-    const uniqueExerciseNames = []
+    let uniqueExerciseNames = []
 
 
   return (
     <div className='principal-history'>
         {history.map(training => {
+            uniqueExerciseNames =  []
             return(
                 <NavLink to={"/showTraining/"+training._id} key={training._id} className='rectangle'>
                     <div className='info-rectangle'>
@@ -78,7 +79,7 @@ const Feed = () => {
                         <h4>Ejercicios:</h4>
                         {training.sets.map(set => {
                              const exerciseName = set.exercise.name;
-
+                            console.log(set.exercise.name)
                              if (!uniqueExerciseNames.includes(exerciseName)) {
                                  uniqueExerciseNames.push(exerciseName);
  

@@ -115,3 +115,12 @@
     align-items: center;
     margin-top: 3%;
 }
+
+.solicitud-amistad{
+    display: flex;
+    justify-content: end;
+    margin-right: 10%;
+}
+
+
+
