@@ -191,13 +191,6 @@ const profileById = (req, res) => {
 
 }
 
-    
-
-
-
-
-
-
 //Modifica un usuario
 const update = (req, res) => {
 
@@ -238,8 +231,8 @@ const update = (req, res) => {
         });
 
         if (userIsset) {
-            return res.status(200).send({
-                status: "success",
+            return res.status(400).send({
+                status: "error",
                 message: "El usuario ya existe"
             });
         }

@@ -44,9 +44,9 @@
 
     display: grid;
     grid-template-areas: "lf1 ct1 rg1"
-                        "lf2 ct2 rg2"
-                        "lf3 ct2 rg3"
-                        "lf4 ct2 rg4";
+                        "lf2 ct2 rg"
+                        "lf3 ct2 rg"
+                        "lf4 ct2 rg";
     grid-template-columns: 33.33% 33.33% 33.33%;
     grid-template-rows: 80% 25% 25% 25%;
 }
@@ -117,6 +117,7 @@
     background-color: #9e9e9e;
    
 }
+
 .settings-form input[type="password"]{
     color: black;
     height: 40px;
@@ -144,4 +145,24 @@
 
 .check{
     border: 4px solid white;
+}
+
+.errores-settings {
+    grid-area: rg;
+    display: grid;
+    grid-template-areas:  "error-inp1"
+                          "error-inp2"
+                          "error-inp3"  ;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+
+}
+
+.error-inp1,
+.error-inp2,
+.error-inp3 {
+    grid-area: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+    height: 40px;
 }
