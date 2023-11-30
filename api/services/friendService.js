@@ -4,8 +4,8 @@ const Friend = require("../models/friendSchema")
 const friendUserids = async(identityUserId) => {
     try{
 
-        let friends = await Friend.find({"user": identityUserId , "confirmed": true}).select({"friend": 1, "_id": 0}).populate("friend")
-        let friends2 = await Friend.find({"friend": identityUserId, "confirmed": true}).select({"user": 1, "_id": 0}).populate("user")
+        let friends = await Friend.find({"user": identityUserId }).select({"friend": 1, "_id": 0}).populate("friend")
+        let friends2 = await Friend.find({"friend": identityUserId}).select({"user": 1, "_id": 0}).populate("user")
         
         ////console.log(friends)
         let friendsClean = [];
@@ -32,7 +32,7 @@ const friendUserids = async(identityUserId) => {
 const friendThisUser = async(identityUserId, profileUserId) => {
     
 
-    let friend = await Friend.find({$or:[{"user": identityUserId ,"friend": profileUserId, "confirmed": true},{"user": profileUserId ,"friend": identityUserId, "confirmed": true}]})
+    let friend = await Friend.find({$or:[{"user": identityUserId ,"friend": profileUserId},{"user": profileUserId ,"friend": identityUserId}]})
     if(friend.length != 0){
         return{friend}
     }
@@ -44,13 +44,9 @@ const friendThisUser = async(identityUserId, profileUserId) => {
 
 
 
-
-
-
 module.exports = {
 
     friendUserids,
     friendThisUser
-    
 
 }

@@ -26,7 +26,6 @@ import PageEditRoutineAdmin from '../Components/PageEditRoutineAdmin'
 import PageEditRoutine from "../Components/PageEditRoutine"
 // import PageNewPassword from '../Components/PageNewPassword'
 import useAuth from "../hooks/useAuth"
-import PageListRequests from "../Components/PageListRequests"
 
 
 
@@ -65,7 +64,6 @@ const RouterPrincipal = () => {
               <Route path='/friends' element={<PrivateRoute><PageFeed/></PrivateRoute>}/>
               <Route path='/settings' element={<PrivateRoute><PageSettings/></PrivateRoute>}/>
               <Route path='/listFriends' element={<PrivateRoute><PageListFriends/></PrivateRoute>}/>
-              <Route path='/friendrequests' element={<PrivateRoute><PageListRequests/></PrivateRoute>}/>
               <Route path='/newroutine' element={<PrivateRoute><PageNuevaRutina/></PrivateRoute>}/>
               <Route path='/editroutine/:id' element={<PrivateRoute><PageEditRoutine/></PrivateRoute>}/>
               <Route path='/showTraining/:id' element={<PrivateRoute><PageShowTraining/></PrivateRoute>}/>

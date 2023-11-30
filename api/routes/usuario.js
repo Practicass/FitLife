@@ -28,8 +28,6 @@ router.post("/upload", [auth.auth, uploads.single("file")], UserController.uploa
 router.get("/avatar/:file", auth.auth, UserController.avatar)
 router.get("/counters/:id?", auth.auth, UserController.counters)
 router.get("/searchUsers/:searchTerm", auth.auth, UserController.searchUsers)
-router.get("/searchRequests", auth.auth, UserController.searchRequests)
-
 
 
 module.exports = router

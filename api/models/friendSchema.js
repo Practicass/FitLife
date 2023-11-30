@@ -18,10 +18,6 @@ const friendSchema = Schema({
     created_at: {
         type: Date,
         default: Date.now
-    },
-    confirmed: {
-        type: Boolean,
-        default: false
     }
 
     

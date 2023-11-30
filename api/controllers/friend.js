@@ -107,7 +107,7 @@ const friends = (req,res) => {
     const itemsPerPage= 5 
 
 
-    Friend.find({$or: [{user: userId, confirmed: true},{friend: userId, confirmed: true}]})
+    Friend.find({$or: [{user: userId},{friend: userId}]})
     .populate("user friend", "-password -role -__v -email")
     .paginate(page,itemsPerPage)
     .then(async(friends, error) => {
@@ -137,7 +137,7 @@ const numFriends = (req,res) => {
 
     if(req.params.id) userId = req.params.id
 
-    Friend.find({$or: [{user: userId, confirmed: true},{friend: userId, confirmed: true}]})
+    Friend.find({$or: [{user: userId},{friend: userId}]})
     .populate("user friend", "-password -role -__v -email")
     .then(async(friends) => {
 
@@ -151,61 +151,7 @@ const numFriends = (req,res) => {
 
 
 
-const requests = (req,res) => {
-    let userId = req.user.id
 
-    if(req.params.id) userId = req.params.id
-
-    let page = 1;
-
-    if(req.params.page) page = req.params.page
-
-    const itemsPerPage= 5 
-
-
-    Friend.find({$or: [{user: userId, confirmed: false},{friend: userId, confirmed: false}]})
-    .populate("user friend", "-password -role -__v -email")
-    .paginate(page,itemsPerPage)
-    .then(async(friends, error) => {
-        
-        //console.log()
-        let friendsIds = await friendService.friendUserids(userId)
-
-
-        return res.status(200).send({
-            status: "success",
-            message: "Listado de amigos",
-            total: friends.length,
-            pages: Math.ceil(friends.length/itemsPerPage),
-            friendsIds
-        })
-    })
-}
-
-const confirm = async(req,res) => {
-    let id = req.params.id
-
-    let me = req.user.id
-
-    const aux = await Friend.find({user: id, friend: me})
-    Friend.findByIdAndUpdate(aux,{confirmed: true}, {new:true})
-    .then((friend) => {
-
-
-        return res.status(200).send({
-            status: "success",
-            message: "Se ha aceptado correctamente",
-            friend
-        })
-
-    }).catch((error)=>{
-        return res.status(500).send({
-            status: "error",
-            message: "No se ha podido dejar de seguir"
-            
-        })
-    })
-}
 
 
 module.exports = {
@@ -213,7 +159,5 @@ module.exports = {
     add,
     eliminate,
     friends, 
-    numFriends,
-    requests,
-    confirm
+    numFriends
 }

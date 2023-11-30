@@ -358,41 +358,6 @@ const counters = async (req, res) => {
     }
 }
 
-const searchRequests = async (req, res) => {
-    try {
-        let userId = req.user.id
-
-        const usersRequestedIds2 = await Friend.find({"friend": req.user.id , "confirmed": false}).select({"user": 1, "_id": 0}).populate("user")              
-
-        const requestedIds2 = usersRequestedIds2.map((friend) => friend.user._id);
-        
-
-        const usersRequesting = await User.find({
-
-                 _id: { 
-                            $ne: userId
-                        , 
-                            $in: requestedIds2
-                        }
-                
-            
-        }).select("-password")
-        return res.status(200).send({
-            status: "success",
-            users:{
-                usersRequesting
-            }
-        })
-    } catch (error) {
-        return res.status(500).send({
-            status: "error",
-            message: "Error en la busqueda de usuarios",
-            error
-        })
-    }
-}
-
-
 const searchUsers = async (req, res) => {
     try {
         let searchTerm = req.params.searchTerm
@@ -406,15 +371,7 @@ const searchUsers = async (req, res) => {
 
         const regex = new RegExp(searchTerm, 'i')
         const friends = await friendService.friendUserids(req.user.id )
-
-        const usersRequestedIds = await Friend.find({"user": req.user.id , "confirmed": false}).select({"friend": 1, "_id": 0}).populate("friend")  
-        const usersRequestedIds2 = await Friend.find({"friend": req.user.id , "confirmed": false}).select({"user": 1, "_id": 0}).populate("user")              
         const friendIds = friends.friends.map((friend) => friend._id);
-        const requestedIds = usersRequestedIds.map((friend) => friend.friend._id);
-        const requestedIds2 = usersRequestedIds2.map((friend) => friend.user._id);
-
-        const friendAndRequestedIds = [...friendIds, ...requestedIds, ...requestedIds2]
-        
         const users = await User.find({
             $and: [
                 {
@@ -428,56 +385,14 @@ const searchUsers = async (req, res) => {
                 { _id: { 
                             $ne: userId
                         , 
-                            $nin: friendAndRequestedIds
+                            $nin: friendIds
                         }
                 }
             ]
-        }).select("-password")
-
-        const usersRequested = await User.find({
-            $and: [
-                {
-                    $or: [
-                        { name: regex },
-                        { surname: regex },
-                        { nick: regex },
-                        { email: regex },
-                    ]
-                },
-                { _id: { 
-                            $ne: userId
-                        , 
-                            $in: requestedIds
-                        }
-                }
-            ]
-        }).select("-password")
-
-        const usersRequesting = await User.find({
-            $and: [
-                {
-                    $or: [
-                        { name: regex },
-                        { surname: regex },
-                        { nick: regex },
-                        { email: regex },
-                    ]
-                },
-                { _id: { 
-                            $ne: userId
-                        , 
-                            $in: requestedIds2
-                        }
-                }
-            ]
-        }).select("-password")
+        })
         return res.status(200).send({
             status: "success",
-            users:{
-                users,
-                usersRequested,
-                usersRequesting
-            }
+            users
         })
     } catch (error) {
         return res.status(500).send({
@@ -497,6 +412,5 @@ module.exports = {
     avatar,
     upload,
     counters,
-    searchUsers,
-    searchRequests
+    searchUsers
 }
