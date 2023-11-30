@@ -38,6 +38,7 @@
     grid-template-areas: "nueva-rutina boton-anadir";
     grid-template-columns: 80% auto;
     align-items: center;
+    margin-top: 2%;
     margin-left: 15%;
 }
 
