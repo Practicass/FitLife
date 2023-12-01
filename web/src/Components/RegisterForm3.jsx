@@ -2,11 +2,12 @@ import React from "react"
 
 const RegisterForm3 = ({errorNick, errorPassword, form, changed}) => {
     const styleError = {"color": "red", "fontWeight": "bold", "marginBottom": "1%"}
+    const styleLabel = {"fontWeight": "bold"}
     
     return (
     <div className='registerForm'>
         <form name='form-register1'> 
-            <p>Nombre de usuario</p>
+            <p style={styleLabel}>Nombre de usuario</p>
             { errorNick ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (
@@ -14,7 +15,7 @@ const RegisterForm3 = ({errorNick, errorPassword, form, changed}) => {
                 )}
 
             <input type='text' name='nick' defaultValue={form.nick} onChange={changed}/>
-            <p>Contraseña</p>
+            <p style={styleLabel}>Contraseña</p>
             { errorPassword ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (

@@ -3,11 +3,12 @@
 const RegisterForm2 = ({errorAge, errorWeight, errorHeight, errorSex, form, changed}) => {
     const style = {"accentColor" : "orange"}
     const styleError = {"color": "red", "fontWeight": "bold", "marginBottom": "1%"}
+    const styleLabel = {"fontWeight": "bold"}
 
     return (
         <div className='registerForm'>
             <form name='form-register2'> 
-                <p>Edad</p>
+                <p style={styleLabel}>Edad</p>
                 { errorAge ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (
@@ -16,7 +17,7 @@ const RegisterForm2 = ({errorAge, errorWeight, errorHeight, errorSex, form, chan
 
                 <input type='text' name='age' defaultValue={form.age} onChange={changed}/>
 
-                <p>Peso (kg)</p>
+                <p style={styleLabel}>Peso (kg)</p>
                 { errorWeight ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (
@@ -25,7 +26,7 @@ const RegisterForm2 = ({errorAge, errorWeight, errorHeight, errorSex, form, chan
 
                 <input type='text' name='weight' defaultValue={form.weight} onChange={changed}/>
                 
-                <p>Altura (cm)</p>
+                <p style={styleLabel}>Altura (cm)</p>
                 { errorHeight ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (
@@ -34,7 +35,7 @@ const RegisterForm2 = ({errorAge, errorWeight, errorHeight, errorSex, form, chan
 
                 <input type='text' name='height' defaultValue={form.height} onChange={changed}/>
                 
-                 <p>Sexo</p>
+                 <p style={styleLabel}>Sexo</p>
                  { errorSex ? (
                     <p style={styleError}> Campo obligatorio </p>
                 ) : (
