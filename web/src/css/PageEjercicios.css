@@ -27,29 +27,35 @@
     grid-area: header-ejercicios;
 }
 
-.extit-boton {
-    display: grid;
-    grid-template-areas: "ejercicios-titulo";
-    grid-template-columns: 70% auto;
-    margin-left: 13%;
-    justify-content: center;
+.principal-ejercicios {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .ejercicios-titulo {
     grid-area: ejercicios-titulo;
     color: var(--color-third);
+    width: min-content;
+    height: fit-content;
     font-size: 400%;
     font-weight: bold;
+    align-self: center;
+    justify-self: center;
     text-align: center;
-    margin-right: 5%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4%;
 }
-
 
 .div-ejercicios {
     margin-left: 5%;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .cada-musculo {
