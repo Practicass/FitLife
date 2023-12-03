@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Header from "./HeaderAdmin"
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
-import "../css/PageNuevaRutina.css"
+import "../css/PageEditRoutineAdmin.css"
 import "../css/PageEjercicios.css"
 import { ImCross } from "react-icons/im"
 import { MyButton } from './MyButton'
@@ -86,6 +86,28 @@ const PageEditRoutineAdmin = () => {
         setEjercicios(newEjercicios)
     }
 
+    const eliminateRutina = async () => {
+        try {
+            const response = await fetch(Global.url + 'rutine/eliminate/' + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            })
+
+            const data = await response.json()
+
+            if (data.status == "success") {
+                navigate("/adminHome")
+            } else {
+                console.error("Error al eliminar la rutina: ", data.message)
+            }
+        } catch (error) {
+            console.error("Error al eliminar la rutina: ", error)
+        }
+    }
+
     const updateRutina = async () => {
         try {
             if (!nombreRutina.trim()) {
@@ -120,7 +142,7 @@ const PageEditRoutineAdmin = () => {
             const data = await response.json()
 
             if (data.status === "success") {
-                navigate("/routines")
+                navigate("/adminHome")
             }
             else {
                 // Mensaje o Pantalla de error
@@ -198,6 +220,15 @@ const PageEditRoutineAdmin = () => {
                                 value="Guardar"
                                 onClick={updateRutina}>
                                 Guardar
+                            </MyButton>
+                            <MyButton
+                                className="boton-eliminar-rutina"
+                                color="red"
+                                size="xxl"
+                                type="submit"
+                                value="Eliminar"
+                                onClick={eliminateRutina}>
+                                Eliminar
                             </MyButton>
                     </div>
                     <div className="forms-nueva-rutina">
