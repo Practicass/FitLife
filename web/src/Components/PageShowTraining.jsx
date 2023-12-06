@@ -2,7 +2,7 @@
 
 import {ImCross} from "react-icons/im"
 import "../css/PageTraining.css"
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
 import ReactTimeAgo from "react-time-ago"
@@ -10,6 +10,7 @@ import ReactTimeAgo from "react-time-ago"
 
 
 const PageShowTraining = () => {
+    const navigate = useNavigate()
     const params = useParams()
     const id = params.id
     const [sets, setSets] = useState([]);
@@ -19,6 +20,7 @@ const PageShowTraining = () => {
 
     const [duration, setDuration] = useState(date)
     const [nick, setNick] = useState("")
+    const [eliminado,setEliminado] = useState()
   
 
     useEffect(() => {
@@ -51,20 +53,41 @@ const PageShowTraining = () => {
 
     }  
 
+    const deleteTraining = async() =>{
+      const request = await fetch(Global.url+"training/eliminate/"+id, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token")
+          
+        }
+        })
 
+        const data = await request.json();
+        
+        if(data.status === "success"){
+          navigate("/history")
+        }else{ setEliminado(true)}
+        
+       
+        
+    }
     let uniqueSetId = []
     let numSerie
-
+    const style1 = { "fontWeight":"bolder", "color":"#242424"}
+    const style3 = { "color":"#f00"}
+    const style2 = {"marginTop":"3%"}
   return (
     <div className="pageTraining">
       <NavLink to={-1} className="cross-training"><ImCross size="35px" color='#fba92c'/></NavLink>
       <div className="title-training">
-        <h1>{name}</h1>
+        <h1 style={style2}>{name}</h1>
         <div className="titulo-showTraining">
             <label>@{nick}</label>
             <ReactTimeAgo date={Date.parse(duration)} locale='es-ES' className='date-rectangle'/>
         </div>
-        
+        <button className="deleteButton" onClick={deleteTraining} style={style1}>Eliminar entrenamiento</button>
+        {eliminado === true ? <h1 style={style3}>ERROR: No se ha eliminado el entrenamiento</h1>: <h1></h1>}
       </div>
       
       <div className="addTraining">        
