@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-ARG HOME_DIR
+
 
 RUN apt update -y
 RUN apt upgrade -y
@@ -13,11 +13,14 @@ RUN curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo ap
 
 
 
-RUN useradd --create-home --shell /bin/zsh vscode
-RUN adduser vscode sudo 
+RUN useradd --create-home --shell /bin/zsh are || true
+RUN adduser are sudo 
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
-RUN echo "vscode:vscode" | chpasswd
+RUN echo "are:are" | chpasswd
 
 
-COPY ./.zshrc /home/vscode
+COPY ./.zshrc /home/are/
+
+
+CMD tail -f /dev/null
