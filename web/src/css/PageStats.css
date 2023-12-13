@@ -128,8 +128,8 @@
 
 .eliminar-metrica{
     grid-area: eliminar-metrica;
-    justify-self: start;
-    align-self: end;
+    justify-self: flex-start;
+    align-self: flex-end;
     height: 40px;
     width: 60%;
     border-radius: 10px;

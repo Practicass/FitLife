@@ -90,7 +90,7 @@
 .cruz {
     grid-area: cruz;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     margin-right: 3%;
     color: var(--color-third)
@@ -119,7 +119,7 @@
 
 .solicitud-amistad{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 10%;
 }
 

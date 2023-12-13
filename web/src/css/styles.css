@@ -292,7 +292,7 @@
 
 .routines{
     display: flex;
-    justify-content:start;
+    justify-content:flex-start;
     align-items: center;
     margin-left:2%;
     height: 84%;
@@ -344,7 +344,7 @@
     grid-area: edit;
 
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }
 
 
