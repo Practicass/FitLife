@@ -1,12 +1,15 @@
 version: '3'
 services:
-  database:
-    image: sisinf/database:latest
-    ports:
+  server:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    ports:  
       - 3900:3900
 
-  web:
-    image: sisinf/web:latest
+  client:
+    build: 
+      context: ./web
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
-    
+      - 80:80
