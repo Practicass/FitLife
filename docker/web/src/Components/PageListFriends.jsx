@@ -7,10 +7,11 @@ import {ImCross} from "react-icons/im"
 import "../css/PageListFriends.css"
 import { Global } from "../helpers/Global"
 import { MyButton } from "./MyButton"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 const PageListFriends = () => {
     
+    const navigate = useNavigate()
     const[friends, setFriends] = useState([])
     const getFriendList = async() => {
         const request = await fetch(Global.url+'friend/friends', {
@@ -125,7 +126,7 @@ const PageListFriends = () => {
             <div className='content-list-friends'>
                 <Header/>
                 <h1 className="titulo-list-friends"> MIS AMIGOS </h1>
-                <NavLink to="/friendrequests" className="solicitud-amistad"><MyButton color="orangeblack" >Solicitudes de amistad</MyButton></NavLink>
+                <div className="solicitud-amistad"><MyButton color="orangeblack"onClick={() => navigate("/friendrequests")} >Solicitudes de amistad</MyButton></div>
                 <div className="principal-list">
                     <form className="busqueda-form-friends" >
                         <input 

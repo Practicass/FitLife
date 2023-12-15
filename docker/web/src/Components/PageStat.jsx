@@ -7,6 +7,10 @@ import { useParams } from 'react-router-dom'
 import {ImCross} from "react-icons/im"
 import useAuth from '../hooks/useAuth'
 import { Global } from '../helpers/Global'
+import Stat4 from './Stat4'
+import Stat1 from './Stat1'
+import Stat2 from './Stat2'
+import Stat3 from './Stat3'
 
 
 const PageStat = () => {
@@ -14,7 +18,7 @@ const PageStat = () => {
     const params = useParams()
     const num = params.num
 
-    const StatComponent = React.lazy(() => import(/* @vite-ignore */`./Stat${num}`));
+    //const StatComponent = React.lazy(() => import(/* @vite-ignore */`./Stat${num}`));
     const {auth} = useAuth()
 
     const validarNumero = (e) => {
@@ -127,7 +131,10 @@ const PageStat = () => {
         <div className='principal-stat1'>
             <div className='stat1'>
               <React.Suspense>
-                <StatComponent />
+                {num == 1 && <Stat1 />}
+                {num == 2 && <Stat2 />}
+                {num == 3 && <Stat3 />}
+                {num == 4 && <Stat4 />}
               </React.Suspense>
             </div>
             {num == 1 && 

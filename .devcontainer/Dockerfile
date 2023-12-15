@@ -23,4 +23,4 @@ RUN echo "are:are" | chpasswd
 COPY ./.zshrc /home/are/
 
 
-CMD tail -f /dev/null
+
