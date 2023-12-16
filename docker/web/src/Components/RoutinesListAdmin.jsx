@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 import "../css/RoutinesListAdmin.css"
 import { MyButton } from "./MyButton";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
  const RoutinesListAdmin = () => {
+  const navigate = useNavigate();
 
   const [routines, setRoutines] = useState([])
   const getRoutines = async() => {
@@ -44,9 +45,9 @@ useEffect(() => {
             if (routine.user.rol == "admin"){
               return(
                 <li className='li-adminRo' key={index}>
-                  <NavLink to={`editRoutine/${routine._id}`}>
-                    <MyButton color="orange" key={routine._id} className='boton-adminRutina'>{routine.name}</MyButton>
-                  </NavLink>
+
+                    <MyButton color="orange" key={routine._id} className='boton-adminRutina'onClick={() => navigate(`editRoutine/${routine._id}`)}>{routine.name}</MyButton>
+
                 </li>
               )
             }

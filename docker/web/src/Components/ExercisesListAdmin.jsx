@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { Global } from '../helpers/Global'
 import "../css/ExerciseListAdmin.css"
 import { MyButton } from "../Components/MyButton";
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 
  const ExercisesListAdmin = () => {
 
+  const navigate = useNavigate();
   const [exercises, setExercises] = useState([])
   const getExercises = async() => {
 
@@ -43,7 +44,7 @@ useEffect(() => {
           { exercises.map((exercise,index) => {
             return(
               <li className='li-adminEx' key={index}>
-                <NavLink to={`editExercise/${exercise._id}`}><MyButton color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton></NavLink>
+               <MyButton onClick={() => navigate(`editExercise/${exercise._id}`)} color="orange" key={exercise._id} className='boton-adminEjercicio'>{exercise.name}</MyButton>
               </li>
             )
           })}
