@@ -1,5 +1,5 @@
 {
-    "name": "node-template",
+    "name": "ubuntu-dev",
   
     "dockerFile": "Dockerfile",
   
