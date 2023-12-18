@@ -12,6 +12,8 @@ import { NavLink, useNavigate } from "react-router-dom"
 const PageListFriends = () => {
     
     const navigate = useNavigate()
+    const [reload, setReload] = useState(true);
+    
     const[friends, setFriends] = useState([])
     const getFriendList = async() => {
         const request = await fetch(Global.url+'friend/friends', {
@@ -31,7 +33,8 @@ const PageListFriends = () => {
 
     useEffect(() => {
         getFriendList()
-    }, [])
+        setReload(true)
+    }, [reload])
 
     const eliminarAmigo = async (idAmigo) => {
         try {
@@ -42,7 +45,9 @@ const PageListFriends = () => {
                     "Authorization": localStorage.getItem("token")
                 }
             })
-            window.location.reload()
+            // window.location.reload()
+            search(busqueda)
+            setReload(false)
         } catch (error) {
             console.error("No se pudo eliminar el amigo: ", error)
         }
@@ -97,7 +102,9 @@ const PageListFriends = () => {
                     friend: idFriend
                 })
             })
-            window.location.reload()
+            // window.location.reload()
+            search(busqueda)
+            setReload(false)
         } catch (error) {
             console.error("Error al añadir el amigo: ", error)
         }
@@ -112,7 +119,9 @@ const PageListFriends = () => {
                     "Authorization": localStorage.getItem("token")
                 },
             })
-            window.location.reload()
+            // window.location.reload()
+            search(busqueda)
+            setReload(false)
         } catch (error) {
             console.error("Error al añadir el amigo: ", error)
         }
@@ -138,7 +147,10 @@ const PageListFriends = () => {
                             onChange={(e) => search(e.target.value)}
                             />
                     </form>
-                    {showFriends ?
+                    { reload ?
+                        <>
+                    
+                    {showFriends  ?
                     <div className="list-friends">
                         { friends.length === 0 ? (
                             <p style={{
@@ -166,14 +178,14 @@ const PageListFriends = () => {
                     </div>
                     :
                         <div className="list-friends">
-                                { searchResults.length === 0 ? 
+                                { reload && searchResults.length === 0 ? 
                                     <p style={{
                                             fontWeight: "bold", 
                                             marginLeft: "37%"}}> 
                                         No hay resultados para su búsqueda 
                                     </p>
                                  : 
-                                    searchResults.usersRequested && searchResults.usersRequested.map((friend, index) => {
+                                    reload && searchResults.usersRequested && searchResults.usersRequested.map((friend, index) => {
                                 return(
                                 <div className='user-not-friend' key={index}>
                                     <div className="foto-friend">
@@ -191,7 +203,7 @@ const PageListFriends = () => {
                                 </div>
                                 )
                             })}
-                            {searchResults.usersRequesting && searchResults.usersRequesting.map((friend, index) => {
+                            {reload && searchResults.usersRequesting && searchResults.usersRequesting.map((friend, index) => {
                                 return(
                                 <div className='user-not-friend' key={index}>
                                     <div className="foto-friend">
@@ -209,7 +221,7 @@ const PageListFriends = () => {
                                 </div>
                                 )
                             })}
-                            {searchResults.users && searchResults.users.map((friend, index) => {
+                            {reload && searchResults.users && searchResults.users.map((friend, index) => {
                                 return(
                                 <div className='user-not-friend' key={index}>
                                     <div className="foto-friend">
@@ -228,9 +240,12 @@ const PageListFriends = () => {
                                 )
                             })}
                         </div>
-                        }
+                        }</>
+                        : null
+                        
+                    }
                     
-                    
+                   
                 </div>
             </div>
         </div>

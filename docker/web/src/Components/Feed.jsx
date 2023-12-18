@@ -80,7 +80,7 @@ const Feed = () => {
                             <h4>Ejercicios:</h4>
                             {training.sets.map(set => {
                                     const exerciseName = set.exercise.name;
-                            console.log(set.exercise.name)    
+                            //console.log(set.exercise.name)    
                                     if (!uniqueExerciseNames.includes(exerciseName) && uniqueExerciseNames.length < 5) {
                                         uniqueExerciseNames.push(exerciseName);
         

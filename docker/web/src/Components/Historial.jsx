@@ -43,13 +43,13 @@ const Historial = () => {
         
     }
 
-    const segundosATiempo = (segundos) => {
-        const horas = Math.floor(segundos / 3600);
-        const minutos = Math.floor((segundos % 3600) / 60);
+    const minutosATiempo = (minutos) => {
+        const horas = Math.floor( minutos / 60);
+        //console.log(horas, minutos)
         if(horas == 0){
             return`${minutos}m`
         }else{
-            return `${horas}h ${minutos}m`;
+            return `${horas}h ${Math.floor(minutos % 60)}m`;
         }
         
     }
@@ -79,7 +79,7 @@ const Historial = () => {
                     <div className='info-rectangle'>
                         <h3>{training.name}</h3>
                         <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='date-rectangle'/>
-                        <label>{segundosATiempo(training.duration)}</label>
+                        <label>{minutosATiempo(training.duration)}</label>
                     </div>
                     <div className='separator'></div>
                     <div className='exercises-rectangle'>

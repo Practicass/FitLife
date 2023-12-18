@@ -6,14 +6,16 @@ import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { Global } from "../helpers/Global"
 import { useEffect, useState } from "react"
 import ReactTimeAgo from "react-time-ago"
+import useAuth from "../hooks/useAuth"
 
 
 
-const PageShowTraining = () => {
+const PageShowTraining = ({user}) => {
     const navigate = useNavigate()
     const params = useParams()
     const id = params.id
     const [sets, setSets] = useState([]);
+    const {auth} = useAuth()
 
     const [name , setName] = useState("")
     const date = new Date()
@@ -50,7 +52,6 @@ const PageShowTraining = () => {
         setSets(data.training.sets)
         setDuration(data.training.created_at)
         setNick(data.training.user.nick)
-
     }  
 
     const deleteTraining = async() =>{
@@ -86,8 +87,14 @@ const PageShowTraining = () => {
             <label>@{nick}</label>
             <ReactTimeAgo date={Date.parse(duration)} locale='es-ES' className='date-rectangle'/>
         </div>
-        <button className="deleteButton" onClick={deleteTraining} style={style1}>Eliminar entrenamiento</button>
-        {eliminado === true ? <h1 style={style3}>ERROR: No se ha eliminado el entrenamiento</h1>: <h1></h1>}
+        { auth.nick === nick ? (
+          <div className="deleteButtonPlace">
+            <button className="deleteButton" onClick={deleteTraining} style={style1}>Eliminar entrenamiento</button>
+            {eliminado === true ? <h1 style={style3}>ERROR: No se ha eliminado el entrenamiento</h1>: <h1></h1>}
+          </div>
+        ) : (
+          null
+        )}
       </div>
       
       <div className="addTraining">        

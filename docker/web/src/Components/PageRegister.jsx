@@ -10,6 +10,7 @@ import { Button} from "@nextui-org/react";
 
 const PageRegister = () => {
 
+
     const [num, setNum] = useState(1)
     const {form, changed} = useForm({})
     const navigate = useNavigate()
@@ -164,7 +165,7 @@ const PageRegister = () => {
                                    form={form} 
                                    changed={changed}/>
                     
-                    <NavLink to="/login"><Button style={{"margin":"8px"}} color="warning">Atras</Button></NavLink>
+                    <Button onClick={()=> navigate("/login")} style={{"margin":"8px"}} color="warning">Atras</Button>
                     <Button color="warning" style={{"margin":"8px"}} onClick={() => from1to2()}>Siguiente</Button>
                 </div>
                 

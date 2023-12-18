@@ -11,6 +11,8 @@ import { NavLink } from "react-router-dom"
 
 const PageListRequests = () => {
     
+    const [reload, setReload] = useState(true);
+    
     const[friends, setFriends] = useState([])
     const getFriendList = async() => {
         const request = await fetch(Global.url+'user/searchRequests', {
@@ -34,7 +36,8 @@ const PageListRequests = () => {
 
     useEffect(() => {
         getFriendList()
-    }, [])
+        setReload(true)
+    }, [reload])
 
     const eliminarAmigo = async (idAmigo) => {
         try {
@@ -45,7 +48,8 @@ const PageListRequests = () => {
                     "Authorization": localStorage.getItem("token")
                 }
             })
-            window.location.reload()
+            // window.location.reload()
+            setReload(false)
         } catch (error) {
             console.error("No se pudo eliminar el amigo: ", error)
         }
@@ -62,7 +66,8 @@ const PageListRequests = () => {
                     "Authorization": localStorage.getItem("token")
                 },
             })
-            window.location.reload()
+            // window.location.reload()
+            setReload(false)
         } catch (error) {
             console.error("Error al añadir el amigo: ", error)
         }
@@ -79,7 +84,7 @@ const PageListRequests = () => {
                 <div className="principal-list">
                     
                     <div className="list-friends">
-                    { friends.usersRequesting && friends.usersRequesting.length > 0 ? (
+                    { reload && friends.usersRequesting && friends.usersRequesting.length > 0 ? (
                          friends.usersRequesting.map((friend, index) => {
                             
                             return(
