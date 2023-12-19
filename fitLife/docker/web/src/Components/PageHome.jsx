@@ -56,16 +56,18 @@ const PageHome = () => {
     
 }
 
-  const segundosATiempo = (segundos) => {
-    const horas = Math.floor(segundos / 3600);
-    const minutos = Math.floor((segundos % 3600) / 60);
-    if(horas == 0){
-        return`${minutos}m`
-    }else{
-        return `${horas}h ${minutos}m`;
-    }
-    
+const minutosATiempo = (minutos) => {
+  const horas = Math.floor( minutos / 60);
+  //console.log(horas, minutos)
+  if(horas == 0){
+      return`${minutos}m`
+  }else{
+      
+      return `${horas}h ${Math.floor(minutos % 60)}m`;
   }
+  
+}
+
 
 
 
@@ -112,7 +114,7 @@ const PageHome = () => {
                                 <h3 className='text-1xs lg:text-xl '>{training.name}</h3>
                                 <h3 className='text-xs lg:text-xl'>@{training.user.nick}</h3>
                                 <ReactTimeAgo date={Date.parse(training.created_at)} locale='es-ES' className='text-xs lg:text-xl date-rectangle'/>
-                                <label className='text-xs lg:text-xl'>{segundosATiempo(training.duration)}</label>
+                                <label className='text-xs lg:text-xl'>{minutosATiempo(training.duration)}</label>
                             </div>
                             <div className='separator '></div>
                             <div className='exercises-rectangle text-xs lg:text-xl'>
