@@ -45,4 +45,5 @@ If you want to contribute to this project, follow these steps:
 ## Contributors 
 - Pablo Angusto Delgado
 - Miguel Aréjula Aísa
+- José Miguel Florentín Domingo
 
