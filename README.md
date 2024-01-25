@@ -23,7 +23,7 @@
   `npm start`
 - Open your browser and visit `http://localhost:3000`
 
-- - Run the development web:
+- Run the development web:
   `cd practica5_842255_850068_839899/fitLife/docker/web`
   `npm run dev`
 - Open your browser and visit `http://localhost:80`
